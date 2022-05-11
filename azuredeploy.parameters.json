@@ -1,0 +1,72 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourceNamePrefix": {
+            "value": "fsa"
+        },
+        "instanceType": {
+            "value": "Standard_B4ms"
+        },
+        "vmAdminUsername": {
+            "value": "Default Username 'admin'"
+        },
+        "vmAdminPassword": {
+            "value": "Default Password Vm-id"
+        },
+        "fortiSandboxImageSKU": {
+            "value": "fortinet_fsa-vm"
+        },
+        "fortiSandboxImageVersion": {
+            "value": "latest"
+        },
+        "location": {
+            "value": "" // TODO: Fill in parameter value
+        },
+        "availabilityOptions": {
+            "value": "Availability Set"
+        },
+        "vmCount": {
+            "value": 2
+        },
+        "vnetNewOrExisting": {
+            "value": "new"
+        },
+        "vnetResourceGroup": {
+            "value": "" // TODO: Fill in parameter value
+        },
+        "vnetName": {
+            "value": "fsavnet"
+        },
+        "vnetAddressPrefix": {
+            "value": "10.0.0.0/16"
+        },
+        "vnetSubnet1Name": {
+            "value": "MgmtSubnet"
+        },
+        "vnetSubnet1Prefix": {
+            "value": "10.0.1.0/24"
+        },
+        "vnetSubnet2Name": {
+            "value": "CustomWindowsSubnet"
+        },
+        "vnetSubnet2Prefix": {
+            "value": "10.0.2.0/24"
+        },
+        "vnetSubnet3Name": {
+            "value": "HASyncSubnet"
+        },
+        "vnetSubnet3Prefix": {
+            "value": "10.0.3.0/24"
+        },
+        "publicIPNewOrExisting": {
+            "value": "new"
+        },
+        "PublicIPNamePrefix": {
+            "value": ""
+        },
+        "publicIPResourceGroup": {
+            "value": ""
+        }
+    }
+}
