@@ -21,7 +21,7 @@
         "options": {
           "icon": "Info",
           "text": "FortiSandbox Deployment Type - advanced - Select Vm numbers - Availability Set or Availability Zones",
-          "uri": "https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiSandbox/Advanced%20Deployment"
+          "uri": "https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiSandbox/Advanced-Deployment"
         }
       },
       {
