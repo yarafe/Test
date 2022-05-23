@@ -197,7 +197,7 @@
             "label": "Size",
             "toolTip": "Select the instance size of your FortiSandbox VM solution. Minimum 3 NICs are required.",
             "recommendedSizes": [
-              "Standard_F4s",
+              "Standard_B4ms",
 				"Standard_F8s",
 				"Standard_F16s",
 				"Standard_F4",
