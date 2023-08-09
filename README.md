@@ -12,7 +12,7 @@ This Azure ARM template will automatically deploy a full working environment con
 - 1 VNETs containing a management subnet, custom Windows subnet and HA sync subnet
 
 
-![FortiSandbox-VM azure design](images/fts-standalone.png)
+![FortiSandbox-VM azure design](images/FSA-AdvanceDeployment.png)
 
 ## Deployment: Azure Portal
 
