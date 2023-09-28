@@ -766,15 +766,7 @@
             "options": {
               "text": "The FortiProxy can access internet using one of the following methods."
             },
-            "visible": true
-          },
-		  {
-            "name": "publiciptext",
-            "type": "Microsoft.Common.TextBlock",
-            "options": {
-              "text": "The Load Balancer public IP will be used for public services hosted on the FortiProxy."
-            },
-            "visible": "[equals(steps('publicip').externalLoadBalancer.enabled,'true')]"
+            "visible": "[equals(steps('publicip').externalLoadBalancer.enabled,'false')]"
           }
 		  
 		  
