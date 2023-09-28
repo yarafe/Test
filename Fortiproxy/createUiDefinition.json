@@ -1079,7 +1079,7 @@
       "fortiProxyLicenseBYOL8": "[steps('instance').fpxLicense.fpx8content]",
       "customImageReference": "[steps('advanced').customvhd.resourceid]",
 	  
-	  "internetConnectivity": "[steps('publicip').internetaccessOptions]",
+	  "internetConnectivity": "[if(equals(steps('publicip').internetaccessOptions,'NAT Outbound'),'NAT Outbound','Attached Public IP Address')]",
 	  
 	  //"NATOutbound": "[bool(if(equals(steps('publicip').internetaccessOptions,'NAT Outbound'),1,0))]",
 	  
