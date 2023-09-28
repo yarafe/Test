@@ -374,7 +374,18 @@
         "template": "FortiProxy-Active-Active-ELB-or-ILB",
         "provider": "6EB3B02F-50E5-4A3E-8CB8-2E12925831FPXAA"
       }
-    }
+    },
+	
+	
+	
+	"internetConnectivity": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "choose how you want to get internet connectivity "
+      }
+	
+	
   },
   "variables": {
     "imagePublisher": "fortinet",
