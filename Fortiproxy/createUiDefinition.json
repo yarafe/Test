@@ -767,7 +767,7 @@
               "text": "The FortiProxy can access internet using one of the following methods."
             },
             "visible": "[equals(steps('publicip').externalLoadBalancer.enabled,'false')]"
-          },
+          }
 		  
 		  
 		  
