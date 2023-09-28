@@ -766,7 +766,7 @@
             "options": {
               "text": "The FortiProxy can access internet using one of the following methods."
             },
-            "visible": "true"
+            "visible": true
           }
 		  
 		  
