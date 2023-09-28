@@ -1080,7 +1080,7 @@
       "customImageReference": "[steps('advanced').customvhd.resourceid]",
 	  
 	  
-	  "NATOutbound": "[bool(if(equals(steps('publicip').internetaccessOptions,'NAT Outbound'),1,0))]",
+	  
 	  
       "location": "[location()]"
     }
