@@ -1081,7 +1081,7 @@
 	  
 	  "internetConnectivity": "[steps('publicip').internetaccessOptions]",
 	  
-	  #"NATOutbound": "[bool(if(equals(steps('publicip').internetaccessOptions,'NAT Outbound'),1,0))]",
+	  //"NATOutbound": "[bool(if(equals(steps('publicip').internetaccessOptions,'NAT Outbound'),1,0))]",
 	  
       "location": "[location()]"
     }
