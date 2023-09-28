@@ -767,7 +767,34 @@
               "text": "The FortiProxy can access internet using one of the following methods."
             },
             "visible": "[equals(steps('publicip').externalLoadBalancer.enabled,'false')]"
-          }
+          },
+		  
+		  
+          {
+                "name": "internetaccessOptions",
+                "type": "Microsoft.Common.DropDown",
+                "label": "Internet Access Options",
+                "defaultValue": "NAT Outbound",
+                "toolTip": "Deploy NAT Gateway or attach Public IP address for each FortiProxy.",
+                "constraints": {
+                  "required": false,
+                  "allowedValues": [
+                    {
+                      "label": "NAT Outbound",
+                      "value": "NAT Outbound"
+                    },
+                    {
+                      "label": "Attached Public IP Address",
+                      "value": "Attached Public IP Address"
+                    }
+                  ]
+                },
+                "visible": "[equals(steps('publicip').externalLoadBalancer.enabled,'false')]"
+           }
+		  
+		  
+		  
+		
 		  
 		  
 		  
