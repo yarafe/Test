@@ -384,7 +384,7 @@
 	   "allowedValues": [
         "NAT Outbound",
         "Attached Public IP Address"
-		]
+		],
       "metadata": {
         "description": "choose how you want to get internet connectivity "
       }
