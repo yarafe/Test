@@ -786,7 +786,7 @@
                 "name": "internetaccessOptions",
                 "type": "Microsoft.Common.DropDown",
                 "label": "Internet Access Options",
-                "defaultValue": "",
+                "defaultValue": ["NAT Outbound"],
                 "toolTip": "Deploy NAT Gateway or attach Public IP address for each FortiProxy.",
                 "constraints": {
                   "required": false,
