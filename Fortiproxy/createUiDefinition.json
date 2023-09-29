@@ -760,7 +760,19 @@
             "visible": "[equals(steps('publicip').externalLoadBalancer.enabled,'true')]"
           },
 		  
+		  
 		  {
+            "name": "internalLoadBalancer",
+            "type": "Microsoft.Common.Section",
+            "label": "Internal Load Balancer",
+            "visible": "[equals(steps('publicip').externalLoadBalancer.enabled,'false')]",
+			"elements": [
+              
+		  
+		  
+		  
+		  
+			{
             "name": "internetaccesstext",
             "type": "Microsoft.Common.TextBlock",
             "options": {
