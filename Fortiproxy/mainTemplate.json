@@ -962,9 +962,11 @@
       ],
       "properties": {
 		  "idleTimeoutInMinutes": 4,
-		  "publicIpAddresses": {
-                "id": "[variables('publicIpAddressesId')]"
-              }
+		  "publicIpAddresses": [
+			{
+                "id": "[variables('publicIP1Id')]"
+			}
+		]
        
       }
     },
