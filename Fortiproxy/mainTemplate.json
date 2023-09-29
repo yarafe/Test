@@ -955,7 +955,7 @@
       ],
       "properties": {
 		  "idleTimeoutInMinutes": 4,
-		  "publicIPAddress": {
+		  "publicIpAddresses": {
                 "id": "[variables('publicIP1Id')]"
               }
        
