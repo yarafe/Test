@@ -411,7 +411,14 @@
     "serialConsoleEnabled": "[if(equals(parameters('serialConsole'),'yes'),'true','false')]",
     "publicIP1Name": "[if(equals(parameters('publicIP1Name'),''),concat(parameters('fortiProxyNamePrefix'),'-fpx-pip'),parameters('publicIP1Name'))]",
     "publicIP1Id": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIP1Name')),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIP1Name')))]",
-    "sn1CidrObject": "[parseCidr(parameters('subnet1Prefix'))]",
+    
+	"publicIpAddressesId": [
+          {
+            "id": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIP1Name')),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIP1Name')))]"
+          }
+        ],
+	
+	"sn1CidrObject": "[parseCidr(parameters('subnet1Prefix'))]",
     "sn1Octets4": "[split(variables('sn1CidrObject').firstUsable,'.')]",
     "sn1IPStartAddress": "[split(parameters('subnet1StartAddress'),'.')]",
     "sn1GatewayIP": "[variables('sn1CidrObject').firstUsable]",
@@ -956,7 +963,7 @@
       "properties": {
 		  "idleTimeoutInMinutes": 4,
 		  "publicIpAddresses": {
-                "id": "[variables('publicIP1Id')]"
+                "id": "[variables('publicIpAddressesId')]"
               }
        
       }
@@ -1127,11 +1134,11 @@
   "outputs": {
     "fortiProxyPublicIP": {
       "type": "string",
-      "value": "[if(and(equals(parameters('publicIP1NewOrExistingOrNone'), 'new'),1), reference(variables('publicIP1Id')).ipAddress, '')]"
+      "value": "[if(and(equals(parameters('publicIP1NewOrExistingOrNone'), 'new'),parameters('externalLoadBalancer')), reference(variables('publicIP1Id')).ipAddress, '')]"
     },
     "fortiProxyFQDN": {
       "type": "string",
-      "value": "[if(and(equals(parameters('publicIP1NewOrExistingOrNone'), 'new'),1), reference(variables('publicIP1Id')).dnsSettings.fqdn, '' )]"
+      "value": "[if(and(equals(parameters('publicIP1NewOrExistingOrNone'), 'new'),parameters('externalLoadBalancer')), reference(variables('publicIP1Id')).dnsSettings.fqdn, '' )]"
     }
   }
 }
