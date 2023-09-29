@@ -731,7 +731,7 @@
               "domainNameLabel": "Domain name label"
             },
             "toolTip": {
-              "publicIpAddress": "Public IP attached to the public load balancer",
+              "publicIpAddress": "Public IP attached ",
               "domainNameLabel": "DNS name linked to this public IP"
             },
             "defaultValue": {
@@ -747,7 +747,7 @@
               "hideNone": false,
               "hideDomainNameLabel": true
             },
-            "visible": "[equals(steps('publicip').externalLoadBalancer.enabled,'true')]"
+            "visible": "[or(equals(steps('publicip').externalLoadBalancer.enabled,'true'),equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound'))]"
           },
           {
             "name": "standardsku",
@@ -814,32 +814,7 @@
             },
             "visible": "[equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound')]"
           },
-          {
-            "name": "loadbalancerpublicip",
-            "type": "Microsoft.Network.PublicIpAddressCombo",
-            "label": {
-              "publicIpAddress": "Public IP address",
-              "domainNameLabel": "Domain name label"
-            },
-            "toolTip": {
-              "publicIpAddress": "Public IP attached to NAT Gateway",
-              "domainNameLabel": "DNS name linked to this public IP"
-            },
-            "defaultValue": {
-              "publicIpAddressName": "[if(equals(basics('fortiProxyNamePrefix'),''),'fpxPublicIP',concat(basics('fortiProxyNamePrefix'),'-fpx-pip'))]",
-              "domainNameLabel": "mydomain"
-            },
-            "constraints": {
-              "required": {
-                "domainNameLabel": false
-              }
-            },
-            "options": {
-              "hideNone": false,
-              "hideDomainNameLabel": true
-            },
-            "visible": "[equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound')]"
-          },
+          
           {
             "name": "standardsku",
             "type": "Microsoft.Common.InfoBox",
