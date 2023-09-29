@@ -802,7 +802,54 @@
                   ]
                 },
                 "visible": "[equals(steps('publicip').externalLoadBalancer.enabled,'false')]"
-           }
+           },
+		   
+		   
+		   
+          {
+            "name": "publiciptext",
+            "type": "Microsoft.Common.TextBlock",
+            "options": {
+              "text": "NAT Gateway public IP will be used for license validation and retrieve proxied content."
+            },
+            "visible": "[equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound')]"
+          },
+          {
+            "name": "loadbalancerpublicip",
+            "type": "Microsoft.Network.PublicIpAddressCombo",
+            "label": {
+              "publicIpAddress": "Public IP address",
+              "domainNameLabel": "Domain name label"
+            },
+            "toolTip": {
+              "publicIpAddress": "Public IP attached to NAT Gateway",
+              "domainNameLabel": "DNS name linked to this public IP"
+            },
+            "defaultValue": {
+              "publicIpAddressName": "[if(equals(basics('fortiProxyNamePrefix'),''),'fpxPublicIP',concat(basics('fortiProxyNamePrefix'),'-fpx-pip'))]",
+              "domainNameLabel": "mydomain"
+            },
+            "constraints": {
+              "required": {
+                "domainNameLabel": false
+              }
+            },
+            "options": {
+              "hideNone": false,
+              "hideDomainNameLabel": true
+            },
+            "visible": "[equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound')]"
+          },
+          {
+            "name": "standardsku",
+            "type": "Microsoft.Common.InfoBox",
+            "options": {
+              "icon": "Info",
+              "text": "This deployment uses a Standard SKU Azure Load Balancer and requires a Standard SKU public IP. Microsoft Azure offers a migration path from a basic to standard SKU public IP.",
+              "uri": "https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-public-ip-address-upgrade?tabs=option-upgrade-cli%2Coption-migrate-powershell"
+            },
+            "visible": "[equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound')]"
+          }
 		  
 		  
 		  
@@ -835,9 +882,9 @@
             "type": "Microsoft.Common.InfoBox",
             "options": {
               "icon": "Error",
-              "text": "The External Load Balancer Public IP is configured using Basic SKU. Please return to previous blade and use Standard type public IPs to support Azure Standard Load Balancers"
+              "text": "The Public IP is configured using Basic SKU. Please return to previous blade and use Standard type public IPs "
             },
-            "visible": "[and(equals(steps('publicip').externalLoadBalancer.enabled,'true'),not(equals(steps('publicip').loadbalancerpublicip.sku, 'Standard')))]"
+            "visible": "[and(or(equals(steps('publicip').externalLoadBalancer.enabled,'true'),equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound')),not(equals(steps('publicip').loadbalancerpublicip.sku, 'Standard')))]"
           },
           {
             "name": "StandardIPConfirmation1",
@@ -848,14 +895,28 @@
             },
             "visible": "[and(equals(steps('publicip').externalLoadBalancer.enabled,'true'),equals(steps('publicip').loadbalancerpublicip.sku, 'Standard'))]"
           },
-          {
+          
+		  {
+            "name": "StandardIPConfirmation2",
+            "type": "Microsoft.Common.InfoBox",
+            "options": {
+              "icon": "Info",
+              "text": "NAT Gateway Public IP is Standard SKU. Proceed."
+            },
+            "visible": "[and(equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound'),equals(steps('publicip').loadbalancerpublicip.sku, 'Standard'))]"
+          },
+		  
+		  
+		  
+		  
+		  {
             "name": "InternalLoadBalancerWarning1",
             "type": "Microsoft.Common.InfoBox",
             "options": {
               "icon": "Info",
-              "text": "The Internal Load Balancer will be deployed. No Public IP will be used. Proceed."
+              "text": "The Internal Load Balancer will be deployed. Fortiproxy units will get internt access through NAT Gatway. Proceed."
             },
-            "visible": "[equals(steps('publicip').externalLoadBalancer.enabled,'false')]"
+            "visible": "[equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound')]"
           }
         ]
       },
