@@ -386,7 +386,7 @@
         "Attached Public IP Address"
 		],
       "metadata": {
-        "description": "choose how you want to get internet connectivity "
+        "description": "choose how you want to get internet connectivity when you use internal loadbalancer"
       }
 	}
 	
