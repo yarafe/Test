@@ -724,7 +724,7 @@
             "visible": "[equals(steps('publicip').externalLoadBalancer.enabled,'true')]"
           },
           {
-            "name": "loadbalancerpublicip",
+            "name": "publicip4internet",
             "type": "Microsoft.Network.PublicIpAddressCombo",
             "label": {
               "publicIpAddress": "Public IP address",
@@ -786,7 +786,7 @@
                 "name": "internetaccessOptions",
                 "type": "Microsoft.Common.DropDown",
                 "label": "Internet Access Options",
-                "defaultValue": "NAT Outbound",
+                "defaultValue": "",
                 "toolTip": "Deploy NAT Gateway or attach Public IP address for each FortiProxy.",
                 "constraints": {
                   "required": true,
@@ -859,7 +859,7 @@
               "icon": "Error",
               "text": "The Public IP is configured using Basic SKU. Please return to previous blade and use Standard type public IPs "
             },
-            "visible": "[and(or(equals(steps('publicip').externalLoadBalancer.enabled,'true'),equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound')),not(equals(steps('publicip').loadbalancerpublicip.sku, 'Standard')))]"
+            "visible": "[and(or(equals(steps('publicip').externalLoadBalancer.enabled,'true'),equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound')),not(equals(steps('publicip').publicip4internet.sku, 'Standard')))]"
           },
           {
             "name": "StandardIPConfirmation1",
@@ -868,7 +868,7 @@
               "icon": "Info",
               "text": "The External Load Balancer Public IP is Standard SKU. Proceed."
             },
-            "visible": "[and(equals(steps('publicip').externalLoadBalancer.enabled,'true'),equals(steps('publicip').loadbalancerpublicip.sku, 'Standard'))]"
+            "visible": "[and(equals(steps('publicip').externalLoadBalancer.enabled,'true'),equals(steps('publicip').publicip4internet.sku, 'Standard'))]"
           },
           
 		  {
@@ -878,7 +878,7 @@
               "icon": "Info",
               "text": "NAT Gateway Public IP is Standard SKU. Proceed."
             },
-            "visible": "[and(equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound'),equals(steps('publicip').loadbalancerpublicip.sku, 'Standard'))]"
+            "visible": "[and(equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound'),equals(steps('publicip').publicip4internet.sku, 'Standard'))]"
           },
 		  
 		  
@@ -1102,9 +1102,9 @@
       "externalLoadBalancer": "[bool(steps('publicip').externalLoadBalancer.enabled)]",
       "availabilityOptions": "[steps('instance').availabilityOptions.availabilityOptions]",
       "acceleratedNetworking": "[steps('networking').acceleratednetworksection.acceleratednetworking]",
-      "publicIP1NewOrExistingOrNone": "[steps('publicip').loadbalancerpublicip.newOrExistingOrNone]",
-      "publicIP1Name": "[steps('publicip').loadbalancerpublicip.name]",
-      "publicIP1ResourceGroup": "[steps('publicip').loadbalancerpublicip.resourceGroup]",
+      "publicIP1NewOrExistingOrNone": "[steps('publicip').publicip4internet.newOrExistingOrNone]",
+      "publicIP1Name": "[steps('publicip').publicip4internet.name]",
+      "publicIP1ResourceGroup": "[steps('publicip').publicip4internet.resourceGroup]",
       "vnetNewOrExisting": "[steps('networking').virtualnetworksection.virtualnetwork.newOrExisting]",
       "vnetName": "[steps('networking').virtualnetworksection.virtualnetwork.name]",
       "vnetResourceGroup": "[steps('networking').virtualnetworksection.virtualnetwork.resourceGroup]",
