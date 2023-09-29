@@ -1095,7 +1095,7 @@
 	  
 	  
 	  
-	  "internetConnectivity": "[steps('publicip').internetaccessOptions]",
+	  "internetConnectivity": "[steps('publicip').internalLoadBalancer.internetaccessOptions]",
 	  
       "location": "[location()]"
     }
