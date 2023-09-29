@@ -789,7 +789,7 @@
                 "defaultValue": "",
                 "toolTip": "Deploy NAT Gateway or attach Public IP address for each FortiProxy.",
                 "constraints": {
-                  "required": true,
+                  "required": false,
                   "allowedValues": [
                     {
                       "label": "NAT Outbound",
