@@ -380,7 +380,7 @@
 	
 	"internetConnectivity": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "NAT Outbound",
 	   "allowedValues": [
         "NAT Outbound",
         "Attached Public IP Address"
