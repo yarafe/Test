@@ -1127,11 +1127,11 @@
   "outputs": {
     "fortiProxyPublicIP": {
       "type": "string",
-      "value": "[if(and(equals(parameters('publicIP1NewOrExistingOrNone'), 'new'),parameters('externalLoadBalancer')), reference(variables('publicIP1Id')).ipAddress, '')]"
+      "value": "[if(and(equals(parameters('publicIP1NewOrExistingOrNone'), 'new'),1), reference(variables('publicIP1Id')).ipAddress, '')]"
     },
     "fortiProxyFQDN": {
       "type": "string",
-      "value": "[if(and(equals(parameters('publicIP1NewOrExistingOrNone'), 'new'),parameters('externalLoadBalancer')), reference(variables('publicIP1Id')).dnsSettings.fqdn, '' )]"
+      "value": "[if(and(equals(parameters('publicIP1NewOrExistingOrNone'), 'new'),1), reference(variables('publicIP1Id')).dnsSettings.fqdn, '' )]"
     }
   }
 }
