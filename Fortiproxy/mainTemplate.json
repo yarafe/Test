@@ -484,7 +484,7 @@
     
 	"natGWName": "[concat(parameters('fortiProxyNamePrefix'),'-natgateway')]",
     "natGWId": "[resourceId('Microsoft.Network/natGateways',variables('natGWName'))]",
-    "subnet1natName" : "[parameters('subnet1Name')]",
+    "subnet1natName" : "[concat(parameters('subnet1Name'),'-nat')]",
 	
 	
 	"useAZ": "[and(not(empty(pickZones('Microsoft.Compute', 'virtualMachines', parameters('location')))), equals(parameters('availabilityOptions'), 'Availability Zones'))]",
