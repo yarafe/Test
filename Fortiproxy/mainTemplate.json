@@ -689,12 +689,9 @@
             "name": "[parameters('subnet1Name')]",
 			
             "properties": {
-              "addressPrefix": "[parameters('subnet1Prefix')]",
+              "addressPrefix": "[parameters('subnet1Prefix')]"
 			  
-			   "natGateway": {
-                "id": "[resourceId('Microsoft.Network/natGateways', variables('natGWName'))]"
-				
-              }
+			  
 			  
 			 
 			  
@@ -712,14 +709,38 @@
 		  
 		  
         ]
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Network/natGateways', variables('natGWName'))]",
-		"[resourceId('Microsoft.Network/loadBalancers', variables('externalLBName'))]"
-      ]
+      }
 	  
 	  
     },
+	
+	
+	{
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2022-01-01",
+            "name": "[concat(variables('vnetName'), '/fpxsubnet')]",
+            "dependsOn": [
+               "[variables('vnetName')]",
+			   "[resourceId('Microsoft.Network/natGateways', variables('natGWName'))]"
+            ],
+            "properties": {
+                "addressPrefix": "[parameters('subnet1Prefix')]",
+				 "natGateway": {
+                "id": "[resourceId('Microsoft.Network/natGateways', variables('natGWName'))]"
+				
+              }
+                
+            }
+        },
+	
+	
+	
+	
+	
+	
+	
+	
+	
     {
       "type": "Microsoft.Network/networkSecurityGroups",
       "name": "[variables('nsgName')]",
