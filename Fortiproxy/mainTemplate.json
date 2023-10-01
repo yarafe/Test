@@ -690,7 +690,8 @@
               "addressPrefix": "[parameters('subnet1Prefix')]",
 			  
 			   "natGateway": {
-                "id": "[resourceId('Microsoft.Network/natGateways', variables('natGWName'))]"
+                "id": "[resourceId('Microsoft.Network/natGateways', variables('natGWName'))]",
+				"id": "[resourceId('Microsoft.Network/loadBalancers', variables('externalLBName'))]"
               }
 			  
             }
