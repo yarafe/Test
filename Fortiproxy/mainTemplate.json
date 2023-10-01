@@ -687,7 +687,12 @@
           {
             "name": "[parameters('subnet1Name')]",
             "properties": {
-              "addressPrefix": "[parameters('subnet1Prefix')]"
+              "addressPrefix": "[parameters('subnet1Prefix')]",
+			  
+			   "natGateway": {
+                "id": "[resourceId('Microsoft.Network/natGateways', variables('natGWName'))]"
+              }
+			  
             }
           },
           {
