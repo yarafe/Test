@@ -971,7 +971,7 @@
         "name": "Standard"
       },
       "dependsOn": [
-        "[variables('vnetName')]",
+       
 		"[variables('publicIP1Name')]"
 		
 		
