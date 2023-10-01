@@ -716,9 +716,10 @@
 	
 	
 	{
-            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "condition": "[not(parameters('externalLoadBalancer'))]",
+			"type": "Microsoft.Network/virtualNetworks/subnets",
             "apiVersion": "2022-01-01",
-            "name": "[concat(variables('vnetName'), '/fpxsubnet')]",
+            "name": "[concat(variables('vnetName'), parameters('subnet1Name'))]",
             "dependsOn": [
                "[variables('vnetName')]",
 			   "[resourceId('Microsoft.Network/natGateways', variables('natGWName'))]"
