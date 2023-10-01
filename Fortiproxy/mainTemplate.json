@@ -712,7 +712,12 @@
 		  
 		  
         ]
-      }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/natGateways', variables('natGWName'))]"
+      ]
+	  
+	  
     },
     {
       "type": "Microsoft.Network/networkSecurityGroups",
