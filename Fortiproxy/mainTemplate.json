@@ -692,7 +692,7 @@
               "addressPrefix": "[parameters('subnet1Prefix')]",
 			  
 			   "natGateway": {
-                "id": ["variables(natGWId)"]
+                "id": "variables(natGWId)"
 				
               }
 			  
