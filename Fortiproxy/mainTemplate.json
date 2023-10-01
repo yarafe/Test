@@ -714,7 +714,8 @@
         ]
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Network/natGateways', variables('natGWName'))]"
+        "[resourceId('Microsoft.Network/natGateways', variables('natGWName'))]",
+		"[resourceId('Microsoft.Network/loadBalancers', variables('externalLBName'))]"
       ]
 	  
 	  
