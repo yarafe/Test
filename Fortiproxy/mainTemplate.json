@@ -227,17 +227,6 @@
       }
     },
 	
-	
-	"subnet1natName": {
-      "type": "string",
-      "defaultValue": "fpxsubnet",
-      "metadata": {
-        "description": "Subnet 1 Name with NAT Gateay"
-      }
-    },
-	
-	
-	
     "subnet1Prefix": {
       "type": "string",
       "defaultValue": "172.16.136.0/26",
@@ -495,7 +484,7 @@
     
 	"natGWName": "[concat(parameters('fortiProxyNamePrefix'),'-natgateway')]",
     "natGWId": "[resourceId('Microsoft.Network/natGateways',variables('natGWName'))]",
-    
+    "subnet1natName" : "[parameters('subnet1Name')]",
 	
 	
 	"useAZ": "[and(not(empty(pickZones('Microsoft.Compute', 'virtualMachines', parameters('location')))), equals(parameters('availabilityOptions'), 'Availability Zones'))]",
@@ -718,7 +707,7 @@
           },
 		  
 		  {
-            "name": "[parameters('subnet1natName')]",
+            "name": "[variables('subnet1natName')]",
 			
 			"dependsOn": [
         "[variables('natGWName')]"		
