@@ -439,14 +439,14 @@
       },
 	  {
         "name": "attachedpipName",
-        "count": 9,
+        "count": 8,
         "input": "[if(equals(parameters('publicIP1Name'),''),concat(parameters('fortiProxyNamePrefix'),'-fpx-pip',copyIndex('attachedpipName')),concat(parameters('publicIP1Name'),copyIndex('attachedpipName')))]"
       },
 	  
 	  
 	  {
         "name": "attachedpipId",
-        "count": 9,
+        "count": 8,
         "input": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('attachedpipName')[copyIndex('attachedpipId')]),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('attachedpipName')[copyIndex('attachedpipId')]))]"
       },
 	  
