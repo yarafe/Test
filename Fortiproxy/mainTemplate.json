@@ -442,7 +442,7 @@
 	  {
         "name": "attachedpipName",
         "count": 9,
-        "input": "[if(equals(parameters('publicIP1Name'),''),concat(parameters('fortiProxyNamePrefix'),'-fpx-pip',copyIndex('attachedpipName')),concat(parameters('publicIP1Name'),copyIndex('attachedpipName')))]"
+        "input": "[if(equals(parameters('publicIP1Name'),''),concat(parameters('fortiProxyNamePrefix'),'-fpx-pip',copyIndex('attachedpipName',1)),concat(parameters('publicIP1Name'),copyIndex('attachedpipName',1)))]"
       },
 	  
 	  
