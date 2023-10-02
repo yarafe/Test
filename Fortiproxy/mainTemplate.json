@@ -413,6 +413,11 @@
     "publicIP1Name": "[if(equals(parameters('publicIP1Name'),''),concat(parameters('fortiProxyNamePrefix'),'-fpx-pip'),parameters('publicIP1Name'))]",
     "publicIP1Id": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIP1Name')),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIP1Name')))]",
     
+	"attachedpipId": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('attachedpipName')),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('attachedpipName')))]"
+	"attachedpublicIPAddressId": {
+      "id": "[variables('attachedpipId')]"
+    },
+	
 	
 	
 	"sn1CidrObject": "[parseCidr(parameters('subnet1Prefix'))]",
@@ -434,6 +439,15 @@
         "count": 9,
         "input": "[cidrHost(parameters('subnet2Prefix'), range(sub(int(variables('sn2IPStartAddress')[3]),int(variables('sn2Octets4')[3])), 9)[copyIndex('sn2IP')])]"
       },
+	  {
+        "name": "attachedpipName",
+        "count": 9,
+        "input": "[if(equals(parameters('publicIP1Name'),''),concat(parameters('fortiProxyNamePrefix'),'-fpx-pip',copyIndex('attachedpipName')),concat(parameters('publicIP1Name'),copyIndex('attachedpipName')))]"
+      },
+	  
+	  
+	  
+	  
       {
         "name": "interfaceCustomData",
         "count": 8,
@@ -776,7 +790,7 @@
     {
       
 	  
-	  
+	  "condition": "[not(equals(parameters('internetConnectivity'),'Attached Public IP Address'))]"
       "type": "Microsoft.Network/publicIPAddresses",
       "name": "[variables('publicIP1Name')]",
       "apiVersion": "2022-01-01",
@@ -795,7 +809,43 @@
         }
       }
     },
-    {
+    
+	
+	
+	
+	{
+      "condition": "[and(not(parameters('externalLoadBalancer')),equals(parameters('internetConnectivity'),'Attached Public IP Address'))]",
+	  "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[concat(variables('publicIP1Name'),'-',copyIndex(1))]",
+      "apiVersion": "2022-01-01",
+	  "location": "[parameters('location')]",
+	  "tags": {
+        "provider": "[toUpper(parameters('fortinetTags').provider)]"
+      },
+	  "sku": {
+        "name": "Standard"
+      },
+      "copy": {
+        "name": "nodeCopy",
+        "count": "[parameters('fortiProxyCount')]"
+      },
+      "zones": "[variables('pipZones')]",
+	  "properties": {
+        "publicIPAllocationMethod": "static",
+        "dnsSettings": {
+          "domainNameLabel": "[concat(toLower(parameters('fortiProxyNamePrefix')), '-', uniquestring(resourceGroup().id))]"
+        }
+      }
+      
+      
+    },
+	
+	
+	
+	
+	
+	
+	{
       "condition": "[parameters('externalLoadBalancer')]",
       "type": "Microsoft.Network/loadBalancers",
       "name": "[variables('externalLBName')]",
@@ -1052,7 +1102,10 @@
             "properties": {
               "privateIPAddress": "[variables('sn1IP')[copyIndex(1)]]",
               "privateIPAllocationMethod": "Static",
-              "subnet": {
+              
+			  "publicIPAddress": "[if(not(equals(parameters('publicIP1NewOrExistingOrNone'), 'none')), variables('attachedpublicIPAddressId')[copyIndex(1)] , json('null'))]",
+			  
+			  "subnet": {
                 "id": "[variables('subnet1Id')]"
               },
               "loadBalancerBackendAddressPools": [
