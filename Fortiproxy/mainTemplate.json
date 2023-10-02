@@ -413,7 +413,7 @@
     "publicIP1Name": "[if(equals(parameters('publicIP1Name'),''),concat(parameters('fortiProxyNamePrefix'),'-fpx-pip'),parameters('publicIP1Name'))]",
     "publicIP1Id": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIP1Name')),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIP1Name')))]",
     
-	"attachedpipId": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('attachedpipName')),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('attachedpipName')))]"
+	"attachedpipId": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('attachedpipName')),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('attachedpipName')))]",
 	"attachedpublicIPAddressId": {
       "id": "[variables('attachedpipId')]"
     },
