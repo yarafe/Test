@@ -413,10 +413,8 @@
     "publicIP1Name": "[if(equals(parameters('publicIP1Name'),''),concat(parameters('fortiProxyNamePrefix'),'-fpx-pip'),parameters('publicIP1Name'))]",
     "publicIP1Id": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIP1Name')),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIP1Name')))]",
     
-	"attachedpipId": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('attachedpipName')),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('attachedpipName')))]",
-	"attachedpublicIPAddressId": {
-      "id": "[variables('attachedpipId')]"
-    },
+	
+	
 	
 	
 	
@@ -446,7 +444,18 @@
       },
 	  
 	  
+	  {
+        "name": "attachedpipId",
+        "count": 9,
+        "input": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('attachedpipName')[copyIndex('attachedpipId',1)]),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('attachedpipName')[copyIndex('attachedpipId',1)]))]"
+      },
 	  
+	  {
+        "name": "attachedpublicIPAddressId",
+        "count": 9,
+		"input": {"id": "[variables('attachedpipId')[copyIndex('attachedpublicIPAddressId',1)]]"}
+	  
+	  },
 	  
       {
         "name": "interfaceCustomData",
