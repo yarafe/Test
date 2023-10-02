@@ -736,7 +736,7 @@
 	
 	
 	{
-            "condition": "[not(parameters('externalLoadBalancer'))]",
+            "condition": "[and(not(parameters('externalLoadBalancer')),equals(parameters('internetConnectivity'),'NAT Outbound'))]",
 			"type": "Microsoft.Network/virtualNetworks/subnets",
             "apiVersion": "2022-01-01",
             "name": "[concat(variables('vnetName'),'/', parameters('subnet1Name'))]",
