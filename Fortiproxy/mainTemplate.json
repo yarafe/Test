@@ -1109,8 +1109,9 @@
               "privateIPAddress": "[variables('sn1IP')[copyIndex(1)]]",
               "privateIPAllocationMethod": "Static",
               
-			  "publicIPAddress": "[if(not(equals(parameters('publicIP1NewOrExistingOrNone'), 'none')), variables('attachedpipId')[copyIndex(1)] , json('null'))]",
-			  
+			  "publicIPAddress": {
+			  "id":"[if(not(equals(parameters('publicIP1NewOrExistingOrNone'), 'none')), variables('attachedpipId')[copyIndex(1)] , json('null'))]"
+			  },
 			  "subnet": {
                 "id": "[variables('subnet1Id')]"
               },
