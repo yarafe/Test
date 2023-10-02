@@ -790,7 +790,7 @@
     {
       
 	  
-	  "condition": "[not(equals(parameters('internetConnectivity'),'Attached Public IP Address'))]"
+	  "condition": "[not(equals(parameters('internetConnectivity'),'Attached Public IP Address'))]",
       "type": "Microsoft.Network/publicIPAddresses",
       "name": "[variables('publicIP1Name')]",
       "apiVersion": "2022-01-01",
