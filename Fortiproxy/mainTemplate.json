@@ -450,12 +450,9 @@
         "input": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('attachedpipName')[copyIndex('attachedpipId',1)]),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('attachedpipName')[copyIndex('attachedpipId',1)]))]"
       },
 	  
-	  {
-        "name": "attachedpublicIPAddressId",
-        "count": 9,
-		"input": {"id": "[variables('attachedpipId')[copyIndex('attachedpublicIPAddressId',1)]]"}
 	  
-	  },
+	  
+	  
 	  
       {
         "name": "interfaceCustomData",
@@ -1112,7 +1109,7 @@
               "privateIPAddress": "[variables('sn1IP')[copyIndex(1)]]",
               "privateIPAllocationMethod": "Static",
               
-			  "publicIPAddress": "[if(not(equals(parameters('publicIP1NewOrExistingOrNone'), 'none')), variables('attachedpublicIPAddressId')[copyIndex(1)] , json('null'))]",
+			  "publicIPAddress": "[if(not(equals(parameters('publicIP1NewOrExistingOrNone'), 'none')), variables('attachedpipId')[copyIndex(1)] , json('null'))]",
 			  
 			  "subnet": {
                 "id": "[variables('subnet1Id')]"
