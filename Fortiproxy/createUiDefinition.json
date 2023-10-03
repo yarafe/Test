@@ -747,7 +747,7 @@
               "hideNone": false,
               "hideDomainNameLabel": true
             },
-            "visible": "[or(equals(steps('publicip').externalLoadBalancer.enabled,'true'),equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound'))]"
+            "visible": true
           },
           {
             "name": "standardsku",
@@ -824,9 +824,16 @@
               "uri": "https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-public-ip-address-upgrade?tabs=option-upgrade-cli%2Coption-migrate-powershell"
             },
             "visible": "[equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'NAT Outbound')]"
+          },
+		  
+		  {
+            "name": "publiciptext",
+            "type": "Microsoft.Common.TextBlock",
+            "options": {
+              "text": " Public IP address will be attached to NIC1 in each Fortiproxy for license validation and retrieve proxied content."
+            },
+            "visible": "[equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'Attached Public IP Address')]"
           }
-		  
-		  
 		  
 		  
 		  
