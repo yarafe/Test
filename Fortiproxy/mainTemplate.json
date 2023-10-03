@@ -450,7 +450,19 @@
         "input": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('attachedpipName')[copyIndex('attachedpipId')]),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('attachedpipName')[copyIndex('attachedpipId')]))]"
       },
 	  
+	  {
+        "name": "attachedpipaddressId",
+        "count": 8,
+        "input": {
+			"id": "[variables('attachedpipId')[copyIndex('attachedpipaddressId')]]"
+		}
+      },
 	  
+	  
+	  
+	  
+	  
+	 
 	  
 	  
 	  
@@ -1097,7 +1109,7 @@
         "[variables('vnetName')]",
         "[variables('NSGId')]",
         "[variables('internalLBId')]",
-		
+		"[variables('attachedpipId')[copyIndex(1)]]",
         "[variables('externalLBId')]",
         "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules',variables('externalLBName'), concat(variables('fpxVmName'),'-', copyIndex(1),'-mgmt-ssh'))]",
         "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules',variables('externalLBName'), concat(variables('fpxVmName'),'-', copyIndex(1),'-mgmt-https'))]"
@@ -1111,7 +1123,7 @@
               "privateIPAllocationMethod": "Static",
               
 			  "publicIPAddress": {
-			  "id":"[if(and(not(equals(parameters('publicIP1NewOrExistingOrNone'), 'none')),equals(parameters('internetConnectivity'),'Attached Public IP Address')), variables('attachedpipId')[copyIndex(1)] , json('null'))]"
+			  "[if(and(not(equals(parameters('publicIP1NewOrExistingOrNone'), 'none')),equals(parameters('internetConnectivity'),'Attached Public IP Address')), variables('attachedpipaddressId')[copyIndex(1)] , json('null'))]"
 			  },
 			  "subnet": {
                 "id": "[variables('subnet1Id')]"
