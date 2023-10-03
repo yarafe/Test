@@ -1122,9 +1122,8 @@
               "privateIPAddress": "[variables('sn1IP')[copyIndex(1)]]",
               "privateIPAllocationMethod": "Static",
               
-			  "publicIPAddress": {
-			  "[if(and(not(equals(parameters('publicIP1NewOrExistingOrNone'), 'none')),equals(parameters('internetConnectivity'),'Attached Public IP Address')), variables('attachedpipaddressId')[copyIndex(1)] , json('null'))]"
-			  },
+			  "publicIPAddress": "[if(and(not(equals(parameters('publicIP1NewOrExistingOrNone'), 'none')),equals(parameters('internetConnectivity'),'Attached Public IP Address')), variables('attachedpipaddressId')[copyIndex(1)] , json('null'))]",
+			  
 			  "subnet": {
                 "id": "[variables('subnet1Id')]"
               },
