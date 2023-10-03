@@ -1097,7 +1097,7 @@
         "[variables('vnetName')]",
         "[variables('NSGId')]",
         "[variables('internalLBId')]",
-		"[variables('attachedpipName')[copyIndex(1)]]",
+		"[variables('attachedpipId')[copyIndex(1)]]",
         "[variables('externalLBId')]",
         "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules',variables('externalLBName'), concat(variables('fpxVmName'),'-', copyIndex(1),'-mgmt-ssh'))]",
         "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules',variables('externalLBName'), concat(variables('fpxVmName'),'-', copyIndex(1),'-mgmt-https'))]"
