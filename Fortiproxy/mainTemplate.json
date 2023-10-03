@@ -822,7 +822,7 @@
 	{
       "condition": "[and(not(parameters('externalLoadBalancer')),equals(parameters('internetConnectivity'),'Attached Public IP Address'))]",
 	  "type": "Microsoft.Network/publicIPAddresses",
-      "name": "[concat(variables('publicIP1Name'),'-',copyIndex(1))]",
+      "name": "[concat(variables('publicIP1Name'),copyIndex(1))]",
       "apiVersion": "2022-01-01",
 	  "location": "[parameters('location')]",
 	  "tags": {
@@ -1097,7 +1097,7 @@
         "[variables('vnetName')]",
         "[variables('NSGId')]",
         "[variables('internalLBId')]",
-		"[variables('attachedpipId')[copyIndex()]]",
+		"[variables('attachedpipId')[copyIndex(1)]]",
         "[variables('externalLBId')]",
         "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules',variables('externalLBName'), concat(variables('fpxVmName'),'-', copyIndex(1),'-mgmt-ssh'))]",
         "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules',variables('externalLBName'), concat(variables('fpxVmName'),'-', copyIndex(1),'-mgmt-https'))]"
