@@ -839,7 +839,7 @@
 	  "properties": {
         "publicIPAllocationMethod": "static",
         "dnsSettings": {
-          "domainNameLabel": "[concat(toLower(parameters('fortiProxyNamePrefix')), '-', uniquestring(resourceGroup().id))]"
+          "domainNameLabel": "[concat(toLower(parameters('fortiProxyNamePrefix')), '-',copyIndex(1),uniquestring(resourceGroup().id))]"
         }
       }
       
