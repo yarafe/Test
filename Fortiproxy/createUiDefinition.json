@@ -820,7 +820,7 @@
             "name": "publiciptext",
             "type": "Microsoft.Common.TextBlock",
             "options": {
-              "text": " "
+              "text": " Public IP address will be attached to NIC1 in each Fortiproxy for license validation and retrieve proxied content."
             },
             "visible": "[equals(steps('publicip').internalLoadBalancer.internetaccessOptions,'Attached Public IP Address')]"
           }
