@@ -1145,7 +1145,7 @@
     },
     {
       "type": "Microsoft.Network/networkInterfaces",
-      "name": "[concat(variables('fpxVmName'),'-',copyIndex(1),'-nic2'))]",
+      "name": "[concat(variables('fpxVmName'),'-',copyIndex(1),'-nic2')]",
       "apiVersion": "2022-01-01",
       "copy": {
         "name": "nodeCopy",
