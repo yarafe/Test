@@ -1,26 +1,23 @@
-# FortiSandbox - Advanced Deployment
+# FortiSandbox - Basic Deployment
 
 ## Introduction
 
-Fortinet’s FortiSandbox on Azure enables organizations to defend against advanced threats in the cloud. It works with network, email, endpoint, and other security measures, or as an extension of on-premise security architecture to leverage scale with complete control.
-
-The advanced deployment model provide advanced features such as custom VMs and HA.
-
+The FortiSandbox basic deployment model is the fastest and easiest way to deploy a FortiSandbox VM on Azure.
 
 
 ## Design
 
-This ARM template deploys  FortiSandbox Vms accompanied by the required infrastructure in Advanced mode. It will automatically deploy a full working environment containing the following components.
+This ARM template deploys  FortiSandbox Vms accompanied by the required infrastructure in Basic mode. It will automatically deploy a full working environment containing the following components.
 
-- FortiSandbox Vms
-- 1 VNETs containing a management subnet, custom Windows subnet and HA sync subnet
+- FortiSandbox Vm
+- 1 VNETs containing external subnet and transit subnet
+- Public IP address attached to external NIC
 
 
-![FortiSandbox-VM azure design](images/FSA-AdvanceDeployment.png)
 
-To enhance the availability of the solution VM can be installed in different Availability Zones instead of an Availability Set. If Availability Zones deployment is selected but the location does not support Availability Zones an Availability Set will be deployed. If Availability Zones deployment is selected and Availability Zones are available in the location, FortiGate A will be placed in Zone 1, FortiGate B will be placed in Zone 2.
+![FortiSandbox-VM azure design](images/FSA-BasicDeployment.png)
 
-![FortiSandbox-VM azure design with AZ](images/FSA-AdvanceDeployment-AZ.png)
+
 
 ## Deployment: Azure Portal
 
@@ -28,8 +25,8 @@ Azure Portal Wizard:
 [![Azure Portal Wizard](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fyarafe%2FTest%2Fmain%2FmainTemplate.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fyarafe%2FTest%2Fmain%2FcreateUiDefinition.json)
 
 Custom Deployment:
-[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions%2Fmain%2FFortiSandbox%2FAdvance-Deployment%2FmainTemplate.json)
-[![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions$2Fmain%2FFortiSandbox%2FA-Single-VM%2FmainTemplate.json)
+[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions%2Fmain%2FFortiSandbox%2FBasic-Deployment%2FmainTemplate.json)
+[![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions$2Fmain%2FFortiSandbox%2FBasic-Deployment%2FmainTemplate.json)
 
 ## Support
 
