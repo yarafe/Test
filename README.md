@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The FortiSandbox basic deployment model is the fastest and easiest way to deploy a FortiSandbox VM on Azure.
+The FortiSandbox basic deployment model offers the quickest and simplest method for deploying a FortiSandbox VM on Azure.For additional details, please refer to the [link](https://docs.fortinet.com/document/fortisandbox-public-cloud/4.4.0/fortisandbox-vm-on-azure/626020/deploying-fortisandbox-vm-on-azure-basic).
 
 
 ## Design
@@ -27,6 +27,17 @@ Azure Portal Wizard:
 Custom Deployment:
 [![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions%2Fmain%2FFortiSandbox%2FBasic-Deployment%2FmainTemplate.json)
 [![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions$2Fmain%2FFortiSandbox%2FBasic-Deployment%2FmainTemplate.json)
+
+The default login Credentials for Fortisandbox VM are as follow:
+
+The default login credentials are as follow:
+Username admin
+Password: VM-ID
+
+You can get VM-ID using azure cli command:  az vm list -–output tsv -g [Your resource group]
+
+Upon successful login, you have the option to modify your password.
+
 
 ## Support
 
