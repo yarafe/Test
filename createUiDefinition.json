@@ -854,8 +854,6 @@
               "Microsoft.Compute/availabilitySets",
               "Microsoft.Network/networkSecurityGroups",
               "Microsoft.Network/publicIPAddresses",
-              "Microsoft.Network/loadBalancers",
-              "Microsoft.Network/natGateways",
               "Microsoft.Network/networkInterfaces",
               "Microsoft.Compute/virtualMachines",
               "Microsoft.Network/virtualNetworks"
