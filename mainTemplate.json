@@ -3,6 +3,9 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "adminUsername": {
+
+
+      
       "type": "string",
       "metadata": {
         "description": "Username for the FortiProxy VM."
