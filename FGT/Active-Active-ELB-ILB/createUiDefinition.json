@@ -1149,7 +1149,6 @@
               "Microsoft.Compute/virtualMachines",
               "Microsoft.Network/virtualNetworks",
               "Microsoft.Network/routeTables"
-              
             ]
           }
         ]
