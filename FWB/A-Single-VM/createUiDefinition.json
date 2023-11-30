@@ -723,8 +723,6 @@
       "existingAvailabilitySetName": "[steps('instance').availabilityOptions.availabilitySetSelector.name]",
       "availabilityZoneNumber": "[steps('instance').availabilityOptions.availabilityZoneSelector]",
       "fortiWebLicenseBYOL": "[steps('instance').fwbLicense.fwbLicenseContent]",
-      "fortiWebLicenseBYOLURL": "[steps('instance').fwbLicense.fwbLicenseURL]",
-      "fortiWebLicenseFlexVM": "[steps('instance').fwbLicense.fwbflexvm]",
       "publicIPNewOrExistingOrNone": "[steps('publicip').publicip.newOrExistingOrNone]",
       "publicIPName": "[steps('publicip').publicip.name]",
       "publicIPResourceGroup": "[steps('publicip').publicip.resourceGroup]",
