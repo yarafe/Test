@@ -337,7 +337,7 @@
     "subnet1Id": "[if(equals(parameters('vnetNewOrExisting'),'new'),resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetName'),parameters('subnet1Name')),resourceId(parameters('vnetResourceGroup'),'Microsoft.Network/virtualNetworks/subnets', variables('vnetName'),parameters('subnet1Name')))]",
     "subnet2Id": "[if(equals(parameters('vnetNewOrExisting'),'new'),resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetName'),parameters('subnet2Name')),resourceId(parameters('vnetResourceGroup'),'Microsoft.Network/virtualNetworks/subnets', variables('vnetName'),parameters('subnet2Name')))]",
     "fwbGlobalDataBody": "[concat('config system settings\n set enable-file-upload enable\n end\nconfig system admin\nedit admin\nset password Q1w2e34567890--\nend\n')]",
-	"fwbCustomDataBody": "[concat(variables('fwbGlobalDataBody'), parameters('fortiWebAAdditionalCustomData'), '\n')]",    
+	"fwbCustomDataBody": "[concat(variables('fwbGlobalDataBody'), parameters('fortiWebAdditionalCustomData'), '\n')]",    
 	"customDataCombined": {
       "cloud-initd": "enable",
       "usr-cli": "[variables('fwbCustomDataBody')]",
