@@ -357,7 +357,7 @@
     },
     "fwbACustomData": "[base64(string(variables('fwbACustomDataCombined')))]",
     "fwbBCustomDataBodyHA": "[concat('config system ha\n set mode active-active-high-volume\n set group-id ', parameters('fortiWebHaGroupId'), ' set group-name ', tolower(parameters('fortiWebNamePrefix')), ' set priority 2\n set tunnel-local ', variables('sn2IPfwbB'), ' set tunnel-peer ', variables('sn2IPfwbA'), 'set monitor port1 port2\nend\n')]",
-    "fwbBCustomDataBody": "[concat(variables('fwbGlobalDataBody'), variables('fwbBCustomDataBodyHA'), parameters('fortiWebBAdditionalCustomData'), '\n')]",
+    "fwbBCustomDataBody": "[concat(variables('fwbBCustomDataBodyHA'), parameters('fortiWebBAdditionalCustomData'), '\n')]",
     "fwbbCustomDataCombined": {
       "cloud-initd": "enable",
       "usr-cli": "[variables('fwbBCustomDataBody')]",
