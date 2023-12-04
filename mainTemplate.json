@@ -356,7 +356,7 @@
     "fwbACustomData": "[base64(string(variables('fwbACustomDataCombined')))]",
     "fwbbCustomDataCombined": {
       "cloud-initd": "enable",
-      "usr-cli": "[variables('fortiWebBAdditionalCustomData')]",
+      "usr-cli": "[parameters('fortiWebBAdditionalCustomData')]",
       "HaAzureInit": "enable",
       "HaResourceGroupName": "[resourceGroup().name]",
       "HaSubscriptionId": "[parameters('HASubscriptionId')]",
