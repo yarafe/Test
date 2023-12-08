@@ -352,7 +352,7 @@
     "fwbACustomDataCombined": {
       "cloud-initd": "enable",
       "usr-cli": "[variables('fwbACustomDataBody')]",
-      "HaAzureInit": "enable",
+      "HaAzureInit": "enable",      
       "HaResourceGroupName": "[resourceGroup().name]",
       "HaSubscriptionId": "[parameters('HASubscriptionId')]",
       "HaTenantId": "[parameters('HATenantId')]",
@@ -368,7 +368,7 @@
       "HaGroupName": "[tolower(parameters('fortiWebNamePrefix'))]",
       "HaOverride": "[parameters('fortiWebHaOverride')]",
       "FwbLicenseBYOL": "[parameters('fortiWebALicenseBYOL')]",
-	  "flex_token": "[parameters('fortiWebALicenseFlexVM')]"
+      "flex_token": "[parameters('fortiWebALicenseFlexVM')]"
     },
     "fwbACustomData": "[base64(string(variables('fwbACustomDataCombined')))]",
     "fwbBCustomDataBodyHA": "[concat('config system ha\nset mode active-active-high-volume\nset group-id ', parameters('fortiWebHaGroupId'), '\nset group-name ', tolower(parameters('fortiWebNamePrefix')), '\nset priority 2\nset tunnel-local ', variables('sn2IPfwbB'), '\nset tunnel-peer ', variables('sn2IPfwbA'), '\nset monitor port1 port2\nend\n')]",
@@ -392,7 +392,7 @@
       "HaGroupName": "[tolower(parameters('fortiWebNamePrefix'))]",
       "HaOverride": "[parameters('fortiWebHaOverride')]",
       "FwbLicenseBYOL": "[parameters('fortiWebBLicenseBYOL')]",
-	  "flex_token": "[parameters('fortiWebBLicenseFlexVM')]"
+      "flex_token": "[parameters('fortiWebBLicenseFlexVM')]"
     },
     "fwbBCustomData": "[base64(string(variables('fwbBCustomDataCombined')))]",
     "fwbAVmName": "[concat(parameters('fortiWebNamePrefix'),'-FWB-A')]",
