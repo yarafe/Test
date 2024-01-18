@@ -1,21 +1,23 @@
-# FortiSandbox - Basic Deployment
+# Fortianalyzer Integration with Microsoft Sentinel 
 
 ## Introduction
 
-The FortiSandbox basic deployment model offers the quickest and simplest method for deploying a FortiSandbox VM on Azure.For additional details, please refer to the [link](https://docs.fortinet.com/document/fortisandbox-public-cloud/4.4.0/fortisandbox-vm-on-azure/626020/deploying-fortisandbox-vm-on-azure-basic).
+Microsoft Sentinel is a scalable, cloud-native solution offering Security Information and Event Management (SIEM) and Security Orchestration, Automation, and Response (SOAR).
+It provides intelligent security analytics and threat intelligence across the enterprise, offering a unified platform for attack detection, threat visibility, proactive hunting, and response.
+For further details, please refer to the following [link](https://learn.microsoft.com/en-us/azure/sentinel/overview).
+
+FortiAnalyzer seamlessly integrates with Azure Sentinel, offering enhanced support through log streaming to multiple destinations using the Fluentd Azure Log Analytics output plugin. 
+Fluentd, an open-source data collector, serves as a comprehensive solution that unifies the process of collecting and consuming data. For additional details, please check the following [link] (https://www.fluentd.org/architecture).
+This integration enables the forwarding of logs to public cloud services. The plugin efficiently aggregates semi-structured data in real-time, facilitating the buffered data's transmission to Azure Log Analytics via HTTPS requests.
+
+## Data Flow
+
+FortiGate utilizes TCP port 514 for communication with FortiAnalyzer and log transmission. FortiAnalyzer employs Fluentd as a data collector, responsible for aggregating, filtering, and securely transmitting data via HTTPS to an Azure Log Analytics workspace. 
+The integration of Fluentd with FortiAnalyzer eliminates the necessity for a separate proxy server to install a data collector between FortiAnalyzer and the Azure Log Analytics workspace.
 
 
-## Design
 
-This ARM template deploys  FortiSandbox Vms accompanied by the required infrastructure in Basic mode. It will automatically deploy a full working environment containing the following components.
-
-- FortiSandbox Vm
-- 1 VNETs containing external subnet and transit subnet
-- Public IP address attached to external NIC
-
-
-
-![FortiSandbox-VM azure design](images/FSA-BasicDeployment.png)
+![FAZ-DataFlow](images/FAZ-DataFlow.png)
 
 
 
