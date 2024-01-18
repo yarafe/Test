@@ -40,7 +40,7 @@ Following this configuration on the Linux machine, the FortiGate device is then 
     set format cef
 end
 
-![FGT-Sentinel Integration-DataFlow](images/FGT-DataFlow)
+![FGT-Sentinel Integration-DataFlow](images/FGT-DataFlow.png)
 
 
 FortiGate utilizes TCP port 514 for communication with FortiAnalyzer and log transmission. FortiAnalyzer employs Fluentd as a data collector, responsible for aggregating, filtering, and securely transmitting data via HTTPS to an Azure Log Analytics workspace. 
