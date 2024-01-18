@@ -18,15 +18,18 @@ To ingest CEF logs from FortiGate into Azure Sentinel, a dedicated Linux machine
 The Linux machine is structured with two key components:
 
 Syslog Daemon (Log Collector):
+
 Utilizing either rsyslog or syslog-ng, this daemon performs dual functions:
+
 -Actively listens for Syslog messages originating from Fortigate on TCP port 514.
 -forwards only identified CEF messages to the Log Analytics Agent on localhost, utilizing TCP port 25226.
 
 Log Analytics Agent (OMS Agent):
 
 This agent, also referred to as the OMS Agent, engages in two critical tasks:
-Listens for incoming CEF messages from the integrated Linux Syslog daemon, operating on TCP port 25226.
-Securely transmits these CEF messages over TLS to the Microsoft Sentinel workspace.
+
+-Listens for incoming CEF messages from the integrated Linux Syslog daemon, operating on TCP port 25226.
+-Securely transmits these CEF messages over TLS to the Microsoft Sentinel workspace.
 
 Following this configuration on the Linux machine, the FortiGate device is then set up to dispatch Syslog messages in CEF format to the designated proxy machine using the provided command:
 
