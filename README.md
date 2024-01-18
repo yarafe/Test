@@ -13,12 +13,39 @@ This integration enables the forwarding of logs to public cloud services. The pl
 
 ## Data Flow
 
+To ingest CEF logs from FortiGate into Azure Sentinel, a dedicated Linux machine is configured to serve as proxy server for log collection and forwarding to the Microsoft Sentinel workspace.
+
+The Linux machine is structured with two key components:
+
+Syslog Daemon (Log Collector):
+Utilizing either rsyslog or syslog-ng, this daemon performs dual functions:
+-Actively listens for Syslog messages originating from Fortigate on TCP port 514.
+-forwards only identified CEF messages to the Log Analytics Agent on localhost, utilizing TCP port 25226.
+
+Log Analytics Agent (OMS Agent):
+
+This agent, also referred to as the OMS Agent, engages in two critical tasks:
+Listens for incoming CEF messages from the integrated Linux Syslog daemon, operating on TCP port 25226.
+Securely transmits these CEF messages over TLS to the Microsoft Sentinel workspace.
+
+Following this configuration on the Linux machine, the FortiGate device is then set up to dispatch Syslog messages in CEF format to the designated proxy machine using the provided command:
+
+# config log syslogd setting
+    set status enable
+    set port 514
+    set server "x.x.x.x" # IP of the Syslog agent's address
+    set format cef
+end
+
+![FGT-Sentinel Integration-DataFlow](images/FGT-DataFlow.png)
+
+
 FortiGate utilizes TCP port 514 for communication with FortiAnalyzer and log transmission. FortiAnalyzer employs Fluentd as a data collector, responsible for aggregating, filtering, and securely transmitting data via HTTPS to an Azure Log Analytics workspace. 
 The integration of Fluentd with FortiAnalyzer eliminates the necessity for a separate proxy server to install a data collector between FortiAnalyzer and the Azure Log Analytics workspace.
 
 
 
-![FAZ-DataFlow](images/FAZ-DataFlow.png)
+![FAZ-Sentinel Integration-DataFlow](images/FAZ-DataFlow.png)
 
 
 
