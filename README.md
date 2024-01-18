@@ -33,7 +33,7 @@ This agent, also referred to as the OMS Agent, engages in two critical tasks:
 
 Following this configuration on the Linux machine, the FortiGate device is then set up to dispatch Syslog messages in CEF format to the designated proxy machine using the provided command:
 
-# config log syslogd setting
+#config log syslogd setting
     set status enable
     set port 514
     set server "x.x.x.x" # IP of the Syslog agent's address
