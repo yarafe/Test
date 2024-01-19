@@ -77,7 +77,47 @@ Retrieve the ID and key for the Log Analytics Workspace from Settings -> Agents,
 ![Log Analytics Workspace-Id and Key](images/loganalyticsworkspace-id-key.PNG)
 
 Move to System Settings -> Advanced -> Log Forwarding -> Settings. 
+
 Configure the remote server type as "Forward via Output Plugin" and select your designated output profile.
+
+### Diagnose and Troubleshooting Fluentd from Fortianalyzer Cli
+
+To verify Fluentd write status, execute the command:
+
+<pre><code>
+diagnose test application fwdplugind 4
+</code></pre>
+
+To ensure the presence of Fluentd log files, utilize the following command:
+
+<pre><code>
+diagnose sql fluentd log-tail
+</code></pre>
+
+Enable Fluentd logging with the command:
+
+<pre><code>
+diagnose test application fwdplugind 201 log enable
+</code></pre>
+
+After one minute, rewrite the command:
+
+<pre><code>
+diagnose test application fwdplugind 201 log enable
+</code></pre>
+
+To display processed events, use the command:
+
+<pre><code>
+diagnose sql fluentd log-tail
+</code></pre>
+
+![Fluentd Diagnose](images/FAZ-diagnose.PNG)
+
+Review the received logs from the Log Analytics Workspace, as depicted in the screenshot.
+
+![Fluentd Diagnose](images/loganalyticsworkspace-logs-verification.PNG)
+
 
 ## Deployment: Azure Portal
 
