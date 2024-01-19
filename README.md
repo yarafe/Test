@@ -13,7 +13,7 @@ This integration enables the forwarding of logs to public cloud services. The pl
 
 ## Data Flow
 
-# Fortigate integration with Azure sentienl Scenario
+### Fortigate integration with Azure sentienl Scenario
 
 To ingest CEF logs from FortiGate into Azure Sentinel, a dedicated Linux machine is configured to serve as proxy server for log collection and forwarding to the Microsoft Sentinel workspace.
 
@@ -49,7 +49,7 @@ end
 
 You can review the [link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-Integrate-FortiGate-with-Microsoft-Sentinel/ta-p/199709) for more details.
 
-# Fortianalyzer integration with Azure sentienl Scenario
+### Fortianalyzer integration with Azure sentienl Scenario
 
 An alternative method involves directing logs from FortiGate to FortiAnalyzer.
 FortiAnalyzer introduces enhanced support for log streaming to multiple destinations through Fluentd. This facilitates log forwarding to public cloud services like Log Analytics Workspace.
@@ -61,7 +61,23 @@ The seamless integration of Fluentd with FortiAnalyzer removes the need for an a
 
 ## Fortianalyzer integration with Azure Sentinel Setup
 
+To begin, initiate the creation of a Log Analytics Workspace. The process details can be found in the following [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
 
+Once the Log Analytics Workspace is established, proceed to onboard Microsoft Sentinel by linking it to the created Log Analytics Workspace. No configuration for data connector is required for the Fortianalyzer integration, as Fluentd will directly transmit logs to the Log Analytics Workspace.
+Additional guidance on this step is available in the [link](https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard).
+
+Next, configure your Fortigate to direct logs to the Fortianalyzer. Detailed instructions are provided in the [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303/configuring-fortianalyzer).
+
+Upon authorizing Fortigate from Fortianalyzer, establish an output profile for log forwarding. Navigate to System Settings -> Advanced -> Log Forwarding -> Output Profile and create a new output profile.
+
+Specify the type as "Azure Log Analytics" and utilize the default configuration. Subsequently, fill in the customer ID with the Workspace ID and the primary key value into the shared_key field.
+
+Retrieve the ID and key for the Log Analytics Workspace from Settings -> Agents, as illustrated in the provided screenshot.
+
+![Log Analytics Workspace- Id and Key](images/loganalytics_workspace_agent_id_key.png)
+
+Move to System Settings -> Advanced -> Log Forwarding -> Settings. 
+Configure the remote server type as "Forward via Output Plugin" and select your designated output profile.
 
 ## Deployment: Azure Portal
 
