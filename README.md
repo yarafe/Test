@@ -13,6 +13,8 @@ This integration enables the forwarding of logs to public cloud services. The pl
 
 ## Data Flow
 
+# Fortigate integration with Azure sentienl Scenario
+
 To ingest CEF logs from FortiGate into Azure Sentinel, a dedicated Linux machine is configured to serve as proxy server for log collection and forwarding to the Microsoft Sentinel workspace.
 
 The Linux machine is structured with two key components:
@@ -47,6 +49,8 @@ end
 
 You can review the [link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-Integrate-FortiGate-with-Microsoft-Sentinel/ta-p/199709) for more details.
 
+# Fortianalyzer integration with Azure sentienl Scenario
+
 An alternative method involves directing logs from FortiGate to FortiAnalyzer.
 FortiAnalyzer introduces enhanced support for log streaming to multiple destinations through Fluentd. This facilitates log forwarding to public cloud services like Log Analytics Workspace.
 FortiGate establishes communication with FortiAnalyzer and transmits logs via TCP port 514. FortiAnalyzer, leveraging Fluentd as a data collector, adeptly aggregates, filters, and securely transmits data via HTTPS to an Azure Log Analytics workspace.
@@ -54,6 +58,8 @@ The seamless integration of Fluentd with FortiAnalyzer removes the need for an a
 
 
 ![FAZ-Sentinel Integration-DataFlow](images/FAZ-DataFlow.png)
+
+## Fortianalyzer integration with Azure Sentinel Setup
 
 
 
