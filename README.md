@@ -74,7 +74,7 @@ Specify the type as "Azure Log Analytics" and utilize the default configuration.
 
 Retrieve the ID and key for the Log Analytics Workspace from Settings -> Agents, as illustrated in the provided screenshot.
 
-![Log Analytics Workspace- Id and Key](images/loganalyticsworkspace-id-key.png)
+![Log Analytics Workspace-Id and Key](images/loganalyticsworkspace-id-key.png)
 
 Move to System Settings -> Advanced -> Log Forwarding -> Settings. 
 Configure the remote server type as "Forward via Output Plugin" and select your designated output profile.
