@@ -45,7 +45,7 @@ end
 
 ![FGT-Sentinel Integration-DataFlow](images/FGT-DataFlow.png)
 
-
+you can review the [link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-configure-FortiGate-to-send-syslog-to/ta-p/190509) for more details.
 
 An alternative method involves directing logs from FortiGate to FortiAnalyzer.
 FortiAnalyzer introduces enhanced support for log streaming to multiple destinations through Fluentd. This facilitates log forwarding to public cloud services like Log Analytics Workspace.
