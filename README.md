@@ -13,7 +13,7 @@ This integration enables the forwarding of logs to public cloud services. The pl
 
 ## Data Flow
 
-### Fortigate integration with Azure sentienl Scenario
+### Fortigate Integration with Azure sentienl Scenario
 
 To ingest CEF logs from FortiGate into Azure Sentinel, a dedicated Linux machine is configured to serve as proxy server for log collection and forwarding to the Microsoft Sentinel workspace.
 
@@ -118,25 +118,7 @@ Review the received logs from the Log Analytics Workspace, as depicted in the sc
 
 ![Fluentd Diagnose](images/loganalyticsworkspace-logs-verification.PNG)
 
-
-## Deployment: Azure Portal
-
-Azure Portal Wizard:
-[![Azure Portal Wizard](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fyarafe%2FTest%2Fmain%2FmainTemplate.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fyarafe%2FTest%2Fmain%2FcreateUiDefinition.json)
-
-Custom Deployment:
-[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions%2Fmain%2FFortiSandbox%2FBasic-Deployment%2FmainTemplate.json)
-[![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions$2Fmain%2FFortiSandbox%2FBasic-Deployment%2FmainTemplate.json)
-
-The default login Credentials for Fortisandbox VM are as follow:
-
-The default login credentials are as follow:
-Username admin
-Password: VM-ID
-
-You can get VM-ID using azure cli command:  az vm list -–output tsv -g [Your resource group]
-
-Upon successful login, you have the option to modify your password.
+You can visit the [link](https://docs.fortinet.com/document/fortianalyzer/7.4.0/new-features/198909/fluentd-support-for-public-cloud-integration) for more details.
 
 
 ## Support
