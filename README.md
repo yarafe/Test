@@ -46,9 +46,11 @@ end
 ![FGT-Sentinel Integration-DataFlow](images/FGT-DataFlow.png)
 
 
-FortiGate utilizes TCP port 514 for communication with FortiAnalyzer and log transmission. FortiAnalyzer employs Fluentd as a data collector, responsible for aggregating, filtering, and securely transmitting data via HTTPS to an Azure Log Analytics workspace. 
-The integration of Fluentd with FortiAnalyzer eliminates the necessity for a separate proxy server to install a data collector between FortiAnalyzer and the Azure Log Analytics workspace.
 
+An alternative method involves directing logs from FortiGate to FortiAnalyzer.
+FortiAnalyzer introduces enhanced support for log streaming to multiple destinations through Fluentd. This facilitates log forwarding to public cloud services like Log Analytics Workspace.
+FortiGate establishes communication with FortiAnalyzer and transmits logs via TCP port 514. FortiAnalyzer, leveraging Fluentd as a data collector, adeptly aggregates, filters, and securely transmits data via HTTPS to an Azure Log Analytics workspace.
+The seamless integration of Fluentd with FortiAnalyzer removes the need for an additional proxy server, streamlining the installation process of a data collector between FortiAnalyzer and the Azure Log Analytics workspace. This approach offers a streamlined and efficient way to manage log transmission and analysis.
 
 
 ![FAZ-Sentinel Integration-DataFlow](images/FAZ-DataFlow.png)
