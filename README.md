@@ -19,22 +19,58 @@ To ingest CEF logs from FortiGate into Azure Sentinel, a dedicated Linux machine
 
 The Linux machine is structured with two key components:
 
-Syslog Daemon (Log Collector):
-
-Utilizing either rsyslog or syslog-ng, this daemon performs dual functions:
+Syslog Daemon (Log Collector): Utilizing either rsyslog or syslog-ng, this daemon performs dual functions
 
 -Actively listens for Syslog messages originating from Fortigate on TCP port 514.
 -forwards only identified CEF messages to the Log Analytics Agent on localhost, utilizing TCP port 25226.
 
-Log Analytics Agent (OMS Agent):
-
-This agent, also referred to as the OMS Agent, engages in two critical tasks:
+Log Analytics Agent (OMS Agent): This agent, also referred to as the OMS Agent, engages in two critical tasks
 
 -Listens for incoming CEF messages from the integrated Linux Syslog daemon, operating on TCP port 25226.
 -Securely transmits these CEF messages over TLS to the Microsoft Sentinel workspace.
 
-Following this configuration on the Linux machine, the FortiGate device is then set up to dispatch Syslog messages in CEF format to the designated proxy machine using the provided command:
 
+![FGT-Sentinel Integration-DataFlow](images/FGT-DataFlow.png)
+
+
+### Fortianalyzer integration with Azure Sentienl Scenario
+
+An alternative method involves directing logs from FortiGate to FortiAnalyzer.
+FortiAnalyzer introduces enhanced support for log streaming to multiple destinations through Fluentd. This facilitates log forwarding to public cloud services like Log Analytics Workspace.
+FortiGate establishes communication with FortiAnalyzer and transmits logs via TCP port 514. FortiAnalyzer, leveraging Fluentd as a data collector, adeptly aggregates, filters, and securely transmits data via HTTPS to an Azure Log Analytics workspace.
+The seamless integration of Fluentd with FortiAnalyzer removes the need for an additional proxy server, streamlining the installation process of a data collector between FortiAnalyzer and the Azure Log Analytics workspace. This approach offers a streamlined and efficient way to manage log transmission and analysis.
+
+
+![FAZ-Sentinel Integration-DataFlow](images/FAZ-DataFlow.png)
+
+## Fortigate integration with Azure Sentinel Setup
+
+To establish the integration between Microsoft Sentinel and FortiGate, follow these steps:
+
+### Create Log Analytics Workspace:
+Begin by setting up a Log Analytics Workspace as detailed in this [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal). Once established, proceed to onboard Sentinel with the created Log Analytics.
+For more information, visit the provided [link](https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard) for detailed instructions.
+
+### Utilize Fortigate Data Connector:
+Access Azure Marketplace to deploy the Fortigate Data Connector for Microsoft Sentinel, accompanied by workbooks and playbooks, all available for free. 
+
+![ Fortinet FortiGate Next-Generation Firewall connector for Microsoft Sentinel](images/FGT-dataconnector-marketplace.PNG)
+
+Navigate to Microsoft Sentinel Configuration -> Data Connectors, where you will find the Fortinet connector installed.
+Click on "open connector page" to view the instructions provided.
+
+![ Sentinel- Fortinet data connector](images/Fortinet-dataconnector.PNG)
+
+### CEF Collector Installation on Linux:
+Install the Common Event Format (CEF) collector on a Linux machine by executing the following Python script:
+
+<pre><code>
+sudo wget -O cef_installer.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/CEF/cef_installer.py &&sudo python cef_installer.py c7498055-e4c5-40e3-b6cd-5bf54be0debd rLysrkRNqtqFZteAWROvuEN6JQeqr5ZIUMCzE0JNaBYSc7Fxng0Kwi6ra4wkd8Nh1il/sdHufF3hXz/JoF2o4A==
+</code></pre>
+
+
+### Configure FortiGate Device:
+Following this configuration on the Linux machine, the FortiGate device is then set up to dispatch Syslog messages in CEF format to the designated proxy machine using the provided command:
 
 <pre><code>
 config log syslogd setting
@@ -45,19 +81,14 @@ config log syslogd setting
 end
 </code></pre>
 
-![FGT-Sentinel Integration-DataFlow](images/FGT-DataFlow.png)
+### Validation and Connectivity Check:
+Once the configuration is complete, check the Fortinet connector's status in Microsoft Sentinel to ensure successful connection. Validate connectivity by accessing the Log Analytics Workspace, as illustrated in the accompanying screenshot.
+
+![ Logs Verification- Sentinel](images/recivedlogs-linux.PNG)
+
 
 You can review the [link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-Integrate-FortiGate-with-Microsoft-Sentinel/ta-p/199709) for more details.
 
-### Fortianalyzer integration with Azure sentienl Scenario
-
-An alternative method involves directing logs from FortiGate to FortiAnalyzer.
-FortiAnalyzer introduces enhanced support for log streaming to multiple destinations through Fluentd. This facilitates log forwarding to public cloud services like Log Analytics Workspace.
-FortiGate establishes communication with FortiAnalyzer and transmits logs via TCP port 514. FortiAnalyzer, leveraging Fluentd as a data collector, adeptly aggregates, filters, and securely transmits data via HTTPS to an Azure Log Analytics workspace.
-The seamless integration of Fluentd with FortiAnalyzer removes the need for an additional proxy server, streamlining the installation process of a data collector between FortiAnalyzer and the Azure Log Analytics workspace. This approach offers a streamlined and efficient way to manage log transmission and analysis.
-
-
-![FAZ-Sentinel Integration-DataFlow](images/FAZ-DataFlow.png)
 
 ## Fortianalyzer integration with Azure Sentinel Setup
 
