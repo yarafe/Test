@@ -11,9 +11,9 @@ The initial scenario involves integrating Fortigate with Sentinel through a Linu
 
 ## Data Flow
 
-### Fortigate Integration with Azure sentienl Scenario
+### Fortigate Integration with Microsoft Sentienl Scenario
 
-To ingest CEF logs from FortiGate into Azure Sentinel, a dedicated Linux machine is configured to serve as proxy server for log collection and forwarding to the Microsoft Sentinel workspace.
+To ingest CEF logs from FortiGate into Microsoft Sentinel, a dedicated Linux machine is configured to serve as proxy server for log collection and forwarding to the Microsoft Sentinel workspace.
 
 The Linux machine is structured with two key components:
 
@@ -32,9 +32,9 @@ Log Analytics Agent (OMS Agent): This agent, also referred to as the OMS Agent, 
 ![FGT-Sentinel Integration-DataFlow](images/FGT-DataFlow.png)
 
 
-### Fortianalyzer integration with Azure Sentienl Scenario
+### Fortianalyzer Integration with Microsoft Sentienl Scenario
 
-FortiAnalyzer seamlessly integrates with Azure Sentinel, offering enhanced support through log streaming to multiple destinations using the Fluentd output plugin. 
+FortiAnalyzer seamlessly integrates with Microsoft Sentinel, offering enhanced support through log streaming to multiple destinations using the Fluentd output plugin. 
 Fluentd, an open-source data collector, serves as a comprehensive solution that unifies the process of collecting and consuming data. For additional details, please check the following [link](https://www.fluentd.org/architecture).
 
 This integration enables the forwarding of logs to public cloud services. The plugin efficiently aggregates semi-structured data in real-time, facilitating the buffered data's transmission to Azure Log Analytics.
@@ -46,7 +46,7 @@ This approach offers an efficient way to manage log transmission and analysis.
 
 ![FAZ-Sentinel Integration-DataFlow](images/FAZ-DataFlow.png)
 
-## Fortigate integration with Azure Sentinel Setup
+## Fortigate integration with Microsoft Sentinel Setup
 
 To establish the integration between Microsoft Sentinel and FortiGate, follow these steps:
 
@@ -93,7 +93,7 @@ Once the configuration is complete, check the Fortinet connector's status in Mic
 You can review the [link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-Integrate-FortiGate-with-Microsoft-Sentinel/ta-p/199709) for more details.
 
 
-## Fortianalyzer integration with Azure Sentinel Setup
+## Fortianalyzer integration with Microsoft Sentinel Setup
 
 To begin, initiate the creation of a Log Analytics Workspace. The process details can be found in the following [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
 
