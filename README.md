@@ -9,11 +9,6 @@ For further details, please refer to the following [link](https://learn.microsof
 In this guide, we will outline two distinct integration scenarios with Microsoft Sentinel.
 The initial scenario involves integrating Fortigate with Sentinel through a Linux machine, while the second scenario focuses on Fortianalyzer integration utilizing the Fluentd plugin.
 
-FortiAnalyzer seamlessly integrates with Azure Sentinel, offering enhanced support through log streaming to multiple destinations using the Fluentd Azure Log Analytics output plugin. 
-Fluentd, an open-source data collector, serves as a comprehensive solution that unifies the process of collecting and consuming data. For additional details, please check the following [link](https://www.fluentd.org/architecture).
-
-This integration enables the forwarding of logs to public cloud services. The plugin efficiently aggregates semi-structured data in real-time, facilitating the buffered data's transmission to Azure Log Analytics via HTTPS requests.
-
 ## Data Flow
 
 ### Fortigate Integration with Azure sentienl Scenario
@@ -39,10 +34,14 @@ Log Analytics Agent (OMS Agent): This agent, also referred to as the OMS Agent, 
 
 ### Fortianalyzer integration with Azure Sentienl Scenario
 
-An alternative method involves directing logs from FortiGate to FortiAnalyzer.
-FortiAnalyzer introduces enhanced support for log streaming to multiple destinations through Fluentd. This facilitates log forwarding to public cloud services like Log Analytics Workspace.
-FortiGate establishes communication with FortiAnalyzer and transmits logs via TCP port 514. FortiAnalyzer, leveraging Fluentd as a data collector, adeptly aggregates, filters, and securely transmits data via HTTPS to an Azure Log Analytics workspace.
-The seamless integration of Fluentd with FortiAnalyzer removes the need for an additional proxy server, streamlining the installation process of a data collector between FortiAnalyzer and the Azure Log Analytics workspace. This approach offers a streamlined and efficient way to manage log transmission and analysis.
+FortiAnalyzer seamlessly integrates with Azure Sentinel, offering enhanced support through log streaming to multiple destinations using the Fluentd output plugin. 
+Fluentd, an open-source data collector, serves as a comprehensive solution that unifies the process of collecting and consuming data. For additional details, please check the following [link](https://www.fluentd.org/architecture).
+
+This integration enables the forwarding of logs to public cloud services. The plugin efficiently aggregates semi-structured data in real-time, facilitating the buffered data's transmission to Azure Log Analytics.
+
+FortiGate establishes communication with FortiAnalyzer and transmits logs via TCP port 514. Then FortiAnalyzer, leveraging Fluentd as a data collector, adeptly aggregates, filters, and securely transmits data via HTTPS to an Azure Log Analytics workspace.
+The seamless integration of Fluentd with FortiAnalyzer removes the need for an additional proxy server, streamlining the installation process of a data collector between FortiAnalyzer and the Azure Log Analytics workspace. 
+This approach offers an efficient way to manage log transmission and analysis.
 
 
 ![FAZ-Sentinel Integration-DataFlow](images/FAZ-DataFlow.png)
