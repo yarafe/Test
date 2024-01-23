@@ -6,6 +6,9 @@ Microsoft Sentinel is a scalable, cloud-native solution offering Security Inform
 It provides intelligent security analytics and threat intelligence across the enterprise, offering a unified platform for attack detection, threat visibility, proactive hunting, and response.
 For further details, please refer to the following [link](https://learn.microsoft.com/en-us/azure/sentinel/overview).
 
+In this guide, we will outline two distinct integration scenarios with Microsoft Sentinel.
+The initial scenario involves integrating Fortigate with Sentinel through a Linux machine, while the second scenario focuses on Fortianalyzer integration utilizing the Fluentd plugin.
+
 FortiAnalyzer seamlessly integrates with Azure Sentinel, offering enhanced support through log streaming to multiple destinations using the Fluentd Azure Log Analytics output plugin. 
 Fluentd, an open-source data collector, serves as a comprehensive solution that unifies the process of collecting and consuming data. For additional details, please check the following [link](https://www.fluentd.org/architecture).
 
