@@ -21,7 +21,7 @@ The Linux machine is structured with two key components:
 
 Syslog Daemon (Log Collector): Utilizing either rsyslog or syslog-ng, this daemon performs dual functions
 
--Actively listens for Syslog messages originating from Fortigate on TCP port 514.
+-Actively listens for Syslog messages originating from Fortigate on TCP port 514. 
 -forwards only identified CEF messages to the Log Analytics Agent on localhost, utilizing TCP port 25226.
 
 Log Analytics Agent (OMS Agent): This agent, also referred to as the OMS Agent, engages in two critical tasks
