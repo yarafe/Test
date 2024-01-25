@@ -1,4 +1,4 @@
-# Fortianalyzer Integration with Microsoft Sentinel 
+# FortiAnalyzer Integration with Microsoft Sentinel 
 
 ## Introduction
 
@@ -7,11 +7,11 @@ It provides intelligent security analytics and threat intelligence across the en
 For further details, please refer to the following [link](https://learn.microsoft.com/en-us/azure/sentinel/overview).
 
 In this guide, we will outline two distinct integration scenarios with Microsoft Sentinel.
-The initial scenario involves integrating Fortigate with Sentinel through a Linux machine, while the second scenario focuses on Fortianalyzer integration utilizing the Fluentd plugin.
+The initial scenario involves integrating FortiGate with Sentinel through a Linux machine, while the second scenario focuses on FortiAnalyzer integration utilizing the Fluentd plugin.
 
 ## Data Flow
 
-### Fortigate Integration with Microsoft Sentienl Scenario
+### FortiGate Integration with Microsoft Sentienl Scenario
 
 To ingest CEF logs from FortiGate into Microsoft Sentinel, a dedicated Linux machine is configured to serve as proxy server for log collection and forwarding to the Microsoft Sentinel workspace.
 
@@ -19,7 +19,7 @@ The Linux machine is structured with two key components:
 
 Syslog Daemon (Log Collector): Utilizing either rsyslog or syslog-ng, this daemon performs dual functions
 
--Actively listens for Syslog messages originating from Fortigate on TCP port 514. 
+-Actively listens for Syslog messages originating from FortiGate on TCP port 514. 
 
 -forwards only identified CEF messages to the Log Analytics Agent on localhost, utilizing TCP port 25226.
 
@@ -32,7 +32,7 @@ Log Analytics Agent (OMS Agent): This agent, also referred to as the OMS Agent, 
 ![FGT-Sentinel Integration-DataFlow](images/FGT-DataFlow.png)
 
 
-### Fortianalyzer Integration with Microsoft Sentienl Scenario
+### FortiAnalyzer Integration with Microsoft Sentinel Scenario
 
 FortiAnalyzer seamlessly integrates with Microsoft Sentinel, offering enhanced support through log streaming to multiple destinations using the Fluentd output plugin. 
 Fluentd, an open-source data collector, serves as a comprehensive solution that unifies the process of collecting and consuming data. For additional details, please check the following [link](https://www.fluentd.org/architecture).
@@ -46,7 +46,7 @@ This approach offers an efficient way to manage log transmission and analysis.
 
 ![FAZ-Sentinel Integration-DataFlow](images/FAZ-DataFlow.png)
 
-## Fortigate integration with Microsoft Sentinel Setup
+## FortiGate integration with Microsoft Sentinel Setup
 
 To establish the integration between Microsoft Sentinel and FortiGate, follow these steps:
 
@@ -54,8 +54,8 @@ To establish the integration between Microsoft Sentinel and FortiGate, follow th
 Begin by setting up a Log Analytics Workspace as detailed in this [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal). Once established, proceed to onboard Sentinel with the created Log Analytics.
 For more information, visit the provided [link](https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard) for detailed instructions.
 
-### Utilize Fortigate Data Connector:
-Access Azure Marketplace to deploy the Fortigate Data Connector for Microsoft Sentinel, accompanied by workbooks and playbooks, all available for free. 
+### Utilize FortiGate Data Connector:
+Access Azure Marketplace to deploy the FortiGate Data Connector for Microsoft Sentinel, accompanied by workbooks and playbooks, all available for free. 
 
 ![ Fortinet FortiGate Next-Generation Firewall connector for Microsoft Sentinel](images/FGT-dataconnector-marketplace.PNG)
 
@@ -93,16 +93,16 @@ Once the configuration is complete, check the Fortinet connector's status in Mic
 You can review the [link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-Integrate-FortiGate-with-Microsoft-Sentinel/ta-p/199709) for more details.
 
 
-## Fortianalyzer integration with Microsoft Sentinel Setup
+## FortiAnalyzer integration with Microsoft Sentinel Setup
 
 To begin, initiate the creation of a Log Analytics Workspace. The process details can be found in the following [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
 
-Once the Log Analytics Workspace is established, proceed to onboard Microsoft Sentinel by linking it to the created Log Analytics Workspace. No configuration for data connector is required for the Fortianalyzer integration, as Fluentd will directly transmit logs to the Log Analytics Workspace.
+Once the Log Analytics Workspace is established, proceed to onboard Microsoft Sentinel by linking it to the created Log Analytics Workspace. No configuration for data connector is required for the FortiAnalyzer integration, as Fluentd will directly transmit logs to the Log Analytics Workspace.
 Additional guidance on this step is available in the [link](https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard).
 
-Next, configure your Fortigate to direct logs to the Fortianalyzer. Detailed instructions are provided in the [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303/configuring-fortianalyzer).
+Next, configure your FortiGate to direct logs to the FortiAnalyzer. Detailed instructions are provided in the [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303/configuring-fortianalyzer).
 
-Upon authorizing Fortigate from Fortianalyzer, establish an output profile for log forwarding. Navigate to System Settings -> Advanced -> Log Forwarding -> Output Profile and create a new output profile.
+Upon authorizing FortiGate from FortiAnalyzer, establish an output profile for log forwarding. Navigate to System Settings -> Advanced -> Log Forwarding -> Output Profile and create a new output profile.
 
 Specify the type as "Azure Log Analytics" and utilize the default configuration. Subsequently, fill in the customer ID with the Workspace ID and the primary key value into the shared_key field.
 
@@ -114,7 +114,7 @@ Move to System Settings -> Advanced -> Log Forwarding -> Settings.
 
 Configure the remote server type as "Forward via Output Plugin" and select your designated output profile.
 
-### Diagnose and Troubleshooting Fluentd from Fortianalyzer Cli
+### Diagnose and Troubleshooting Fluentd from FortiAnalyzer Cli
 
 To verify Fluentd write status, execute the command:
 
