@@ -11,7 +11,7 @@ The initial scenario involves integrating FortiGate with Sentinel through a Linu
 
 ## Data Flow
 
-### FortiGate Integration with Microsoft Sentienl Scenario
+### FortiGate Integration with Microsoft Sentinel Scenario
 
 To ingest CEF logs from FortiGate into Microsoft Sentinel, a dedicated Linux machine is configured to serve as proxy server for log collection and forwarding to the Microsoft Sentinel workspace.
 
