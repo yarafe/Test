@@ -9,6 +9,12 @@ For further details, please refer to the following [link](https://learn.microsof
 In this guide, we will outline two distinct integration scenarios with Microsoft Sentinel.
 The initial scenario involves integrating FortiGate with Sentinel through a Linux machine, while the second scenario focuses on FortiAnalyzer integration utilizing the Fluentd plugin.
 
+Starting from version 7.4.0, FortiAnalyzer introduced support for log forwarding to log analytics workspace and other public cloud services through Fleuntd.
+
+You can visit the [link](https://docs.fortinet.com/document/fortianalyzer/7.4.0/new-features/198909/fluentd-support-for-public-cloud-integration) for more details.
+
+
+
 ## Data Flow
 
 ### FortiGate Integration with Microsoft Sentinel Scenario
@@ -160,7 +166,7 @@ Review the received logs from the Log Analytics Workspace, as depicted in the sc
 
 ![Fluentd Diagnose](images/loganalyticsworkspace-logs-verification.PNG)
 
-You can visit the [link](https://docs.fortinet.com/document/fortianalyzer/7.4.0/new-features/198909/fluentd-support-for-public-cloud-integration) for more details.
+
 
 
 ## Support
