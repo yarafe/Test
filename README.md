@@ -104,6 +104,26 @@ Once the configuration is complete, check the Fortinet connector's status in Mic
 
 ![ Logs Verification- Sentinel](images/recivedlogs-linux.PNG)
 
+You can also verify other installed components, such as workbooks and playbook templates.
+
+The installed workbook provides detailed analytics related to your traffic and events. 
+
+![Sentinel WorkBook](images/Sentinel-workbook.PNG)
+
+Once you save the workbook, you can find it under your resource group, where you'll discover insightful statistics about event actions, application protocols, and user activity.
+
+![Sentinel WorkBook Statistics](images/Sentinel-workbook-Statistics.PNG)
+
+Additionally, three playbook templates are installed:
+
+Fortinet-FortiGate-ResponseOnBlockIP: This enables SOC users to automatically respond to Microsoft Sentinel incidents involving IPs by adding or removing the IPs to the Microsoft Sentinel IP blocked group.
+
+Fortinet-FortiGate-IPEnrichment: This playbook adds the summary of address object and its group details to an incident.
+
+Fortinet-FortiGate-ResponseOnBlockURL: This allows SOC users to automatically respond to Microsoft Sentinel incidents involving URLs by adding the URLs to the Microsoft Sentinel URL blocked group.
+
+![Sentinel PlayBooks](images/Sentinel-Playbooks.PNG)
+
 
 You can review the [link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-Integrate-FortiGate-with-Microsoft-Sentinel/ta-p/199709) for more details.
 
