@@ -125,7 +125,7 @@ Fortinet-FortiGate-ResponseOnBlockURL: This allows SOC users to automatically re
 ![Sentinel PlayBooks](images/Sentinel-Playbooks.PNG)
 
 
-You can review the [link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-Integrate-FortiGate-with-Microsoft-Sentinel/ta-p/199709) for more details.
+You can review the [link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-Integrate-FortiGate-with-Microsoft-Sentinel/ta-p/199709) for more technical details about FortiGate integration With Microsoft Sentinel.
 
 
 ## FortiAnalyzer integration with Microsoft Sentinel Setup
