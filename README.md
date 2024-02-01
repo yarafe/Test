@@ -33,6 +33,7 @@ Syslog Daemon (Log Collector): Utilizing either rsyslog or syslog-ng, this daemo
 Log Analytics Agent (OMS Agent): This agent, also referred to as the OMS Agent, engages in two critical tasks
 
 -Listens for incoming CEF messages from the integrated Linux Syslog daemon, operating on TCP port 25226.
+
 -Securely transmits these CEF messages over TLS to the Microsoft Sentinel workspace.
 
 
