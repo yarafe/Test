@@ -204,7 +204,7 @@ To optimize logging from Fortigate to Fortianalyzer, you may find useful tips in
 Fortianalyzer offers an intuitive GUI interface for efficiently filtering forwarded logs to log analytics workspace.You can set up device-specific filters based on configurable criteria, and also utilize free-text filtering directly from the GUI.
 
 ![FAZ log filtering GUI](images/FAZ-log-filtering.PNG)
-You can view logs in CEF on remote syslog servers or FortiAnalyzer. You need to configure FortiGate to set format CEF.
+You can view logs in CEF on remote syslog servers or FortiAnalyzer.
 
 With the appropriate setup, the syslog server has the capability to transmit logs in CEF format to the log analytics workspace through the Fortinet data connector. 
 While, FortiAnalyzer can ingest logs into the log analytics workspace using the Apache access log format. However, extracting the essential data from the message still requires additional steps.
