@@ -332,7 +332,10 @@
     },
     "vnetAddressPrefix": {
       "type": "string",
-      "defaultValue": "172.16.136.0/22",
+      "defaultValue": [
+		"172.16.136.0/22",
+		"ace:cab:deca::/48"
+		],
       "metadata": {
         "description": "Virtual Network Address prefix"
       }
