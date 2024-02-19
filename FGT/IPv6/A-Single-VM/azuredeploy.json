@@ -330,14 +330,18 @@
         "description": "Resource Group containing the existing virtual network, leave blank if a new VNET is being utilize"
       }
     },
-    "vnetAddressPrefix": {
+    "vnetIPv4AddressPrefix": {
       "type": "string",
-      "defaultValue": [
-		"172.16.136.0/22",
-		"ace:cab:deca::/48"
-		],
+      "defaultValue": "172.16.136.0/22",
       "metadata": {
-        "description": "Virtual Network Address prefix"
+        "description": "Virtual Network IPv4 Address prefix"
+      }
+    },
+	"vnetIPv6AddressPrefix": {
+      "type": "string",
+      "defaultValue": "ace:cab:deca::/48",
+      "metadata": {
+        "description": "Virtual Network IPV6 Address prefix"
       }
     },
     "subnet1Name": {
@@ -347,24 +351,32 @@
         "description": "Subnet 1 Name"
       }
     },
-    "subnet1Prefix": {
+    "subnet1IPv4Prefix": {
       "type": "string",
-      "defaultValue": [
-	  "172.16.136.0/26",
-	  "ace:cab:deca::/64"
-	  ],
+      "defaultValue": "172.16.136.0/26",
       "metadata": {
-        "description": "Subnet 1 Prefix"
+        "description": "Subnet 1 IPv4 Prefix"
       }
     },
-    "subnet1StartAddress": {
+    "subnet1IPv4StartAddress": {
       "type": "string",
-      "defaultValue":[ 
-	  "172.16.136.4",
-	  "ace:cab:deca:10::/64"
-	  ],
+      "defaultValue": "172.16.136.4",
       "metadata": {
-        "description": "Subnet 1 start address, 1 consecutive private IPs are required"
+        "description": "Subnet 1 IPv4 start address, 1 consecutive private IPs are required"
+      }
+    },
+	"subnet1IPv6Prefix": {
+      "type": "string",
+      "defaultValue": "ace:cab:deca::/64",
+      "metadata": {
+        "description": "Subnet 1 IPv6 Prefix"
+      }
+    },
+    "subnet1IPv6StartAddress": {
+      "type": "string",
+      "defaultValue": "ace:cab:deca::4/64",
+      "metadata": {
+        "description": "Subnet 1 IPv6 start address, 1 consecutive private IPs are required"
       }
     },
     "subnet2Name": {
@@ -374,18 +386,32 @@
         "description": "Subnet 2 Subnet"
       }
     },
-    "subnet2Prefix": {
+    "subnet2IPv4Prefix": {
       "type": "string",
       "defaultValue": "172.16.136.64/26",
       "metadata": {
-        "description": "Subnet 2 Prefix"
+        "description": "Subnet 2 IPv4 Prefix"
       }
     },
-    "subnet2StartAddress": {
+    "subnet2IPv4StartAddress": {
       "type": "string",
       "defaultValue": "172.16.136.68",
       "metadata": {
-        "description": "Subnet 2 start address, 1 consecutive private IPs are required"
+        "description": "Subnet 2 IPv4 start address, 1 consecutive private IPs are required"
+      }
+    },
+	"subnet2IPv6Prefix": {
+      "type": "string",
+      "defaultValue": "ace:cab:deca:10::/64",
+      "metadata": {
+        "description": "Subnet 2 IPv6 Prefix"
+      }
+    },
+    "subnet2IPv6StartAddress": {
+      "type": "string",
+      "defaultValue": "ace:cab:deca:10::4/64",
+      "metadata": {
+        "description": "Subnet 2 IPv6 start address, 1 consecutive private IPs are required"
       }
     },
     "subnet3Name": {
@@ -496,7 +522,7 @@
     "fgtVmName": "[if(equals(parameters('fortiGateName'),''),concat(parameters('fortiGateNamePrefix'),'-fgt'),parameters('fortiGateName'))]",
     "fmgCustomData": "[if(equals(parameters('fortiManager'),'yes'),concat('\nconfig system central-management\nset type fortimanager\n set fmg ',parameters('fortiManagerIP'),'\nset serial-number ', parameters('fortiManagerSerial'), '\nend\n config system interface\n edit port1\n append allowaccess fgfm\n end\n config system interface\n edit port2\n append allowaccess fgfm\n end\n'),'')]",
     "customDataHeader": "Content-Type: multipart/mixed; boundary=\"12345\"\nMIME-Version: 1.0\n\n--12345\nContent-Type: text/plain; charset=\"us-ascii\"\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\nContent-Disposition: attachment; filename=\"config\"\n\n",
-    "customDataBody": "[concat('config system global\nset hostname ', variables('fgtVmName'), '\nend\nconfig system sdn-connector\nedit AzureSDN\nset type azure\nnext\nend\nconfig router static\nedit 1\nset gateway ', variables('sn1GatewayIP'), '\nset device port1\nnext\nedit 2\nset dst ', parameters('vnetAddressPrefix'), '\nset gateway ', variables('sn2GatewayIP'), '\nset device port2\nnext\nend\nconfig system interface\nedit port1\nset mode static\nset ip ',  variables('sn1IPfgt'), '/', variables('sn1CIDRmask'), '\nset description external\nset allowaccess ping ssh https\nnext\nedit port2\nset mode static\nset ip ', variables('sn2IPfgt'), '/', variables('sn2CIDRmask'), '\nset description internal\nset allowaccess ping ssh https\nnext\nend\n', variables('fmgCustomData'), parameters('fortiGateAdditionalCustomData'), '\n')]",
+    "customDataBody": "[concat('config system global\nset hostname ', variables('fgtVmName'), '\nend\nconfig system sdn-connector\nedit AzureSDN\nset type azure\nnext\nend\nconfig router static\nedit 1\nset gateway ', variables('sn1GatewayIP'), '\nset device port1\nnext\nedit 2\nset dst ', parameters('vnetIPv4AddressPrefix'), '\nset gateway ', variables('sn2GatewayIP'), '\nset device port2\nnext\nend\nconfig system interface\nedit port1\nset mode static\nset ip ',  variables('sn1IPfgt'), '/', variables('sn1CIDRmask'), '\nset description external\nset allowaccess ping ssh https\nnext\nedit port2\nset mode static\nset ip ', variables('sn2IPfgt'), '/', variables('sn2CIDRmask'), '\nset description internal\nset allowaccess ping ssh https\nnext\nend\n', variables('fmgCustomData'), parameters('fortiGateAdditionalCustomData'), '\n')]",
     "customDataLicenseHeader": "--12345\nContent-Type: text/plain; charset=\"us-ascii\"\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\nContent-Disposition: attachment; filename=\"license\"\n\n",
     "customDataFooter": "\n--12345--\n",
     "customDataFortiFlex": "[if(equals(parameters('fortiGateLicenseFortiFlex'),''),'',concat('LICENSE-TOKEN:',parameters('fortiGateLicenseFortiFlex'), '\n'))]",
@@ -516,7 +542,7 @@
     },
     "nsgName": "[concat(parameters('fortiGateNamePrefix'),'-nsg')]",
     "nsgId": "[resourceID('Microsoft.Network/networkSecurityGroups/',variables('nsgName'))]",
-    "sn1IPArray": "[split(parameters('subnet1Prefix'),'.')]",
+    "sn1IPArray": "[split(parameters('subnet1IPv4Prefix'),'.')]",
     "sn1IPArray2ndString": "[string(variables('sn1IPArray')[3])]",
     "sn1IPArray2nd": "[split(variables('sn1IPArray2ndString'),'/')]",
     "sn1CIDRmask": "[string(int(variables('sn1IPArray2nd')[1]))]",
@@ -525,9 +551,9 @@
     "sn1IPArray1": "[string(int(variables('sn1IPArray')[1]))]",
     "sn1IPArray0": "[string(int(variables('sn1IPArray')[0]))]",
     "sn1GatewayIP": "[concat(variables('sn1IPArray0'),'.',variables('sn1IPArray1'),'.',variables('sn1IPArray2'),'.',variables('sn1IPArray3'))]",
-    "sn1IPStartAddress": "[split(parameters('subnet1StartAddress'),'.')]",
+    "sn1IPStartAddress": "[split(parameters('subnet1IPv4StartAddress'),'.')]",
     "sn1IPfgt": "[concat(variables('sn1IPArray0'),'.',variables('sn1IPArray1'),'.',variables('sn1IPArray2'),'.',int(variables('sn1IPStartAddress')[3]))]",
-    "sn2IPArray": "[split(parameters('subnet2Prefix'),'.')]",
+    "sn2IPArray": "[split(parameters('subnet2IPv4Prefix'),'.')]",
     "sn2IPArray2ndString": "[string(variables('sn2IPArray')[3])]",
     "sn2IPArray2nd": "[split(variables('sn2IPArray2ndString'),'/')]",
     "sn2CIDRmask": "[string(int(variables('sn2IPArray2nd')[1]))]",
@@ -536,7 +562,7 @@
     "sn2IPArray1": "[string(int(variables('sn2IPArray')[1]))]",
     "sn2IPArray0": "[string(int(variables('sn2IPArray')[0]))]",
     "sn2GatewayIP": "[concat(variables('sn2IPArray0'),'.',variables('sn2IPArray1'),'.',variables('sn2IPArray2'),'.',variables('sn2IPArray3'))]",
-    "sn2IPStartAddress": "[split(parameters('subnet2StartAddress'),'.')]",
+    "sn2IPStartAddress": "[split(parameters('subnet2IPv4StartAddress'),'.')]",
     "sn2IPfgt": "[concat(variables('sn2IPArray0'),'.',variables('sn2IPArray1'),'.',variables('sn2IPArray2'),'.',int(variables('sn2IPStartAddress')[3]))]",
     "imageReferenceMarketplace": {
       "publisher": "[variables('imagePublisher')]",
@@ -600,20 +626,27 @@
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
-            "[parameters('vnetAddressPrefix')]"
+            "[parameters('vnetIPv4AddressPrefix')]",
+			"[parameters('vnetIPv6AddressPrefix')]"
           ]
         },
         "subnets": [
           {
             "name": "[parameters('subnet1Name')]",
             "properties": {
-              "addressPrefix": "[parameters('subnet1Prefix')]"
+              "addressPrefix": [
+			  "[parameters('subnet1IPv4Prefix')]",
+			  "[parameters('subnet1IPv6Prefix')]"
+			  ]
             }
           },
           {
             "name": "[parameters('subnet2Name')]",
             "properties": {
-              "addressPrefix": "[parameters('subnet2Prefix')]"
+              "addressPrefix": [
+			  "[parameters('subnet2IPv4Prefix')]",
+			  "[parameters('subnet2IPv6Prefix')]"
+			  ]
             }
           },
           {
@@ -640,7 +673,7 @@
           {
             "name": "VirtualNetwork",
             "properties": {
-              "addressPrefix": "[parameters('vnetAddressPrefix')]",
+              "addressPrefix": "[parameters('vnetIPv4AddressPrefix')]",
               "nextHopType": "VirtualAppliance",
               "nextHopIPAddress": "[variables('sn2IPfgt')]"
             }
