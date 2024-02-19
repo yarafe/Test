@@ -349,14 +349,20 @@
     },
     "subnet1Prefix": {
       "type": "string",
-      "defaultValue": "172.16.136.0/26",
+      "defaultValue": [
+	  "172.16.136.0/26",
+	  "ace:cab:deca::/64"
+	  ],
       "metadata": {
         "description": "Subnet 1 Prefix"
       }
     },
     "subnet1StartAddress": {
       "type": "string",
-      "defaultValue": "172.16.136.4",
+      "defaultValue":[ 
+	  "172.16.136.4",
+	  "ace:cab:deca:10::/64"
+	  ],
       "metadata": {
         "description": "Subnet 1 start address, 1 consecutive private IPs are required"
       }
