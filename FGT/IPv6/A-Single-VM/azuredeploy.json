@@ -866,6 +866,7 @@
             "properties": {
               "privateIPAddress": "[cidrHost(parameters('subnet1IPv6Prefix'),3)]",
               "privateIPAllocationMethod": "Static",
+			  "privateIPAddressVersion": "IPv6",
               "publicIPAddress": "[if(not(equals(parameters('publicIPv6NewOrExisting'), 'none')), variables('publicIPv6AddressId') , json('null'))]",
               "subnet": {
                 "id": "[variables('subnet1Id')]"
