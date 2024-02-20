@@ -742,10 +742,25 @@
               "nextHopIPAddress": "[variables('sn2IPfgt')]"
             }
           },
+		  {
+            "name": "VirtualNetworkIPv6",
+            "properties": {
+              "addressPrefix": "[parameters('vnetIPv6AddressPrefix')]",
+              "nextHopType": "VirtualAppliance",
+              "nextHopIPAddress": "[cidrHost(parameters('subnet2IPv6Prefix'),3)]"
+            }
+          },
           {
             "name": "Subnet",
             "properties": {
               "addressPrefix": "[parameters('subnet3IPv4Prefix')]",
+              "nextHopType": "VnetLocal"
+            }
+          },
+		  {
+            "name": "SubnetIPv6",
+            "properties": {
+              "addressPrefix": "[parameters('subnet3IPv6Prefix')]",
               "nextHopType": "VnetLocal"
             }
           },
@@ -755,6 +770,14 @@
               "addressPrefix": "0.0.0.0/0",
               "nextHopType": "VirtualAppliance",
               "nextHopIPAddress": "[variables('sn2IPfgt')]"
+            }
+          },
+		  {
+            "name": "DefaultIPv6",
+            "properties": {
+              "addressPrefix": "::/0",
+              "nextHopType": "VirtualAppliance",
+              "nextHopIPAddress": "[cidrHost(parameters('subnet2IPv6Prefix'),3)]"
             }
           }
         ]
@@ -900,7 +923,20 @@
             "name": "ipconfig1",
             "properties": {
               "privateIPAllocationMethod": "Static",
+			  "privateIPAddressVersion": "IPv4",
+              "primary": true,
               "privateIPAddress": "[variables('sn2IPfgt')]",
+              "subnet": {
+                "id": "[variables('subnet2Id')]"
+              }
+            }
+          },
+		  {
+            "name": "ipv6config",
+            "properties": {
+              "privateIPAddress": "[cidrHost(parameters('subnet2IPv6Prefix'),3)]",
+              "privateIPAllocationMethod": "Static",
+			  "privateIPAddressVersion": "IPv6",
               "subnet": {
                 "id": "[variables('subnet2Id')]"
               }
