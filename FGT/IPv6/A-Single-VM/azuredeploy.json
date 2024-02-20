@@ -597,6 +597,9 @@
 	"publicIP1AddressId": {
       "id": "[variables('publicIP1Id')]"
     },
+	"publicIPv6AddressId": {
+      "id": "[variables('publicIPv6Id')]"
+    },
     "nsgName": "[concat(parameters('fortiGateNamePrefix'),'-nsg')]",
     "nsgId": "[resourceID('Microsoft.Network/networkSecurityGroups/',variables('nsgName'))]",
     "sn1IPArray": "[split(parameters('subnet1IPv4Prefix'),'.')]",
@@ -610,6 +613,7 @@
     "sn1GatewayIP": "[concat(variables('sn1IPArray0'),'.',variables('sn1IPArray1'),'.',variables('sn1IPArray2'),'.',variables('sn1IPArray3'))]",
     "sn1IPStartAddress": "[split(parameters('subnet1IPv4StartAddress'),'.')]",
     "sn1IPfgt": "[concat(variables('sn1IPArray0'),'.',variables('sn1IPArray1'),'.',variables('sn1IPArray2'),'.',int(variables('sn1IPStartAddress')[3]))]",
+	
     "sn2IPArray": "[split(parameters('subnet2IPv4Prefix'),'.')]",
     "sn2IPArray2ndString": "[string(variables('sn2IPArray')[3])]",
     "sn2IPArray2nd": "[split(variables('sn2IPArray2ndString'),'/')]",
@@ -709,7 +713,10 @@
           {
             "name": "[parameters('subnet3Name')]",
             "properties": {
-              "addressPrefix": "[parameters('subnet3IPv4Prefix')]",
+              "addressPrefixes": [
+			  "[parameters('subnet3IPv4Prefix')]",
+			  "[parameters('subnet3IPv6Prefix')]"
+			  ],
               "routeTable": {
                 "id": "[variables('routeTableProtectedId')]"
               }
@@ -851,7 +858,19 @@
                 "id": "[variables('subnet1Id')]"
               }
             }
+          },
+		   {
+            "name": "ipv6config",
+            "properties": {
+              "privateIPAddress": "[cidrHost(variables('subnet1IPv6Prefix'),3)]",
+              "privateIPAllocationMethod": "Static",
+              "publicIPAddress": "[if(not(equals(parameters('publicIPv6NewOrExisting'), 'none')), variables('publicIPv6AddressId') , json('null'))]",
+              "subnet": {
+                "id": "[variables('subnet1Id')]"
+              }
+            }
           }
+		  
         ],
         "enableIPForwarding": true,
         "enableAcceleratedNetworking": "[parameters('acceleratedNetworking')]",
