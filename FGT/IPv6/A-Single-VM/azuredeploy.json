@@ -367,7 +367,10 @@
     },
 	"subnet1IPv6Prefix": {
       "type": "string",
-      "defaultValue": "ace:cab:deca::/64",
+      "defaultValue": [
+	  "172.16.136.0/26",
+	  "ace:cab:deca::/64"
+	  ],
       "metadata": {
         "description": "Subnet 1 IPv6 Prefix"
       }
@@ -635,7 +638,7 @@
             "name": "[parameters('subnet1Name')]",
             "properties": {
               "addressPrefix": [
-			  "[parameters('subnet1IPv4Prefix')]",
+			  
 			  "[parameters('subnet1IPv6Prefix')]"
 			  ]
             }
