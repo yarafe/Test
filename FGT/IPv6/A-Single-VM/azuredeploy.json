@@ -305,6 +305,54 @@
         "description": "Type of public IP address"
       }
     },
+	"publicIPv6NewOrExisting": {
+      "type": "string",
+      "defaultValue": "new",
+      "allowedValues": [
+        "new",
+        "existing",
+        "none"
+      ],
+      "metadata": {
+        "description": "Choose between an existing or new public IPv6 address linked to the external interface of the FortiGate VM"
+      }
+    },
+    "publicIPv6Name": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Name of Public IPv6 address, if no name is provided the default name will be the Resource Group Name as the Prefix and '-fgt-pip' as the suffix"
+      }
+    },
+    "publicIPv6ResourceGroup": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Public IPv6 Resource Group, this value is required if an existing Public IPv6 is selected"
+      }
+    },
+    "publicIPv6AddressType": {
+      "type": "string",
+      "defaultValue": "Static",
+      "allowedValues": [
+        "Dynamic",
+        "Static"
+      ],
+      "metadata": {
+        "description": "Type of public IPv6 address"
+      }
+    },
+    "publicIPv6SKU": {
+      "type": "string",
+      "defaultValue": "Standard",
+      "allowedValues": [
+        "Basic",
+        "Standard"
+      ],
+      "metadata": {
+        "description": "Type of public IPv6 address"
+      }
+    },
     "vnetNewOrExisting": {
       "type": "string",
       "defaultValue": "new",
@@ -421,11 +469,18 @@
         "description": "Subnet 3 Name"
       }
     },
-    "subnet3Prefix": {
+    "subnet3IPv4Prefix": {
       "type": "string",
       "defaultValue": "172.16.137.0/24",
       "metadata": {
-        "description": "Subnet 3 Prefix"
+        "description": "Subnet 3 IPv4 Prefix"
+      }
+    },
+	"subnet3IPv6Prefix": {
+      "type": "string",
+      "defaultValue": "ace:cab:deca:20::/64",
+      "metadata": {
+        "description": "Subnet 3 IPv6 Prefix"
       }
     },
     "serialConsole": {
@@ -535,9 +590,11 @@
     "fgtNic2Name": "[concat(variables('fgtVmName'),'-nic2')]",
     "fgtNic2Id": "[resourceId('Microsoft.Network/networkInterfaces',variables('fgtNic2Name'))]",
     "serialConsoleEnabled": "[if(equals(parameters('serialConsole'),'yes'),'true','false')]",
-    "publicIP1Name": "[if(equals(parameters('publicIP1Name'),''),concat(parameters('fortiGateNamePrefix'),'-fgt-pip'),parameters('publicIP1Name'))]",
+    "publicIP1Name": "[if(equals(parameters('publicIP1Name'),''),concat(parameters('fortiGateNamePrefix'),'-fgt-pipv4'),parameters('publicIP1Name'))]",
+	"publicIPv6Name": "[if(equals(parameters('publicIPv6Name'),''),concat(parameters('fortiGateNamePrefix'),'-fgt-pipv6'),parameters('publicIPv6Name'))]",
     "publicIP1Id": "[if(equals(parameters('publicIP1NewOrExisting'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIP1Name')),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIP1Name')))]",
-    "publicIP1AddressId": {
+    "publicIPv6Id": "[if(equals(parameters('publicIPv6NewOrExisting'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPv6Name')),resourceId(parameters('publicIPv6ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIPv6Name')))]",
+	"publicIP1AddressId": {
       "id": "[variables('publicIP1Id')]"
     },
     "nsgName": "[concat(parameters('fortiGateNamePrefix'),'-nsg')]",
@@ -652,7 +709,7 @@
           {
             "name": "[parameters('subnet3Name')]",
             "properties": {
-              "addressPrefix": "[parameters('subnet3Prefix')]",
+              "addressPrefix": "[parameters('subnet3IPv4Prefix')]",
               "routeTable": {
                 "id": "[variables('routeTableProtectedId')]"
               }
@@ -681,7 +738,7 @@
           {
             "name": "Subnet",
             "properties": {
-              "addressPrefix": "[parameters('subnet3Prefix')]",
+              "addressPrefix": "[parameters('subnet3IPv4Prefix')]",
               "nextHopType": "VnetLocal"
             }
           },
@@ -748,6 +805,25 @@
       "zones": "[variables('pipZones')]",
       "properties": {
         "publicIPAllocationMethod": "[parameters('publicIP1AddressType')]",
+        "dnsSettings": {
+          "domainNameLabel": "[concat(toLower(variables('fgtVmName')), '-', uniquestring(resourceGroup().id))]"
+        }
+      }
+    },
+	{
+      "condition": "[equals(parameters('publicIPv6NewOrExisting'), 'new')]",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[variables('publicIPv6Name')]",
+      "apiVersion": "2023-04-01",
+      "location": "[parameters('location')]",
+      "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.Network/publicIPAddresses'), union(parameters('fortinetTags'),parameters('tagsByResource')['Microsoft.Network/publicIPAddresses']), parameters('fortinetTags')) ]",
+      "sku": {
+        "name": "[parameters('publicIPv6SKU')]"
+      },
+      "zones": "[variables('pipZones')]",
+      "properties": {
+        "publicIPAddressVersion": "IPv6",
+		"publicIPAllocationMethod": "[parameters('publicIPv6AddressType')]",
         "dnsSettings": {
           "domainNameLabel": "[concat(toLower(variables('fgtVmName')), '-', uniquestring(resourceGroup().id))]"
         }
@@ -889,6 +965,10 @@
     "fortiGateFQDN": {
       "type": "string",
       "value": "[if(equals(parameters('publicIP1NewOrExisting'), 'new'), reference(variables('publicIP1Id')).dnsSettings.fqdn, '' )]"
+    },
+	"fortiGatePublicIPv6": {
+      "type": "string",
+      "value": "[if(and(equals(parameters('publicIPv6NewOrExisting'), 'new'),equals(parameters('publicIPv6AddressType'),'Standard')), reference(variables('publicIPv6Id')).ipAddress, '')]"
     }
   }
 }
