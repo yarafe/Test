@@ -853,6 +853,8 @@
             "properties": {
               "privateIPAddress": "[variables('sn1IPfgt')]",
               "privateIPAllocationMethod": "Static",
+			  "privateIPAddressVersion": "IPv4",
+              "primary": true,
               "publicIPAddress": "[if(not(equals(parameters('publicIP1NewOrExisting'), 'none')), variables('publicIP1AddressId') , json('null'))]",
               "subnet": {
                 "id": "[variables('subnet1Id')]"
