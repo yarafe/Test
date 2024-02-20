@@ -366,7 +366,7 @@
       }
     },
 	"subnet1IPv6Prefix": {
-      "type": "string",
+      "type": "array",
       "defaultValue": [
 	  "172.16.136.0/26",
 	  "ace:cab:deca::/64"
