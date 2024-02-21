@@ -577,7 +577,7 @@
     "fgtVmName": "[if(equals(parameters('fortiGateName'),''),concat(parameters('fortiGateNamePrefix'),'-fgt'),parameters('fortiGateName'))]",
     "fmgCustomData": "[if(equals(parameters('fortiManager'),'yes'),concat('\nconfig system central-management\nset type fortimanager\n set fmg ',parameters('fortiManagerIP'),'\nset serial-number ', parameters('fortiManagerSerial'), '\nend\n config system interface\n edit port1\n append allowaccess fgfm\n end\n config system interface\n edit port2\n append allowaccess fgfm\n end\n'),'')]",
     "customDataHeader": "Content-Type: multipart/mixed; boundary=\"12345\"\nMIME-Version: 1.0\n\n--12345\nContent-Type: text/plain; charset=\"us-ascii\"\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\nContent-Disposition: attachment; filename=\"config\"\n\n",
-    "customDataBody": "[concat('config system global\nset hostname ', variables('fgtVmName'), '\nend\nconfig system sdn-connector\nedit AzureSDN\nset type azure\nnext\nend\nconfig router static\nedit 1\nset gateway ', variables('sn1GatewayIP'), '\nset device port1\nnext\nedit 2\nset dst ', parameters('vnetIPv4AddressPrefix'), '\nset gateway ', variables('sn2GatewayIP'), '\nset device port2\nnext\nend\nconfig system interface\nedit port1\nset mode static\nset ip ',  variables('sn1IPfgt'), '/', variables('sn1CIDRmask'), '\nset description external\nset allowaccess ping ssh https\nconfig ipv6\nset ip6-address ',cidrHost(parameters('subnet1IPv6Prefix'),3), '\nset ip6-allowaccess ping https ssh\nend\nnext\nedit port2\nset mode static\nset ip ', variables('sn2IPfgt'), '/', variables('sn2CIDRmask'), '\nset description internal\nset allowaccess ping ssh https\nconfig ipv6\nset ip6-address ',cidrHost(parameters('subnet2IPv6Prefix'),3), '\nset ip6-allowaccess ping https ssh\nend\nnext\nend\n', variables('fmgCustomData'), parameters('fortiGateAdditionalCustomData'), '\n')]",
+    "customDataBody": "[concat('config system global\nset hostname ', variables('fgtVmName'), '\nend\nconfig system sdn-connector\nedit AzureSDN\nset type azure\nnext\nend\nconfig router static\nedit 1\nset gateway ', variables('sn1GatewayIP'), '\nset device port1\nnext\nedit 2\nset dst ', parameters('vnetIPv4AddressPrefix'), '\nset gateway ', variables('sn2GatewayIP'), '\nset device port2\nnext\nend\nconfig router static6\nedit 1\nset gateway ',cidrHost(parameters('subnet1IPv6Prefix'),0),'\nset device port1\nnext\nedit 2\nset dst ', parameters('vnetIPv6AddressPrefix'), '\nset gateway ',cidrHost(parameters('subnet2IPv6Prefix'),0),'\nset device port2\nnext\nend\nconfig system interface\nedit port1\nset mode static\nset ip ',  variables('sn1IPfgt'), '/', variables('sn1CIDRmask'), '\nset description external\nset allowaccess ping ssh https\nset secondary-IP enable\nconfig ipv6\nset ip6-address ',cidrHost(parameters('subnet1IPv6Prefix'),4),'\nset ip6-allowaccess ping https ssh\nconfig ip6-extra-addr\nedit ',cidrHost(parameters('subnet1IPv6Prefix'),3),'\nnext\nend\nend\nconfig secondaryip\nedit 1\nset ip ',cidrHost(parameters('subnet1IPv4Prefix'),9),'\nset allowaccess ping https ssh\nnext\nend\next\nend\nedit port2\nset mode static\nset ip ', variables('sn2IPfgt'), '/', variables('sn2CIDRmask'), '\nset description internal\nset allowaccess ping ssh https\nconfig ipv6\nset ip6-address ',cidrHost(parameters('subnet2IPv6Prefix'),3), '\nset ip6-allowaccess ping https ssh\nend\nnext\nend\n', variables('fmgCustomData'), parameters('fortiGateAdditionalCustomData'), '\n')]",
     "customDataLicenseHeader": "--12345\nContent-Type: text/plain; charset=\"us-ascii\"\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\nContent-Disposition: attachment; filename=\"license\"\n\n",
     "customDataFooter": "\n--12345--\n",
     "customDataFortiFlex": "[if(equals(parameters('fortiGateLicenseFortiFlex'),''),'',concat('LICENSE-TOKEN:',parameters('fortiGateLicenseFortiFlex'), '\n'))]",
@@ -872,7 +872,7 @@
       "properties": {
         "ipConfigurations": [
           {
-            "name": "ipconfig1",
+            "name": "ipv4config1",
             "properties": {
               "privateIPAddress": "[variables('sn1IPfgt')]",
               "privateIPAllocationMethod": "Static",
@@ -891,6 +891,17 @@
               "privateIPAllocationMethod": "Static",
 			  "privateIPAddressVersion": "IPv6",
               "publicIPAddress": "[if(not(equals(parameters('publicIPv6NewOrExisting'), 'none')), variables('publicIPv6AddressId') , json('null'))]",
+              "subnet": {
+                "id": "[variables('subnet1Id')]"
+              }
+            }
+          },
+		  {
+            "name": "ipv4config2",
+            "properties": {
+              "privateIPAddress": "[cidrHost(parameters('subnet1IPv4Prefix'),9)]",
+              "privateIPAllocationMethod": "Static",
+			  "privateIPAddressVersion": "IPv4",
               "subnet": {
                 "id": "[variables('subnet1Id')]"
               }
@@ -920,7 +931,7 @@
       "properties": {
         "ipConfigurations": [
           {
-            "name": "ipconfig1",
+            "name": "ipv4config",
             "properties": {
               "privateIPAllocationMethod": "Static",
 			  "privateIPAddressVersion": "IPv4",
