@@ -872,7 +872,7 @@
       "properties": {
         "ipConfigurations": [
           {
-            "name": "ipv4config1",
+            "name": "ipv4config",
             "properties": {
               "privateIPAddress": "[variables('sn1IPfgt')]",
               "privateIPAllocationMethod": "Static",
@@ -895,19 +895,7 @@
                 "id": "[variables('subnet1Id')]"
               }
             }
-          },
-		  {
-            "name": "ipv4config2",
-            "properties": {
-              "privateIPAddress": "[cidrHost(parameters('subnet1IPv4Prefix'),9)]",
-              "privateIPAllocationMethod": "Static",
-			  "privateIPAddressVersion": "IPv4",
-              "subnet": {
-                "id": "[variables('subnet1Id')]"
-              }
-            }
           }
-		  
         ],
         "enableIPForwarding": true,
         "enableAcceleratedNetworking": "[parameters('acceleratedNetworking')]",
