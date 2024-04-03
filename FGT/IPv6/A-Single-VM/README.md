@@ -2,7 +2,7 @@
 
 [![[FGT] ARM - A-Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/actions/workflows/fgt-arm-a-single-vm.yml/badge.svg)](https://github.com/40net-cloud/fortinet-azure-solutions/actions/workflows/fgt-arm-a-single-vm.yml) 
 
-:wave: - [Introduction](#introduction) - [Design](#design) - [Deployment](#deployment) - [Requirements](#requirements-and-limitations) - [Configuration](#configuration) - :wave:
+:wave: - [Introduction](#introduction) - [Deployment Scenarios](#Deployment Scenarios) - [Deployment](#deployment) - [Requirements](#requirements-and-limitations) - [Configuration](#configuration) - :wave:
 
 ## Introduction
 
@@ -15,24 +15,29 @@ For further insights into the benefits and limitations of IPv6 integration in Az
 
 We will present two scenarios for dual-stack deployment with Fortigate in the subsequent sections. The first scenario illustrates deployment without an external load balancer, while the second scenario demonstrates deployment with a load balancer positioned in front of Fortigate.
 
-## Deployment Scenarioes 
+## Deployment Scenarios 
 
 ### Dual Stack Single-VM
 
 In this scenario, our test environment comprises the following components:
 
-Single-VM Fortigate with two interfaces: external and internal, each configured with dual-stack private IPs.
-Dual-stack virtual network with corresponding dual-stack subnets: external, internal, and protected.
-Public IPv6 and IPv4 addresses attached to the Fortigate's external interface.
-Route table for the protected subnet: Following a similar deployment approach as in IPv4 for Fortigate, we include IPv6 routes in the User-Defined Routes (UDR) to direct traffic from protected subnets to the internal interface of Fortigate.
+-Single-VM Fortigate with two interfaces: external and internal, each configured with dual-stack private IPs.
+
+-Dual-stack virtual network with corresponding dual-stack subnets: external, internal, and protected.
+
+-Public IPv6 and IPv4 addresses attached to the Fortigate's external interface.
+
+-Route table for the protected subnet: Following a similar deployment approach as in IPv4 for Fortigate, we include IPv6 routes in the User-Defined Routes (UDR) to direct traffic from protected subnets to the internal interface of Fortigate.
 
 ![FGT-Single-VM-DualStack Design](images/fgt-single-vm-dualstack.png)
 
 On the Fortigate, additional configurations are necessary:
 
-Adding a default route and directing it to fe80::1234:5678:9abc.
-Implementing IPv6 Virtual IP (VIP) alongside VIP for IPv4 to facilitate inbound connectivity.
-Establishing firewall policies for both IPv4 and IPv6 to ensure comprehensive network security.
+-Adding a default route and directing it to fe80::1234:5678:9abc.
+
+-Implementing IPv6 Virtual IP (VIP) alongside VIP for IPv4 to facilitate inbound connectivity.
+
+-Establishing firewall policies for both IPv4 and IPv6 to ensure comprehensive network security.
 
 ![static-routes](images/static-routes.PNG)
 
