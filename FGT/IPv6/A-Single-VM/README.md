@@ -6,23 +6,39 @@
 
 ## Introduction
 
-More and more enterprises are turning to Microsoft Azure to extend or replace internal data centers and take advantage of the elasticity of the public cloud. While Azure secures the infrastructure, you are responsible for protecting the resources you put in it. As workloads are being moved from local data centers connectivity and security are key elements to take into account. FortiGate-VM offers a consistent security posture and protects connectivity across public and private clouds, while high-speed VPN connections protect data.
+IPv6 for Azure Virtual Network offers dual-stack (IPv4/IPv6) connectivity, enabling seamless hosting of applications in Azure with both IPv6 and IPv4 connectivity.
+As the exhaustion of IPv4 addresses persists and new networks for mobility and IoT are built on IPv6, Azure's support for IPv6 becomes increasingly critical.
+IPv6 connectivity in Azure allows for flexible deployment of VMs with load-balanced IPv6 connectivity, ensuring connectivity with both existing IPv4 networks and emerging IPv6 devices and networks. 
+With features like custom IPv6 virtual network address space, dual-stack subnets, security measures, and load balancer support, Azure's IPv6 capabilities provide scalability, flexibility, and security for modern cloud deployments. 
+While IPv6 support continues to expand across Azure services, limitations exist, but the benefits of adopting IPv6 in Azure Virtual Network outweigh these constraints, paving the way for future-ready cloud architectures.
+For further insights into the benefits and limitations of IPv6 integration in Azure Virtual Network, please refer to the following link: [IPv6 Overview](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/ipv6-overview).
 
-This ARM template deploys a single FortiGate Next-Generation Firewall accompanied by the required infrastructure. Additionally, Fortinet Fabric Connectors deliver the ability to create dynamic security policies.
+We will present two scenarios for dual-stack deployment with Fortigate in the subsequent sections. The first scenario illustrates deployment without an external load balancer, while the second scenario demonstrates deployment with a load balancer positioned in front of Fortigate.
 
-## Design
+## Deployment Scenarioes 
 
-In Microsoft Azure, this single FortiGate-VM setup a basic setup to start exploring the capabilities of the next generation firewall. The central system will receive, using user-defined routing (UDR), all or specific traffic that needs inspection going to/coming from on-prem networks or the public internet.
+### Dual Stack Single-VM
 
-This Azure ARM template will automatically deploy a full working environment containing the following components.
+In this scenario, our test environment comprises the following components:
 
-- 1 standalone FortiGate firewall
-- 1 VNETs containing a protected subnet
-- User Defined Routes (UDR) for the protected subnets
+Single-VM Fortigate with two interfaces: external and internal, each configured with dual-stack private IPs.
+Dual-stack virtual network with corresponding dual-stack subnets: external, internal, and protected.
+Public IPv6 and IPv4 addresses attached to the Fortigate's external interface.
+Route table for the protected subnet: Following a similar deployment approach as in IPv4 for Fortigate, we include IPv6 routes in the User-Defined Routes (UDR) to direct traffic from protected subnets to the internal interface of Fortigate.
 
-![FortiGate-VM azure design](images/fgt-single-vm.png)
+![FGT-Single-VM-DualStack Design](images/fgt-single-vm-dualstack.png)
 
-This Azure ARM template can also be extended or customized based on your requirements. Additional subnets besides the ones mentioned above are not automatically generated. By extending the Azure ARM templates additional subnets can be added. Additional subnets will require their own routing tables.
+On the Fortigate, additional configurations are necessary:
+
+Adding a default route and directing it to fe80::1234:5678:9abc.
+Implementing IPv6 Virtual IP (VIP) alongside VIP for IPv4 to facilitate inbound connectivity.
+Establishing firewall policies for both IPv4 and IPv6 to ensure comprehensive network security.
+
+![static-routes](images/static-routes.png)
+
+![ipv6-vip](images/ipv6-vip.png)
+
+![firewall-policies](images/firewall-policies.png)
 
 ## Deployment
 
