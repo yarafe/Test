@@ -31,7 +31,7 @@ In this scenario, our test environment comprises the following components:
 
 ![FGT-Single-VM-DualStack Design](images/fgt-single-vm-dualstack.png)
 
-![UDR](images/udr.png)
+![UDR](images/udr.PNG)
 
 ### Dual Stack Single-VM-ELB
 
@@ -49,13 +49,13 @@ In this scenario, our testing setup includes the following components:
 
 ![FGT-Single-VM-DualStack-ELB Design](images/fgt-single-vm-dualstack-elb.png)
 
-![frontend-ip-lb](images/frontend-ip-lb.png)
+![frontend-ip-lb](images/frontend-ip-lb.PNG)
 
-![backend-pools-lb](images/backend-pools-lb.png)
+![backend-pools-lb](images/backend-pools-lb.PNG)
 
-![fgt-mgmt-inboundrule-elb](images/fgt-mgmt-inboundrule-elb.png)
+![fgt-mgmt-inboundrule-elb](images/fgt-mgmt-inboundrule-elb.PNG)
 
-![windows-vm-inboundrule-elb](images/windows-vm-inboundrule-elb.png)
+![windows-vm-inboundrule-elb](images/windows-vm-inboundrule-elb.PNG)
 
 ## Deployment
 
