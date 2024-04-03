@@ -34,11 +34,11 @@ Adding a default route and directing it to fe80::1234:5678:9abc.
 Implementing IPv6 Virtual IP (VIP) alongside VIP for IPv4 to facilitate inbound connectivity.
 Establishing firewall policies for both IPv4 and IPv6 to ensure comprehensive network security.
 
-![static-routes](images/static-routes.png)
+![static-routes](images/static-routes.PNG)
 
-![ipv6-vip](images/ipv6-vip.png)
+![ipv6-vip](images/ipv6-vip.PNG)
 
-![firewall-policies](images/firewall-policies.png)
+![firewall-policies](images/firewall-policies.PNG)
 
 ## Deployment
 
