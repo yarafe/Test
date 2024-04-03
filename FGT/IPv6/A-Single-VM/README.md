@@ -27,17 +27,17 @@ In this scenario, our test environment comprises the following components:
 
 -Public IPv6 and IPv4 addresses attached to the Fortigate's external interface.
 
--Route table for the protected subnet: Following a similar deployment approach as in IPv4 for Fortigate, we include IPv6 routes in the User-Defined Routes (UDR) to direct traffic from protected subnets to the internal interface of Fortigate.
+-Route table for the protected subnet: Following a similar deployment approach as in IPv4 for Fortigate, we include IPv6 routes in the User Defined Routes (UDR) to direct traffic from protected subnets to the internal interface of Fortigate.
 
 ![FGT-Single-VM-DualStack Design](images/fgt-single-vm-dualstack.png)
 
 On the Fortigate, additional configurations are necessary:
 
--Adding a default route and directing it to fe80::1234:5678:9abc.
+-Adding a default route and directing it to **fe80::1234:5678:9abc**.
 
 -Implementing IPv6 Virtual IP (VIP) alongside VIP for IPv4 to facilitate inbound connectivity.
 
--Establishing firewall policies for both IPv4 and IPv6 to ensure comprehensive network security.
+-Creating firewall policies for both IPv4 and IPv6 with NAT enabled to allow outbound traffic.
 
 ![static-routes](images/static-routes.PNG)
 
