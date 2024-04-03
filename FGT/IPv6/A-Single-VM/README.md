@@ -31,19 +31,31 @@ In this scenario, our test environment comprises the following components:
 
 ![FGT-Single-VM-DualStack Design](images/fgt-single-vm-dualstack.png)
 
-On the Fortigate, additional configurations are necessary:
+![UDR](images/udr.png)
 
--Adding a default route and directing it to **fe80::1234:5678:9abc**.
+### Dual Stack Single-VM-ELB
 
--Implementing IPv6 Virtual IP (VIP) alongside VIP for IPv4 to facilitate inbound connectivity.
+In this scenario, our testing setup includes the following components:
 
--Creating firewall policies for both IPv4 and IPv6 with NAT enabled to allow outbound traffic.
+-Single-VM Fortigate with two interfaces: external and internal, each configured with dual-stack private IPs.
 
-![static-routes](images/static-routes.PNG)
+-External Load Balancer.
 
-![ipv6-vip](images/ipv6-vip.PNG)
+-Dual-stack virtual network with corresponding dual-stack subnets: external, internal, and protected.
 
-![firewall-policies](images/firewall-policies.PNG)
+-Public IPv6 and IPv4 addresses attached to external load balancer.
+
+-Route table for the protected subnet: Following a similar deployment approach as in IPv4 for Fortigate, we include IPv6 routes in the User Defined Routes (UDR) to direct traffic from protected subnets to the internal interface of Fortigate.
+
+![FGT-Single-VM-DualStack-ELB Design](images/fgt-single-vm-dualstack-elb.png)
+
+![frontend-ip-lb](images/frontend-ip-lb.png)
+
+![backend-pools-lb](images/backend-pools-lb.png)
+
+![fgt-mgmt-inboundrule-elb](images/fgt-mgmt-inboundrule-elb.png)
+
+![windows-vm-inboundrule-elb](images/windows-vm-inboundrule-elb.png)
 
 ## Deployment
 
@@ -95,10 +107,27 @@ The ARM template deploys different resources and it is required to have the acce
 
 ## Configuration
 
+### Dual Stack Single-VM
+
+On the Fortigate, additional configurations are necessary:
+
+-Adding a default route and directing it to **fe80::1234:5678:9abc**.
+
+-Implementing IPv6 Virtual IP (VIP) alongside VIP for IPv4 to facilitate inbound connectivity.
+
+-Creating firewall policies for both IPv4 and IPv6 with NAT enabled to allow outbound traffic.
+
+![static-routes](images/static-routes.PNG)
+
+![ipv6-vip](images/ipv6-vip.PNG)
+
+![firewall-policies](images/firewall-policies.PNG)
+
 The FortiGate VMs need a specific configuration to match the deployed environment. This configuration can be injected during provisioning or afterwards via the different options including GUI, CLI, FortiManager or REST API.
 
 - [Default configuration using this template](doc/config-provisioning.md)
 - [Upload VHD](../Documentation/faq-upload-vhd.md)
+### Dual Stack Single-VM-ELB
 
 ### Fabric Connector
 
