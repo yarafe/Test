@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img width="800px" src="../images/fgt-nic1-config.PNG" alt="fgt-nic2-config">
+  <img width="800px" src="../images/fgt-nic2-config.PNG" alt="fgt-nic2-config">
 </p>
 
 #Fortigate Configuration
