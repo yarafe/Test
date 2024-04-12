@@ -1,6 +1,10 @@
 
 #Azure Portal Configuration
 
+<p align="center">
+  <img width="800px" src="../images/udr.PNG" alt="UDR">
+</p>
+
 ![UDR](images/udr.PNG)
 
 ![fgt-nic1-config](images/fgt-nic1-config.PNG)
