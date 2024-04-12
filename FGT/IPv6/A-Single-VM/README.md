@@ -1,6 +1,6 @@
 # FortiGate Next-Generation Firewall - A Single VM- Dual Stack
 
-:wave: - [Introduction](#introduction) - [Deployment Scenarios](#Deployment Scenarios) - [Deployment](#deployment) - [Requirements](#requirements-and-limitations) - [Configuration](#configuration) - :wave:
+:wave: - [Introduction](#introduction) - [Scenarios](#Deployment Scenarios) - [Deployment](#deployment) - [Configuration](#configuration) - :wave:
 
 ## Introduction
 
