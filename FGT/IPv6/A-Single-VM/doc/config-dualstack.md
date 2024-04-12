@@ -5,11 +5,13 @@
   <img width="800px" src="../images/udr.PNG" alt="UDR">
 </p>
 
-![UDR](images/udr.PNG)
+<p align="center">
+  <img width="800px" src="../images/fgt-nic1-config.PNG" alt="fgt-nic1-config">
+</p>
 
-![fgt-nic1-config](images/fgt-nic1-config.PNG)
-
-![fgt-nic2-config](images/fgt-nic2-config.PNG)
+<p align="center">
+  <img width="800px" src="../images/fgt-nic1-config.PNG" alt="fgt-nic2-config">
+</p>
 
 #Fortigate Configuration
 
