@@ -1,7 +1,5 @@
 # FortiGate Next-Generation Firewall - A Single VM- Dual Stack
 
-[![[FGT] ARM - A-Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/actions/workflows/fgt-arm-a-single-vm.yml/badge.svg)](https://github.com/40net-cloud/fortinet-azure-solutions/actions/workflows/fgt-arm-a-single-vm.yml) 
-
 :wave: - [Introduction](#introduction) - [Deployment Scenarios](#Deployment Scenarios) - [Deployment](#deployment) - [Requirements](#requirements-and-limitations) - [Configuration](#configuration) - :wave:
 
 ## Introduction
@@ -68,11 +66,25 @@ The FortiGate VMs need a specific configuration to match the deployed environmen
 
 ### Dual Stack Single-VM-ELB
 
+Fortigate configurations here is similar to the previous scenario with some differences:
+
+- The public IP addresses are attached to Load balancer instead of port1 on Fortigate.
+
+- From VIP6 and VIP configurations, we need to add the public IP address for extIP instead of private IP because floating IP is enabled.
+
+We need to configure Load balancer with:
+
+- Two backend pools with port1 for both IPv4 and IPv6.
+
+- Create inbound NAT Rules to allow management for Fortigate and inbound connectivity for Vm machines in protected subnets. 
+
 - [Dualstack Configuration with External Load Balancer](doc/config-dualstack-elb.md)
 
-### Fabric Connector
+## Deployment
 
-The FortiGate-VM uses [Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/) for the SDN Fabric Connector. A SDN Fabric Connector is created automatically during deployment. After deployment, it is required apply the 'Reader' role to the Azure Subscription you want to resolve Azure Resources from. More information can be found on the [Fortinet Documentation Libary](https://docs.fortinet.com/document/fortigate-public-cloud/7.2.0/azure-administration-guide/236610/configuring-an-sdn-connector-using-a-managed-identity).
+### ARM Template
+
+### Terraform 
 
 ## Support
 

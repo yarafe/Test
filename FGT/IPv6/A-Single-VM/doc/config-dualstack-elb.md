@@ -142,7 +142,7 @@ end
 	
 config firewall vip6
     edit "win6"
-        set extip <b>ace:cab:deca::4</b>
+        set extip <b>2603:1020:200::682f:a77a</b>
         set mappedip <b>ace:cab:deca:20::4</b>
         set portforward enable
         set extport 6666
