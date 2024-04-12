@@ -1,11 +1,34 @@
 
 #Azure Portal Configuration
 
-![UDR](images/udr.PNG)
+<p align="center">
+  <img width="800px" src="../images/udr.PNG" alt="UDR">
+</p>
 
-![fgt-nic1-config](images/fgt-nic1-config.PNG)
+<p align="center">
+  <img width="800px" src="../images/fgt-nic1-config.PNG" alt="fgt-nic1-config">
+</p>
 
-![fgt-nic2-config](images/fgt-nic2-config.PNG)
+<p align="center">
+  <img width="800px" src="../images/fgt-nic2-config.PNG" alt="fgt-nic2-config">
+</p>
+
+<p align="center">
+  <img width="800px" src="../images/frontend-ip-lb.PNG" alt="frontend-ip-lb">
+</p>
+
+<p align="center">
+  <img width="800px" src="../images/backend-pools-lb.PNG" alt="backend-pools-lb">
+</p>
+
+<p align="center">
+  <img width="800px" src="../images/fgt-mgmt-inboundrule-elb.PNG" alt="fgt-mgmt-inboundrule-elb">
+</p>
+
+<p align="center">
+  <img width="800px" src="../images/windows-vm-inboundrule-elb.PNG" alt="windows-vm-inboundrule-elb">
+</p>
+
 
 #Fortigate Configuration
 
