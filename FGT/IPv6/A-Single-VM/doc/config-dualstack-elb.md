@@ -6,11 +6,11 @@
 </p>
 
 <p align="center">
-  <img width="800px" src="../images/fgt-nic1-config.PNG" alt="fgt-nic1-config">
+  <img width="800px" src="../images/fgt-nic1-config-elb.PNG" alt="fgt-nic1-config">
 </p>
 
 <p align="center">
-  <img width="800px" src="../images/fgt-nic2-config.PNG" alt="fgt-nic2-config">
+  <img width="800px" src="../images/fgt-nic2-config-elb.PNG" alt="fgt-nic2-config">
 </p>
 
 <p align="center">
