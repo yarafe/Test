@@ -70,7 +70,7 @@ end
 </code></pre>
 
 
-## inbound and Outbound Configuration
+## Inbound and Outbound Configuration
 
 <pre><code>
 config firewall policy
@@ -159,7 +159,7 @@ You can check the [link](https://community.fortinet.com/t5/FortiGate/Technical-T
 config system interface
     edit "port1"
         set vdom "root"
-        set ip 172.16.136.4 255.255.255.192
+        set ip <b>172.16.136.4 255.255.255.192</b>
         set allowaccess ping https ssh
         set type physical
         set description "external"
@@ -173,11 +173,11 @@ end
 
 config firewall vip6
     edit "win64"
-        set extip ace:cab:deca::4
+        set extip <b>ace:cab:deca::4</b>
         set portforward enable
         set nat66 disable
         set nat64 enable
-        set ipv4-mappedip 172.16.137.4
+        set ipv4-mappedip <b>172.16.137.4</b>
         set ipv4-mappedport 3389
         set extport 6464
     next
@@ -185,8 +185,8 @@ end
 
 config firewall ippool
     edit "poolnat64"
-        set startip 172.16.100.11
-        set endip 172.16.100.11
+        set startip <b>172.16.100.11</b>
+        set endip <b>172.16.100.11</b>
         set nat64 enable
     next
 end

@@ -87,7 +87,7 @@ end
 </code></pre>
 
 
-## inbound and Outbound Configuration
+## Inbound and Outbound Configuration
 
 <pre><code>
 config firewall policy
@@ -164,3 +164,68 @@ end
 
 
 # Fortigate Configuration For NAT64
+
+We have the capability to implement NAT64 alongside NAT66 in this scenario by configuring Vip6 with a public IPv6 address distinct from the port1 IPv6 address.
+Through this setup, we'll map the frontend public IPv6 address on the load balancer to an IPv4 address using Vip6. Following this, we'll create an arbitrary free IPv4 pool and configure a firewall policy incorporating NAT64.
+
+You can check the [link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-Create-a-NAT64-Firewall-Policy-for-a-VIP/ta-p/293888) for more details.
+
+
+<pre><code>
+config system interface
+    edit "port1"
+        set vdom "root"
+        set ip <b>172.16.136.4 255.255.255.192</b>
+        set allowaccess ping https ssh
+        set type physical
+        set description "external"
+        set snmp-index 1
+        set secondary-IP enable
+        config ipv6
+            set ip6-address <b>ace:cab:deca::4/64</b>
+            set ip6-allowaccess ping https ssh
+        end
+    next
+end
+
+config firewall vip6
+    edit "win64"
+        set extip <b>2603:1020:200::682f:a77a</b>
+        set portforward enable
+        set nat66 disable
+        set nat64 enable
+        set ipv4-mappedip <b>172.16.137.4</b>
+        set ipv4-mappedport 3389
+        set extport 6464
+    next
+end
+
+config firewall ippool
+    edit "poolnat64"
+        set startip <b>172.16.100.100</b>
+        set endip <b>172.16.100.100</b>
+        set nat64 enable
+    next
+end
+
+config firewall policy
+    edit 5
+        set name "policy64"
+        set srcintf "port1"
+        set dstintf "port2"
+        set action accept
+        set nat64 enable
+        set srcaddr "all"
+        set dstaddr "all"
+        set srcaddr6 "all"
+        set dstaddr6 "win64"
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+        set auto-asic-offload disable
+        set ippool enable
+        set poolname "poolnat64"
+    next
+end
+
+</code></pre>
