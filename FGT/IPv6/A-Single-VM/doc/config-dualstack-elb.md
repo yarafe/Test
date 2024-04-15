@@ -1,5 +1,5 @@
 
-#Azure Portal Configuration
+# Azure Portal Configuration
 
 <p align="center">
   <img width="800px" src="../images/udr.PNG" alt="UDR">
@@ -30,7 +30,7 @@
 </p>
 
 
-#Fortigate Configuration
+# Fortigate Configuration
 
 ## Static Routes and interfaces Configuration
 
@@ -161,3 +161,6 @@ config firewall vip
     next
 end
 </code></pre>
+
+
+# Fortigate Configuration For NAT64
