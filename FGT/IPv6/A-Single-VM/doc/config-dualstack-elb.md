@@ -167,6 +167,7 @@ end
 
 We have the capability to implement NAT64 alongside NAT66 in this scenario by configuring Vip6 with a public IPv6 address distinct from the port1 IPv6 address.
 Through this setup, we'll map the frontend public IPv6 address on the load balancer to an IPv4 address using Vip6. Following this, we'll create an arbitrary free IPv4 pool and configure a firewall policy incorporating NAT64.
+There are no additional changes required from azure portal.
 
 You can check the [link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-Create-a-NAT64-Firewall-Policy-for-a-VIP/ta-p/293888) for more details.
 
