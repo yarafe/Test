@@ -15,6 +15,14 @@ We will present two scenarios for dual-stack deployment with Fortigate in the su
 
 ## Deployment Scenarios 
 
+
+| Use cases/ Architectures              | Dual Stack Single-VM | Dual Stack Single-VM-ELB|
+|---------------------------------------|------------|--------------------|
+| Multiple Public IPv6 addresses        |     NO    |         YES        |
+| NAT64                                 |     YES but not with NAT66     |  
+
+
+
 ### Dual Stack Single-VM
 
 In this scenario, our test environment comprises the following components:
