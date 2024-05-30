@@ -4,11 +4,12 @@
 
 ## Introduction
 
-IPv6 for Azure Virtual Network offers dual-stack (IPv4/IPv6) connectivity, enabling seamless hosting of applications in Azure with both IPv6 and IPv4 connectivity.
-As the exhaustion of IPv4 addresses persists and new networks for mobility and IoT are built on IPv6, Azure's support for IPv6 becomes increasingly critical.
+IPv6 for Azure Virtual Network offers dual-stack (IPv4/IPv6) connectivity, enabling seamless hosting of applications in Azure with both IPv6 and IPv4 connectivity. As the exhaustion of IPv4 addresses persists and new networks for mobility and IoT are built on IPv6, Azure's support for IPv6 becomes increasingly critical.
+
 IPv6 connectivity in Azure allows for flexible deployment of VMs with load-balanced IPv6 connectivity, ensuring connectivity with both existing IPv4 networks and emerging IPv6 devices and networks. 
-With features like custom IPv6 virtual network address space, dual-stack subnets, security measures, and load balancer support, Azure's IPv6 capabilities provide scalability, flexibility, and security for modern cloud deployments. 
-While IPv6 support continues to expand across Azure services, limitations exist, but the benefits of adopting IPv6 in Azure Virtual Network outweigh these constraints, paving the way for future-ready cloud architectures.
+
+While IPv6 support continues to expand across Azure services, limitations exist and need to be taken into account.
+
 For further insights into the benefits and limitations of IPv6 integration in Azure Virtual Network, please refer to the following link: [IPv6 Overview](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/ipv6-overview).
 
 We will present two scenarios for dual-stack deployment with Fortigate in the subsequent sections. The first scenario illustrates deployment without an external load balancer, while the second scenario demonstrates deployment with a load balancer positioned in front of Fortigate.
@@ -16,25 +17,31 @@ We will present two scenarios for dual-stack deployment with Fortigate in the su
 ## Deployment Scenarios 
 
 
-| Use cases/ Architectures              | Dual Stack Single-VM | Dual Stack Single-VM-ELB|
+| Use cases/ Architectures              | single IPv6 on NIC | Load Balancer with IPv6 |
 |---------------------------------------|------------|--------------------|
-| Multiple Public IPv6 addresses        |     NO    |         YES        |
-| NAT64                                 |     YES but not with NAT66     | Yes |
+| Single Public IPv6 address            | YES     |         YES        |
+| Multiple Public IPv6 addresses        | NO      |         YES        |
+| NAT64 (- PAT) on FortiGate                    | YES | Yes |
+| NAT66 (- PAT) on FortiGate                    | YES     | Yes |
 ||| 
+
+Supported architectures:
+- Single IPv6 on NIC: FortiGate Single VM, Active/Passive with SDN Connector
+- Load Balancer with IPv6: FortiGate Single VM, Active/Passive with External Load Balancer
 
 
 
 ### Dual Stack Single-VM
 
-In this scenario, our test environment comprises the following components:
+In this scenario, our environment comprises the following components:
 
--Single-VM Fortigate with two interfaces: external and internal, each configured with dual-stack private IPs.
+- Single-VM Fortigate with two interfaces: external and internal, each configured with dual-stack private IPs.
 
--Dual-stack virtual network with corresponding dual-stack subnets: external, internal, and protected.
+- Dual-stack virtual network with corresponding dual-stack subnets: external, internal, and protected.
 
--Public IPv6 and IPv4 addresses attached to the Fortigate's external interface.
+- Public IPv6 and IPv4 addresses attached to the Fortigate's external interface.
 
--Route table for the protected subnet: Following a similar deployment approach as in IPv4 for Fortigate, we include IPv6 routes in the User Defined Routes (UDR) to direct traffic from protected subnets to the internal interface of Fortigate.
+- Route table for the protected subnet: Following a similar deployment approach as in IPv4 for Fortigate, we include IPv6 routes in the User Defined Routes (UDR) to direct traffic from protected subnets to the internal interface of Fortigate.
 
 ![FGT-Single-VM-DualStack Design](images/fgt-single-vm-dualstack.png)
 
@@ -43,15 +50,15 @@ In this scenario, our test environment comprises the following components:
 
 In this scenario, our testing setup includes the following components:
 
--Single-VM Fortigate with two interfaces: external and internal, each configured with dual-stack private IPs.
+- Single-VM Fortigate with two interfaces: external and internal, each configured with dual-stack private IPs.
 
--External Load Balancer.
+- External Load Balancer.
 
--Dual-stack virtual network with corresponding dual-stack subnets: external, internal, and protected.
+- Dual-stack virtual network with corresponding dual-stack subnets: external, internal, and protected.
 
--Public IPv6 and IPv4 addresses attached to external load balancer.
+- Public IPv6 and IPv4 addresses attached to external load balancer.
 
--Route table for the protected subnet: Following a similar deployment approach as in IPv4 for Fortigate, we include IPv6 routes in the User Defined Routes (UDR) to direct traffic from protected subnets to the internal interface of Fortigate.
+- Route table for the protected subnet: Following a similar deployment approach as in IPv4 for Fortigate, we include IPv6 routes in the User Defined Routes (UDR) to direct traffic from protected subnets to the internal interface of Fortigate.
 
 ![FGT-Single-VM-DualStack-ELB Design](images/fgt-single-vm-dualstack-elb.png)
 
@@ -62,11 +69,11 @@ In this scenario, our testing setup includes the following components:
 
 On the Fortigate, additional configurations are necessary:
 
--Adding a default route and directing it to **fe80::1234:5678:9abc**.
+- Adding a default route and directing it to **fe80::1234:5678:9abc**.
 
--Implementing IPv6 Virtual IP (VIP) alongside VIP for IPv4 to facilitate inbound connectivity.
+- Implementing IPv6 Virtual IP (VIP) alongside VIP for IPv4 to facilitate inbound connectivity.
 
--Creating firewall policies for both IPv4 and IPv6 with NAT enabled to allow outbound traffic.
+- Creating firewall policies for both IPv4 and IPv6 with NAT enabled to allow outbound traffic.
 
 
 The FortiGate VMs need a specific configuration to match the deployed environment. This configuration can be injected during provisioning or afterwards via the different options including GUI, CLI, FortiManager or REST API.
