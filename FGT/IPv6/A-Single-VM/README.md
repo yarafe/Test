@@ -36,6 +36,7 @@ Supported architectures:
 In this scenario, our environment comprises the following components:
 
 - Single-VM Fortigate with two interfaces: external and internal, each configured with dual-stack private IPs.
+However, we removed IPv6 config from external interface on FGT-VM (not from Azure portal) due to limitation in Azue.
 
 - Dual-stack virtual network with corresponding dual-stack subnets: external, internal, and protected.
 
@@ -43,7 +44,7 @@ In this scenario, our environment comprises the following components:
 
 - Route table for the protected subnet: Following a similar deployment approach as in IPv4 for Fortigate, we include IPv6 routes in the User Defined Routes (UDR) to direct traffic from protected subnets to the internal interface of Fortigate.
 
-![FGT-Single-VM-SingleIPv6onNIC Design](images/Single-VM-SingleIPv6onNIC.png)
+![FGT-Single-VM-SingleIPv6onNIC Design](images/single-vm-singleipv6onnic.png)
 
 
 ### Single-VM-ELB
@@ -60,7 +61,7 @@ In this scenario, our testing setup includes the following components:
 
 - Route table for the protected subnet: Following a similar deployment approach as in IPv4 for Fortigate, we include IPv6 routes in the User Defined Routes (UDR) to direct traffic from protected subnets to the internal interface of Fortigate.
 
-![FGT-Single-VM-DualStack-ELB Design](images/fgt-single-vm-dualstack-elb.png)
+![FGT-Single-VM-ELB Design](images/single-vm-elb.png)
 
 
 ## Configuration
