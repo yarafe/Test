@@ -80,7 +80,7 @@ On the Fortigate, additional configurations are necessary:
 The FortiGate VMs need a specific configuration to match the deployed environment. This configuration can be injected during provisioning or afterwards via the different options including GUI, CLI, FortiManager or REST API.
 
 
-# Azure Portal Configuration
+#### Azure Portal Configuration
 
 <p align="center">
   <img width="800px" src="images/udr.PNG" alt="UDR">
@@ -94,9 +94,9 @@ The FortiGate VMs need a specific configuration to match the deployed environmen
   <img width="800px" src="images/fgt-nic2-config.PNG" alt="fgt-nic2-config">
 </p>
 
-# Fortigate Configuration
+#### Fortigate Configuration
 
-## Static Routes and interfaces Configuration
+##### Static Routes and interfaces Configuration
 
 <pre><code>
 config system sdn-connector
@@ -151,7 +151,7 @@ end
 </code></pre>
 
 
-## Inbound and Outbound Configuration
+##### Inbound and Outbound Configuration
 
 <pre><code>
 config firewall policy
@@ -227,7 +227,7 @@ end
 </code></pre>
 
 
-# Fortigate Configuration For NAT64
+#### Fortigate Configuration For NAT64
 
 
 Nat64 cannot be implemented alongside Nat66 here due to Azure's restrictions. Azure only allows the assignment of one IPv6 address to port1.
