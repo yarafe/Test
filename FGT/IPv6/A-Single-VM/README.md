@@ -17,7 +17,7 @@ We will present two scenarios for dual-stack deployment with Fortigate in the su
 ## Deployment Scenarios 
 
 
-| Use cases/ Architectures              | single IPv6 on NIC | Load Balancer with IPv6 |
+| Use cases/ Architectures              | Single IPv6 on NIC | Load Balancer with IPv6 |
 |---------------------------------------|------------|--------------------|
 | Single Public IPv6 address            | YES     |         YES        |
 | Multiple Public IPv6 addresses        | NO      |         YES        |
@@ -31,7 +31,7 @@ Supported architectures:
 
 
 
-### Dual Stack Single-VM
+### Single-VM-Single IPv6 on NIC
 
 In this scenario, our environment comprises the following components:
 
@@ -46,7 +46,7 @@ In this scenario, our environment comprises the following components:
 ![FGT-Single-VM-DualStack Design](images/fgt-single-vm-dualstack.png)
 
 
-### Dual Stack Single-VM-ELB
+### Single-VM-ELB
 
 In this scenario, our testing setup includes the following components:
 
@@ -65,7 +65,7 @@ In this scenario, our testing setup includes the following components:
 
 ## Configuration
 
-### Dual Stack Single-VM
+### Single-VM-Single IPv6 on NIC
 
 On the Fortigate, additional configurations are necessary:
 
@@ -294,7 +294,7 @@ end
 
 </code></pre>
 
-### Dual Stack Single-VM-ELB
+### Single-VM-ELB
 
 Fortigate configurations here is similar to the previous scenario with some differences:
 
