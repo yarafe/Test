@@ -82,7 +82,7 @@ The FortiGate VMs need a specific configuration to match the deployed environmen
 # Azure Portal Configuration
 
 <p align="center">
-  <img width="800px" src="../images/udr.PNG" alt="UDR">
+  <img width="800px" src="images/udr.PNG" alt="UDR">
 </p>
 
 <p align="center">
