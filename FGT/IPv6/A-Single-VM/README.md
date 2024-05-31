@@ -43,7 +43,7 @@ In this scenario, our environment comprises the following components:
 
 - Route table for the protected subnet: Following a similar deployment approach as in IPv4 for Fortigate, we include IPv6 routes in the User Defined Routes (UDR) to direct traffic from protected subnets to the internal interface of Fortigate.
 
-![FGT-Single-VM-DualStack Design](images/fgt-single-vm-dualstack.png)
+![FGT-Single-VM-SingleIPv6onNIC Design](images/Single-VM-SingleIPv6onNIC.png)
 
 
 ### Single-VM-ELB
