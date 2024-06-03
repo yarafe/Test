@@ -106,13 +106,13 @@ config system sdn-connector
 end
 config router static
   edit 1
-    set gateway <b>172.16.136.1</b>
+    set gateway <b>10.5.8.1</b>
     set device port1
   next
   edit 2
-    set dst <b>172.16.136.0/22</b>
+    set dst <b>10.5.8.0/22</b>
     set device port2
-    set gateway <b>172.16.136.65</b>
+    set gateway <b>10.5.8.68</b>
   next
 end
 config router static6
@@ -129,13 +129,13 @@ end
 config system interface
   edit port1
     set mode static
-    set ip <b>172.16.136.5/26</b>
+    set ip <b>10.5.8.4/26</b>
     set description external
     set allowaccess ping ssh https
   next
   edit port2
     set mode static
-    set ip <b>172.16.136.69/24</b>
+    set ip <b>10.5.8.68/24</b>
     set description internal
     set allowaccess ping ssh https
 	config ipv6
@@ -212,8 +212,8 @@ end
 
 config firewall vip
     edit "win"
-        set extip <b>172.16.136.4</b>
-        set mappedip <b>"172.16.137.4"</b>
+        set extip <b>10.5.8.4</b>
+        set mappedip <b>"10.5.9.4"</b>
         set extintf "any"
         set portforward enable
         set extport 3333
@@ -236,7 +236,7 @@ You can check the [link](https://community.fortinet.com/t5/FortiGate/Technical-T
 config system interface
     edit "port1"
         set vdom "root"
-        set ip <b>172.16.136.4 255.255.255.192</b>
+        set ip <b>10.5.8.4 255.255.255.192</b>
         set allowaccess ping https ssh
         set type physical
         set description "external"
@@ -251,7 +251,7 @@ config firewall vip6
         set portforward enable
         set nat66 disable
         set nat64 enable
-        set ipv4-mappedip <b>172.16.137.4</b>
+        set ipv4-mappedip <b>10.5.9.4</b>
         set ipv4-mappedport 3389
         set extport 6464
     next
@@ -361,7 +361,7 @@ config router static6
         set device "port1"
     next
     edit 2
-        set dst <b>ace:cab:deca::/48</b>
+        set dst <b>fc00:1234::/48</b>
         set gateway <b>fe80::1234:5678:9abc</b>
         set device "port2"
     next
@@ -369,21 +369,21 @@ end
 config system interface
   edit port1
     set mode static
-    set ip <b>172.16.136.5/26</b>
+    set ip <b>10.5.8.4/26</b>
     set description external
     set allowaccess ping ssh https
 	config ipv6
-            set ip6-address <b>ace:cab:deca::4/64</b>
+            set ip6-address <b>fc00:1234:0:1::4/64</b>
             set ip6-allowaccess ping https ssh
     end
   next
   edit port2
     set mode static
-    set ip <b>172.16.136.69/24</b>
+    set ip <b>10.5.8.68/24</b>
     set description internal
     set allowaccess ping ssh https
 	config ipv6
-            set ip6-address <b>ace:cab:deca:10::4/64</b>
+            set ip6-address <b>fc00:1234:0:2::4</b>
             set ip6-allowaccess ping https ssh
         end
   next
@@ -446,8 +446,8 @@ end
 	
 config firewall vip6
     edit "win6"
-        set extip <b>2603:1020:200::682f:a77a</b>
-        set mappedip <b>ace:cab:deca:20::4</b>
+        set extip <b>2603:1020:201:f::12b</b>
+        set mappedip <b>fc00:1234:0:3::4</b>
         set portforward enable
         set extport 6666
         set mappedport 3389
@@ -456,8 +456,8 @@ end
 
 config firewall vip
     edit "win"
-        set extip <b>172.16.136.4</b>
-        set mappedip <b>"172.16.137.4"</b>
+        set extip <b>10.5.8.4</b>
+        set mappedip <b>"10.5.9.4"</b>
         set extintf "any"
         set portforward enable
         set extport 3333
@@ -480,14 +480,14 @@ You can check the [link](https://community.fortinet.com/t5/FortiGate/Technical-T
 config system interface
     edit "port1"
         set vdom "root"
-        set ip <b>172.16.136.4 255.255.255.192</b>
+        set ip <b>10.5.8.4 255.255.255.192</b>
         set allowaccess ping https ssh
         set type physical
         set description "external"
         set snmp-index 1
         set secondary-IP enable
         config ipv6
-            set ip6-address <b>ace:cab:deca::4/64</b>
+            set ip6-address <b>fc00:1234:0:1::4/64</b>
             set ip6-allowaccess ping https ssh
         end
     next
@@ -495,11 +495,11 @@ end
 
 config firewall vip6
     edit "win64"
-        set extip <b>2603:1020:200::682f:a77a</b>
+        set extip <b>2603:1020:201:f::12b</b>
         set portforward enable
         set nat66 disable
         set nat64 enable
-        set ipv4-mappedip <b>172.16.137.4</b>
+        set ipv4-mappedip <b>10.5.9.4</b>
         set ipv4-mappedport 3389
         set extport 6464
     next
