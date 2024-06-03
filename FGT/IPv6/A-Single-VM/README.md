@@ -121,7 +121,7 @@ config router static6
         set device "port1"
     next
     edit 2
-        set dst <b>ace:cab:deca::/48</b>
+        set dst <b>fc00:1234::/48</b>
         set gateway <b>fe80::1234:5678:9abc</b>
         set device "port2"
     next
@@ -132,10 +132,6 @@ config system interface
     set ip <b>172.16.136.5/26</b>
     set description external
     set allowaccess ping ssh https
-	config ipv6
-            set ip6-address <b>ace:cab:deca::4/64</b>
-            set ip6-allowaccess ping https ssh
-    end
   next
   edit port2
     set mode static
@@ -143,7 +139,7 @@ config system interface
     set description internal
     set allowaccess ping ssh https
 	config ipv6
-            set ip6-address <b>ace:cab:deca:10::4/64</b>
+            set ip6-address <b>fc00:1234:0:2::4/64</b>
             set ip6-allowaccess ping https ssh
         end
   next
@@ -206,8 +202,8 @@ end
 	
 config firewall vip6
     edit "win6"
-        set extip <b>ace:cab:deca::4</b>
-        set mappedip <b>ace:cab:deca:20::4</b>
+        set extip <b>fc00:1234:0:1::4</b>
+        set mappedip <b>fc00:1234:0:3::4</b>
         set portforward enable
         set extport 6666
         set mappedport 3389
@@ -245,16 +241,13 @@ config system interface
         set type physical
         set description "external"
         set snmp-index 1
-        config ipv6
-            set ip6-allowaccess ping https ssh
-        end
     next
 end
 
 
 config firewall vip6
     edit "win64"
-        set extip <b>ace:cab:deca::4</b>
+        set extip <b>fc00:1234:0:1::4</b>
         set portforward enable
         set nat66 disable
         set nat64 enable
@@ -329,15 +322,15 @@ We need to configure Load balancer with:
 </p>
 
 <p align="center">
-  <img width="800px" src="../images/backend-pools-lb.PNG" alt="backend-pools-lb">
+  <img width="800px" src="images/backend-pools-lb.PNG" alt="backend-pools-lb">
 </p>
 
 <p align="center">
-  <img width="800px" src="../images/fgt-mgmt-inboundrule-elb.PNG" alt="fgt-mgmt-inboundrule-elb">
+  <img width="800px" src="images/fgt-mgmt-inboundrule-elb.PNG" alt="fgt-mgmt-inboundrule-elb">
 </p>
 
 <p align="center">
-  <img width="800px" src="../images/windows-vm-inboundrule-elb.PNG" alt="windows-vm-inboundrule-elb">
+  <img width="800px" src="images/windows-vm-inboundrule-elb.PNG" alt="windows-vm-inboundrule-elb">
 </p>
 
 
