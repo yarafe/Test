@@ -63,7 +63,7 @@ In this scenario, our testing setup includes the following components:
 
 ![FGT-Single-VM-ELB Design](images/single-vm-elb.png)
 
-## Traffic Flow- Inbound
+## Traffic Flow- Inbound Connection
 
 ### Single-VM-Single IPv6 on NIC
 
@@ -260,7 +260,7 @@ end
 #### Fortigate Configuration For NAT64
 
 
-Nat64 cannot be implemented alongside Nat66 here due to Azure's restrictions. Azure only allows the assignment of one IPv6 address to port1.
+Azure only allows the assignment of one IPv6 address to port1.
 While no further changes are necessary on the Azure portal, we must remove the IPv6 address from port1 configuration on Fortigate. Instead, we'll configure Vip6 to map the IPv6 address on NIC1 from Azure portal to an IPv4 address.
 Subsequently, we'll create an arbitrary free IPv4 pool and create a firewall policy with NAT64.
 
