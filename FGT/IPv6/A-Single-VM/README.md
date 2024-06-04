@@ -63,6 +63,12 @@ In this scenario, our testing setup includes the following components:
 
 ![FGT-Single-VM-ELB Design](images/single-vm-elb.png)
 
+## Traffic Flow
+
+![FGT-Single-VM-SingleIPv6onNIC Flow](images/single-vm-singleipv6onnic-flow.png)
+
+![FGT-Single-VM-ELB Flow](images/single-vm-elb-flow.png)
+
 
 ## Configuration
 
