@@ -63,11 +63,13 @@ In this scenario, our testing setup includes the following components:
 
 ![FGT-Single-VM-ELB Design](images/single-vm-elb.png)
 
-## Traffic Flow
+## Traffic Flow- Inbound
+
+### Single-VM-Single IPv6 on NIC
 
 ![FGT-Single-VM-SingleIPv6onNIC Flow](images/single-vm-singleipv6onnic-flow.png)
 
-1.Connection from client to the public attached to FGT external interface
+1.Connection from client to the public IPv6 attached to FGT external interface
 
 2.Public IPv6 will be NAT to private IPv6 on external interface
 
@@ -78,6 +80,8 @@ In this scenario, our testing setup includes the following components:
 5.FGT translates the source to the FGT VIP on the external interface
 
 6.Packet is routed to the client using DSR (Direct Server Return)
+
+### Single-VM-ELB
 
 ![FGT-Single-VM-ELB Flow](images/single-vm-elb-flow.png)
 
