@@ -337,7 +337,7 @@ We need to configure Load balancer with:
 - Create inbound NAT Rules to allow management for Fortigate and inbound connectivity for Vm machines in protected subnets. 
 
 
-# Azure Portal Configuration
+#### Azure Portal Configuration
 
 <p align="center">
   <img width="800px" src="images/udr.PNG" alt="UDR">
@@ -368,9 +368,9 @@ We need to configure Load balancer with:
 </p>
 
 
-# Fortigate Configuration
+#### Fortigate Configuration
 
-## Static Routes and interfaces Configuration
+##### Static Routes and interfaces Configuration
 
 <pre><code>
 config system sdn-connector
@@ -425,7 +425,7 @@ end
 </code></pre>
 
 
-## Inbound and Outbound Configuration
+##### Inbound and Outbound Configuration
 
 <pre><code>
 config firewall policy
@@ -501,7 +501,7 @@ end
 </code></pre>
 
 
-# Fortigate Configuration For NAT64
+##### Fortigate Configuration For NAT64
 
 We have the capability to implement NAT64 alongside NAT66 in this scenario by configuring Vip6 with a public IPv6 address distinct from the port1 IPv6 address.
 Through this setup, we'll map the frontend public IPv6 address on the load balancer to an IPv4 address using Vip6. Following this, we'll create an arbitrary free IPv4 pool and configure a firewall policy incorporating NAT64.
