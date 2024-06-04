@@ -68,19 +68,29 @@ In this scenario, our testing setup includes the following components:
 ![FGT-Single-VM-SingleIPv6onNIC Flow](images/single-vm-singleipv6onnic-flow.png)
 
 1.Connection from client to the public attached to FGT external interface
+
 2.Public IPv6 will be NAT to private IPv6 on external interface
+
 3.FGT VIP picks up, translates (DNAT) and sends the packet to the server via routing in Azure 
+
 4.Server responds to the request and send the packet to default gateway. Azure routes the traffic using User Defined Routing (UDR) to FGT Internal Interface
+
 5.FGT translates the source to the FGT VIP on the external interface
+
 6.Packet is routed to the client using DSR (Direct Server Return)
 
 ![FGT-Single-VM-ELB Flow](images/single-vm-elb-flow.png)
 
 1.Connection from client to the public IPv6 of the Azure External Load Balancer
+
 2.Azure LB probes and send the packet to FGT using Floating IP. No NAT
+
 3.FGT VIP picks up, translates (DNAT) and sends the packet to the server via routing in Azure 
+
 4.Server responds to the request and send the packet to default gateway. Azure routes the traffic using User Defined Routing (UDR) to FGT Internal Interface
+
 5.FGT translates the source to the FGT VIP on the external interface
+
 6.Packet is routed to the client using DSR (Direct Server Return)
 
 
