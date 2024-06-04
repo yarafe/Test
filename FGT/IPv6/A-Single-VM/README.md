@@ -352,16 +352,9 @@ We need to configure Load balancer with:
 </p>
 
 <p align="center">
-  <img width="800px" src="images/frontend-ip-lb.PNG" alt="frontend-ip-lb">
-</p>
-
-<p align="center">
   <img width="800px" src="images/backend-pools-lb.PNG" alt="backend-pools-lb">
 </p>
 
-<p align="center">
-  <img width="800px" src="images/fgt-mgmt-inboundrule-elb.PNG" alt="fgt-mgmt-inboundrule-elb">
-</p>
 
 <p align="center">
   <img width="800px" src="images/windows-vm-inboundrule-elb.PNG" alt="windows-vm-inboundrule-elb">
