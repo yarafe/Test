@@ -20,17 +20,30 @@ This Azure ARM template will automatically deploy a full working environment con
 
 	*Manual Failover: 2 optional Public IPs
 	
-	*VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address: 3 Public IP addresses
+	*VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address: 3 Public IPs
 	
-	*VRRP Automatic Failover Using Secondary Private IP Address: 2 optional Public IP addresses
+	*VRRP Automatic Failover Using Secondary Private IP Address: 2 optional Public IPs
 	
 To enhance the availability of the solution VM can be installed in different Availability Zones instead of an Availability Set. If Availability Zones deployment is selected but the location does not support Availability Zones an Availability Set will be deployed. If Availability Zones deployment is selected and Availability Zones are available in the location, FortiManager A will be placed in Zone 1, FortiManager B will be placed in Zone 2.
 
-![FortiManager HA az design](images/fmg-ha-az.png)
 
 This Azure ARM template can also be extended or customized based on your requirements. Additional subnets besides the ones mentioned above are not automatically generated.
 
 The FortiManager can also be deployed without a public IP on the network interface. Select 'None' as the public IP.
+
+We will introduce three different scenarios for deploying Fortimanager in high availability HA configuration:
+
+### Manual Failover
+
+![FortiManager HA az design](images/fmg-ha-az.png)
+
+### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
+
+[FortiManager HA VRRP VIP Public IP design](images/fmg-ha-vrrp-vip-public.png)
+
+### VRRP Automatic Failover Using Secondary Private IP Address
+
+[FortiManager HA VRRP VIP Private IP design](images/fmg-ha-vrrp-vip-internal.png)
 
 ## Deployment
 
