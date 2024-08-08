@@ -126,7 +126,7 @@ config system ha
     set password xxx
         config peer
             edit 1
-                set ip x.x.x.x
+                set ip <b>FortiManager B Public IP address</b>
                 set serial-number <b>FortiManager B serial number</b>
             next
         end
@@ -148,7 +148,7 @@ config system ha
     set password xxx
         config peer
             edit 1
-                set ip x.x.x.x
+                set ip <b>FortiManager A IP address</b>
                 set serial-number <b>FortiManager A serial number</b>
             next
         end
