@@ -39,11 +39,11 @@ We will introduce three different scenarios for deploying Fortimanager in high a
 
 ### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
 
-[FortiManager HA VRRP VIP Public IP design](images/fmg-ha-vrrp-vip-public.png)
+![FortiManager HA VRRP VIP Public IP design](images/fmg-ha-vrrp-vip-public.png)
 
 ### VRRP Automatic Failover Using Secondary Private IP Address
 
-[FortiManager HA VRRP VIP Private IP design](images/fmg-ha-vrrp-vip-internal.png)
+![FortiManager HA VRRP VIP Private IP design](images/fmg-ha-vrrp-vip-internal.png)
 
 ## Deployment
 
