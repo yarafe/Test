@@ -148,7 +148,7 @@ config system ha
     set password xxx
         config peer
             edit 1
-                set ip <b>FortiManager A IP address</b>
+                set ip <b>FortiManager A Public IP address</b>
                 set serial-number <b>FortiManager A serial number</b>
             next
         end
@@ -284,64 +284,10 @@ After deployment, you will be shown the IP addresses of all deployed components.
 
 The Azure ARM template deployment deploys different resources and is required to have the access rights and quota in your Microsoft Azure subscription to deploy the resources.
 
-- The template will deploy Standard D3s VMs for this architecture. Other VM instances are supported as well with a recommended minimum of 2 vCPU and 4Gb of RAM. A list can be found [here](https://docs.fortinet.com/document/FortiManager-public-cloud/7.0.0/azure-administration-guide/351055/instance-type-support)
-- A Network Security Group is installed that only opens TCP port 22, 443 and 514 for access to the FortiManager. Additional ports might be needed to support your use case and are documented [here](https://docs.fortinet.com/document/FortiManager/7.0.0/FortiManager-ports/465971/incoming-ports)
+- The template will deploy Standard DS4_v2 VMs for this architecture. Other VM instances are supported as well with a recommended minimum of 4 vCPU and 16Gb of RAM. A list can be found [here](https://docs.fortinet.com/document/fortimanager-public-cloud/7.6.0/azure-administration-guide/351055/instance-type-support)
+- A Network Security Group is installed that only opens TCP port 22, 80, 443, 541, 8082, 5199 and 514 for access to the FortiManager. Additional ports might be needed to support your use case and are documented [here](https://docs.fortinet.com/document/fortimanager/7.6.0/fortimanager-ports/465971)
 - License for FortiManager
   - BYOL: A demo license can be made available via your Fortinet partner or on our website. These can be injected during deployment or added after deployment.
-
-## FortiManager configuration
-
-### High Availability
-
-FortiManager high availability (HA) provided enhanded reliability of the solution. In case of failure of the primary unit, a backup unit can be promoted.
-
-In Microsoft Azure, the FortiManager manual HA failover is supported. Both units have a private and optionally a public IP configured. The FortiGate need to be configured with either the both private or both public IPs depending on the which are reachable.
-
-More information on FortiManager High Availability can be found in [the FortiManager documentation](https://docs.fortinet.com/document/FortiManager/7.2.2/administration-guide/568591/high-availability).
-
-### Primary FortiManager configuration
-
-<pre>
-config system ha
-  set mode primary
-  set clusterid 10
-  set password xxx
-  config peer
-    edit 1
-      set serial-number <b>FortiManager B serial number</b>
-      set ip <b>FortiManager B IP address</b>
-    next
-  end
-end
-</pre>
-
-### Secondary FortiManager configuration
-
-<pre>
-config system ha
-  set mode secondary
-  set clusterid 10
-  set password xxx
-  config peer
-    edit 1
-      set serial-number <b>FortiManager A serial number</b>
-      set ip <b>FortiManager A IP address</b>
-    next
-  end
-end
-</pre>
-
-### FortiGate configuration
-
-<pre>
-config system central-management
-  set type FortiManager
-  set fmg <b>FortiManager A IP address or FQDN</b>
-  set fmg <b>FortiManager B IP address or FQDN</b>
-  set serial-number <b>FortiManager A serial number</b>
-  set serial-number <b>FortiManager B serial number</b>
-end
-</pre>
 
 ## Support
 Fortinet-provided scripts in this and other GitHub projects do not fall under the regular Fortinet technical support scope and are not supported by FortiCare Support Services.
