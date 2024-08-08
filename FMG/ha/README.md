@@ -33,7 +33,11 @@ We will introduce three different scenarios for deploying FortiManager in high a
 
 ### Manual Failover
 
-There is no dedicated IP address for HA cluster. You need to perform failover manually. 
+FortiManager high availability (HA) provided enhanded reliability of the solution. In case of failure of the primary unit, a backup unit can be promoted.
+
+In Microsoft Azure, the FortiManager manual HA failover is supported. Both units have a private and optionally a public IP configured. The FortiGate need to be configured with either the both private or both public IPs depending on the which are reachable.
+
+More information on FortiManager High Availability can be found in [the FortiManager documentation](https://docs.fortinet.com/document/fortimanager/7.6.0/administration-guide/800686/configuring-ha-options).
 
 ![FortiManager HA az design](images/fmg-ha-az.png)
 
@@ -119,11 +123,11 @@ config system ha
     set hb-interval 5
     set hb-lost-threshold 10
     set mode primary
-    set password ENC MTgxMjcxNTI4MjAxODM1NyenD0WuLZRM4c/BY6rQSCG0LEoiYWXUUbm6ftVIOx4Iu7mzezYSpZsresZKvLB0tofPzW3M6S2By43sjlAfW/ax7tpQWSVvkWWxYoNQV7DKDEMv5ukuseQIxHzyPtyXJKwQumwtxdOME9AyIjgFZTFr0FseGk23ApxcD+7jEofE
+    set password xxx
         config peer
             edit 1
                 set ip x.x.x.x
-                set serial-number "FMG-VMTM23018955"
+                set serial-number <b>FortiManager B serial number</b>
             next
         end
     set priority 100
@@ -141,11 +145,11 @@ config system ha
     set hb-interval 5
     set hb-lost-threshold 10
     set mode secondary
-    set password ENC MTM5OTA1NDg5MTMxMDUyOUQs2pIOJ6sbnY6epXOg0gmt0v18uiAJT2OKitmhYuv0Llr6zmM03cpULuaWDPCd3sClmStUe4Vj+hmxdAxZWzdo1axfqkLGw6qQX8H+YLrJ0rQb6Ypr4qQ7njuWvlyEnDH3ymUzbK8F8A2o7/PwPAXfm5SIgyAZpJnCV62wEp8i
+    set password xxx
         config peer
             edit 1
                 set ip x.x.x.x
-                set serial-number "FMG-VMTM23018954"
+                set serial-number <b>FortiManager A serial number</b>
             next
         end
     set unicast enable
