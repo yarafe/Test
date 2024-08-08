@@ -55,6 +55,52 @@ When the failover occurs, the HA secondary private IP address will move automati
 
 ## FortiManerger Configurations
 
+### Manual Failover
+
+The configuration for FortiManager A and FortiManager B should be as follows:
+
+<pre>
+FMG A
+config system ha
+  set mode primary
+  set clusterid 10
+  set password xxx
+  config peer
+    edit 1
+      set serial-number <b>FortiManager B serial number</b>
+      set ip <b>FortiManager B IP address</b>
+    next
+  end
+end
+</pre>
+
+<pre>
+FMG B
+config system ha
+  set mode secondary
+  set clusterid 10
+  set password xxx
+  config peer
+    edit 1
+      set serial-number <b>FortiManager A serial number</b>
+      set ip <b>FortiManager A IP address</b>
+    next
+  end
+end
+</pre>
+
+Fortigate configuration should be:
+
+<pre>
+config system central-management
+  set type FortiManager
+  set fmg <b>FortiManager A IP address or FQDN</b>
+  set fmg <b>FortiManager B IP address or FQDN</b>
+  set serial-number <b>FortiManager A serial number</b>
+  set serial-number <b>FortiManager B serial number</b>
+end
+</pre>
+
 ### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
 
 After deployment perform the following three steps:
@@ -76,7 +122,7 @@ config system ha
     set password ENC MTgxMjcxNTI4MjAxODM1NyenD0WuLZRM4c/BY6rQSCG0LEoiYWXUUbm6ftVIOx4Iu7mzezYSpZsresZKvLB0tofPzW3M6S2By43sjlAfW/ax7tpQWSVvkWWxYoNQV7DKDEMv5ukuseQIxHzyPtyXJKwQumwtxdOME9AyIjgFZTFr0FseGk23ApxcD+7jEofE
         config peer
             edit 1
-                set ip 172.16.137.6
+                set ip x.x.x.x
                 set serial-number "FMG-VMTM23018955"
             next
         end
@@ -98,7 +144,7 @@ config system ha
     set password ENC MTM5OTA1NDg5MTMxMDUyOUQs2pIOJ6sbnY6epXOg0gmt0v18uiAJT2OKitmhYuv0Llr6zmM03cpULuaWDPCd3sClmStUe4Vj+hmxdAxZWzdo1axfqkLGw6qQX8H+YLrJ0rQb6Ypr4qQ7njuWvlyEnDH3ymUzbK8F8A2o7/PwPAXfm5SIgyAZpJnCV62wEp8i
         config peer
             edit 1
-                set ip 172.16.137.5
+                set ip x.x.x.x
                 set serial-number "FMG-VMTM23018954"
             next
         end
@@ -108,8 +154,19 @@ config system ha
 end
 </code></pre>
 
+Fortigate configuration should be:
+
+<pre>
+config system central-management
+  set type FortiManager
+  set fmg <b>FortiManager HA Public IP address or FQDN</b>
+end
+</pre>
 
 
+### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
+
+You will follow the same steps as in the previous scenario, with the only change being the use of private IPs instead of public IPs
 
 ## Troubleshooting
 
