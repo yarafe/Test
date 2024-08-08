@@ -35,13 +35,22 @@ We will introduce three different scenarios for deploying Fortimanager in high a
 
 ### Manual Failover
 
+There is no dedicated IP address for HA cluster. You need to perform failover manually. 
+
 ![FortiManager HA az design](images/fmg-ha-az.png)
 
+
 ### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
+
+Fortimanager HA will be configured in VRRP mode. There will be a dedicated public IP address for HA attached to secondary private IP address. 
+When the failover occurs, the HA public IP address will move automatically from the old primary to new primary Fortimanager unit.
 
 ![FortiManager HA VRRP VIP Public IP design](images/fmg-ha-vrrp-vip-public.png)
 
 ### VRRP Automatic Failover Using Secondary Private IP Address
+
+Fortimanager HA will be configured in VRRP mode. There will be a dedicated HA secondary private IP address. 
+When the failover occurs, the HA secondary private IP address will move automatically from the old primary to new primary Fortimanager unit.
 
 ![FortiManager HA VRRP VIP Private IP design](images/fmg-ha-vrrp-vip-internal.png)
 
