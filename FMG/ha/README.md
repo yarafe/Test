@@ -14,12 +14,13 @@ In Microsoft Azure, this single FortiManager-VM setup a basic setup to start exp
 
 This Azure ARM template will automatically deploy a full working environment containing the following components.
 
-- 2 FortiManager VM with a 1Tb data disk for log storage
+- 2 FortiManager VM with one NIC and data disk(s) for log storage
 - 1 VNETs containing a subnet for the FortiManager
-- Optional: 2 Basic/Standard public IPs
-
-![FortiManager HA azure design](images/fmg-ha.png)
-
+- Basic/Standard public IPs depending on deployment scenarios
+	*Manual Failover: 2 optional Public IPs
+	*VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address: 3 Public IP addresses
+	*VRRP Automatic Failover Using Secondary Private IP Address: 2 optional Public IP addresses
+	
 To enhance the availability of the solution VM can be installed in different Availability Zones instead of an Availability Set. If Availability Zones deployment is selected but the location does not support Availability Zones an Availability Set will be deployed. If Availability Zones deployment is selected and Availability Zones are available in the location, FortiManager A will be placed in Zone 1, FortiManager B will be placed in Zone 2.
 
 ![FortiManager HA az design](images/fmg-ha-az.png)
