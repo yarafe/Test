@@ -18,11 +18,9 @@ This Azure ARM template will automatically deploy a full working environment con
 - 1 VNETs containing a subnet for the FortiManager
 - Basic/Standard public IPs depending on deployment scenarios:
 
-	*Manual Failover: 2 optional Public IPs
-	
-	*VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address: 3 Public IPs
-	
-	*VRRP Automatic Failover Using Secondary Private IP Address: 2 optional Public IPs
+	* Manual Failover: 2 optional Public IPs	
+	* VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address: 3 Public IPs	
+	* VRRP Automatic Failover Using Secondary Private IP Address: 2 optional Public IPs
 	
 To enhance the availability of the solution VM can be installed in different Availability Zones instead of an Availability Set. If Availability Zones deployment is selected but the location does not support Availability Zones an Availability Set will be deployed. If Availability Zones deployment is selected and Availability Zones are available in the location, FortiManager A will be placed in Zone 1, FortiManager B will be placed in Zone 2.
 
@@ -31,7 +29,7 @@ This Azure ARM template can also be extended or customized based on your require
 
 The FortiManager can also be deployed without a public IP on the network interface. Select 'None' as the public IP.
 
-We will introduce three different scenarios for deploying Fortimanager in high availability HA configuration:
+We will introduce three different scenarios for deploying FortiManager in high availability HA configuration:
 
 ### Manual Failover
 
@@ -42,17 +40,157 @@ There is no dedicated IP address for HA cluster. You need to perform failover ma
 
 ### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
 
-Fortimanager HA will be configured in VRRP mode. There will be a dedicated public IP address for HA attached to secondary private IP address. 
-When the failover occurs, the HA public IP address will move automatically from the old primary to new primary Fortimanager unit.
+FortiManager HA will be configured in VRRP mode. There will be a dedicated public IP address for HA attached to secondary private IP address. 
+When the failover occurs, the HA public IP address will move automatically from the old primary to new primary FortiManager unit.
 
 ![FortiManager HA VRRP VIP Public IP design](images/fmg-ha-vrrp-vip-public.png)
 
 ### VRRP Automatic Failover Using Secondary Private IP Address
 
-Fortimanager HA will be configured in VRRP mode. There will be a dedicated HA secondary private IP address. 
-When the failover occurs, the HA secondary private IP address will move automatically from the old primary to new primary Fortimanager unit.
+FortiManager HA will be configured in VRRP mode. There will be a dedicated HA secondary private IP address. 
+When the failover occurs, the HA secondary private IP address will move automatically from the old primary to new primary FortiManager unit.
 
 ![FortiManager HA VRRP VIP Private IP design](images/fmg-ha-vrrp-vip-internal.png)
+
+
+## FortiManerger Configurations
+
+### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
+
+After deployment perform the following three steps:
+ 
+- Establish HA by typing in the password again in the HA config on both units.
+- Add the Digicert CA cert G2 as a local CA cert. (will be adding this to the custom data later) You can download it from [here](https://learn.microsoft.com/en-us/azure/security/fundamentals/azure-ca-details?tabs=root-and-subordinate-cas-list).
+- Provide contributor access for the FMG VMs to the resource group where the FMGs are deployed.
+
+FortiManager A and FortiManager B configuration should be like below:
+
+<pre><code>
+FMG A
+config system ha
+    set clusterid 10
+    set failover-mode vrrp
+    set hb-interval 5
+    set hb-lost-threshold 10
+    set mode primary
+    set password ENC MTgxMjcxNTI4MjAxODM1NyenD0WuLZRM4c/BY6rQSCG0LEoiYWXUUbm6ftVIOx4Iu7mzezYSpZsresZKvLB0tofPzW3M6S2By43sjlAfW/ax7tpQWSVvkWWxYoNQV7DKDEMv5ukuseQIxHzyPtyXJKwQumwtxdOME9AyIjgFZTFr0FseGk23ApxcD+7jEofE
+        config peer
+            edit 1
+                set ip 172.16.137.6
+                set serial-number "FMG-VMTM23018955"
+            next
+        end
+    set priority 100
+    set unicast enable
+    set vip "1.2.3.4"
+    set vrrp-interface "port1"
+end
+</code></pre>
+
+<pre><code>
+FMG B
+config system ha
+    set clusterid 10
+    set failover-mode vrrp
+    set hb-interval 5
+    set hb-lost-threshold 10
+    set mode secondary
+    set password ENC MTM5OTA1NDg5MTMxMDUyOUQs2pIOJ6sbnY6epXOg0gmt0v18uiAJT2OKitmhYuv0Llr6zmM03cpULuaWDPCd3sClmStUe4Vj+hmxdAxZWzdo1axfqkLGw6qQX8H+YLrJ0rQb6Ypr4qQ7njuWvlyEnDH3ymUzbK8F8A2o7/PwPAXfm5SIgyAZpJnCV62wEp8i
+        config peer
+            edit 1
+                set ip 172.16.137.5
+                set serial-number "FMG-VMTM23018954"
+            next
+        end
+    set unicast enable
+    set vip "1.2.3.4"
+    set vrrp-interface "port1"
+end
+</code></pre>
+
+
+
+
+## Troubleshooting
+
+You check HA status from cli using the following commands: 
+
+<pre><code>
+jvh21-fmg-b # get system ha-status
+HA Health Status                : OK
+HA Role                         : Primary
+FMG-HA Status                   : Synchronized State
+Model                           : FortiManager-VM64-AZURE
+Cluster-ID                      : 10
+Debug                           : off
+File-Quota                      : 4096
+HB-Interval                     : 10
+HB-Lost-Threshold               : 30
+HA Primary Uptime               : Tue Jul 16 02:11:44 2024
+HA Primary state change timestamp: Tue Jul 16 02:12:03 2024
+HB-Lost-Threshold               : 30
+Primary                         : jvh21-fmg-b, FMG-VMTM23018955, 172.16.137.6
+-----
+Cluster member 1: jvh21-fmg-a, FMG-VMTM23018954, 172.16.137.5
+Last Heartbeat                  : 10 seconds ago
+Last Sync                       : 980 seconds ago
+Last Error                      : 
+Total Synced Data (bytes)       : 6298829
+Pending Synced Data (bytes)     : 0
+Estimated Sync Time Left (seconds): 0
+HA Sync status                  : up,in-sync
+System Usage stats              :
+        FMG-VMTM23018955(updated 0 seconds ago):
+                average-cpu-user/nice/system/idle=0.27%/0.00%/0.94%/98.77%, memory=9.24%
+        FMG-VMTM23018954(updated 10 seconds ago):
+                average-cpu-user/nice/system/idle=0.05%/0.00%/0.15%/99.77%, memory=9.47%
+</code></pre>
+
+<pre><code>
+jvh21-fmg-b # get system ha
+clusterid           : 10
+failover-mode       : vrrp 
+file-quota          : 4096
+hb-interval         : 10
+hb-lost-threshold   : 30
+local-cert          : (null)
+mode                : primary 
+monitored-interfaces:
+monitored-ips:
+    == [ 1 ]
+    id: 1           
+password            : *
+peer:
+    == [ 1 ]
+    id: 1           
+priority            : 1
+unicast             : enable 
+vip                 : 20.50.232.45 
+vip-interface       : (null)
+vrrp-adv-interval   : 3
+vrrp-interface      : port1 
+</code></pre>
+
+You can verify the communication with Azure REST API in shell mode.
+Enable shell and run these using exec shell. Please, visit the [link](https://community.fortinet.com/t5/FortiManager/Technical-Tip-How-to-enable-backend-shell-access-in-FortiManager/ta-p/242340) for more details.
+Then run the following commands:
+
+<pre><code>
+# fazutil azure vm
+# fazutil azure nic
+# fazutil azure imds
+# fazutil information ha-azure
+</code></pre>
+
+Force a failover. Run this on the active FMG
+<pre><code>
+# diag ha force-vrrp-reelection
+</code></pre>
+
+Logging of the Azure Rest API calls
+<pre><code>
+# diagnose ha dump-cloud-api-log
+</code></pre>
 
 ## Deployment
 
@@ -85,8 +223,8 @@ After deployment, you will be shown the IP addresses of all deployed components.
 
 The Azure ARM template deployment deploys different resources and is required to have the access rights and quota in your Microsoft Azure subscription to deploy the resources.
 
-- The template will deploy Standard D3s VMs for this architecture. Other VM instances are supported as well with a recommended minimum of 2 vCPU and 4Gb of RAM. A list can be found [here](https://docs.fortinet.com/document/fortimanager-public-cloud/7.0.0/azure-administration-guide/351055/instance-type-support)
-- A Network Security Group is installed that only opens TCP port 22, 443 and 514 for access to the FortiManager. Additional ports might be needed to support your use case and are documented [here](https://docs.fortinet.com/document/fortimanager/7.0.0/fortimanager-ports/465971/incoming-ports)
+- The template will deploy Standard D3s VMs for this architecture. Other VM instances are supported as well with a recommended minimum of 2 vCPU and 4Gb of RAM. A list can be found [here](https://docs.fortinet.com/document/FortiManager-public-cloud/7.0.0/azure-administration-guide/351055/instance-type-support)
+- A Network Security Group is installed that only opens TCP port 22, 443 and 514 for access to the FortiManager. Additional ports might be needed to support your use case and are documented [here](https://docs.fortinet.com/document/FortiManager/7.0.0/FortiManager-ports/465971/incoming-ports)
 - License for FortiManager
   - BYOL: A demo license can be made available via your Fortinet partner or on our website. These can be injected during deployment or added after deployment.
 
@@ -98,7 +236,7 @@ FortiManager high availability (HA) provided enhanded reliability of the solutio
 
 In Microsoft Azure, the FortiManager manual HA failover is supported. Both units have a private and optionally a public IP configured. The FortiGate need to be configured with either the both private or both public IPs depending on the which are reachable.
 
-More information on FortiManager High Availability can be found in [the FortiManager documentation](https://docs.fortinet.com/document/fortimanager/7.2.2/administration-guide/568591/high-availability).
+More information on FortiManager High Availability can be found in [the FortiManager documentation](https://docs.fortinet.com/document/FortiManager/7.2.2/administration-guide/568591/high-availability).
 
 ### Primary FortiManager configuration
 
@@ -136,7 +274,7 @@ end
 
 <pre>
 config system central-management
-  set type fortimanager
+  set type FortiManager
   set fmg <b>FortiManager A IP address or FQDN</b>
   set fmg <b>FortiManager B IP address or FQDN</b>
   set serial-number <b>FortiManager A serial number</b>
