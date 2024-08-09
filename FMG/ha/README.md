@@ -14,18 +14,16 @@ This Azure ARM template will automatically deploy a full working environment con
 
 - 2 FortiManager VM with one NIC and data disk(s) for log storage
 - 1 VNETs containing a subnet for the FortiManager
-- Basic/Standard public IPs depending on deployment scenarios:
+- Standard public IPs depending on deployment scenarios:
 
 	* Manual Failover: 2 optional Public IPs	
-	* VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address: 3 Public IPs	
+	* VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address: 2 optional Public IPs and one mandatory Public IP	
 	* VRRP Automatic Failover Using Secondary Private IP Address: 2 optional Public IPs
 	
-To enhance the availability of the solution VM can be installed in different Availability Zones instead of an Availability Set. If Availability Zones deployment is selected but the location does not support Availability Zones an Availability Set will be deployed. If Availability Zones deployment is selected and Availability Zones are available in the location, FortiManager A will be placed in Zone 1, FortiManager B will be placed in Zone 2.
+To enhance the availability of the solution VM can be installed in different Availability Zones instead of an Availability Set. The availability zone is the default option in the template. If Availability Zones deployment is selected but the location does not support Availability Zones an Availability Set will be deployed. If Availability Zones deployment is selected and Availability Zones are available in the location, FortiManager A will be placed in Zone 1, FortiManager B will be placed in Zone 2.
 
 
 This Azure ARM template can also be extended or customized based on your requirements. Additional subnets besides the ones mentioned above are not automatically generated.
-
-The FortiManager can also be deployed without a public IP on the network interface. Select 'None' as the public IP.
 
 We will present three different scenarios for deploying FortiManager in high availability HA configuration:
 
@@ -42,27 +40,29 @@ More information on FortiManager High Availability can be found in [the FortiMan
 
 ### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
 
-FortiManager HA will be configured in VRRP mode. There will be a dedicated public IP address for HA attached to secondary private IP address. 
+FortiManager HA will be configured in VRRP mode using unicast. There will be a dedicated public IP address for HA attached to secondary private IP address. 
 When the failover occurs, the HA public IP address will move automatically from the old primary to new primary FortiManager unit.
 
 ![FortiManager HA VRRP VIP Public IP design](images/fmg-ha-vrrp-vip-public.png)
 
 ### VRRP Automatic Failover Using Secondary Private IP Address
 
-FortiManager HA will be configured in VRRP mode. There will be a dedicated HA secondary private IP address. 
+FortiManager HA will be configured in VRRP mode using unicast. There will be a dedicated HA secondary private IP address. 
 When the failover occurs, the HA secondary private IP address will move automatically from the old primary to new primary FortiManager unit.
 
 ![FortiManager HA VRRP VIP Private IP design](images/fmg-ha-vrrp-vip-internal.png)
 
 
-## FortiManerger Configurations
+## FortiManeger Configurations
+
+The HA configuration requires the serialnumbers of both FortiManager VMs in order to complete the config. If the serialnumbers are not provided during deployment the FortiManager HA config needs to be performed manually afterwards.
 
 ### Manual Failover
 
 The configuration for FortiManager A and FortiManager B should be as follows:
 
-<pre>
 FMG A
+<pre><code>
 config system ha
   set mode primary
   set clusterid 10
@@ -74,10 +74,10 @@ config system ha
     next
   end
 end
-</pre>
+</code></pre>
 
-<pre>
 FMG B
+<pre><code>
 config system ha
   set mode secondary
   set clusterid 10
@@ -89,11 +89,11 @@ config system ha
     next
   end
 end
-</pre>
+</code></pre>
 
 Fortigate configuration should be:
 
-<pre>
+<pre><code>
 config system central-management
   set type FortiManager
   set fmg <b>FortiManager A IP address or FQDN</b>
@@ -101,7 +101,7 @@ config system central-management
   set serial-number <b>FortiManager A serial number</b>
   set serial-number <b>FortiManager B serial number</b>
 end
-</pre>
+</code></pre>
 
 ### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
 
@@ -113,8 +113,8 @@ After deployment perform the following three steps:
 
 FortiManager A and FortiManager B configuration should be like below:
 
-<pre><code>
 FMG A
+<pre><code>
 config system ha
     set clusterid 10
     set failover-mode vrrp
@@ -130,13 +130,13 @@ config system ha
         end
     set priority 100
     set unicast enable
-    set vip "1.2.3.4"
+    set vip <b>FortiManager HA Public IP address</b>
     set vrrp-interface "port1"
 end
 </code></pre>
 
-<pre><code>
 FMG B
+<pre><code>
 config system ha
     set clusterid 10
     set failover-mode vrrp
@@ -151,31 +151,85 @@ config system ha
             next
         end
     set unicast enable
-    set vip "1.2.3.4"
+    set vip <b>FortiManager HA Public IP address</b>
     set vrrp-interface "port1"
 end
 </code></pre>
 
 Fortigate configuration should be:
 
-<pre>
+<pre><code>
 config system central-management
   set type FortiManager
   set fmg <b>FortiManager HA Public IP address or FQDN</b>
+  set serial-number <b>FortiManager A serial number</b>
 end
-</pre>
+</code></pre>
 
 
 ### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
 
-You will follow the same steps as in the previous scenario, with the only change being the use of private IPs instead of public IPs
+You will follow the same steps as in the previous scenario, with the only change being the use of private IPs instead of public IPs.
+
+FMG A
+<pre><code>
+config system ha
+    set clusterid 10
+    set failover-mode vrrp
+    set hb-interval 5
+    set hb-lost-threshold 10
+    set mode primary
+    set password xxx
+        config peer
+            edit 1
+                set ip <b>172.16.0.5</b>
+                set serial-number <b>FortiManager B serial number</b>
+            next
+        end
+    set priority 100
+    set unicast enable
+    set vip <b>172.16.0.6</b>
+    set vrrp-interface "port1"
+end
+</code></pre>
+
+FMG B
+<pre><code>
+config system ha
+    set clusterid 10
+    set failover-mode vrrp
+    set hb-interval 5
+    set hb-lost-threshold 10
+    set mode secondary
+    set password xxx
+        config peer
+            edit 1
+                set ip <b>172.16.0.4</b>
+                set serial-number <b>FortiManager A serial number</b>
+            next
+        end
+    set unicast enable
+    set vip <b>172.16.0.6</b>
+    set vrrp-interface "port1"
+end
+</code></pre>
+
+Fortigate configuration should be:
+
+<pre><code>
+config system central-management
+  set type FortiManager
+  set fmg <b>172.16.0.6</b>
+  set serial-number <b>FortiManager A serial number</b>
+end
+</code></pre>
 
 ## Troubleshooting
 
 You check HA status from cli using the following commands: 
 
 <pre><code>
-jvh21-fmg-b # get system ha-status
+fmg-a # get system ha-status
 HA Health Status                : OK
 HA Role                         : Primary
 FMG-HA Status                   : Synchronized State
@@ -188,9 +242,9 @@ HB-Lost-Threshold               : 30
 HA Primary Uptime               : Tue Jul 16 02:11:44 2024
 HA Primary state change timestamp: Tue Jul 16 02:12:03 2024
 HB-Lost-Threshold               : 30
-Primary                         : jvh21-fmg-b, FMG-VMTM23018955, 172.16.137.6
+Primary                         : fmg-a, FMG-VMTM23018955, 172.16.0.6
 -----
-Cluster member 1: jvh21-fmg-a, FMG-VMTM23018954, 172.16.137.5
+Cluster member 1: fmg-a, FMG-VMxxxxxxx, 172.16.137.5
 Last Heartbeat                  : 10 seconds ago
 Last Sync                       : 980 seconds ago
 Last Error                      : 
@@ -206,7 +260,7 @@ System Usage stats              :
 </code></pre>
 
 <pre><code>
-jvh21-fmg-b # get system ha
+fmg-a # get system ha
 clusterid           : 10
 failover-mode       : vrrp 
 file-quota          : 4096
