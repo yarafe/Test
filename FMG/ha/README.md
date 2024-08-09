@@ -6,11 +6,9 @@ FortiManager - Automation-Driven Centralized Management
 
 Manage all your Fortinet devices in a single-console central management system. FortiManager provides full visibility of your network, offering streamlined provisioning and innovative automation tools.
 
-This ARM template deploys a single FortiManager accompanied by the required infrastructure.
+This ARM template deploys two FortiManagers with High availability accompanied by the required infrastructure.
 
 ## Design
-
-In Microsoft Azure, this single FortiManager-VM setup a basic setup to start exploring the capabilities of the management platform for the FortiGate next generation firewall.
 
 This Azure ARM template will automatically deploy a full working environment containing the following components.
 
@@ -29,7 +27,7 @@ This Azure ARM template can also be extended or customized based on your require
 
 The FortiManager can also be deployed without a public IP on the network interface. Select 'None' as the public IP.
 
-We will introduce three different scenarios for deploying FortiManager in high availability HA configuration:
+We will present three different scenarios for deploying FortiManager in high availability HA configuration:
 
 ### Manual Failover
 
