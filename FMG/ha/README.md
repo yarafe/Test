@@ -27,17 +27,6 @@ This Azure ARM template can also be extended or customized based on your require
 
 We will present three different scenarios for deploying FortiManager in high availability HA configuration:
 
-### Manual Failover
-
-FortiManager high availability (HA) provided enhanded reliability of the solution. In case of failure of the primary unit, a backup unit can be promoted.
-
-In Microsoft Azure, the FortiManager manual HA failover is supported. Both units have a private and optionally a public IP configured. The FortiGate need to be configured with either the both private or both public IPs depending on the which are reachable.
-
-More information on FortiManager High Availability can be found in [the FortiManager documentation](https://docs.fortinet.com/document/fortimanager/7.6.0/administration-guide/800686/configuring-ha-options).
-
-![FortiManager HA az design](images/fmg-ha-az.png)
-
-
 ### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
 
 FortiManager HA will be configured in VRRP mode using unicast. There will be a dedicated public IP address for HA attached to secondary private IP address. 
@@ -52,56 +41,19 @@ When the failover occurs, the HA secondary private IP address will move automati
 
 ![FortiManager HA VRRP VIP Private IP design](images/fmg-ha-vrrp-vip-internal.png)
 
+### Manual Failover
+
+FortiManager high availability (HA) provided enhanded reliability of the solution. In case of failure of the primary unit, a backup unit can be promoted.
+
+In Microsoft Azure, the FortiManager manual HA failover is supported. Both units have a private and optionally a public IP configured. The FortiGate need to be configured with either the both private or both public IPs depending on the which are reachable.
+
+More information on FortiManager High Availability can be found in [the FortiManager documentation](https://docs.fortinet.com/document/fortimanager/7.6.0/administration-guide/800686/configuring-ha-options).
+
+![FortiManager HA az design](images/fmg-ha-az.png)
 
 ## FortiManeger Configurations
 
 The HA configuration requires the serialnumbers of both FortiManager VMs in order to complete the config. If the serialnumbers are not provided during deployment the FortiManager HA config needs to be performed manually afterwards.
-
-### Manual Failover
-
-The configuration for FortiManager A and FortiManager B should be as follows:
-
-FMG A
-<pre><code>
-config system ha
-  set mode primary
-  set clusterid 10
-  set password xxx
-  config peer
-    edit 1
-      set serial-number <b>FortiManager B serial number</b>
-      set ip <b>FortiManager B IP address</b>
-    next
-  end
-end
-</code></pre>
-
-FMG B
-<pre><code>
-config system ha
-  set mode secondary
-  set clusterid 10
-  set password xxx
-  config peer
-    edit 1
-      set serial-number <b>FortiManager A serial number</b>
-      set ip <b>FortiManager A IP address</b>
-    next
-  end
-end
-</code></pre>
-
-Fortigate configuration should be:
-
-<pre><code>
-config system central-management
-  set type FortiManager
-  set fmg <b>FortiManager A IP address or FQDN</b>
-  set fmg <b>FortiManager B IP address or FQDN</b>
-  set serial-number <b>FortiManager A serial number</b>
-  set serial-number <b>FortiManager B serial number</b>
-end
-</code></pre>
 
 ### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
 
@@ -182,13 +134,13 @@ config system ha
     set password xxx
         config peer
             edit 1
-                set ip <b>172.16.0.5</b>
+                set ip <b>172.16.140.5</b>
                 set serial-number <b>FortiManager B serial number</b>
             next
         end
     set priority 100
     set unicast enable
-    set vip <b>172.16.0.6</b>
+    set vip <b>172.16.140.6</b>
     set vrrp-interface "port1"
 end
 </code></pre>
@@ -204,12 +156,12 @@ config system ha
     set password xxx
         config peer
             edit 1
-                set ip <b>172.16.0.4</b>
+                set ip <b>172.16.140.4</b>
                 set serial-number <b>FortiManager A serial number</b>
             next
         end
     set unicast enable
-    set vip <b>172.16.0.6</b>
+    set vip <b>172.16.140.6</b>
     set vrrp-interface "port1"
 end
 </code></pre>
@@ -219,8 +171,54 @@ Fortigate configuration should be:
 <pre><code>
 config system central-management
   set type FortiManager
-  set fmg <b>172.16.0.6</b>
+  set fmg <b>172.16.140.6</b>
   set serial-number <b>FortiManager A serial number</b>
+end
+</code></pre>
+
+### Manual Failover
+
+The configuration for FortiManager A and FortiManager B should be as follows:
+
+FMG A
+<pre><code>
+config system ha
+  set mode primary
+  set clusterid 10
+  set password xxx
+  config peer
+    edit 1
+      set serial-number <b>FortiManager B serial number</b>
+      set ip <b>FortiManager B IP address</b>
+    next
+  end
+end
+</code></pre>
+
+FMG B
+<pre><code>
+config system ha
+  set mode secondary
+  set clusterid 10
+  set password xxx
+  config peer
+    edit 1
+      set serial-number <b>FortiManager A serial number</b>
+      set ip <b>FortiManager A IP address</b>
+    next
+  end
+end
+</code></pre>
+
+Fortigate configuration should be:
+
+<pre><code>
+config system central-management
+  set type FortiManager
+  set fmg <b>FortiManager A IP address or FQDN</b>
+  set fmg <b>FortiManager B IP address or FQDN</b>
+  set serial-number <b>FortiManager A serial number</b>
+  set serial-number <b>FortiManager B serial number</b>
 end
 </code></pre>
 
@@ -242,9 +240,9 @@ HB-Lost-Threshold               : 30
 HA Primary Uptime               : Tue Jul 16 02:11:44 2024
 HA Primary state change timestamp: Tue Jul 16 02:12:03 2024
 HB-Lost-Threshold               : 30
-Primary                         : fmg-a, FMG-VMTM23018955, 172.16.0.6
+Primary                         : fmg-a, FMG-VM1xxxxxx, 172.16.140.6
 -----
-Cluster member 1: fmg-a, FMG-VMxxxxxxx, 172.16.137.5
+Cluster member 1: fmg-a, FMG-VM1xxxxxx, 172.16.140.5
 Last Heartbeat                  : 10 seconds ago
 Last Sync                       : 980 seconds ago
 Last Error                      : 
@@ -253,9 +251,9 @@ Pending Synced Data (bytes)     : 0
 Estimated Sync Time Left (seconds): 0
 HA Sync status                  : up,in-sync
 System Usage stats              :
-        FMG-VMTM23018955(updated 0 seconds ago):
+        FMG-VM1xxxxxx(updated 0 seconds ago):
                 average-cpu-user/nice/system/idle=0.27%/0.00%/0.94%/98.77%, memory=9.24%
-        FMG-VMTM23018954(updated 10 seconds ago):
+        FMG-VM2xxxxxx(updated 10 seconds ago):
                 average-cpu-user/nice/system/idle=0.05%/0.00%/0.15%/99.77%, memory=9.47%
 </code></pre>
 
