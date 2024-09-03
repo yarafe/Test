@@ -97,7 +97,7 @@ The HA configuration requires the serialnumbers of both FortiAnalyzer VMs in ord
 After deployment perform and validate the following three steps:
  
 - During deployment the root certificate (DigiCert Global Root G2) for management.azure.com is added. This certificate can also be downloaded [here](https://learn.microsoft.com/en-us/azure/security/fundamentals/azure-ca-details?tabs=root-and-subordinate-cas-list) and added as a local CA certificate on the FortiAnalyzer
-- For the failover process, FortiAnalyzer uses managed identity on Microsoft Azure to migrate the public IP. Assign either the network contributor or a custom role to the resource group containing the FortiAnalyzer resources (VM, network interface, public ip address, network security group). More information can be found [here](#vrrp-managed identity)
+- For the failover process, FortiAnalyzer uses managed identity on Microsoft Azure to migrate the public IP. Assign either the network contributor or a custom role to the resource group containing the FortiAnalyzer resources (VM, network interface, public ip address, network security group). More information can be found [here] (#vrrp-managed identity)
 - The FortiAnalyzer devices need to have outbound access to management.azure.com via either the attached public IPs or another outbound path
 
 FortiAnalyzer A and FortiAnalyzer B configuration should be like below:
@@ -209,7 +209,7 @@ config system central-management
 end
 </code></pre>
 
-### Manual Failover
+### Active-Active
 
 The configuration for FortiAnalyzer A and FortiAnalyzer B should be as follows:
 
@@ -257,7 +257,7 @@ end
 
 ### VRRP managed identity 
 
-In case of automatic HA failover / VRRP the secondary FortiManger will become primary and start communication with Microsoft Azure to migrate the VIP (public or private IP address). For the communication, credentials are needed using a managed identity. During the deployment the system assigned managed identity is enabled on each FortiManger. It is required after deployment to provide give the FortiAnalyzer systems access to the resource group containing it's resources in Azure. This access can be using the Network Contributor role or a custom role. The following resources are updated:
+In case of automatic HA failover / VRRP the secondary FortiManger will become primary and start communication with Microsoft Azure to migrate the VIP (public or private IP address). For the communication, credentials are needed using a managed identity. During the deployment the system assigned managed identity is enabled on each FortiManger. It is required after deployment to provide the FortiAnalyzer systems access to the resource group containing it's resources in Azure. This access can be using the Network Contributor role or a custom role. The following resources are updated:
 
 - FortiGate-VM network interfaces
 - Network security group attached to the FortiAnalyzer network interface nic1
