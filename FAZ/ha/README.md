@@ -83,17 +83,16 @@ After deployment, you will be shown the IP addresses of all deployed components.
 
 The Azure ARM template deployment deploys different resources and is required to have the access rights and quota in your Microsoft Azure subscription to deploy the resources.
 
-- The template will deploy Standard DS4_v2 VMs for this architecture. Other VM instances are supported as well with a recommended minimum of 4 vCPU and 16Gb of RAM. A list can be found [here](https://docs.fortinet.com/document/FortiAnalyzer-public-cloud/7.6.0/azure-administration-guide/351055/instance-type-support)
-- A Network Security Group is installed that only opens TCP port 22, 80, 443, 514, 541, 5199 and 8082 for access to the FortiAnalyzer. Additional ports might be needed to support your use case and are documented [here](https://docs.fortinet.com/document/FortiAnalyzer/7.6.0/FortiAnalyzer-ports/465971)
+- The template will deploy Standard D4as_v4 VMs for this architecture. Other VM instances are supported as well with a recommended minimum of 4 vCPU and 16Gb of RAM. A list can be found [here](https://docs.fortinet.com/document/FortiAnalyzer-public-cloud/7.6.0/azure-administration-guide/351055/instance-type-support)
+- A Network Security Group is installed that only opens TCP port 22, 443,5199 and 514 for access to the FortiAnalyzer. Additional ports might be needed to support your use case and are documented [here](https://docs.fortinet.com/document/FortiAnalyzer/7.6.0/FortiAnalyzer-ports/465971)
 - License for FortiAnalyzer
-  - BYOL: A demo license can be made available via your Fortinet partner or on our website. These can be injected during deployment or added after deployment. For the correct configuration of the HA during deployment, the serial numbers of both FortiAnalyzer devices need to be provider. If not provided the configuration needs to be adapted to reflect the below configuration
-- This deployment uses and forces the use of standard SKU public IP's. By 30 September 2025, the basic SKU will be retired. More information is available [here](https://azure.microsoft.com/en-gb/updates/upgrade-to-standard-sku-public-ip-addresses-in-azure-by-30-september-2025-basic-sku-will-be-retired/)
+  -  BYOL: A demo license can be made available via your Fortinet partner or on our website. These can be injected during deployment or added after deployment.
 
 ## Configuration
 
 The HA configuration requires the serialnumbers of both FortiAnalyzer VMs in order to complete the config. If the serialnumbers are not provided during deployment the FortiAnalyzer HA config needs to be performed manually afterwards.
 
-### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
+### Active-Passive with Public IP Attached to Secondary Private IP Address
 
 After deployment perform and validate the following three steps:
  
@@ -107,21 +106,19 @@ FortiAnalyzer A and FortiAnalyzer B configuration should be like below:
 
 <pre><code>
 config system ha
-    set clusterid 10
-    set failover-mode vrrp
-    set hb-interval 5
-    set hb-lost-threshold 10
-    set mode primary
-        config peer
-            edit 1
-                set ip <b>FortiAnalyzer B Public IP address</b>
-                set serial-number <b>FortiAnalyzer B serial number</b>
-            next
-        end
-    set priority 100
-    set unicast enable
-    set vip <b>FortiAnalyzer HA Public IP address</b>
-    set vrrp-interface "port1"
+  set mode a-p
+  set group-id 10
+  set group-name FAZAZURE
+  set password xxx
+  config peer
+    edit 1
+      set serial-number FortiAnalyzer B serial number
+      set ip FortiAnalyzer B IP address
+    next
+  end
+  set preferred-role primary
+  set vip FortiAnalyzer Public IP address in Azure
+  set vip-interface port1
 end
 </code></pre>
 
@@ -129,20 +126,19 @@ end
 
 <pre><code>
 config system ha
-    set clusterid 10
-    set failover-mode vrrp
-    set hb-interval 5
-    set hb-lost-threshold 10
-    set mode secondary
-        config peer
-            edit 1
-                set ip <b>FortiAnalyzer A Public IP address</b>
-                set serial-number <b>FortiAnalyzer A serial number</b>
-            next
-        end
-    set unicast enable
-    set vip <b>FortiAnalyzer HA Public IP address</b>
-    set vrrp-interface "port1"
+  set mode a-p
+  set group-id 10
+  set group-name FAZAZURE
+  set password xxx
+  config peer
+    edit 1
+      set serial-number FortiAnalyzer A serial number
+      set ip FortiAnalyzer A IP address
+    next
+  end
+  set preferred-role secondary
+  set vip FortiAnalyzer Public IP address in Azure
+  set vip-interface port1
 end
 </code></pre>
 
@@ -151,13 +147,13 @@ Fortigate configuration should be:
 <pre><code>
 config system central-management
   set type FortiAnalyzer
-  set fmg <b>FortiAnalyzer HA Public IP address or FQDN</b>
+  set faz <b>FortiAnalyzer HA Public IP address or FQDN</b>
   set serial-number <b>FortiAnalyzer A serial number</b>
 end
 </code></pre>
 
 
-### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
+### Active-Passive Using Secondary Private IP Address
 
 You will follow the same steps as in the previous scenario, with the only change being the use of private IPs instead of public IPs.
 
