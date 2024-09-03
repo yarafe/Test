@@ -160,21 +160,19 @@ You will follow the same steps as in the previous scenario, with the only change
 #### FortiAnalyzer A
 <pre><code>
 config system ha
-    set clusterid 10
-    set failover-mode vrrp
-    set hb-interval 5
-    set hb-lost-threshold 10
-    set mode primary
-        config peer
-            edit 1
-                set ip <b>FortiAnalyzer B private IP address - 172.16.140.5</b>
-                set serial-number <b>FortiAnalyzer B serial number</b>
-            next
-        end
-    set priority 100
-    set unicast enable
-    set vip <b>FortiAnalyzer VRRP HA private IP address - 172.16.140.6</b>
-    set vrrp-interface "port1"
+  set mode a-p
+  set group-id 10
+  set group-name FAZAZURE
+  set password xxx
+  config peer
+    edit 1
+      set serial-number FortiAnalyzer B serial number
+      set ip FortiAnalyzer B IP address
+    next
+  end
+  set preferred-role primary
+  set vip FortiAnalyzer HA private IP address - 172.16.140.6
+  set vip-interface port1
 end
 </code></pre>
 
@@ -182,20 +180,19 @@ end
 
 <pre><code>
 config system ha
-    set clusterid 10
-    set failover-mode vrrp
-    set hb-interval 5
-    set hb-lost-threshold 10
-    set mode secondary
-        config peer
-            edit 1
-                set ip <b>FortiAnalyzer A private IP address - 172.16.140.4</b>
-                set serial-number <b>FortiAnalyzer A serial number</b>
-            next
-        end
-    set unicast enable
-    set vip <b>FortiAnalyzer VRRP HA private IP address - 172.16.140.6</b>
-    set vrrp-interface "port1"
+  set mode a-p
+  set group-id 10
+  set group-name FAZAZURE
+  set password xxx
+  config peer
+    edit 1
+      set serial-number FortiAnalyzer A serial number
+      set ip FortiAnalyzer A IP address
+    next
+  end
+  set preferred-role secondary
+  set vip FortiAnalyzer HA private IP address - 172.16.140.6
+  set vip-interface port1
 end
 </code></pre>
 
@@ -204,7 +201,7 @@ Fortigate configuration should be:
 <pre><code>
 config system central-management
   set type FortiAnalyzer
-  set fmg <b>172.16.140.6</b>
+  set faz <b>172.16.140.6</b>
   set serial-number <b>FortiAnalyzer A serial number</b>
 end
 </code></pre>
