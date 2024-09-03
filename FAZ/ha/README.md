@@ -20,7 +20,7 @@ This Azure ARM template will automatically deploy a full working environment con
 	
 	* Active-Passive with Public IP Attached to Secondary Private IP Address: 2 optional Public IPs and one mandatory HA Public IP	
 	* Active-Passive Using Secondary Private IP Address: 2 optional Public IPs
-	*Active-Active
+	* Active-Active
 	
 To enhance the availability of the solution VM can be installed in different Availability Zones instead of an Availability Set. The availability zone is the default option in the template. If Availability Zones deployment is selected but the location does not support Availability Zones an Availability Set will be deployed. If Availability Zones deployment is selected and Availability Zones are available in the location, FortiAnalyzer A will be placed in Zone 1, FortiAnalyzer B will be placed in Zone 2.
 
