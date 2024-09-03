@@ -1,0 +1,124 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "adminUsername": {
+            "value": "" // TODO: Fill in parameter value
+        },
+        "adminPassword": {
+            "value": "" // TODO: Fill in parameter value
+        },
+        "namePrefix": {
+            "value": "" // TODO: Fill in parameter value
+        },
+        "imageSku": {
+            "value": "fortinet-fortimanager"
+        },
+        "imageVersion": {
+            "value": "latest"
+        },
+        "additionalCustomData": {
+            "value": ""
+        },
+        "instanceType": {
+            "value": "Standard_D4s_v3"
+        },
+        "highavailabilityMethod": {
+            "value": "vrrp-external-vip"
+        },
+        "availabilityOptions": {
+            "value": "Availability Zones"
+        },
+        "publicIP1NewOrExisting": {
+            "value": "new"
+        },
+        "publicIP1Name": {
+            "value": ""
+        },
+        "publicIP1ResourceGroup": {
+            "value": ""
+        },
+        "publicIP2NewOrExisting": {
+            "value": "new"
+        },
+        "publicIP2Name": {
+            "value": ""
+        },
+        "publicIP2ResourceGroup": {
+            "value": ""
+        },
+        "publicIP3NewOrExisting": {
+            "value": "new"
+        },
+        "publicIP3Name": {
+            "value": ""
+        },
+        "publicIP3ResourceGroup": {
+            "value": ""
+        },
+        "vnetNewOrExisting": {
+            "value": "new"
+        },
+        "vnetName": {
+            "value": ""
+        },
+        "vnetResourceGroup": {
+            "value": ""
+        },
+        "vnetAddressPrefix": {
+            "value": "172.16.140.0/24"
+        },
+        "subnet1Name": {
+            "value": "FortiManagerSubnet"
+        },
+        "subnet1Prefix": {
+            "value": "172.16.140.0/26"
+        },
+        "subnet1StartAddress": {
+            "value": "172.16.140.4"
+        },
+        "serialConsole": {
+            "value": "yes"
+        },
+        "diskType": {
+            "value": "Default"
+        },
+        "dataDiskSize": {
+            "value": "1024"
+        },
+        "dataDiskCount": {
+            "value": 1
+        },
+        "fortiManagerLicenseBYOLA": {
+            "value": ""
+        },
+        "fortiManagerLicenseBYOLB": {
+            "value": ""
+        },
+        "fortiManagerLicenseFortiFlexA": {
+            "value": ""
+        },
+        "fortiManagerLicenseFortiFlexB": {
+            "value": ""
+        },
+        "fortiManagerSerialNumberA": {
+            "value": ""
+        },
+        "fortiManagerSerialNumberB": {
+            "value": ""
+        },
+        "location": {
+            "value": "" // TODO: Fill in parameter value
+        },
+        "tagsByResource": {
+            "value": {}
+        },
+        "fortinetTags": {
+            "value": {
+              "publisher": "Fortinet",
+              "template": "FortiManager",
+              "provider": "6EB3B02F-50E5-4A3E-8CB8-2E1292583FMG"
+            }
+        }
+    }
+}
