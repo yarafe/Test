@@ -17,10 +17,10 @@ This Azure ARM template will automatically deploy a full working environment con
 - 2 FortiAnalyzer VM with one NIC and data disk(s) for log storage
 - 1 VNETs containing a subnet for the FortiAnalyzer
 - Standard public IPs depending on deployment scenarios:
-
-	* Manual Failover: 2 optional Public IPs	
-	* VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address: 2 optional Public IPs and one mandatory HA Public IP	
-	* VRRP Automatic Failover Using Secondary Private IP Address: 2 optional Public IPs
+	
+	* Active-Passive with Public IP Attached to Secondary Private IP Address: 2 optional Public IPs and one mandatory HA Public IP	
+	* Active-Passive Using Secondary Private IP Address: 2 optional Public IPs
+	*Active-Active
 	
 To enhance the availability of the solution VM can be installed in different Availability Zones instead of an Availability Set. The availability zone is the default option in the template. If Availability Zones deployment is selected but the location does not support Availability Zones an Availability Set will be deployed. If Availability Zones deployment is selected and Availability Zones are available in the location, FortiAnalyzer A will be placed in Zone 1, FortiAnalyzer B will be placed in Zone 2.
 
@@ -28,21 +28,21 @@ This Azure ARM template can also be extended or customized based on your require
 
 We will present three different scenarios for deploying FortiAnalyzer in high availability HA configuration:
 
-### VRRP Automatic Failover with Public IP Attached to Secondary Private IP Address
+### Active-Passive with Public IP Attached to Secondary Private IP Address
 
 FortiAnalyzer HA will be configured in VRRP mode using unicast. There will be a dedicated public IP address for HA attached to secondary private IP address. 
 When the failover occurs, the HA public IP address will move automatically from the old primary to new primary FortiAnalyzer unit.
 
-![FortiAnalyzer HA VRRP VIP Public IP design](images/fmg-ha-vrrp-vip-public.png)
+![FortiAnalyzer Active-Passive Public IP design](images/faz-ha-vrrp-vip-public.png)
 
-### VRRP Automatic Failover Using Secondary Private IP Address
+### Active-Passive Using Secondary Private IP Address
 
 FortiAnalyzer HA will be configured in VRRP mode using unicast. There will be a dedicated HA secondary private IP address. 
 When the failover occurs, the HA secondary private IP address will move automatically from the old primary to new primary FortiAnalyzer unit.
 
-![FortiAnalyzer HA VRRP VIP Private IP design](images/fmg-ha-vrrp-vip-internal.png)
+![FortiAnalyzer Active-Passive VIP Private IP design](images/faz-ha-vrrp-vip-internal.png)
 
-### Manual Failover
+### Active-Active
 
 FortiAnalyzer high availability (HA) provided enhanded reliability of the solution. In case of failure of the primary unit, a backup unit can be promoted.
 
