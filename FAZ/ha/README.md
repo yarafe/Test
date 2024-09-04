@@ -348,7 +348,7 @@ $ az role assignment create --assignee $spID --role 'Fortinet FortiAnalyzer HA V
 
 You should be able to see cluster status from GUI:
 
-![FortiAnalyzer Cluster Status GUI](images/ha-status-gui.png)
+![FortiAnalyzer Cluster Status GUI](images/ha-status-gui.PNG)
 
 You check HA status from cli using the following commands: 
 
