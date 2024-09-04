@@ -2,13 +2,13 @@
 echo "
 ##############################################################################################################
 #
-# Deployment of a FortiManager VM
+# Deployment of a FortiAnalyzer VM
 #
 ##############################################################################################################
 
 "
 #echo "--> Auto accepting terms for Azure Marketplace deployments ..."
-#az vm image terms accept --publisher fortinet --offer fortinet-fortimanager --plan fortinet-fortimanager
+#az vm image terms accept --publisher fortinet --offer fortinet-fortianalyzer --plan fortinet-fortianalyzer
 
 # Stop on error
 set +e
@@ -91,7 +91,7 @@ az group create --location "$location" --name "$rg"
 # Template validation
 echo "--> Validation deployment in $rg resource group ..."
 az deployment group validate --resource-group "$rg" \
-                           --template-file azuredeploy.json \
+                           --template-file mainTemplate.json \
                            --parameters adminUsername="$username" adminPassword="$passwd" namePrefix="$prefix"
 result=$?
 if [ $result != 0 ];
@@ -103,7 +103,7 @@ fi
 # Template deployment
 echo "--> Deployment of $rg resources ..."
 az deployment group create --confirm-with-what-if --resource-group "$rg" \
-                           --template-file azuredeploy.json \
+                           --template-file mainTemplate.json \
                            --parameters adminUsername="$username" adminPassword="$passwd" namePrefix="$prefix"
 result=$?
 if [[ $result != 0 ]];
@@ -114,7 +114,7 @@ else
 echo "
 ##############################################################################################################
 #
-# FortiManager Azure deployment using ARM Template
+# FortiAnalyzer Azure deployment using ARM Template
 #
 ##############################################################################################################
 
@@ -122,7 +122,7 @@ Deployment information:
 
 Username: $username
 
-FortiManager IP addesses
+FortiAnalyzer IP addesses
 "
 query="[?virtualMachine.name.starts_with(@, '$prefix')].{virtualMachine:virtualMachine.name, publicIP:virtualMachine.network.publicIpAddresses[0].ipAddress,privateIP:virtualMachine.network.privateIpAddresses[0]}"
 az vm list-ip-addresses --query "$query" --output tsv
