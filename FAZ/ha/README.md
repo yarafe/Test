@@ -96,7 +96,7 @@ The HA configuration requires the serialnumbers of both FortiAnalyzer VMs in ord
 
 After deployment perform and validate the following three steps:
  
-- During deployment the root certificate (DigiCert Global Root G2) for management.azure.com is added. This certificate can also be downloaded [here](https://learn.microsoft.com/en-us/azure/security/fundamentals/azure-ca-details?tabs=root-and-subordinate-cas-list) and added as a local CA certificate on the FortiAnalyzer
+- During deployment the root certificate (DigiCert Global Root ca) for management.azure.com is added. This certificate can also be downloaded [here](https://learn.microsoft.com/en-us/azure/security/fundamentals/azure-ca-details?tabs=root-and-subordinate-cas-list) and added as a local CA certificate on the FortiAnalyzer
 - For the failover process, FortiAnalyzer uses managed identity on Microsoft Azure to migrate the public IP. Assign either the network contributor or a custom role to the resource group containing the FortiAnalyzer resources (VM, network interface, public ip address, network security group). More information can be found [here](#vrrp-managed-identity)
 - The FortiAnalyzer devices need to have outbound access to management.azure.com via either the attached public IPs or another outbound path
 
@@ -166,8 +166,8 @@ config system ha
   set password xxx
   config peer
     edit 1
-      set serial-number FortiAnalyzer B serial number
-      set ip FortiAnalyzer B IP address
+      set serial-number FortiAnalyzer B serial number 
+      set ip FortiAnalyzer B IP address - 172.16.140.5
     next
   end
   set preferred-role primary
@@ -186,8 +186,8 @@ config system ha
   set password xxx
   config peer
     edit 1
-      set serial-number FortiAnalyzer A serial number
-      set ip FortiAnalyzer A IP address
+      set serial-number FortiAnalyzer A serial number 
+      set ip FortiAnalyzer A IP address - 172.16.140.4
     next
   end
   set preferred-role secondary
@@ -213,42 +213,61 @@ The configuration for FortiAnalyzer A and FortiAnalyzer B should be as follows:
 #### FortiAnalyzer A
 <pre><code>
 config system ha
-  set mode primary
-  set clusterid 10
-  set password xxx
-  config peer
-    edit 1
-      set serial-number <b>FortiAnalyzer B serial number</b>
-      set ip <b>FortiAnalyzer B IP address</b>
-    next
-  end
+    set mode a-a
+    set group-id 10
+    set group-name "FAZAZURE"
+    set hb-interface "port1"
+    set password xxx
+        config peer
+            edit 1
+                set addr FortiAnalyzer B IP address - 172.16.140.5
+                set serial-number FortiAnalyzer B serial number 
+            next
+        end
+    set preferred-role primary
 end
 </code></pre>
 
 #### FortiAnalyzer B
 <pre><code>
 config system ha
-  set mode secondary
-  set clusterid 10
-  set password xxx
-  config peer
-    edit 1
-      set serial-number <b>FortiAnalyzer A serial number</b>
-      set ip <b>FortiAnalyzer A IP address</b>
-    next
-  end
+    set mode a-a
+    set group-id 10
+    set group-name "FAZAZURE"
+    set hb-interface "port1"
+    set password xxx
+        config peer
+            edit 1
+                set addr FortiAnalyzer A IP address - 172.16.140.4
+                set serial-number FortiAnalyzer A serial number 
+            next
+        end
 end
 </code></pre>
 
 Fortigate configuration should be:
 
 <pre><code>
-config system central-management
-  set type FortiAnalyzer
-  set fmg <b>FortiAnalyzer A IP address or FQDN</b>
-  set fmg <b>FortiAnalyzer B IP address or FQDN</b>
-  set serial-number <b>FortiAnalyzer A serial number</b>
-  set serial-number <b>FortiAnalyzer B serial number</b>
+config log fortianalyzer setting
+
+set status enable
+
+set ?
+
+...
+
+*server The main remote FortiAnalyzer.
+
+alt-server The alternate remote FortiAnalyzer.
+
+...
+
+set server 192.168.2.102
+
+set alt-server 192.168.1.101
+
+...
+
 end
 </code></pre>
 
