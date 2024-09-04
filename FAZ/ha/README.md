@@ -42,11 +42,11 @@ When the failover occurs, the HA secondary private IP address will move automati
 
 ![FortiAnalyzer Active-Passive VIP Private IP design](images/faz-ha-vrrp-vip-internal.png)
 
-### Geo-redundant HA (Active-Active)
+### Geo-Redundant HA (Active-Active)
 
 The active-active mode in FortiAnalyzer HA facilitates the creation of a geo-redundant solution. In this mode, all HA members can independently receive logs and archive files from their directly connected devices and forward these to their HA peers. Additionally, each HA member can forward the logs and archive files it receives directly to a remote server.
 
-To operate in this mode, unicast must be enabled for the HA heartbeat. This setting can only be configured via the CLI. For detailed instructions , refer to [the FortiAnalyzer documentation](https://docs.fortinet.com/document/fortianalyzer/7.6.0/administration-guide/776771/geo-redundant-ha).
+To operate in this mode, unicast must be enabled for the HA heartbeat. This setting can only be configured via the CLI. For detailed instructions, refer to [the FortiAnalyzer documentation](https://docs.fortinet.com/document/fortianalyzer/7.6.0/administration-guide/776771/geo-redundant-ha).
 
 When unicast is enabled, VRRP packets are sent to the peer address instead of the multicast address. Ensure that VRRP (IP protocol 112) is allowed through any firewalls that connect the HA members.
 
@@ -112,12 +112,12 @@ config system ha
   set password xxx
   config peer
     edit 1
-      set serial-number FortiAnalyzer B serial number
-      set ip FortiAnalyzer B IP address
+      set serial-number <b>FortiAnalyzer B serial number</b>
+      set ip <b>FortiAnalyzer B IP address</b>
     next
   end
   set preferred-role primary
-  set vip FortiAnalyzer Public IP address in Azure
+  set vip <b>FortiAnalyzer Public IP address in Azure</b>
   set vip-interface port1
 end
 </code></pre>
@@ -132,12 +132,12 @@ config system ha
   set password xxx
   config peer
     edit 1
-      set serial-number FortiAnalyzer A serial number
-      set ip FortiAnalyzer A IP address
+      set serial-number <b>FortiAnalyzer A serial number</b>
+      set ip <b>FortiAnalyzer A IP address</b>
     next
   end
   set preferred-role secondary
-  set vip FortiAnalyzer Public IP address in Azure
+  set vip <b>FortiAnalyzer Public IP address in Azure</b>
   set vip-interface port1
 end
 </code></pre>
@@ -145,10 +145,10 @@ end
 Fortigate configuration should be:
 
 <pre><code>
-config system central-management
-  set type FortiAnalyzer
-  set faz <b>FortiAnalyzer HA Public IP address or FQDN</b>
-  set serial-number <b>FortiAnalyzer A serial number</b>
+config log fortianalyzer setting
+  set status enable
+  set server <b>FortiAnalyzer HA Public IP address or FQDN</b>
+  set serial <b>FortiAnalyzer A serial number</b>
 end
 </code></pre>
 
@@ -199,10 +199,10 @@ end
 Fortigate configuration should be:
 
 <pre><code>
-config system central-management
-  set type FortiAnalyzer
-  set faz <b>172.16.140.6</b>
-  set serial-number <b>FortiAnalyzer A serial number</b>
+config log fortianalyzer setting
+  set status enable
+  set server <b>FortiAnalyzer HA private IP address</b>
+  set serial <b>FortiAnalyzer A serial number</b>
 end
 </code></pre>
 
@@ -249,27 +249,13 @@ Fortigate configuration should be:
 
 <pre><code>
 config log fortianalyzer setting
-
-set status enable
-
-set ?
-
-...
-
-*server The main remote FortiAnalyzer.
-
-alt-server The alternate remote FortiAnalyzer.
-
-...
-
-set server 192.168.2.102
-
-set alt-server 192.168.1.101
-
-...
-
+  set status enable
+  set server <b>FortiAnalyzer A IP address or FQDN</b>
+  set alt-server <b>FortiAnalyzer B IP address or FQDN</b>
+  set serial <b>"FortiAnalyzer A serial number"</b> <b>"FortiAnalyzer B serial number"</b>
 end
 </code></pre>
+
 
 ### VRRP managed identity 
 
@@ -360,62 +346,55 @@ $ az role assignment create --assignee $spID --role 'Fortinet FortiAnalyzer HA V
 
 ## Troubleshooting
 
+You should be able to see cluster status from GUI:
+
+![FortiAnalyzer Cluster Status GUI](images/ha-status-gui.png)
+
 You check HA status from cli using the following commands: 
 
 ```
-fmg-a # get system ha-status
-HA Health Status                : OK
-HA Role                         : Primary
-FMG-HA Status                   : Synchronized State
-Model                           : FortiAnalyzer-VM64-AZURE
-Cluster-ID                      : 10
-Debug                           : off
-File-Quota                      : 4096
-HB-Interval                     : 10
-HB-Lost-Threshold               : 30
-HA Primary Uptime               : Tue Jul 16 02:11:44 2024
-HA Primary state change timestamp: Tue Jul 16 02:12:03 2024
-HB-Lost-Threshold               : 30
-Primary                         : fmg-a, FMG-VM1xxxxxx, 172.16.140.6
------
-Cluster member 1: fmg-a, FMG-VM1xxxxxx, 172.16.140.5
-Last Heartbeat                  : 10 seconds ago
-Last Sync                       : 980 seconds ago
-Last Error                      : 
-Total Synced Data (bytes)       : 6298829
-Pending Synced Data (bytes)     : 0
-Estimated Sync Time Left (seconds): 0
-HA Sync status                  : up,in-sync
-System Usage stats              :
-        FMG-VM1xxxxxx(updated 0 seconds ago):
-                average-cpu-user/nice/system/idle=0.27%/0.00%/0.94%/98.77%, memory=9.24%
-        FMG-VM2xxxxxx(updated 10 seconds ago):
-                average-cpu-user/nice/system/idle=0.05%/0.00%/0.15%/99.77%, memory=9.47%
+ya-faz-a # get sys status
+Platform Type                   : FAZVM64-AZURE
+Platform Full Name              : FortiAnalyzer-VM64-AZURE
+Version                         : v7.6.0-build3340 240729 (GA.F)
+Serial Number                   : FZBDVMTMxxxxxx
+BIOS version                    : 04000002
+Hostname                        : ya-faz-a
+Max Number of Admin Domains     : 5
+Admin Domain Configuration      : Disabled
+FIPS Mode                       : Disabled
+HA Mode                         : A-P
+Branch Point                    : 3340
+Release Version Information     : GA.F
+Current Time                    : Wed Sep 04 01:02:04 PDT 2024
+Daylight Time Saving            : Yes
+Time Zone                       : (GMT-8:00) Pacific Time (US & Canada).
+x86-64 Applications             : Yes
+Disk Usage                      : Free 117.15GB, Total 125.43GB
+File System                     : Ext4
+License Status                  : Valid
+Image Signature                 : Image is GA Certified
 ```
 
 ```
-fmg-a # get system ha
-clusterid           : 10
-failover-mode       : vrrp 
-file-quota          : 4096
-hb-interval         : 10
-hb-lost-threshold   : 30
-local-cert          : (null)
-mode                : primary 
-monitored-interfaces:
-monitored-ips:
-    == [ 1 ]
-    id: 1           
-password            : *
-peer:
-    == [ 1 ]
-    id: 1           
-priority            : 1
-unicast             : enable 
-vip                 : 20.50.232.45 
-vip-interface       : (null)
-vrrp-adv-interval   : 3
-vrrp-interface      : port1 
+ya-faz-a # diagnose ha status
+HA-Status: Primary (active)
+     up-time: 8m11.248s
+ config-sync: Allow
+   serial-no: FZBDVMTMxxxxxx
+      fazuid: 2415564604
+    hostname: ya-faz-a
+
+HA-Secondary FAZAZURE@172.16.0.5 FZBDVMTMxxxxxx
+          ip: 172.16.0.5
+   serial-no: FZBDVMTMxxxxxx
+      fazuid: 2305159286
+    hostname: ya-faz-b
+     conn-st: up
+up/down-time: 3m8.096s
+    conn-msg: 
+  cfgsync-st: up, 2m47.199s
+data-init-sync-st: done, 2m47.199s
 ```
 
 You can verify the communication with Azure REST API in shell mode.
@@ -428,10 +407,15 @@ Then run the following commands:
 # fazutil azure imds
 # fazutil information ha-azure
 ```
+Check VRRP traffic with the command:
+
+```
+diagnose sniffer packet port1 "ip proto 112" 4
+```
 
 Force a failover. Run this on the active FortiAnalyzer
 ```
-# diag ha force-vrrp-reelection
+# diag ha failover
 ```
 
 Logging of the Azure Rest API calls
