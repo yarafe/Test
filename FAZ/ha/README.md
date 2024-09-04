@@ -20,7 +20,7 @@ This Azure ARM template will automatically deploy a full working environment con
 	
 	* Active-Passive with Public IP Attached to Secondary Private IP Address: 2 optional Public IPs and one mandatory HA Public IP	
 	* Active-Passive Using Secondary Private IP Address: 2 optional Public IPs
-	* Active-Active
+	* Geo-redundant HA (Active-Active) : 2 optional Public IPs
 	
 To enhance the availability of the solution VM can be installed in different Availability Zones instead of an Availability Set. The availability zone is the default option in the template. If Availability Zones deployment is selected but the location does not support Availability Zones an Availability Set will be deployed. If Availability Zones deployment is selected and Availability Zones are available in the location, FortiAnalyzer A will be placed in Zone 1, FortiAnalyzer B will be placed in Zone 2.
 
@@ -42,15 +42,15 @@ When the failover occurs, the HA secondary private IP address will move automati
 
 ![FortiAnalyzer Active-Passive VIP Private IP design](images/faz-ha-vrrp-vip-internal.png)
 
-### Active-Active
+### Geo-redundant HA (Active-Active)
 
-FortiAnalyzer high availability (HA) provided enhanded reliability of the solution. In case of failure of the primary unit, a backup unit can be promoted.
+The active-active mode in FortiAnalyzer HA facilitates the creation of a geo-redundant solution. In this mode, all HA members can independently receive logs and archive files from their directly connected devices and forward these to their HA peers. Additionally, each HA member can forward the logs and archive files it receives directly to a remote server.
 
-In Microsoft Azure, the FortiAnalyzer manual HA failover is supported. Both units have a private and optionally a public IP configured. The FortiGate need to be configured with either the both private or both public IPs depending on the which are reachable.
+To operate in this mode, unicast must be enabled for the HA heartbeat. This setting can only be configured via the CLI. For detailed instructions , refer to [the FortiAnalyzer documentation](https://docs.fortinet.com/document/fortianalyzer/7.6.0/administration-guide/776771/geo-redundant-ha).
 
-More information on FortiAnalyzer High Availability can be found in [the FortiAnalyzer documentation](https://docs.fortinet.com/document/FortiAnalyzer/7.6.0/administration-guide/800686/configuring-ha-options).
+When unicast is enabled, VRRP packets are sent to the peer address instead of the multicast address. Ensure that VRRP (IP protocol 112) is allowed through any firewalls that connect the HA members.
 
-![FortiAnalyzer HA az design](images/fmg-ha-az.png)
+![FortiAnalyzer HA Geo-redundant design](images/faz-geo-redundant.png)
 
 ## Deployment
 
