@@ -407,6 +407,8 @@ Then run the following commands:
 # fazutil azure imds
 # fazutil information ha-azure
 ```
+Please note that shell access has been removed on [7.6](https://docs.fortinet.com/document/fortianalyzer/7.6.0/release-notes/901026).
+
 Check VRRP traffic with the command:
 
 ```
