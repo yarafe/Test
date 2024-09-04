@@ -166,12 +166,12 @@ config system ha
   set password xxx
   config peer
     edit 1
-      set serial-number FortiAnalyzer B serial number 
-      set ip FortiAnalyzer B IP address - 172.16.140.5
+      set serial-number <b>FortiAnalyzer B serial number</b> 
+      set ip <b>FortiAnalyzer B IP address - 172.16.140.5</b>
     next
   end
   set preferred-role primary
-  set vip FortiAnalyzer HA private IP address - 172.16.140.6
+  set vip <b>FortiAnalyzer HA private IP address - 172.16.140.6</b>
   set vip-interface port1
 end
 </code></pre>
@@ -186,12 +186,12 @@ config system ha
   set password xxx
   config peer
     edit 1
-      set serial-number FortiAnalyzer A serial number 
-      set ip FortiAnalyzer A IP address - 172.16.140.4
+      set serial-number <b>FortiAnalyzer A serial number</b> 
+      set ip <b>FortiAnalyzer A IP address - 172.16.140.4</b>
     next
   end
   set preferred-role secondary
-  set vip FortiAnalyzer HA private IP address - 172.16.140.6
+  set vip <b>FortiAnalyzer HA private IP address - 172.16.140.6</b>
   set vip-interface port1
 end
 </code></pre>
@@ -220,8 +220,8 @@ config system ha
     set password xxx
         config peer
             edit 1
-                set addr FortiAnalyzer B IP address - 172.16.140.5
-                set serial-number FortiAnalyzer B serial number 
+                set addr <b>FortiAnalyzer B IP address - 172.16.140.5</b>
+                set serial-number <b>FortiAnalyzer B serial number</b> 
             next
         end
     set preferred-role primary
@@ -238,8 +238,8 @@ config system ha
     set password xxx
         config peer
             edit 1
-                set addr FortiAnalyzer A IP address - 172.16.140.4
-                set serial-number FortiAnalyzer A serial number 
+                set addr <b>FortiAnalyzer A IP address - 172.16.140.4</b>
+                set serial-number <b>FortiAnalyzer A serial number</b> 
             next
         end
 end
