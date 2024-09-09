@@ -114,14 +114,14 @@ config system ha
    edit 1
      set serial-number <b>FortiAnalyzer B serial number</b>
      set addr <b>FortiAnalyzer B IP address</b>
-
+    next
   end
  set preferred-role primary
   config vip
    edit 1
     set vip <b>FortiAnalyzer Public IP address in Azure</b>
     set vip-interface port1
-	next
+   next
   end
 end
 </code></pre>
