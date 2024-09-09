@@ -106,23 +106,23 @@ FortiAnalyzer A and FortiAnalyzer B configuration should be like below:
 
 <pre><code>
 config system ha
-	set mode a-p
-	set group-id 10
-	set group-name FAZAZURE
-	set password xxx
-		config peer
-			edit 1
-				set serial-number <b>FortiAnalyzer B serial number</b>
-				set addr <b>FortiAnalyzer B IP address</b>
-			next
-		end
-	set preferred-role primary
-		config vip
-			edit 1
-				set vip <b>FortiAnalyzer Public IP address in Azure</b>
-				set vip-interface port1
-			next
-		end
+ set mode a-p
+ set group-id 10
+ set group-name FAZAZURE
+ set password xxx
+  config peer
+   edit 1
+     set serial-number <b>FortiAnalyzer B serial number</b>
+     set addr <b>FortiAnalyzer B IP address</b>
+      next
+	 end
+ set preferred-role primary
+  config vip
+   edit 1
+    set vip <b>FortiAnalyzer Public IP address in Azure</b>
+    set vip-interface port1
+	 next
+   end
 end
 </code></pre>
 
