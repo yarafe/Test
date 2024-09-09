@@ -237,8 +237,7 @@ config system ha
   config peer
    edit 1
     set addr <b>FortiAnalyzer B IP address - 172.16.140.5</b>
-    set serial-number <b>FortiAnalyzer B serial number</b>
-	next
+    set serial-number <b>FortiAnalyzer B serial number</b>next
   end
  set preferred-role primary
 end
