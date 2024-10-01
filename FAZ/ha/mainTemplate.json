@@ -841,7 +841,7 @@
           "computerName": "[variables('fazBVmName')]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]",
-           "customData": "[base64(if(equals(parameters('highavailabilityMethod'),'a-p-external-vip'),replace(variables('fazBCustomData'),concat('set vip ', variables('sn1IPfazA2')), concat('set vip ', reference(resourceId('Microsoft.Network/publicIPAddresses',variables('publicIP3Name'))).IpAddress)),variables('fazBCustomData')))]"
+          "customData": "[base64(if(equals(parameters('highavailabilityMethod'),'a-p-external-vip'),replace(variables('fazBCustomData'),concat('set vip ', variables('sn1IPfazA2')), concat('set vip ', reference(resourceId('Microsoft.Network/publicIPAddresses',variables('publicIP3Name'))).IpAddress)),variables('fazBCustomData')))]"
         },
         "storageProfile": {
           "imageReference": {
