@@ -895,11 +895,11 @@
       "type": "string",
       "value": "[if(equals(parameters('publicIP1NewOrExisting'), 'new'), reference(variables('publicIP1Id')).ipAddress, '')]"
     },
-    "fazacustomdata": {
+    "fortiAnalyzerACustomData": {
       "type": "string",
       "value": "[variables('fazACustomData')]"
     },
-    "fazbcustomdata": {
+    "fortiAnalyzerBCustomData": {
       "type": "string",
       "value": "[variables('fazBCustomData')]"
     }
