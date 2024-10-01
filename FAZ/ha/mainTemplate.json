@@ -646,19 +646,23 @@
       }
     },
     {
-      "condition": "[equals(parameters('publicIP3NewOrExisting'), 'new')]",
+      "condition": "[equals(parameters('highavailabilityMethod'),'a-p-external-vip')]",
       "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[variables('publicIP3Name')]",
       "apiVersion": "2023-04-01",
+      "location": "[parameters('location')]",
       "tags": {
         "provider": "[toUpper(parameters('fortinetTags').provider)]"
       },
-      "name": "[variables('publicIP3Name')]",
-      "location": "[parameters('location')]",
       "sku": {
         "name": "Standard"
       },
+      "zones": "[variables('pipZones')]",
       "properties": {
-        "publicIPAllocationMethod": "Static"
+        "publicIPAllocationMethod": "static",
+        "dnsSettings": {
+          "domainNameLabel": "[concat(toLower(variables('publicIP3Name')), '-', uniquestring(resourceGroup().id))]"
+        }
       }
     },
     {
