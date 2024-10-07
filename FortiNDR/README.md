@@ -22,8 +22,6 @@ FortiNDR standalone environment consists of:
 
 ![FortiNDR-Standalone-VM azure design](images/fortindr-standalone-vm.png)
 
-This Azure ARM template can also be extended or customized based on your requirements. Additional subnets besides the ones mentioned above are not automatically generated. By extending the Azure ARM templates additional subnets can be added. Additional subnets will require their own routing tables.
-
 ## Deployment
 
 Deploying FortiNDR on Azure: Step-by-Step Guide
