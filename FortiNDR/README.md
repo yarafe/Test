@@ -35,9 +35,6 @@ Deploying FortiNDR on Azure: Step-by-Step Guide
         Visit Fortinet Support.
         From the drop-down product list, select FortiNDR.
         Navigate to the image path:
-
-        bash
-
         /FortiNDR/v7.00/7.4/7.4.6/
 
         Choose the file FNDR_VMAZ-STANDALONE.v7.4-build0540-FORTINET.out.azure.zip for download.
@@ -52,15 +49,13 @@ Deploying FortiNDR on Azure: Step-by-Step Guide
 
     In the Azure portal, navigate to Home > Images.
     Create a new image using the uploaded .vhd file.
-    For detailed instructions, refer to the FortiNDR Image Creation Documentation.
-
-FortiNDR-Image
+    For detailed instructions, refer to the [FortiNDR Documentation](https://docs.fortinet.com/document/fortindr-public-cloud/7.4.0/fortindr-on-azure/470796/creating-an-image-from-a-vhd-file).
 
 4. Deploy the FortiNDR Virtual Machine:
 
     In the Azure dashboard, click on Create a Virtual Machine > Azure Virtual Machine.
     Choose the image you created in the previous step.
-    Select the appropriate instance type from the supported instance type table.
+    Select the appropriate instance type from [the supported instance type table](https://docs.fortinet.com/document/fortindr-public-cloud/7.4.0/fortindr-on-azure/679542/supported-instance-type).
 
 5. Configure Networking:
 
@@ -78,9 +73,7 @@ FortiNDR-Image
     After the virtual machine is deployed, create a new NIC named port2 (for the sniffer) in the internal subnet.
     Attach this NIC to the deployed FortiNDR virtual machine.
 
-8. Additional Resources:
-
-    For further details on the deployment process, check the FortiNDR Deployment Guide.
+For further details on the deployment process, check [FortiNDR Deployment Guide](https://docs.fortinet.com/document/fortindr-public-cloud/7.4.0/fortindr-on-azure/740602/deploying-the-fortindr-vm).
 
 ### Azure Portal
 
