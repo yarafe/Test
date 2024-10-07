@@ -27,15 +27,60 @@ This Azure ARM template can also be extended or customized based on your require
 
 ## Deployment
 
-FortiNDR is currently not available in Azure Marketplace. You need first to get VHD image from support.fortinet.com/Download/FirmwareImages.aspx. Select FortiNDR from drop down product list then from image path: / FortiNDR/ v7.00/ 7.4/ 7.4.6/ choose FNDR_VMAZ-STANDALONE.v7.4-build0540-FORTINET.out.azure.zip.
+Deploying FortiNDR on Azure: Step-by-Step Guide
 
-Once the download is complete, unzip the file and locate the .vhd file. Upload the .vhd file to your blob/storage location.
+1. Obtain the VHD Image:
 
-After that you need to create FortiNDR-vm image. Go to Home > images and create image as shown in the screenshot. More details can be found [here](https://docs.fortinet.com/document/fortindr-public-cloud/7.4.0/fortindr-on-azure/470796/creating-an-image-from-a-vhd-file)
+    FortiNDR is currently not available in the Azure Marketplace. To get the VHD image:
+        Visit Fortinet Support.
+        From the drop-down product list, select FortiNDR.
+        Navigate to the image path:
 
-![FortiNDR-Image design](images/fortindr-vm-image.png)
+        bash
 
+        /FortiNDR/v7.00/7.4/7.4.6/
 
+        Choose the file FNDR_VMAZ-STANDALONE.v7.4-build0540-FORTINET.out.azure.zip for download.
+
+2. Prepare the VHD File:
+
+    Once the download is complete, unzip the downloaded file.
+    Locate the .vhd file within the unzipped contents.
+    Upload the .vhd file to your desired Azure Blob Storage account.
+
+3. Create the FortiNDR Image:
+
+    In the Azure portal, navigate to Home > Images.
+    Create a new image using the uploaded .vhd file.
+    For detailed instructions, refer to the FortiNDR Image Creation Documentation.
+
+FortiNDR-Image
+
+4. Deploy the FortiNDR Virtual Machine:
+
+    In the Azure dashboard, click on Create a Virtual Machine > Azure Virtual Machine.
+    Choose the image you created in the previous step.
+    Select the appropriate instance type from the supported instance type table.
+
+5. Configure Networking:
+
+    Create one Virtual Network (VNet) with two subnets:
+        External Subnet
+        Internal Subnet
+    Ensure that your configuration aligns with your security and performance requirements.
+
+6. Attach Data Disk:
+
+    While configuring the virtual machine, attach a data disk to it, with a default size of 128 GB.
+
+7. Create and Attach Additional NIC:
+
+    After the virtual machine is deployed, create a new NIC named port2 (for the sniffer) in the internal subnet.
+    Attach this NIC to the deployed FortiNDR virtual machine.
+
+8. Additional Resources:
+
+    For further details on the deployment process, check the FortiNDR Deployment Guide.
 
 ### Azure Portal
 
