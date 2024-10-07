@@ -33,7 +33,7 @@ Once the download is complete, unzip the file and locate the .vhd file. Upload t
 
 After that you need to create FortiNDR-vm image. Go to Home > images and create image as shown in the screenshot. More details can be found [here](https://docs.fortinet.com/document/fortindr-public-cloud/7.4.0/fortindr-on-azure/470796/creating-an-image-from-a-vhd-file)
 
-![FortiNDR-Standalone-VM azure design](images/fortindr-standalone-vm.png)
+![FortiNDR-Image design](images/fortindr-vm-image.png)
 
 
 
