@@ -13,13 +13,12 @@ By focusing on real-time threat detection and automated response, FortiNDR enabl
 
 ## Design
 
-In Microsoft Azure, this single FortiGate-VM setup a basic setup to start exploring the capabilities of the next generation firewall. The central system will receive, using user-defined routing (UDR), all or specific traffic that needs inspection going to/coming from on-prem networks or the public internet.
+FortiNDR standalone environment consists of:
 
-This Azure ARM template will automatically deploy a full working environment containing the following components.
-
-- 1 standalone FortiGate firewall
-- 1 VNETs containing a protected subnet
-- User Defined Routes (UDR) for the protected subnets
+- FortiNDR image
+- 1 standalone FortiNDR virtual machine with 2 NICs: mgmt and sniffer
+- 1 VNETs containing 2 subnets: external and internal
+- Standard public IP attached to port1 interface for management.
 
 ![FortiNDR-Standalone-VM azure design](images/fortindr-standalone-vm.png)
 
