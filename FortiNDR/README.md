@@ -27,12 +27,15 @@ This Azure ARM template can also be extended or customized based on your require
 
 ## Deployment
 
-For the deployment, you can use the Azure Portal, Azure CLI, Powershell or Azure Cloud Shell. The Azure ARM templates are exclusive to Microsoft Azure and can't be used in other cloud environments. The main template is the `azuredeploy.json` which you can use in the Azure Portal. A `deploy.sh` script is provided to facilitate the deployment. You'll be prompted to provide the 4 required variables:
+FortiNDR is currently not available in Azure Marketplace. You need first to get VHD image from support.fortinet.com/Download/FirmwareImages.aspx. Select FortiNDR from drop down product list then from image path: / FortiNDR/ v7.00/ 7.4/ 7.4.6/ choose FNDR_VMAZ-STANDALONE.v7.4-build0540-FORTINET.out.azure.zip.
 
-- PREFIX : This prefix will be added to each of the resources created by the template for ease of use and visibility.
-- LOCATION : This is the Azure region where the deployment will be deployed.
-- USERNAME : The username used to login to the FortiGate GUI and SSH management UI.
-- PASSWORD : The password used for the FortiGate GUI and SSH management UI.
+Once the download is complete, unzip the file and locate the .vhd file. Upload the .vhd file to your blob/storage location.
+
+After that you need to create FortiNDR-vm image. Go to Home > images and create image as shown in the screenshot. More details can be found [here] (https://docs.fortinet.com/document/fortindr-public-cloud/7.4.0/fortindr-on-azure/470796/creating-an-image-from-a-vhd-file)
+
+![FortiNDR-Standalone-VM azure design](images/fortindr-standalone-vm.png)
+
+
 
 ### Azure Portal
 
