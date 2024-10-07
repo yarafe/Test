@@ -45,7 +45,7 @@ Deploying FortiNDR on Azure: Step-by-Step Guide
 
 3. Create the FortiNDR Image:
 
-    In the Azure portal, navigate to Home > Images.
+    In the Azure portal, navigate to Home > Images. 
     Create a new image using the uploaded .vhd file.
     For detailed instructions, refer to the [FortiNDR Documentation](https://docs.fortinet.com/document/fortindr-public-cloud/7.4.0/fortindr-on-azure/470796/creating-an-image-from-a-vhd-file).
 
