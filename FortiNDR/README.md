@@ -32,12 +32,10 @@ Deploying FortiNDR on Azure: Step-by-Step Guide
 1. Obtain the VHD Image:
 
     FortiNDR is currently not available in the Azure Marketplace. To get the VHD image:
-        Visit Fortinet Support.
+        Visit [Fortinet Support](https://support.fortinet.com/Download/FirmwareImages.aspx).
         From the drop-down product list, select FortiNDR.
-        Navigate to the image path:
-        /FortiNDR/v7.00/7.4/7.4.6/
-
-        Choose the file FNDR_VMAZ-STANDALONE.v7.4-build0540-FORTINET.out.azure.zip for download.
+        Navigate to the image path: /FortiNDR/v7.00/7.4/7.4.6/
+		Choose the file FNDR_VMAZ-STANDALONE.v7.4-build0540-FORTINET.out.azure.zip for download.
 
 2. Prepare the VHD File:
 
@@ -56,21 +54,13 @@ Deploying FortiNDR on Azure: Step-by-Step Guide
     In the Azure dashboard, click on Create a Virtual Machine > Azure Virtual Machine.
     Choose the image you created in the previous step.
     Select the appropriate instance type from [the supported instance type table](https://docs.fortinet.com/document/fortindr-public-cloud/7.4.0/fortindr-on-azure/679542/supported-instance-type).
-
-5. Configure Networking:
-
-    Create one Virtual Network (VNet) with two subnets:
+	Create one Virtual Network (VNet) with two subnets:
         External Subnet
         Internal Subnet
-    Ensure that your configuration aligns with your security and performance requirements.
-
-6. Attach Data Disk:
-
-    While configuring the virtual machine, attach a data disk to it, with a default size of 128 GB.
-
-7. Create and Attach Additional NIC:
-
-    After the virtual machine is deployed, create a new NIC named port2 (for the sniffer) in the internal subnet.
+    allow ssh and https for inbound connection and ensure that your configuration aligns with your security and performance requirements.
+	Attach Data Disk: While configuring the virtual machine, attach a data disk to it, with a default size of 128 GB.
+	Create and Attach Additional NIC:
+	After the virtual machine is deployed, create a new NIC named port2 (for the sniffer) in the internal subnet.
     Attach this NIC to the deployed FortiNDR virtual machine.
 
 For further details on the deployment process, check [FortiNDR Deployment Guide](https://docs.fortinet.com/document/fortindr-public-cloud/7.4.0/fortindr-on-azure/740602/deploying-the-fortindr-vm).
