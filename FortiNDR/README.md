@@ -6,9 +6,10 @@
 
 ## Introduction
 
-More and more enterprises are turning to Microsoft Azure to extend or replace internal data centers and take advantage of the elasticity of the public cloud. While Azure secures the infrastructure, you are responsible for protecting the resources you put in it. As workloads are being moved from local data centers connectivity and security are key elements to take into account. FortiGate-VM offers a consistent security posture and protects connectivity across public and private clouds, while high-speed VPN connections protect data.
-
-This ARM template deploys a single FortiGate Next-Generation Firewall accompanied by the required infrastructure. Additionally, Fortinet Fabric Connectors deliver the ability to create dynamic security policies.
+FortiNDR (Network Detection and Response) is a cutting-edge security solution developed by Fortinet, designed to protect organizations against advanced cyber threats that evade traditional security measures.
+Leveraging artificial intelligence (AI), machine learning (ML), and deep behavioral analysis, FortiNDR continuously monitors network traffic for unusual patterns, helping to detect sophisticated threats like zero-day attacks, advanced persistent threats (APTs), and insider threats.
+It integrates seamlessly into Fortinet's Security Fabric, enhancing visibility across the entire network, automating responses to incidents, and providing a robust defense layer against both known and unknown threats. 
+By focusing on real-time threat detection and automated response, FortiNDR enables organizations to quickly mitigate risks, reduce dwell time, and fortify their defenses against modern, complex cyberattacks.
 
 ## Design
 
