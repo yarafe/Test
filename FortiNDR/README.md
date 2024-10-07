@@ -32,7 +32,7 @@ Deploying FortiNDR on Azure: Step-by-Step Guide
 1. Obtain the VHD Image:
 
     FortiNDR is currently not available in the Azure Marketplace. To get the VHD image:
-        Visit [Fortinet Support](https://support.fortinet.com/Download/FirmwareImages.aspx).
+        Visit [Fortinet Support](https://support.fortinet.com/Download/FirmwareImages.aspx).		
         From the drop-down product list, select FortiNDR.
         Navigate to the image path: /FortiNDR/v7.00/7.4/7.4.6/
 		Choose the file FNDR_VMAZ-STANDALONE.v7.4-build0540-FORTINET.out.azure.zip for download.
