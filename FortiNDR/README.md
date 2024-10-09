@@ -89,10 +89,10 @@ Stage 1 utilizes the Antivirus (AV) static engine to analyze files and extract a
 
 Stage 2 involves sending supported file types to the Artificial Neural Network (ANN) for in-depth analysis, allowing the system to override a clean verdict from Stage 1 if a file is identified as malicious.
 
-###Hunting and Forensic
+### Hunting and Forensic
 
 
-###Automative Response
+### Automative Response
 
 ### Azure Portal
 
