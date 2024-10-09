@@ -77,7 +77,7 @@ For further details on the deployment process, check [FortiNDR Deployment Guide]
 
 -Botnet and Vulnerability Detection: Identifies botnets, weak ciphers, and Indicators of Compromise (IOCs) within the network.
 
--Virtual Security Analyst™: Emulates the expertise of seasoned security analysts, providing insights into outbreaks, anomalies, and root causes of malware infections.
+-Virtual Security Analyst: Emulates the expertise of seasoned security analysts, providing insights into outbreaks, anomalies, and root causes of malware infections.
 
 ## FortiNDR Use Cases
 
