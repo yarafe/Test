@@ -54,13 +54,33 @@ Deploying FortiNDR on Azure: Step-by-Step Guide
 	Create one Virtual Network (VNet) with two subnets:
         External Subnet
         Internal Subnet
-    allow ssh and https for inbound connection and ensure that your configuration aligns with your security and performance requirements.
+    Allow ssh and https for inbound connection and ensure that your configuration aligns with your security and performance requirements.
 	Attach Data Disk: While configuring the virtual machine, attach a data disk to it, with a default size of 128 GB.
 	Create and Attach Additional NIC:
 	After the virtual machine is deployed, create a new NIC named port2 (for the sniffer) in the internal subnet.
     Attach this NIC to the deployed FortiNDR virtual machine.
 
 For further details on the deployment process, check [FortiNDR Deployment Guide](https://docs.fortinet.com/document/fortindr-public-cloud/7.4.0/fortindr-on-azure/740602/deploying-the-fortindr-vm).
+
+
+## FortiNDR Features
+
+-Seamless Integration: Works harmoniously with Fortinet Security Fabric, including capabilities for FortiGate quarantine and FortiAnalyzer/FortiSIEM log management and reporting.
+
+-Flexible Deployment Modes: Supports standalone, center, and sensor modes for versatile and distributed deployment.
+
+-Advanced Malware Detection: Utilizes patented high-throughput malware scanning powered by Artificial Neural Networks (ANN) to identify over 20 types of file-based attack scenarios.
+
+-Rapid Threat Response: Reduces malware detection and investigation times from minutes to seconds.
+
+-Comprehensive Intrusion Detection: Accurately detects intrusions across North/South and East/West traffic flows.
+
+-Botnet and Vulnerability Detection: Identifies botnets, weak ciphers, and Indicators of Compromise (IOCs) within the network.
+
+-Virtual Security Analyst™: Emulates the expertise of seasoned security analysts, providing insights into outbreaks, anomalies, and root causes of malware infections.
+
+## FortiNDR Use Cases
+
 
 ### Azure Portal
 
