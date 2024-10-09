@@ -65,9 +65,9 @@ For further details on the deployment process, check [FortiNDR Deployment Guide]
 
 ## FortiNDR Features
 
--Seamless Integration: Works harmoniously with Fortinet Security Fabric, including capabilities for FortiGate quarantine and FortiAnalyzer/FortiSIEM log management and reporting.
+-Seamless Integration: Works harmoniously with Fortinet Security Fabric [link](https://docs.fortinet.com/document/fortigate/7.6.0/administration-guide/148376/preparing-fortigate-for-supported-security-fabric-devices), including capabilities for FortiGate quarantine and FortiAnalyzer/FortiSIEM log management and reporting.
 
--Flexible Deployment Modes: Supports standalone, center, and sensor modes for versatile and distributed deployment.
+-Flexible Deployment Modes: Supports standalone, center, and sensor modes for versatile and distributed deployment [link](https://docs.fortinet.com/document/fortindr/7.4.6/fortindr-on-premise-getting-started/387049/standalone-center-and-sensor-operating-mode) .
 
 -Advanced Malware Detection: Utilizes patented high-throughput malware scanning powered by Artificial Neural Networks (ANN) to identify over 20 types of file-based attack scenarios.
 
@@ -81,6 +81,18 @@ For further details on the deployment process, check [FortiNDR Deployment Guide]
 
 ## FortiNDR Use Cases
 
+### Advanced Threat Detection
+
+FortiNDR features advanced behavioral detection capabilities that enable it to identify not only signature-based attacks but also sophisticated threats through the use of AI techniques and advanced analytics. The scanning process is divided into two stages:
+
+Stage 1 utilizes the Antivirus (AV) static engine to analyze files and extract archive files for rescanning.
+
+Stage 2 involves sending supported file types to the Artificial Neural Network (ANN) for in-depth analysis, allowing the system to override a clean verdict from Stage 1 if a file is identified as malicious.
+
+###Hunting and Forensic
+
+
+###Automative Response
 
 ### Azure Portal
 
