@@ -65,7 +65,7 @@ For further details on the deployment process, check [FortiNDR Deployment Guide]
 
 ## FortiNDR Features
 
--Seamless Integration: Works harmoniously with Fortinet Security Fabric [link](https://docs.fortinet.com/document/fortigate/7.6.0/administration-guide/148376/preparing-fortigate-for-supported-security-fabric-devices), including capabilities for FortiGate quarantine and FortiAnalyzer/FortiSIEM log management and reporting.
+-Seamless Integration: Works harmoniously with Fortinet Security Fabric [link](https://docs.fortinet.com/document/fortigate/7.6.0/administration-guide/148376/preparing-fortigate-for-supported-security-fabric-devices), including capabilities for FortiGate inline blocking [link](https://docs.fortinet.com/document/fortindr/7.4.6/administration-guide/830740/fortigate-inline-blocking-fos-7-0-1-and-higher) and FortiAnalyzer/FortiSIEM log management and reporting [link](https://docs.fortinet.com/document/fortindr/7.4.6/administration-guide/654509/log-settings).
 
 -Flexible Deployment Modes: Supports standalone, center, and sensor modes for versatile and distributed deployment [link](https://docs.fortinet.com/document/fortindr/7.4.6/fortindr-on-premise-getting-started/387049/standalone-center-and-sensor-operating-mode) .
 
