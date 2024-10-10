@@ -91,6 +91,7 @@ Stage 2 involves sending supported file types to the Artificial Neural Network (
 
 ### Hunting and Forensic
 
+Analyzing network traffic and providing deep insights into any anomalies using AI and machine learning, FortiNDR offers comprehensive details about connected devices, as well as the most frequently used applications and URLs.
 
 ### Automative Response
 
