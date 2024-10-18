@@ -305,7 +305,7 @@
       "type": "object",
       "defaultValue": {
         "publisher": "Fortinet",
-        "provider": "6EB3B02F-50E5-4A3E-8CB8-2E12925831FADCVM"
+        "provider": "6EB3B02F-50E5-4A3E-8CB8-2E12925831fadVM"
       }
     }
   },
@@ -322,21 +322,20 @@
     "vnetName": "[if(equals(parameters('vnetName'),''),concat(parameters('FortiADCNamePrefix'),'-vnet'),parameters('vnetName'))]",
     "subnet1Id": "[if(equals(parameters('vnetNewOrExisting'),'new'),resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetName'),parameters('subnet1Name')),resourceId(parameters('vnetResourceGroup'),'Microsoft.Network/virtualNetworks/subnets', variables('vnetName'),parameters('subnet1Name')))]",
     "subnet2Id": "[if(equals(parameters('vnetNewOrExisting'),'new'),resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetName'),parameters('subnet2Name')),resourceId(parameters('vnetResourceGroup'),'Microsoft.Network/virtualNetworks/subnets', variables('vnetName'),parameters('subnet2Name')))]",
-    "customDataCombined": {
-      "cloud-initd": "enable",
-      "usr-cli": "[parameters('FortiADCAdditionalCustomData')]",
-      "HaAzureInit": "enable",
-      "fadcLicenseBYOL": "[parameters('FortiADCLicenseBYOL')]",
-      "flex_token": "[parameters('FortiADCLicenseFortiFlex')]"
-    },
-    "fadcCustomData": "[base64(string(variables('customDataCombined')))]",
-    "fadcVmName": "[concat(parameters('FortiADCNamePrefix'),'-fadc')]",
-    "fadcNic1Name": "[concat(variables('fadcVmName'),'-nic1')]",
-    "fadcNic1Id": "[resourceId('Microsoft.Network/networkInterfaces',variables('fadcNic1Name'))]",
-    "fadcNic2Name": "[concat(variables('fadcVmName'),'-nic2')]",
-    "fadcNic2Id": "[resourceId('Microsoft.Network/networkInterfaces',variables('fadcNic2Name'))]",
+	"customDataHeader": "Content-Type: multipart/mixed; boundary=\"12345\"\nMIME-Version: 1.0\n\n--12345\nContent-Type: text/plain; charset=\"us-ascii\"\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\nContent-Disposition: attachment; filename=\"config\"\n\n",
+    "customDataBody": "[concat('config system global', '\n', ' set hostname ', variables('fadVmName'), '\n', ' )')]",
+    "customDataLicenseHeader": "--12345\nContent-Type: text/plain; charset=\"us-ascii\"\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\nContent-Disposition: attachment; filename=\"fgtlicense\"\n\n",
+    "customDataFooter": "\n--12345--\n",
+    "customDataFortiFlex": "[if(equals(parameters('FortiADCLicenseFortiFlex'),''),'',concat('exec vm-license ',parameters('FortiADCLicenseFortiFlex'), '\n'))]",
+    "customDataCombined": "[concat(variables('customDataHeader'),variables('customDataBody'),variables('customDataFortiFlex'),variables('customDataLicenseHeader'),parameters('FortiADCLicenseBYOL'), variables('customDataFooter'))]",
+    "fadCustomData": "[base64(if(equals(parameters('FortiADCLicenseBYOL'),''),variables('customDataBody'),variables('customDataCombined')))]",
+    "fadVmName": "[concat(parameters('FortiADCNamePrefix'),'-fad')]",
+    "fadNic1Name": "[concat(variables('fadVmName'),'-nic1')]",
+    "fadNic1Id": "[resourceId('Microsoft.Network/networkInterfaces',variables('fadNic1Name'))]",
+    "fadNic2Name": "[concat(variables('fadVmName'),'-nic2')]",
+    "fadNic2Id": "[resourceId('Microsoft.Network/networkInterfaces',variables('fadNic2Name'))]",
     "serialConsoleEnabled": "[if(equals(parameters('serialConsole'),'yes'),'true','false')]",
-    "publicIPName": "[if(equals(parameters('publicIPName'),''),concat(parameters('FortiADCNamePrefix'),'-fadc-pip'),parameters('publicIPName'))]",
+    "publicIPName": "[if(equals(parameters('publicIPName'),''),concat(parameters('FortiADCNamePrefix'),'-fad-pip'),parameters('publicIPName'))]",
     "publicIPId": "[if(equals(parameters('publicIPNewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPName')),resourceId(parameters('publicIPResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIPName')))]",
     "publicIPAddressId": {
       "id": "[variables('publicIPId')]"
@@ -348,13 +347,13 @@
     "sn1IPArray1": "[string(int(variables('sn1IPArray')[1]))]",
     "sn1IPArray0": "[string(int(variables('sn1IPArray')[0]))]",
     "sn1IPStartAddress": "[split(parameters('subnet1StartAddress'),'.')]",
-    "sn1IPfadc": "[concat(variables('sn1IPArray0'),'.',variables('sn1IPArray1'),'.',variables('sn1IPArray2'),'.',int(variables('sn1IPStartAddress')[3]))]",
+    "sn1IPfad": "[concat(variables('sn1IPArray0'),'.',variables('sn1IPArray1'),'.',variables('sn1IPArray2'),'.',int(variables('sn1IPStartAddress')[3]))]",
     "sn2IPArray": "[split(parameters('subnet2Prefix'),'.')]",
     "sn2IPArray2": "[string(int(variables('sn2IPArray')[2]))]",
     "sn2IPArray1": "[string(int(variables('sn2IPArray')[1]))]",
     "sn2IPArray0": "[string(int(variables('sn2IPArray')[0]))]",
     "sn2IPStartAddress": "[split(parameters('subnet2StartAddress'),'.')]",
-    "sn2IPfadc": "[concat(variables('sn2IPArray0'),'.',variables('sn2IPArray1'),'.',variables('sn2IPArray2'),'.',int(variables('sn2IPStartAddress')[3]))]"
+    "sn2IPfad": "[concat(variables('sn2IPArray0'),'.',variables('sn2IPArray1'),'.',variables('sn2IPArray2'),'.',int(variables('sn2IPStartAddress')[3]))]"
   },
   "resources": [
     {
@@ -521,7 +520,7 @@
       "properties": {
         "publicIPAllocationMethod": "static",
         "dnsSettings": {
-          "domainNameLabel": "[concat(toLower(variables('fadcVmName')), '-', uniquestring(resourceGroup().id))]"
+          "domainNameLabel": "[concat(toLower(variables('fadVmName')), '-', uniquestring(resourceGroup().id))]"
         }
       }
     },
@@ -529,7 +528,7 @@
       "type": "Microsoft.Network/networkInterfaces",
       "apiVersion": "2023-04-01",
       "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.Network/networkInterfaces'), union(parameters('fortinetTags'),parameters('tagsByResource')['Microsoft.Network/networkInterfaces']), parameters('fortinetTags')) ]",
-      "name": "[variables('fadcNic1Name')]",
+      "name": "[variables('fadNic1Name')]",
       "location": "[parameters('location')]",
       "dependsOn": [
         "[variables('vnetName')]",
@@ -540,7 +539,7 @@
           {
             "name": "ipconfig1",
             "properties": {
-              "privateIPAddress": "[variables('sn1IPfadc')]",
+              "privateIPAddress": "[variables('sn1IPfad')]",
               "privateIPAllocationMethod": "Static",
               "publicIPAddress": "[if(not(equals(parameters('publicIPNewOrExistingOrNone'), 'none')), variables('publicIPAddressId') , json('null'))]",
               "subnet": {
@@ -560,7 +559,7 @@
       "type": "Microsoft.Network/networkInterfaces",
       "apiVersion": "2023-04-01",
       "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.Network/networkInterfaces'), union(parameters('fortinetTags'),parameters('tagsByResource')['Microsoft.Network/networkInterfaces']), parameters('fortinetTags')) ]",
-      "name": "[variables('fadcNic2Name')]",
+      "name": "[variables('fadNic2Name')]",
       "location": "[parameters('location')]",
       "dependsOn": [
         "[variables('vnetName')]",
@@ -572,7 +571,7 @@
             "name": "ipconfig1",
             "properties": {
               "privateIPAllocationMethod": "Static",
-              "privateIPAddress": "[variables('sn2IPfadc')]",
+              "privateIPAddress": "[variables('sn2IPfad')]",
               "subnet": {
                 "id": "[variables('subnet2Id')]"
               }
@@ -587,7 +586,7 @@
       "type": "Microsoft.Compute/virtualMachines",
       "apiVersion": "2023-03-01",
       "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.Compute/virtualMachines'), union(parameters('fortinetTags'),parameters('tagsByResource')['Microsoft.Compute/virtualMachines']), parameters('fortinetTags')) ]",
-      "name": "[variables('fadcVmName')]",
+      "name": "[variables('fadVmName')]",
       "identity": {
         "type": "SystemAssigned"
       },
@@ -599,8 +598,8 @@
         "product": "[variables('imageOffer')]"
       },
       "dependsOn": [
-        "[variables('fadcNic1Id')]",
-        "[variables('fadcNic2Id')]"
+        "[variables('fadNic1Id')]",
+        "[variables('fadNic2Id')]"
       ],
       "properties": {
         "hardwareProfile": {
@@ -608,10 +607,10 @@
         },
         "availabilitySet": "[if(variables('useAS'), variables('availabilitySetId'), json('null'))]",
         "osProfile": {
-          "computerName": "[variables('fadcVmName')]",
+          "computerName": "[variables('fadVmName')]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]",
-          "customData": "[variables('fadcCustomData')]"
+          "customData": "[variables('fadCustomData')]"
         },
         "storageProfile": {
           "imageReference": {
@@ -637,13 +636,13 @@
               "properties": {
                 "primary": true
               },
-              "id": "[variables('fadcNic1Id')]"
+              "id": "[variables('fadNic1Id')]"
             },
             {
               "properties": {
                 "primary": false
               },
-              "id": "[variables('fadcNic2Id')]"
+              "id": "[variables('fadNic2Id')]"
             }
           ]
         },
@@ -664,9 +663,9 @@
       "type": "string",
       "value": "[if(equals(parameters('publicIPNewOrExistingOrNone'), 'new'), reference(variables('publicIPId')).dnsSettings.fqdn, '' )]"
     },
-    "fadcCustomData": {
+    "fadCustomData": {
       "type": "string",
-      "value": "[variables('fadcCustomData')]"
+      "value": "[variables('fadCustomData')]"
     }
   }
 }

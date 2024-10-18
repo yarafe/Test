@@ -17,9 +17,9 @@
       {
         "name": "adminUsername",
         "type": "Microsoft.Common.TextBox",
-        "label": "FortiWeb administrative username",
+        "label": "FortiADC administrative username",
         "defaultValue": "",
-        "toolTip": "Username for the FortiWeb virtual appliance. Most not be root, administrator or admin",
+        "toolTip": "Username for the FortiADC virtual appliance. Most not be root, administrator or admin",
         "constraints": {
           "required": true,
           "validations": [
@@ -43,7 +43,7 @@
         "name": "adminPassword",
         "type": "Microsoft.Common.PasswordBox",
         "label": {
-          "password": "FortiWeb password",
+          "password": "FortiADC password",
           "confirmPassword": "Confirm password"
         },
         "toolTip": "Password for the Virtual Machine",
@@ -58,9 +58,9 @@
         "visible": true
       },
       {
-        "name": "fortiWebNamePrefix",
+        "name": "FortiADCNamePrefix",
         "type": "Microsoft.Common.TextBox",
-        "label": "FortiWeb Name Prefix",
+        "label": "FortiADC Name Prefix",
         "defaultValue": "",
         "toolTip": "Naming prefix for all deployed resources",
         "constraints": {
@@ -73,7 +73,7 @@
       {
         "name": "imageSku",
         "type": "Microsoft.Common.DropDown",
-        "label": "FortiWeb Image SKU",
+        "label": "FortiADC Image SKU",
         "defaultValue": "Bring Your Own License",
         "toolTip": "Identifies whether to to use PAYG (on demand licensing) or BYOL license model (where license is purchased separately)",
         "constraints": {
@@ -94,7 +94,7 @@
       {
         "name": "imageVersion",
         "type": "Microsoft.Common.DropDown",
-        "label": "FortiWeb Image Version",
+        "label": "FortiADC Image Version",
         "defaultValue": "latest",
         "toolTip": "Select the image version",
         "constraints": {
@@ -176,10 +176,10 @@
                 "type": "Microsoft.Common.TextBlock",
                 "visible": true,
                 "options": {
-                  "text": "For this FortiWeb deployment, it is recommended to use the general purpose or compute optimized virtual machines. A selection of supported instances sizes is listed in our documentation.",
+                  "text": "For this FortiADC deployment, it is recommended to use the general purpose or compute optimized virtual machines. A selection of supported instances sizes is listed in our documentation.",
                   "link": {
                     "label": "Learn more",
-                    "uri": "https://docs.fortinet.com/document/fortiweb-public-cloud/latest/about-fortiweb-for-azure/527834/instance-type-support"
+                    "uri": "https://docs.fortinet.com/document/FortiADC-public-cloud/latest/about-FortiADC-for-azure/527834/instance-type-support"
                   }
                 }
               },
@@ -187,7 +187,7 @@
                 "name": "selection",
                 "type": "Microsoft.Compute.SizeSelector",
                 "label": "Size",
-                "toolTip": "Select the instance size of your FortiWeb VM solution. Minimum 4 NICs are required.",
+                "toolTip": "Select the instance size of your FortiADC VM solution. Minimum 4 NICs are required.",
                 "recommendedSizes": [
                   "Standard_F2s",
                   "Standard_F1",
@@ -272,7 +272,7 @@
                 "osPlatform": "Linux",
                 "imageReference": {
                   "publisher": "Fortinet",
-                  "offer": "fortinet_fortiweb-vm_v5",
+                  "offer": "fortinet_FortiADC-vm_v5",
                   "sku": "[basics('imageSku')]"
                 },
                 "count": 2,
@@ -290,10 +290,10 @@
                 "type": "Microsoft.Common.TextBlock",
                 "visible": true,
                 "options": {
-                  "text": "Deploy FortiWeb VMs in an availability set or availability zone.",
+                  "text": "Deploy FortiADC VMs in an availability set or availability zone.",
                   "link": {
                     "label": "Learn more",
-                    "uri": "https://github.com/fortinet/azure-templates/tree/main/FortiWeb#sla"
+                    "uri": "https://github.com/fortinet/azure-templates/tree/main/FortiADC#sla"
                   }
                 }
               },
@@ -302,7 +302,7 @@
                 "type": "Microsoft.Common.DropDown",
                 "label": "Availability Option",
                 "defaultValue": "No infrastructure redundancy required",
-                "toolTip": "Deploy FortiWeb VMs in a new or existing availability set or or a specific availability zone.",
+                "toolTip": "Deploy FortiADC VMs in a new or existing availability set or or a specific availability zone.",
                 "constraints": {
                   "required": false,
                   "allowedValues": [
@@ -326,14 +326,14 @@
                 "name": "availabilitySetNew",
                 "type": "Microsoft.Common.CheckBox",
                 "label": "Create a new availability set?",
-                "toolTip": "Check this box if you want to create a new availability set and add the FortiWeb VM to it.",
+                "toolTip": "Check this box if you want to create a new availability set and add the FortiADC VM to it.",
                 "visible": "[equals(steps('instance').availabilityOptions.availabilityOptions,'Availability set')]"
               },
               {
                 "name": "availabilitySetSelector",
                 "type": "Microsoft.Solutions.ResourceSelector",
-                "label": "Select the availability set for your FortiWeb",
-                "toolTip": "Select your existing availability set you want to add this FortiWeb VM to",
+                "label": "Select the availability set for your FortiADC",
+                "toolTip": "Select your existing availability set you want to add this FortiADC VM to",
                 "resourceType": "Microsoft.Compute/availabilitySets",
                 "options": {
                   "filter": {
@@ -348,15 +348,15 @@
                 "type": "Microsoft.Common.InfoBox",
                 "options": {
                   "icon": "Info",
-                  "text": "The FortiWeb VM and availability set are required to exist in the same resource group."
+                  "text": "The FortiADC VM and availability set are required to exist in the same resource group."
                 },
                 "visible": "[and(not(steps('instance').availabilityOptions.availabilitySetNew),equals(steps('instance').availabilityOptions.availabilityOptions,'Availability set'))]"
               },
               {
                 "name": "availabilityZoneSelector",
                 "type": "Microsoft.Common.DropDown",
-                "label": "Select the availability zone for your FortiWeb VM",
-                "toolTip": "Select the availability zone for your FortiWeb VM",
+                "label": "Select the availability zone for your FortiADC VM",
+                "toolTip": "Select the availability zone for your FortiADC VM",
                 "defaultValue": "Zone 2",
                 "constraints": {
                   "allowedValues": [
@@ -382,37 +382,37 @@
                 "visible": true,
                 "options": {
                   "icon": "Info",
-                  "text": "If availability zone deployment is selected but the location does not support availability zone an availability set will be deployed. If availability zone deployment is selected and availability zone are available in the location, FortiWeb A will be placed in Zone 1, FortiWeb B will be placed in Zone 2",
+                  "text": "If availability zone deployment is selected but the location does not support availability zone an availability set will be deployed. If availability zone deployment is selected and availability zone are available in the location, FortiADC A will be placed in Zone 1, FortiADC B will be placed in Zone 2",
                   "uri": "https://docs.microsoft.com/en-us/azure/availability-zones/az-overview"
                 }
               }
             ]
           },
           {
-            "name": "fwbLicense",
+            "name": "fadLicense",
             "type": "Microsoft.Common.Section",
-            "label": "FortiWeb License",
+            "label": "FortiADC License",
             "elements": [
               {
-                "name": "fwbLicenseBYOLInfo",
+                "name": "fadLicenseBYOLInfo",
                 "type": "Microsoft.Common.TextBlock",
-                "visible": "[equals(basics('imageSku'), 'fortinet_fw-vm')]",
+                "visible": "[equals(basics('imageSku'), 'fad-vm-byol')]",
                 "options": {
                   "text": "Bring Your Own License was selected in the basics blade. The license file(s) retrieved from support.fortinet.com can be uploaded here or uploaded after deployment."
                 }
               },
               {
-                "name": "fwbLicenseFortiFlexCheck",
+                "name": "fadLicenseFortiFlexCheck",
                 "type": "Microsoft.Common.CheckBox",
                 "label": "My organisation is using the Flex-VM subscription service.",
                 "toolTip": "Select this box to enter a Flex-VM token",
-                "visible": "[equals(basics('imageSku'), 'fortinet_fw-vm')]"
+                "visible": "[equals(basics('imageSku'), 'fad-vm-byol')]"
               },
               {
-                "name": "fwbLicenseContent",
+                "name": "fadLicenseContent",
                 "type": "Microsoft.Common.FileUpload",
-                "label": "FortiWeb License",
-                "toolTip": "Upload the license file for the FortiWeb BYOL here.",
+                "label": "FortiADC License",
+                "toolTip": "Upload the license file for the FortiADC BYOL here.",
                 "constraints": {
                   "required": false,
                   "accept": ".lic,.txt"
@@ -423,33 +423,33 @@
                   "openMode": "text",
                   "encoding": "UTF-8"
                 },
-                "visible": "[and(equals(basics('imageSku'), 'fortinet_fw-vm'),not(steps('instance').fwbLicense.fwbLicenseFortiFlexCheck))]"
+                "visible": "[and(equals(basics('imageSku'), 'fortinet_fw-vm'),not(steps('instance').fadLicense.fadLicenseFortiFlexCheck))]"
               },
               {
-                "name": "fwbflexvm",
+                "name": "fadflexvm",
                 "type": "Microsoft.Common.TextBox",
-                "label": "FortiWeb Flex-VM",
+                "label": "FortiADC Flex-VM",
                 "defaultValue": "",
-                "toolTip": "FortiWeb Flex-VM license token",
+                "toolTip": "FortiADC Flex-VM license token",
                 "constraints": {
                   "required": false,
                   "regex": "^[A-Za-z0-9-]{1,64}$",
                   "validationMessage": "Only alphanumeric characters and a dash are allowed, and the value must be 1 to 64 characters."
                 },
-                "visible": "[steps('instance').fwbLicense.fwbLicenseFortiFlexCheck]"
+                "visible": "[steps('instance').fadLicense.fadLicenseFortiFlexCheck]"
               },
               {
-                "name": "fwbLicensePAYGInfo",
+                "name": "fadLicensePAYGInfo",
                 "type": "Microsoft.Common.InfoBox",
                 "options": {
                   "icon": "Info",
                   "text": "Pay As You Go licenses was selected in the basics blade and provisioned automatically durig deployment. Registration of the PAYG license is required to receive support.",
                   "uri": "https://docs.fortinet.com/document/fortigate-public-cloud/7.2.0/azure-administration-guide/533394/creating-a-support-account"
                 },
-                "visible": "[not(equals(basics('imageSku'), 'fortinet_fw-vm'))]"
+                "visible": "[not(equals(basics('imageSku'), 'fad-vm-byol'))]"
               },
               {
-                "name": "fwbLicenseMigrateInfo",
+                "name": "fadLicenseMigrateInfo",
                 "type": "Microsoft.Common.InfoBox",
                 "options": {
                   "icon": "Info",
@@ -491,11 +491,11 @@
                   "subnets": "Subnets"
                 },
                 "toolTip": {
-                  "virtualNetwork": "Virtual Network for deployment of the FortiWeb VM solution",
+                  "virtualNetwork": "Virtual Network for deployment of the FortiADC VM solution",
                   "subnets": "During deployment 2 subnets will be deployed: external, internal"
                 },
                 "defaultValue": {
-                  "name": "[if(equals(basics('fortiWebNamePrefix'),''),'FortiWeb-VNET',concat(basics('fortiWebNamePrefix'),'-VNET'))]",
+                  "name": "[if(equals(basics('FortiADCNamePrefix'),''),'FortiADC-VNET',concat(basics('FortiADCNamePrefix'),'-VNET'))]",
                   "addressPrefixSize": "/23"
                 },
                 "constraints": {
@@ -538,8 +538,8 @@
                 "visible": true,
                 "options": {
                   "icon": "Info",
-                  "text": "The external subnet will have a public IP attached to the FortiWeb network interface. The internal subnet is a transit subnet containing only the FortiWeb interfaces for traffic to and from the internal networks.",
-                  "uri": "https://github.com/fortinet/azure-templates/tree/main/FortiWeb/A-Single-VM"
+                  "text": "The external subnet will have a public IP attached to the FortiADC network interface. The internal subnet is a transit subnet containing only the FortiADC interfaces for traffic to and from the internal networks.",
+                  "uri": "https://github.com/fortinet/azure-templates/tree/main/FortiADC/A-Single-VM"
                 }
               }
             ]
@@ -554,7 +554,7 @@
                 "type": "Microsoft.Common.TextBlock",
                 "visible": true,
                 "options": {
-                  "text": "Enables SR-IOV support allowing direct acces from the NIC in the Azure infrastructure to the FortiWeb VM.",
+                  "text": "Enables SR-IOV support allowing direct acces from the NIC in the Azure infrastructure to the FortiADC VM.",
                   "link": {
                     "label": "Learn more",
                     "uri": "https://docs.fortinet.com/document/fortigate-public-cloud/7.2.0/azure-administration-guide/651644/enabling-accelerated-networking-on-the-fortigate-vm"
@@ -609,7 +609,7 @@
             "type": "Microsoft.Common.TextBlock",
             "visible": true,
             "options": {
-              "text": "The public IP will be used for web and api services hosted behind the FortiWeb and management of the FortiWeb virtual machine from external. The management UI of the FortiWeb virtual machine is available on port HTTPS/8443."
+              "text": "The public IP will be used for web and api services hosted behind the FortiADC and management of the FortiADC virtual machine from external. The management UI of the FortiADC virtual machine is available on port HTTPS/8443."
             }
           },
           {
@@ -620,11 +620,11 @@
               "domainNameLabel": "Domain name label"
             },
             "toolTip": {
-              "publicIpAddress": "Public IP attached to FortiWeb VM",
+              "publicIpAddress": "Public IP attached to FortiADC VM",
               "domainNameLabel": "DNS name linked to this public IP"
             },
             "defaultValue": {
-              "publicIpAddressName": "[if(equals(basics('fortiWebNamePrefix'),''),'FWBPublicIP',concat(basics('fortiWebNamePrefix'),'-fwb-pip'))]",
+              "publicIpAddressName": "[if(equals(basics('FortiADCNamePrefix'),''),'fadPublicIP',concat(basics('FortiADCNamePrefix'),'-fad-pip'))]",
               "domainNameLabel": "mydomain"
             },
             "constraints": {
@@ -696,7 +696,7 @@
                 "options": {
                   "icon": "Info",
                   "text": "The default configuration already included in this deployment can be found on our github page. ",
-                  "uri": "https://github.com/fortinet/azure-templates/blob/main/FortiWeb/A-Single-VM/doc/config-provisioning.md"
+                  "uri": "https://github.com/fortinet/azure-templates/blob/main/FortiADC/A-Single-VM/doc/config-provisioning.md"
                 }
               }
             ]
@@ -763,7 +763,7 @@
       }
     ],
     "outputs": {
-      "fortiWebNamePrefix": "[basics('fortiWebNamePrefix')]",
+      "FortiADCNamePrefix": "[basics('FortiADCNamePrefix')]",
       "imageSku": "[basics('imageSku')]",
       "imageVersion": "[basics('imageVersion')]",
       "adminUsername": "[basics('adminUsername')]",
@@ -774,8 +774,8 @@
       "availabilityOptions": "[steps('instance').availabilityOptions.availabilityOptions]",
       "existingAvailabilitySetName": "[steps('instance').availabilityOptions.availabilitySetSelector.name]",
       "availabilityZoneNumber": "[steps('instance').availabilityOptions.availabilityZoneSelector]",
-      "fortiWebLicenseBYOL": "[steps('instance').fwbLicense.fwbLicenseContent]",
-      "fortiWebLicenseFortiFlex": "[steps('instance').fwbLicense.fwbflexvm]",
+      "FortiADCLicenseBYOL": "[steps('instance').fadLicense.fadLicenseContent]",
+      "FortiADCLicenseFortiFlex": "[steps('instance').fadLicense.fadflexvm]",
       "publicIPNewOrExistingOrNone": "[steps('publicip').publicip.newOrExistingOrNone]",
       "publicIPName": "[steps('publicip').publicip.name]",
       "publicIPResourceGroup": "[steps('publicip').publicip.resourceGroup]",
@@ -790,7 +790,7 @@
       "subnet2Prefix": "[steps('networking').virtualnetworksection.virtualnetwork.subnets.subnet2.addressPrefix]",
       "subnet2StartAddress": "[steps('networking').virtualnetworksection.virtualnetwork.subnets.subnet2.startAddress]",
       "serialConsole": "[steps('advanced').serialconsole.enabled]",
-      "fortiWebAdditionalCustomData": "[steps('advanced').customdata.config]",
+      "FortiADCAdditionalCustomData": "[steps('advanced').customdata.config]",
       "tagsByResource": "[steps('tags').tagsByResource]"
     }
   }
