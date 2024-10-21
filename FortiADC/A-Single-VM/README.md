@@ -5,24 +5,11 @@
 FortiADC is part of Fortinet's family of Application Delivery Controllers (ADC), designed to enhance the performance, availability, and security of enterprise applications.
 It acts like an advanced load balancer, directing traffic to the most suitable backend servers using health checks and load-balancing algorithms.
 
-FortiADC supports a range of features, including:
-
--[Server Load Balancing (SLB)](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/975733/server-load-balancing)
-
--[Link Load Balancing](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/337937/link-load-balancing)
-
--[Global Load Balancing (GSLB)](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/842895/global-load-balancing)
-
--[Security features like SSL offloading and WAF](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/110571/security)
-
--[High availability](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/509045/high-availability)
-
-
-### Use Cases
+## Use Cases
 
 #### 1. Application Availability
 - **Objective:** Ensure high availability and reliable application performance with Advanced Layer 4-7 load balancing.
-- **Features:** [Server Load Balancing (SLB)](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/975733/server-load-balancing),[Global Load Balancing (GSLB)](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/842895/global-load-balancing), [content routing](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/561482/configuring-content-routes), and [health checks](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/922491/health-check).
+- **Features:** [Server Load Balancing (SLB)](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/975733/server-load-balancing), [Link Load Balancing](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/337937/link-load-balancing), [Global Load Balancing (GSLB)](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/842895/global-load-balancing), [content routing](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/561482/configuring-content-routes), and [health checks](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/922491/health-check).
 
 #### 2. Hybrid Cloud Connectors
 - **Objective:** Scale applications across regions or cloud platforms.
