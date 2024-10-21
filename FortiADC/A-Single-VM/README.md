@@ -17,10 +17,11 @@ It acts like an advanced load balancer, directing traffic to the most suitable b
 
 #### 3. Web Application Security
 - **Objective:** Protect web applications from OWASP Top 10 risks.
-- **Features:** Web Application Firewall (WAF), adaptive learning, credential stuffing defense.
+- **Features:** [WAF and API protection](https://docs.fortinet.com/document/fortiadc/7.4.2/handbook/503987/web-application-firewall) , [adaptive learning](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/128496/waf-adaptive-learning), [credential stuffing defense](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/870251/configuring-a-credential-stuffing-defense-policy).
 
 ### 4. Security Accelerator
-Improve performance and availability of FortiGates through SSL offload, security prefiltering, and load balancing.
+- **Objective:** Improve performance and availability of FortiGates.
+- **Features:** [SSL offload] (https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/397561/ssl-decryption-by-forward-proxy), [security prefiltering] (https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/303599/intrusion-prevention), and load balancing.
 
 #### 5. Application Automation
 - **Objective:** Auto Actions Based-on Application Events.
