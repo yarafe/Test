@@ -21,7 +21,7 @@ It acts like an advanced load balancer, directing traffic to the most suitable b
 
 ### 4. Security Accelerator
 - **Objective:** Improve performance and availability of FortiGates.
-- **Features:** [SSL offload] (https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/397561/ssl-decryption-by-forward-proxy), [security prefiltering] (https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/303599/intrusion-prevention), and load balancing.
+- **Features:** [SSL offload](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/397561/ssl-decryption-by-forward-proxy), [security prefiltering](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/303599/intrusion-prevention), and load balancing.
 
 #### 5. Application Automation
 - **Objective:** Auto Actions Based-on Application Events.
