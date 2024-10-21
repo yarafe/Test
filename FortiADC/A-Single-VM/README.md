@@ -17,6 +17,44 @@ FortiADC supports a range of features, including:
 
 -[High availability](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/509045/high-availability)
 
+
+### Use Cases
+
+#### 1. Application Availability
+- **Objective**: Ensure high availability and reliable application performance.
+- **Features**: Advanced Layer 4-7 load balancing, content routing, and health checks.
+
+#### 2. Hybrid Cloud Connectors
+- **Objective**: Scale applications across regions or cloud platforms.
+- **Features**: Load balancing across cloud platforms to enhance availability.
+
+#### 3. Web Application Security
+- **Objective**: Protect web applications from OWASP Top 10 risks.
+- **Features**: Web Application Firewall (WAF), adaptive learning, credential stuffing defense.
+
+#### 4. Application Automation
+- **Objective**: Automate and secure application deployments.
+- **Features**: Integration with DevOps tools.
+
+[More details](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiADC.pdf)
+
+### Bundles
+
+Fortinet offers three main FortiADC bundles to cater to different security and performance needs. These bundles are available across various hardware, virtual machine, and cloud platforms. Here are the bundles:
+
+-Network Security Bundle:
+Provides robust protection for network traffic, focusing on mitigating threats with features like Intrusion Prevention System (IPS), FortiGuard Antivirus, and geo-IP protection.
+
+-Application Security Bundle:
+Designed to shield applications from specific threats such as OWASP Top 10 risks and bot attacks. It includes features like Web Application Firewall (WAF), FortiGuard Sandbox Cloud, and Data Loss Prevention (DLP).
+
+-AI Security Bundle:
+Embraces AI/ML technologies for proactive threat detection. This bundle includes advanced analytics for real-time threat hunting and mitigation, helping you stay ahead of sophisticated cyberattacks.
+
+![FortiADC Bundles](images/fad-bundles.png)
+
+More information can be found from [ordering guide](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/og-fortiadc.pdf).
+
 ## Design
 
 FortiADC Single VM environment consists of:
@@ -26,7 +64,7 @@ FortiADC Single VM environment consists of:
 - Standard public IP attached to port1 interface for management.
 - Network security group (NSG) which allows inbound HTTP, SSH traffic.
 
-![FortiWeb-VM azure design](images/fad-single-vm.png)
+![FortiADC-VM azure design](images/fad-single-vm.png)
 
 ## Deployment
 
