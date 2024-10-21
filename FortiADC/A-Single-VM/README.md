@@ -42,13 +42,13 @@ FortiADC supports a range of features, including:
 
 Fortinet offers three main FortiADC bundles to cater to different security and performance needs. These bundles are available across various hardware, virtual machine, and cloud platforms. Here are the bundles:
 
--Network Security Bundle:
+#### -Network Security Bundle:
 Provides robust protection for network traffic, focusing on mitigating threats with features like Intrusion Prevention System (IPS), FortiGuard Antivirus, and geo-IP protection.
 
--Application Security Bundle:
+#### -Application Security Bundle:
 Designed to shield applications from specific threats such as OWASP Top 10 risks and bot attacks. It includes features like Web Application Firewall (WAF), FortiGuard Sandbox Cloud, and Data Loss Prevention (DLP).
 
--AI Security Bundle:
+#### -AI Security Bundle:
 Embraces AI/ML technologies for proactive threat detection. This bundle includes advanced analytics for real-time threat hunting and mitigation, helping you stay ahead of sophisticated cyberattacks.
 
 ![FortiADC Bundles](images/fad-bundles.png)
