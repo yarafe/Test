@@ -21,20 +21,23 @@ FortiADC supports a range of features, including:
 ### Use Cases
 
 #### 1. Application Availability
-- **Objective**: Ensure high availability and reliable application performance.
-- **Features**: Advanced Layer 4-7 load balancing, content routing, and health checks.
+- **Objective:** Ensure high availability and reliable application performance with Advanced Layer 4-7 load balancing.
+- **Features:** [Server Load Balancing (SLB)](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/975733/server-load-balancing),[Global Load Balancing (GSLB)](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/842895/global-load-balancing), [content routing](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/561482/configuring-content-routes), and [health checks](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/922491/health-check).
 
 #### 2. Hybrid Cloud Connectors
-- **Objective**: Scale applications across regions or cloud platforms.
-- **Features**: Load balancing across cloud platforms to enhance availability.
+- **Objective:** Scale applications across regions or cloud platforms.
+- **Features:** Load balancing across cloud platforms to enhance availability.
 
 #### 3. Web Application Security
-- **Objective**: Protect web applications from OWASP Top 10 risks.
-- **Features**: Web Application Firewall (WAF), adaptive learning, credential stuffing defense.
+- **Objective:** Protect web applications from OWASP Top 10 risks.
+- **Features:** Web Application Firewall (WAF), adaptive learning, credential stuffing defense.
 
-#### 4. Application Automation
-- **Objective**: Automate and secure application deployments.
-- **Features**: Integration with DevOps tools.
+### 4. Security Accelerator
+Improve performance and availability of FortiGates through SSL offload, security prefiltering, and load balancing.
+
+#### 5. Application Automation
+- **Objective:** Auto Actions Based-on Application Events.
+- **Features:** Ensure Application automation actions and Application Security using Automation Stitches and DevOps Tools [link](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/599379/automation).
 
 [More details](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiADC.pdf)
 
@@ -68,7 +71,7 @@ There are three different types of license available for FortiADC:
 
 -**FLEX:** A demo FortiFlex evaluation account can be made available via you Fortinet partner. The FortiFlex token can be injected during deployment or added after deployment.
 
--**PAYG or OnDemand:** These licenses are automatically generated during the deployment of the FortiGate-VM systems.
+-**PAYG or OnDemand:** These licenses are automatically generated during the deployment of the FortiADC-VM systems.
 
 Fortinet offers three main FortiADC bundles to cater to different security and performance needs. These bundles are available across various hardware, virtual machine, and cloud platforms. Here are the bundles:
 
