@@ -65,13 +65,17 @@ Custom Deployment:
 There are three different types of license available for FortiADC:
 
 -**BYOL:** A demo license can be made available via your Fortinet partner or on our website. The license can be injected during deployment or added after deployment. Purchased licenses need to be registered on the Fortinet support site. Download the .lic file after registration. Note, these files may not work until 60 minutes after it's initial creation.
+
 -**FLEX:** A demo FortiFlex evaluation account can be made available via you Fortinet partner. The FortiFlex token can be injected during deployment or added after deployment.
+
 -**PAYG or OnDemand:** These licenses are automatically generated during the deployment of the FortiGate-VM systems.
 
 Fortinet offers three main FortiADC bundles to cater to different security and performance needs. These bundles are available across various hardware, virtual machine, and cloud platforms. Here are the bundles:
 
 -**Network Security Bundle:** Provides robust protection for network traffic, focusing on mitigating threats with features like Intrusion Prevention System (IPS), FortiGuard Antivirus, and geo-IP protection.
+
 -**Application Security Bundle:** Designed to shield applications from specific threats such as OWASP Top 10 risks and bot attacks. It includes features like Web Application Firewall (WAF), FortiGuard Sandbox Cloud, and Data Loss Prevention (DLP).
+
 -**AI Security Bundle:** Embraces AI/ML technologies for proactive threat detection. This bundle includes advanced analytics for real-time threat hunting and mitigation, helping you stay ahead of sophisticated cyberattacks.
 
 ![FortiADC Bundles](images/fad-bundles.png)
