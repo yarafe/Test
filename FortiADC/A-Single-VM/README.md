@@ -25,7 +25,7 @@ It acts like an advanced load balancer, directing traffic to the most suitable b
 
 #### 5. Application Automation
 - **Objective:** Auto Actions Based-on Application Events.
-- **Features:** Ensure Application automation actions and Application Security using Automation Stitches and DevOps Tools [link](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/599379/automation).
+- **Features:** Ensure Application automation actions and Application Security using [Automation Stitches](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/599379/automation) and DevOps Tools.
 
 [More details](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiADC.pdf)
 
@@ -53,7 +53,7 @@ Custom Deployment:
 
 ## License and Bundles
 
-There are three different types of license available for FortiADC:
+There are three different license types available for FortiADC:
 
 -**BYOL:** A demo license can be made available via your Fortinet partner or on our website. The license can be injected during deployment or added after deployment. Purchased licenses need to be registered on the Fortinet support site. Download the .lic file after registration. Note, these files may not work until 60 minutes after it's initial creation.
 
