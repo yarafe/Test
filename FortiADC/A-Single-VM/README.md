@@ -8,9 +8,13 @@ It acts like an advanced load balancer, directing traffic to the most suitable b
 FortiADC supports a range of features, including:
 
 -[Server Load Balancing (SLB)](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/975733/server-load-balancing)
+
 -[Link Load Balancing](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/337937/link-load-balancing)
+
 -[Global Load Balancing (GSLB)](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/842895/global-load-balancing)
+
 -[Security features like SSL offloading and WAF](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/110571/security)
+
 -[High availability](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/509045/high-availability)
 
 ## Design
