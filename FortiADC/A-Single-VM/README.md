@@ -1,6 +1,6 @@
 # FortiWeb - A Single VM
 
-![FortiWeb-VM azure design](images/fwb-single-vm.png)
+![FortiWeb-VM azure design](images/fad-single-vm.png)
 
 ### Azure Portal
 
