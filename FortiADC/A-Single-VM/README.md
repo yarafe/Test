@@ -38,23 +38,6 @@ FortiADC supports a range of features, including:
 
 [More details](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiADC.pdf)
 
-### Bundles
-
-Fortinet offers three main FortiADC bundles to cater to different security and performance needs. These bundles are available across various hardware, virtual machine, and cloud platforms. Here are the bundles:
-
-#### -Network Security Bundle:
-Provides robust protection for network traffic, focusing on mitigating threats with features like Intrusion Prevention System (IPS), FortiGuard Antivirus, and geo-IP protection.
-
-#### -Application Security Bundle:
-Designed to shield applications from specific threats such as OWASP Top 10 risks and bot attacks. It includes features like Web Application Firewall (WAF), FortiGuard Sandbox Cloud, and Data Loss Prevention (DLP).
-
-#### -AI Security Bundle:
-Embraces AI/ML technologies for proactive threat detection. This bundle includes advanced analytics for real-time threat hunting and mitigation, helping you stay ahead of sophisticated cyberattacks.
-
-![FortiADC Bundles](images/fad-bundles.png)
-
-More information can be found from [ordering guide](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/og-fortiadc.pdf).
-
 ## Design
 
 FortiADC Single VM environment consists of:
@@ -76,6 +59,29 @@ Azure Portal Wizard:
 Custom Deployment:
 [![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions%2Fmain%2FFortiWeb%2FA-Single-VM%2FmainTemplate.json)
 [![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions$2Fmain%2FFortiWeb%2FA-Single-VM%2FmainTemplate.json)
+
+## License and Bundles
+
+There are three different types of license available for FortiADC:
+
+### BYOL: A demo license can be made available via your Fortinet partner or on our website. The license can be injected during deployment or added after deployment. Purchased licenses need to be registered on the Fortinet support site. Download the .lic file after registration. Note, these files may not work until 60 minutes after it's initial creation.
+### FLEX: A demo FortiFlex evaluation account can be made available via you Fortinet partner. The FortiFlex token can be injected during deployment or added after deployment.
+### PAYG or OnDemand: These licenses are automatically generated during the deployment of the FortiGate-VM systems.
+
+Fortinet offers three main FortiADC bundles to cater to different security and performance needs. These bundles are available across various hardware, virtual machine, and cloud platforms. Here are the bundles:
+
+### -Network Security Bundle:
+Provides robust protection for network traffic, focusing on mitigating threats with features like Intrusion Prevention System (IPS), FortiGuard Antivirus, and geo-IP protection.
+
+### -Application Security Bundle:
+Designed to shield applications from specific threats such as OWASP Top 10 risks and bot attacks. It includes features like Web Application Firewall (WAF), FortiGuard Sandbox Cloud, and Data Loss Prevention (DLP).
+
+### -AI Security Bundle:
+Embraces AI/ML technologies for proactive threat detection. This bundle includes advanced analytics for real-time threat hunting and mitigation, helping you stay ahead of sophisticated cyberattacks.
+
+![FortiADC Bundles](images/fad-bundles.png)
+
+More information can be found from [ordering guide](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/og-fortiadc.pdf).
 
 ## Support
 
