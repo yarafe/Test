@@ -326,7 +326,7 @@
     "customDataBody": "[concat('config system global', '\n', ' set hostname ', variables('fadVmName'), '\nend', parameters('FortiADCAdditionalCustomData'),variables('customDataFortiFlex'))]",
     "customDataLicenseHeader": "--12345\nContent-Type: text/plain; charset=\"us-ascii\"\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\nContent-Disposition: attachment; filename=\"license\"\n\n",
     "customDataFooter": "\n--12345--\n",
-    "customDataFortiFlex": "[if(equals(parameters('FortiADCLicenseFortiFlex'),''),'',concat('exec vm-license ',parameters('FortiADCLicenseFortiFlex'), '\n'))]",
+    "customDataFortiFlex": "[if(equals(parameters('FortiADCLicenseFortiFlex'),''),'',concat('execute vm-license ',parameters('FortiADCLicenseFortiFlex'), '\n'))]",
     "customDataCombined": "[concat(variables('customDataHeader'),variables('customDataBody'),variables('customDataFortiFlex'),variables('customDataLicenseHeader'),parameters('FortiADCLicenseBYOL'), variables('customDataFooter'))]",
     "fadCustomData": "[base64(if(equals(parameters('FortiADCLicenseBYOL'),''),variables('customDataBody'),variables('customDataCombined')))]",
     "fadVmName": "[concat(parameters('FortiADCNamePrefix'),'-fad')]",
