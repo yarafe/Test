@@ -19,7 +19,7 @@ It acts like an advanced load balancer, directing traffic to the most suitable b
 - **Objective:** Protect web applications from OWASP Top 10 risks.
 - **Features:** [WAF and API protection](https://docs.fortinet.com/document/fortiadc/7.4.2/handbook/503987/web-application-firewall) , [adaptive learning](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/128496/waf-adaptive-learning), [credential stuffing defense](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/870251/configuring-a-credential-stuffing-defense-policy).
 
-#### 3. Advanced Application Security Based on Deep learning and AI
+#### 4. Advanced Application Security Based on Deep learning and AI
 - **Objective:** Protect web applications from sophesticated bot attacks and unknown attack patterens.
 - **Features:** [Advanced Bot Protection (ABP)](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/162426/advanced-bot-protection-abp) and [AI Threat Analytics integration with FortiWeb Cloud](https://docs.fortinet.com/document/fortiadc/7.6.0/administration-guide/52944/ai-threat-analytics).
 
