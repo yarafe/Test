@@ -675,7 +675,7 @@
               "priority": 180,
               "direction": "Inbound"
             }
-          },
+          }
         ]
       }
     },
