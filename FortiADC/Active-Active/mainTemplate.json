@@ -633,7 +633,49 @@
               "priority": 105,
               "direction": "Outbound"
             }
-          }
+          },
+		  {
+            "name": "AllowUnicastHAInbound",
+            "properties": {
+              "description": "Allow 50000 In",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "50000",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 160,
+              "direction": "Inbound"
+            }
+          },
+		  {
+            "name": "AllowHAConfigSync1Inbound",
+            "properties": {
+              "description": "Allow 50001 In",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "50001",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 170,
+              "direction": "Inbound"
+            }
+          },
+		  {
+            "name": "AllowHAConfigSync2Inbound",
+            "properties": {
+              "description": "Allow 50002 In",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "50002",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 180,
+              "direction": "Inbound"
+            }
+          },
         ]
       }
     },
