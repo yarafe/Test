@@ -1,6 +1,6 @@
 # FortiWeb - Active/Active
 
-![FortiWeb-VM azure design](images/fwb-active-active.png)
+![FortiADC-VRRP-A-A azure design](images/fad-vrrp-a-a.png)
 
 ### Azure Portal
 
