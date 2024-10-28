@@ -163,7 +163,7 @@
         "description": "Resource group to which the Public IP attached to FortiADC-A belongs."
       }
     },
-	"publicIP2NewOrExistingOrNoneOrNone": {
+	"publicIP2NewOrExistingOrNone": {
       "type": "string",
       "defaultValue": "new",
       "allowedValues": [
@@ -450,7 +450,7 @@
     "publicIP1Name": "[if(equals(parameters('publicIP1Name'),''),concat(parameters('fortiADCNamePrefix'),'-FAD-A-PIP'),parameters('publicIP1Name'))]",
 	"publicIP2Name": "[if(equals(parameters('publicIP2Name'),''),concat(parameters('fortiADCNamePrefix'),'-FAD-B-PIP'),parameters('publicIP2Name'))]",
     "publicIP1Id": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIP1Name')),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIP1Name')))]",
-	"publicIP2Id": "[if(equals(parameters('publicIP2NewOrExistingOrNoneOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIP2Name')),resourceId(parameters('publicIP2ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIP2Name')))]",
+	"publicIP2Id": "[if(equals(parameters('publicIP2NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIP2Name')),resourceId(parameters('publicIP2ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIP2Name')))]",
     "publicIP1AddressId": {
       "id": "[variables('publicIP1Id')]"
     },
@@ -696,7 +696,7 @@
       }
     },
 	{
-      "condition": "[equals(parameters('publicIP2NewOrExistingOrNoneOrNone'), 'new')]",
+      "condition": "[equals(parameters('publicIP2NewOrExistingOrNone'), 'new')]",
       "type": "Microsoft.Network/publicIPAddresses",
       "apiVersion": "2023-04-01",
       "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.Network/publicIPAddresses'), union(parameters('fortinetTags'),parameters('tagsByResource')['Microsoft.Network/publicIPAddresses']), parameters('fortinetTags')) ]",
@@ -730,7 +730,7 @@
             "properties": {
               "privateIPAddress": "[variables('sn1IPfadA')]",
               "privateIPAllocationMethod": "Static",
-			  "publicIPAddress": "[if(not(equals(parameters('publicIP1NewOrExisting'), 'none')), variables('publicIP1AddressId') , json('null'))]",
+			  "publicIPAddress": "[if(not(equals(parameters('publicIP1NewOrExistingOrNone'), 'none')), variables('publicIP1AddressId') , json('null'))]",
               "subnet": {
                 "id": "[variables('subnet1Id')]"
               }
@@ -983,11 +983,11 @@
     },
 	"fortiADC-BPublicIP": {
       "type": "string",
-      "value": "[if(equals(parameters('publicIP2NewOrExistingOrNoneOrNone'), 'new'), reference(variables('publicIP2Id')).ipAddress, '')]"
+      "value": "[if(equals(parameters('publicIP2NewOrExistingOrNone'), 'new'), reference(variables('publicIP2Id')).ipAddress, '')]"
     },
     "fortiADC-BFQDN": {
       "type": "string",
-      "value": "[if(equals(parameters('publicIP2NewOrExistingOrNoneOrNone'), 'new'), reference(variables('publicIP2Id')).dnsSettings.fqdn, '' )]"
+      "value": "[if(equals(parameters('publicIP2NewOrExistingOrNone'), 'new'), reference(variables('publicIP2Id')).dnsSettings.fqdn, '' )]"
     },
     "fadACustomData": {
       "type": "string",
