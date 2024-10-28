@@ -30,68 +30,42 @@ Custom Deployment:
 ## Configuration
 
 **Configure HA on FortiADC1**
+
 <code><pre>
 config system ha
-
 set mode active-active-vrrp
-
 set hbdev port2
-
 set datadev port2
-
 set group-id 31
-
 set local-node-id 1
-
 set group-name azure_group
-
 set config-priority 200
-
 set override enable
-
 set l7-persistence-pickup enable
-
 set l4-persistence-pickup enable
-
 set l4-session-pickup enable
-
 set hb-type unicast
-
 set local-address 172.16.136.69
-
 set peer-address 172.16.136.70
-
 end
 </code></pre>
 
 **Configure HA on FortiADC2**
+
 <code><pre>
 config system ha
-
 set mode active-active-vrrp
-
 set hbdev port2
-
 set datadev port2
-
 set group-id 31
-
 set group-name azure_group
-
 set override enable
-
 set l7-persistence-pickup enable
-
 set l4-persistence-pickup enable
-
 set l4-session-pickup enable
-
 set hb-type unicast
-
 set local-address 172.16.136.70
-
 set peer-address 172.16.136.69
-
 end
 </code></pre>
 
