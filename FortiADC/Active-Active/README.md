@@ -30,7 +30,6 @@ Custom Deployment:
 ## Configuration
 
 **Configure HA on FortiADC1**
-
 <code><pre>
 config system ha
 set mode active-active-vrrp
@@ -51,7 +50,6 @@ end
 </code></pre>
 
 **Configure HA on FortiADC2**
-
 <code><pre>
 config system ha
 set mode active-active-vrrp
