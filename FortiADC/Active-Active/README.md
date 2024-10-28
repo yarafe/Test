@@ -67,6 +67,51 @@ set peer-address 172.16.136.69
 end
 </code></pre>
 
+
+## Troubleshooting
+
+```
+a-fad-a # get system ha-status 
+Group ID: 31
+Mode: active-active-vrrp
+State: VRRP (Active)
+Config-Sync Source: N
+Config-Sync: In Sync
+Init Done: Yes
+Serial-Number: FADV04TM24000367
+Node Id: 1
+IP Address: 172.16.136.69
+MAC Address: 00:00:5E:A1:44:A3
+Last Change Time: Fri Oct 25 10:07:00 2024
+Last Change Reason: Device initialization
+Monitor Status
+  System
+    Harddisk: pass
+  Link
+
+Sync statistics:
+                                           Sent           Received
+
+L4 session and persistence sync pkts:      0              0
+
+L7 persistence sync pkts:                  0              0
+Device management errors:
+Duplicate node id:     0
+Image Version mismatch:      0
+HA Version mismatch:      0
+Group id mismatch:      0
+Ha mode mismatch:      0
+Ha node list mismatch:      0
+Duplicate SN:      0
+Basic Errors:      4
+Peer Count: 1
+  State: VRRP (Active)
+  Config-Sync Source: Y
+  Serial-number: FADV04TM24000368
+  Node-id: 0
+  IP Address: 172.16.136.70
+```
+
 ## Support
 
 Fortinet-provided scripts in this and other GitHub projects do not fall under the regular Fortinet technical support scope and are not supported by FortiCare Support Services.
