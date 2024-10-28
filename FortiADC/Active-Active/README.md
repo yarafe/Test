@@ -5,6 +5,10 @@
 FortiADC is part of Fortinet's family of Application Delivery Controllers (ADC), designed to enhance the performance, availability, and security of enterprise applications.
 It acts like an advanced load balancer, directing traffic to the most suitable backend servers using health checks and load-balancing algorithms.
 
+In [HA-VRRP mode](https://docs.fortinet.com/document/fortiadc/7.4.0/ha-deployment-guide/261403/ha-modes), resources are grouped to enable an active-active setup, where each HA node has its own IP and shares a "floating IP" within a VRRP group. Devices use this floating IP as their gateway, which shifts to a new Primary node if the current one fails, ensuring constant connectivity.
+
+Typically, two VRRP groups are created, each managed by a different Primary node (FortiADC1 and FortiADC2) for load balancing. If a failure occurs in one group, the other node takes over, keeping traffic uninterrupted.
+
 ## Design
 
 FortiADC Active/Active-VRRP environment consists of:
