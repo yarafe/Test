@@ -78,9 +78,11 @@ end
 
 The condition to make sure negotiation successfully:
 
-All the HA devices use the same heartbeat ports and data ports
-All the HA devices have same group-id
-All the HA devices have different local-node-id
+-All the HA devices use the same heartbeat ports and data ports.
+
+-All the HA devices have same group-id.
+
+-All the HA devices have different local-node-id.
 
 ```
 a-fad-a # get system ha-status 
