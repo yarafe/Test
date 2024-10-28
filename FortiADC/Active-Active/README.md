@@ -76,13 +76,11 @@ end
 
 ## Troubleshooting
 
-The condition to make sure negotiation successfully:
+The condition to ensure successful negotiation:
 
--All the HA devices use the same heartbeat ports and data ports.
-
--All the HA devices have same group-id.
-
--All the HA devices have different local-node-id.
+- All HA devices use the same heartbeat ports and data ports.
+- All HA devices have the same group-id.
+- All HA devices have different local-node-id.
 
 ```
 a-fad-a # get system ha-status 
