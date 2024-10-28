@@ -137,7 +137,7 @@
         "description": "Accelerated Networking enables direct connection between the VM and network card. Only available on 2 CPU F/Fs and 4 CPU D/Dsv2, D/Dsv3, E/Esv3, Fsv2, Lsv2, Ms/Mms and Ms/Mmsv2"
       }
     },
-    "publicIPNewOrExistingOrNone": {
+    "publicIP1NewOrExistingOrNone": {
       "type": "string",
       "defaultValue": "new",
       "allowedValues": [
@@ -146,21 +146,47 @@
         "none"
       ],
       "metadata": {
-        "description": "Public IP for the Load Balancer for inbound and outbound data of the FortiADC VMs"
+        "description": "Public IP for Management attached to FortiADC-A VM"
       }
     },
-    "publicIPName": {
+    "publicIP1Name": {
       "type": "string",
-      "defaultValue": "fad-pip",
+      "defaultValue": "fad-a-pip",
       "metadata": {
-        "description": "Name of Public IP address element."
+        "description": "Name of Public IP address element attached to FortiADC-A."
       }
     },
-    "publicIPResourceGroup": {
+    "publicIP1ResourceGroup": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "Resource group to which the Public IP belongs."
+        "description": "Resource group to which the Public IP attached to FortiADC-A belongs."
+      }
+    },
+	"publicIP2NewOrExistingOrNone": {
+      "type": "string",
+      "defaultValue": "new",
+      "allowedValues": [
+        "new",
+        "existing",
+        "none"
+      ],
+      "metadata": {
+        "description": "Public IP for Management attached to FortiADC-B VM"
+      }
+    },
+    "publicIP2Name": {
+      "type": "string",
+      "defaultValue": "fad-b-pip",
+      "metadata": {
+        "description": "Name of Public IP address element attached to FortiADC-B."
+      }
+    },
+    "publicIP2ResourceGroup": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Resource group to which the Public IP attached to FortiADC-B belongs."
       }
     },
     "vnetNewOrExisting": {
@@ -319,7 +345,7 @@
       "type": "object",
       "defaultValue": {
         "publisher": "Fortinet",
-        "template": "FAD-Active-Active-ELB",
+        "template": "FAD-Active-Active-VRRP",
         "provider": "6EB3B02F-50E5-4A3E-8CB8-2E12925831FADAA"
       }
     },
@@ -374,7 +400,6 @@
       "HaApplicationId": "[parameters('haApplicationId')]",
       "HaApplicationPassword": "[parameters('haApplicationSecret')]",
 	  "HaRegion":"global",
-      "HaLoadblancerName": "[variables('externalLBName')]",
       "HaInstanceCount": "2",
       "HaInstanceId": "1",
       "HaNamePrefix": "[parameters('fortiADCNamePrefix')]",
@@ -398,7 +423,6 @@
       "HaApplicationId": "[parameters('haApplicationId')]",
       "HaApplicationPassword": "[parameters('haApplicationSecret')]",
 	  "HaRegion":"global",
-      "HaLoadblancerName": "[variables('externalLBName')]",
       "HaInstanceCount": "2",
       "HaInstanceId": "2",
       "HaNamePrefix": "[parameters('fortiADCNamePrefix')]",
@@ -423,22 +447,15 @@
     "fadBNic2Name": "[concat(variables('fadBVmName'),'-nic2')]",
     "fadBNic2Id": "[resourceId('Microsoft.Network/networkInterfaces',variables('fadBNic2Name'))]",
     "serialConsoleEnabled": "[if(equals(parameters('serialConsole'),'yes'),'true','false')]",
-    "publicIPName": "[if(equals(parameters('publicIPName'),''),concat(parameters('fortiADCNamePrefix'),'-FAD-PIP'),parameters('publicIPName'))]",
-    "publicIPId": "[if(equals(parameters('publicIPNewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPName')),resourceId(parameters('publicIPResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIPName')))]",
-    "publicIPAddressId": {
-      "id": "[variables('publicIPId')]"
+    "publicIP1Name": "[if(equals(parameters('publicIP1Name'),''),concat(parameters('fortiADCNamePrefix'),'-FAD-A-PIP'),parameters('publicIP1Name'))]",
+	"publicIP2Name": "[if(equals(parameters('publicIP2Name'),''),concat(parameters('fortiADCNamePrefix'),'-FAD-B-PIP'),parameters('publicIP2Name'))]",
+    "publicIP1Id": "[if(equals(parameters('publicIP1NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIP1Name')),resourceId(parameters('publicIP1ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIP1Name')))]",
+	"publicIP2Id": "[if(equals(parameters('publicIP2NewOrExistingOrNone'),'new'),resourceId('Microsoft.Network/publicIPAddresses',variables('publicIP2Name')),resourceId(parameters('publicIP2ResourceGroup'),'Microsoft.Network/publicIPAddresses',variables('publicIP2Name')))]",
+    "publicIP1AddressId": {
+      "id": "[variables('publicIP1Id')]"
     },
-    "ilbProperties": {
-      "properties": {
-        "privateIPAddress": "[variables('sn1IPlb')]",
-        "privateIPAllocationMethod": "Static",
-        "subnet": "[variables('subnet1IdRef')]"
-      }
-    },
-    "elbProperties": {
-      "properties": {
-        "publicIPAddress": "[variables('publicIPaddressId')]"
-      }
+	"publicIP2AddressId": {
+      "id": "[variables('publicIP2Id')]"
     },
     "NSGName": "[concat(parameters('fortiADCNamePrefix'),'-',uniqueString(resourceGroup().id),'-nsg')]",
     "NSGId": "[resourceID('Microsoft.Network/networkSecurityGroups/',variables('NSGName'))]",
@@ -449,7 +466,6 @@
     "sn1IPStartAddress": "[split(parameters('subnet1StartAddress'),'.')]",
     "sn1IPfadA": "[concat(variables('sn1IPArray0'),'.',variables('sn1IPArray1'),'.',variables('sn1IPArray2'),'.',int(variables('sn1IPStartAddress')[3]))]",
     "sn1IPfadB": "[concat(variables('sn1IPArray0'),'.',variables('sn1IPArray1'),'.',variables('sn1IPArray2'),'.',add(int(variables('sn1IPStartAddress')[3]),1))]",
-    "sn1IPlb": "[concat(variables('sn1IPArray0'),'.',variables('sn1IPArray1'),'.',variables('sn1IPArray2'),'.',add(int(variables('sn1IPStartAddress')[3]),2))]",
     "sn2IPArray": "[split(parameters('subnet2Prefix'),'.')]",
     "sn2IPArray2": "[string(int(variables('sn2IPArray')[2]))]",
     "sn2IPArray1": "[string(int(variables('sn2IPArray')[1]))]",
@@ -457,24 +473,6 @@
     "sn2IPStartAddress": "[split(parameters('subnet2StartAddress'),'.')]",
     "sn2IPfadA": "[concat(variables('sn2IPArray0'),'.',variables('sn2IPArray1'),'.',variables('sn2IPArray2'),'.',add(int(variables('sn2IPStartAddress')[3]),1))]",
     "sn2IPfadB": "[concat(variables('sn2IPArray0'),'.',variables('sn2IPArray1'),'.',variables('sn2IPArray2'),'.',add(int(variables('sn2IPStartAddress')[3]),2))]",
-    "externalLBName_NatRule_FADAdminPerm_fadA": "[concat(variables('fadAVmName'),'fadadminperm')]",
-    "externalLBId_NatRule_FADAdminPerm_fadA": "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules',variables('externalLBName'),variables('externalLBName_NatRule_FADAdminPerm_fadA'))]",
-    "externalLBName_NatRule_SSH_fadA": "[concat(variables('fadAVmName'),'ssh')]",
-    "externalLBId_NatRule_SSH_fadA": "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules',variables('externalLBName'),variables('externalLBName_NatRule_SSH_fadA'))]",
-    "externalLBName_NatRule_FADAdminPerm_fadB": "[concat(variables('fadBVmName'),'fadadminperm')]",
-    "externalLBId_NatRule_FADAdminPerm_fadB": "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules',variables('externalLBName'),variables('externalLBName_NatRule_FADAdminPerm_fadB'))]",
-    "externalLBName_NatRule_SSH_fadB": "[concat(variables('fadBVmName'),'ssh')]",
-    "externalLBId_NatRule_SSH_fadB": "[resourceId('Microsoft.Network/loadBalancers/inboundNatRules',variables('externalLBName'),variables('externalLBName_NatRule_SSH_fadB'))]",
-    "externalLBName": "[concat(parameters('fortiADCNamePrefix'),'-loadbalancer')]",
-    "externalLBId": "[resourceId('Microsoft.Network/loadBalancers',variables('externalLBName'))]",
-    "externalLBFEName": "[concat(parameters('fortiADCNamePrefix'),'-lb-',parameters('subnet1Name'),'-frontend')]",
-    "externalLBFEId": "[resourceID('Microsoft.Network/loadBalancers/frontendIPConfigurations/',variables('externalLBName'),variables('externalLBFEName'))]",
-    "externalLBBEName": "[concat(parameters('fortiADCNamePrefix'),'-lb-',parameters('subnet1Name'),'-backend')]",
-    "externalLBBEId": "[resourceID('Microsoft.Network/loadBalancers/backendAddressPools/',variables('externalLBName'),variables('externalLBBEName'))]",
-    "externalLBProbeName": "heatlhProbeHttp",
-    "externalLBProbeId": "[resourceId('Microsoft.Network/loadBalancers/probes/',variables('externalLBName'),variables('externalLBProbeName'))]",
-    "externalLBProbe2Name": "heatlhProbeHttps",
-    "externalLBProbe2Id": "[resourceId('Microsoft.Network/loadBalancers/probes/',variables('externalLBName'),variables('externalLBProbe2Name'))]",
     "useAZ": "[and(not(empty(pickZones('Microsoft.Compute', 'virtualMachines', parameters('location')))), equals(parameters('availabilityOptions'), 'Availability Zones'))]",
     "pipZones": "[if(variables('useAZ'), pickZones('Microsoft.Network', 'publicIPAddresses', parameters('location'), 3), json('null'))]",
     "zone1": [
@@ -680,11 +678,11 @@
       }
     },
     {
-      "condition": "[equals(parameters('publicIPNewOrExistingOrNone'), 'new')]",
+      "condition": "[equals(parameters('publicIP1NewOrExistingOrNone'), 'new')]",
       "type": "Microsoft.Network/publicIPAddresses",
       "apiVersion": "2023-04-01",
       "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.Network/publicIPAddresses'), union(parameters('fortinetTags'),parameters('tagsByResource')['Microsoft.Network/publicIPAddresses']), parameters('fortinetTags')) ]",
-      "name": "[variables('publicIPName')]",
+      "name": "[variables('publicIP1Name')]",
       "location": "[parameters('location')]",
       "sku": {
         "name": "Standard"
@@ -693,145 +691,26 @@
       "properties": {
         "publicIPAllocationMethod": "static",
         "dnsSettings": {
-          "domainNameLabel": "[concat(toLower(variables('externalLBName')), '-', uniquestring(resourceGroup().id))]"
+          "domainNameLabel": "[concat(toLower(variables('fadAVmName')), '-', uniquestring(resourceGroup().id))]"
         }
       }
     },
-    {
-      "type": "Microsoft.Network/loadBalancers",
-      "apiVersion": "2023-06-01",
-      "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.Network/loadBalancers'), union(parameters('fortinetTags'),parameters('tagsByResource')['Microsoft.Network/loadBalancers']), parameters('fortinetTags')) ]",
-      "name": "[variables('externalLBName')]",
+	{
+      "condition": "[equals(parameters('publicIP2NewOrExistingOrNone'), 'new')]",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "apiVersion": "2023-04-01",
+      "tags": "[ if(contains(parameters('tagsByResource'), 'Microsoft.Network/publicIPAddresses'), union(parameters('fortinetTags'),parameters('tagsByResource')['Microsoft.Network/publicIPAddresses']), parameters('fortinetTags')) ]",
+      "name": "[variables('publicIP2Name')]",
       "location": "[parameters('location')]",
       "sku": {
         "name": "Standard"
       },
-      "dependsOn": [
-        "[variables('publicIPName')]",
-        "[variables('vnetName')]"
-      ],
+      "zones": "[variables('pipZones')]",
       "properties": {
-        "frontendIPConfigurations": [
-          {
-            "name": "[variables('externalLBFEName')]",
-            "properties": "[if(equals(parameters('publicIPNewOrExistingOrNone'),'none'), variables('ilbProperties').properties, variables('elbProperties').properties)]"
-          }
-        ],
-        "backendAddressPools": [
-          {
-            "name": "[variables('externalLBBEName')]"
-          }
-        ],
-        "loadBalancingRules": [
-          {
-            "properties": {
-              "frontendIPConfiguration": {
-                "id": "[variables('externalLBFEId')]"
-              },
-              "backendAddressPool": {
-                "id": "[variables('externalLBBEId')]"
-              },
-              "probe": {
-                "id": "[variables('externalLBProbeId')]"
-              },
-              "protocol": "Tcp",
-              "frontendPort": 80,
-              "backendPort": 80,
-              "enableFloatingIP": true,
-              "idleTimeoutInMinutes": 5
-            },
-            "name": "PublicLBRule-FE1-http"
-          },
-          {
-            "properties": {
-              "frontendIPConfiguration": {
-                "id": "[variables('externalLBFEId')]"
-              },
-              "backendAddressPool": {
-                "id": "[variables('externalLBBEId')]"
-              },
-              "probe": {
-                "id": "[variables('externalLBProbe2Id')]"
-              },
-              "protocol": "Tcp",
-              "frontendPort": 443,
-              "backendPort": 443,
-              "enableFloatingIP": true,
-              "idleTimeoutInMinutes": 5
-            },
-            "name": "PublicLBRule-FE1-https"
-          }
-        ],
-        "inboundNatRules": [
-          {
-            "name": "[variables('externalLBName_NatRule_SSH_fadA')]",
-            "properties": {
-              "frontendIPConfiguration": {
-                "id": "[variables('externalLBFEId')]"
-              },
-              "protocol": "Tcp",
-              "frontendPort": 50030,
-              "backendPort": 22,
-              "enableFloatingIP": false
-            }
-          },
-          {
-            "name": "[variables('externalLBName_NatRule_FADAdminPerm_fadA')]",
-            "properties": {
-              "frontendIPConfiguration": {
-                "id": "[variables('externalLBFEId')]"
-              },
-              "protocol": "Tcp",
-              "frontendPort": 40030,
-              "backendPort": 8443,
-              "enableFloatingIP": false
-            }
-          },
-          {
-            "name": "[variables('externalLBName_NatRule_SSH_fadB')]",
-            "properties": {
-              "frontendIPConfiguration": {
-                "id": "[variables('externalLBFEId')]"
-              },
-              "protocol": "Tcp",
-              "frontendPort": 50031,
-              "backendPort": 22,
-              "enableFloatingIP": false
-            }
-          },
-          {
-            "name": "[variables('externalLBName_NatRule_FADAdminPerm_fadB')]",
-            "properties": {
-              "frontendIPConfiguration": {
-                "id": "[variables('externalLBFEId')]"
-              },
-              "protocol": "Tcp",
-              "frontendPort": 40031,
-              "backendPort": 8443,
-              "enableFloatingIP": false
-            }
-          }
-        ],
-        "probes": [
-          {
-            "properties": {
-              "protocol": "Tcp",
-              "port": 80,
-              "intervalInSeconds": 5,
-              "probeThreshold": 2
-            },
-            "name": "[variables('externalLBProbeName')]"
-          },
-          {
-            "properties": {
-              "protocol": "Tcp",
-              "port": 443,
-              "intervalInSeconds": 5,
-              "probeThreshold": 2
-            },
-            "name": "[variables('externalLBProbe2Name')]"
-          }
-        ]
+        "publicIPAllocationMethod": "static",
+        "dnsSettings": {
+          "domainNameLabel": "[concat(toLower(variables('fadBVmName')), '-', uniquestring(resourceGroup().id))]"
+        }
       }
     },
     {
@@ -842,7 +721,6 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[variables('vnetName')]",
-        "[variables('externalLBId')]",
         "[variables('NSGId')]"
       ],
       "properties": {
@@ -852,22 +730,10 @@
             "properties": {
               "privateIPAddress": "[variables('sn1IPfadA')]",
               "privateIPAllocationMethod": "Static",
+			  "publicIPAddress": "[if(not(equals(parameters('publicIP1NewOrExisting'), 'none')), variables('publicIP1AddressId') , json('null'))]",
               "subnet": {
                 "id": "[variables('subnet1Id')]"
-              },
-              "loadBalancerBackendAddressPools": [
-                {
-                  "id": "[variables('externalLBBEId')]"
-                }
-              ],
-              "loadBalancerInboundNatRules": [
-                {
-                  "id": "[variables('externalLBId_NatRule_SSH_fadA')]"
-                },
-                {
-                  "id": "[variables('externalLBId_NatRule_FADAdminPerm_fadA')]"
-                }
-              ]
+              }
             }
           }
         ],
@@ -886,7 +752,6 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[variables('vnetName')]",
-        "[variables('externalLBId')]",
         "[variables('NSGId')]"
       ],
       "properties": {
@@ -896,22 +761,10 @@
             "properties": {
               "privateIPAddress": "[variables('sn1IPfadB')]",
               "privateIPAllocationMethod": "Static",
+			  "publicIPAddress": "[if(not(equals(parameters('publicIP2NewOrExisting'), 'none')), variables('publicIP2AddressId') , json('null'))]",
               "subnet": {
                 "id": "[variables('subnet1Id')]"
-              },
-              "loadBalancerBackendAddressPools": [
-                {
-                  "id": "[variables('externalLBBEId')]"
-                }
-              ],
-              "loadBalancerInboundNatRules": [
-                {
-                  "id": "[variables('externalLBId_NatRule_SSH_fadB')]"
-                },
-                {
-                  "id": "[variables('externalLBId_NatRule_FADAdminPerm_fadB')]"
-                }
-              ]
+              }
             }
           }
         ],
@@ -1120,13 +973,21 @@
     }
   ],
   "outputs": {
-    "fortiADCPublicIP": {
+    "fortiADC-APublicIP": {
       "type": "string",
-      "value": "[if(equals(parameters('publicIPNewOrExistingOrNone'), 'new'), reference(variables('publicIPId')).ipAddress, '')]"
+      "value": "[if(equals(parameters('publicIP1NewOrExistingOrNone'), 'new'), reference(variables('publicIP1Id')).ipAddress, '')]"
     },
-    "fortiADCFQDN": {
+    "fortiADC-AFQDN": {
       "type": "string",
-      "value": "[if(equals(parameters('publicIPNewOrExistingOrNone'), 'new'), reference(variables('publicIPId')).dnsSettings.fqdn, '' )]"
+      "value": "[if(equals(parameters('publicIP1NewOrExistingOrNone'), 'new'), reference(variables('publicIP1Id')).dnsSettings.fqdn, '' )]"
+    },
+	"fortiADC-BPublicIP": {
+      "type": "string",
+      "value": "[if(equals(parameters('publicIP2NewOrExistingOrNone'), 'new'), reference(variables('publicIP2Id')).ipAddress, '')]"
+    },
+    "fortiADC-BFQDN": {
+      "type": "string",
+      "value": "[if(equals(parameters('publicIP2NewOrExistingOrNone'), 'new'), reference(variables('publicIP2Id')).dnsSettings.fqdn, '' )]"
     },
     "fadACustomData": {
       "type": "string",
