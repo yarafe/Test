@@ -13,7 +13,7 @@ Typically, two VRRP groups are created, each managed by a different Primary node
 
 ## Design
 
-FortiADC Active/Active-VRRP environment consists of:
+The template for FortiADC Active/Active-VRRP will deploy:
 
 - 2 standalone FortiADC virtual machine with 2 NICs: external and internal.
 - 1 VNETs containing 2 subnets: external and internal.
