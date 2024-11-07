@@ -53,7 +53,6 @@ resource "random_string" "random" {
   upper   = false
 }
 
-
 resource "azurerm_network_security_group" "fmgnsg" {
   name                = "${var.prefix}-fmg-nsg"
   location            = var.location
@@ -346,4 +345,17 @@ resource "azurerm_virtual_machine_data_disk_attachment" "fmg2-datadisk-attach" {
   lun                = count.index
   caching            = "ReadWrite"
 }
+
+resource "azurerm_role_assignment" "network_contributor_fmg1" {
+  scope                = "/subscriptions/${var.subscription_id}/resourceGroups/${var.resource_group_name}"
+  role_definition_name = "Network Contributor"
+  principal_id         = azurerm_linux_virtual_machine.fmg[0].identity[0].principal_id
+}
+
+resource "azurerm_role_assignment" "network_contributor_fmg2" {
+  scope                = "/subscriptions/${var.subscription_id}/resourceGroups/${var.resource_group_name}"
+  role_definition_name = "Network Contributor"
+  principal_id         = azurerm_linux_virtual_machine.fmg[1].identity[0].principal_id
+}
+
 

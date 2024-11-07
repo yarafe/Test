@@ -34,7 +34,7 @@ variable "fmg1_byol_license_file" {
 }
 
 variable "fmg1_byol_fortiflex_license_token" {
-  default = "A2EA47295EE4520764A8"
+  default = "826E211F08791066608D"
 }
 
 variable "fmg1_byol_serial_number" {
@@ -47,7 +47,7 @@ variable "fmg2_byol_license_file" {
 }
 
 variable "fmg2_byol_fortiflex_license_token" {
-  default = "33CB755AA4BE0718B814"
+  default = "A79656C9B549F9277E89"
 }
 
 variable "fmg2_byol_serial_number" {

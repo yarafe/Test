@@ -25,6 +25,9 @@ variable "password" {
 # Names and data sources of linked Azure resource
 ##############################################################################################################
 
+variable subscription_id {
+}
+
 variable "resource_group_name" {
 }
 

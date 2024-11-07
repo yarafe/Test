@@ -18,6 +18,11 @@ resource "azurerm_resource_group" "resourcegroup" {
   }
 }
 
+data "azurerm_subscription" "current" {}
+
+
+
+
 ##############################################################################################################
 # Virtual Network - VNET
 ##############################################################################################################
@@ -41,22 +46,24 @@ module "vnet" {
 module "fmg-ha" {
   source = "../modules/HA"
 
-  prefix                           = var.prefix
-  location                         = var.location
-  resource_group_name              = azurerm_resource_group.resourcegroup.name
-  username                         = var.username
-  password                         = var.password
-  fmg_version                      = var.fmg_version
-  fmg1_byol_license_file            = var.fmg1_byol_license_file
-  fmg1_byol_fortiflex_license_token = var.fmg1_byol_fortiflex_license_token
-  fmg1_byol_serial_number			= var.fmg1_byol_serial_number
-  fmg2_byol_license_file            = var.fmg2_byol_license_file
-  fmg2_byol_fortiflex_license_token = var.fmg2_byol_fortiflex_license_token
-  fmg2_byol_serial_number			= var.fmg2_byol_serial_number
-  fmg_accelerated_networking       = var.fmg_accelerated_networking
-  subnet_id          = module.vnet.vnet_subnets[0]
-  virtual_network_id = module.vnet.vnet_id
-  subnet_prefixes     = var.subnet_prefixes 
+  prefix                             = var.prefix
+  location                           = var.location
+  resource_group_name                = azurerm_resource_group.resourcegroup.name
+  subscription_id					 = data.azurerm_subscription.current.subscription_id
+  username                         	 = var.username
+  password                         	 = var.password
+  fmg_version                        = var.fmg_version
+  fmg1_byol_license_file             = var.fmg1_byol_license_file
+  fmg1_byol_fortiflex_license_token  = var.fmg1_byol_fortiflex_license_token
+  fmg1_byol_serial_number			 = var.fmg1_byol_serial_number
+  fmg2_byol_license_file             = var.fmg2_byol_license_file
+  fmg2_byol_fortiflex_license_token  = var.fmg2_byol_fortiflex_license_token
+  fmg2_byol_serial_number			 = var.fmg2_byol_serial_number
+  fmg_accelerated_networking         = var.fmg_accelerated_networking
+  subnet_id          				 = module.vnet.vnet_subnets[0]
+  virtual_network_id 				 = module.vnet.vnet_id
+  subnet_prefixes     				 = var.subnet_prefixes
+    
   depends_on = [
     module.vnet
   ]
