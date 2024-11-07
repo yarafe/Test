@@ -1,0 +1,116 @@
+Content-Type: multipart/mixed; boundary="===============0086047718136476635=="
+MIME-Version: 1.0
+
+--===============0086047718136476635==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="config"
+
+config system global
+    set hostname "${fmg2_vm_name}"
+    set adom-status enable
+    set clone-name-option keep
+    set create-revision enable
+    set device-view-mode tree
+    set disable-module fortiview-noc
+    set import-ignore-addr-cmt enable
+    set partial-install enable
+    set partial-install-force enable
+    set partial-install-rev enable
+    set perform-improve-by-ha enable
+    set policy-hit-count enable
+    set policy-object-icon enable
+    set search-all-adoms enable
+end
+config system admin setting
+    set gui-theme spring
+    set idle_timeout 480
+    set sdwan-monitor-history enable
+    set show-add-multiple enable
+    set show-checkbox-in-table enable
+    set show-device-import-export enable
+    set show-hostname enable
+    set show_automatic_script enable
+    set show_schedule_script enable
+    set show_tcl_script enable
+end
+config system interface
+    edit "port1"
+        set ip ${fmg2_ipaddr}/${fmg_mask}
+        set allowaccess ping https ssh
+    next
+end
+config system route
+    edit 1
+        set device "port1"
+        set gateway ${fmg_gw}
+    next
+end
+
+config system ha
+	set clusterid 10
+    set failover-mode vrrp
+    set hb-interval 5
+    set hb-lost-threshold 10
+        config peer
+            edit 1
+                set ip ${fmg1_ipaddr}
+                set serial-number ${fmg1_byol_serial_number}
+            next
+        end
+    set unicast enable
+    set vip ${ha_pip}
+    set vrrp-interface "port1"
+end
+
+config system certificate ca
+    edit "DigiCertGlobalRootG2"
+        set ca "-----BEGIN CERTIFICATE-----
+MIIDjjCCAnagAwIBAgIQAzrx5qcRqaC7KGSxHQn65TANBgkqhkiG9w0BAQsFADBh
+MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3
+d3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBH
+MjAeFw0xMzA4MDExMjAwMDBaFw0zODAxMTUxMjAwMDBaMGExCzAJBgNVBAYTAlVT
+MRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5j
+b20xIDAeBgNVBAMTF0RpZ2lDZXJ0IEdsb2JhbCBSb290IEcyMIIBIjANBgkqhkiG
+9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuzfNNNx7a8myaJCtSnX/RrohCgiN9RlUyfuI
+2/Ou8jqJkTx65qsGGmvPrC3oXgkkRLpimn7Wo6h+4FR1IAWsULecYxpsMNzaHxmx
+1x7e/dfgy5SDN67sH0NO3Xss0r0upS/kqbitOtSZpLYl6ZtrAGCSYP9PIUkY92eQ
+q2EGnI/yuum06ZIya7XzV+hdG82MHauVBJVJ8zUtluNJbd134/tJS7SsVQepj5Wz
+tCO7TG1F8PapspUwtP1MVYwnSlcUfIKdzXOS0xZKBgyMUNGPHgm+F6HmIcr9g+UQ
+vIOlCsRnKPZzFBQ9RnbDhxSJITRNrw9FDKZJobq7nMWxM4MphQIDAQABo0IwQDAP
+BgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIBhjAdBgNVHQ4EFgQUTiJUIBiV
+5uNu5g/6+rkS7QYXjzkwDQYJKoZIhvcNAQELBQADggEBAGBnKJRvDkhj6zHd6mcY
+1Yl9PMWLSn/pvtsrF9+wX3N3KjITOYFnQoQj8kVnNeyIv/iPsGEMNKSuIEyExtv4
+NeF22d+mQrvHRAiGfzZ0JFrabA0UWTW98kndth/Jsw1HKj2ZL7tcu7XUIOGZX1NG
+Fdtom/DzMNU+MeKNhJ7jitralj41E6Vf8PlwUHBHQRFXGU7Aj64GxJUTFy8bJZ91
+8rGOmaFvE7FBcf6IKshPECBV1/MUReXgRPTqh5Uykw7+U0b6LJ3/iyK5S9kJRaTe
+pLiaWN0bfVKfjllDiIGknibVb63dDcY3fe0Dkhvld1927jyNxF1WW6LZZm6zNTfl
+MrY=
+-----END CERTIFICATE-----"
+        set comment "Created by Terraform"
+    next
+end
+
+%{ if fmg_ssh_public_key != "" }
+config system admin user
+    edit "${fmg_username}"
+        set ssh-public-key1 "${trimspace(file(fmg_ssh_public_key))}"
+    next
+end
+%{ endif }
+%{ if fmg2_license_fortiflex != "" }
+exec vm-license ${fmg2_license_fortiflex}
+%{ endif }
+
+%{ if fmg2_license_file != "" }
+--===============0086047718136476635==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="${fmg2_license_file}"
+
+${file(fmg2_license_file)}
+
+%{ endif }
+--===============0086047718136476635==--

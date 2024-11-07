@@ -1,0 +1,31 @@
+##############################################################################################################
+#
+# FortiManager VM
+# Terraform deployment template for Microsoft Azure
+#
+# The FortiManager VM is reachable via the public or private IP address
+# Management GUI HTTPS on port 443 and for SSH on port 22
+#
+# BEWARE: The state files contain sensitive data like passwords and others. After the demo clean up your
+#         clouddrive directory
+#
+#After deployment perform and validate the following three steps:
+#
+#    During deployment the root certificate (DigiCert Global Root G2) for management.azure.com is added. This certificate can also be downloaded and added as a local CA certificate on the FortiManager
+#    For the failover process, FortiManager uses managed identity on Microsoft Azure to migrate the public IP. Assign either the network contributor or a custom role to the resource group containing the FortiManager resources (VM, network interface, public ip address, network security group). More information can be found [here](#vrrp-managed identity)
+#    The FortiManager devices need to have outbound access to management.azure.com via either the attached public IPs or another outbound path
+#
+#
+#
+# Deployment location: ${location}
+#
+##############################################################################################################
+
+username = ${fmg_username}
+fmg1_public_ip_address = ${fmg1_public_ip_address}
+fmg1_private_ip_address = ${fmg1_private_ip_address}
+fmg2_public_ip_address = ${fmg2_public_ip_address}
+fmg2_private_ip_address = ${fmg2_private_ip_address}
+ha_public_ip_address = ${ha_public_ip_address}
+
+##############################################################################################################
