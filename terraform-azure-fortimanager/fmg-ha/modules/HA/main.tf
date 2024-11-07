@@ -53,14 +53,6 @@ resource "random_string" "random" {
   upper   = false
 }
 
-resource "azurerm_resource_group" "resourcegroup" {
-  name     = "${var.prefix}-rg"
-  location = var.location
-
-  lifecycle {
-    ignore_changes = [tags["CreatedOnDate"]]
-  }
-}
 
 resource "azurerm_network_security_group" "fmgnsg" {
   name                = "${var.prefix}-fmg-nsg"
@@ -355,14 +347,3 @@ resource "azurerm_virtual_machine_data_disk_attachment" "fmg2-datadisk-attach" {
   caching            = "ReadWrite"
 }
 
-resource "azurerm_role_assignment" "network_contributor_fmg1" {
-  scope                = azurerm_resource_group.resourcegroup.id
-  role_definition_name = "Network Contributor"
-  principal_id         = azurerm_linux_virtual_machine.fmg[0].identity[0].principal_id
-}
-
-resource "azurerm_role_assignment" "network_contributor_fmg2" {
-  scope                = azurerm_resource_group.resourcegroup.id
-  role_definition_name = "Network Contributor"
-  principal_id         = azurerm_linux_virtual_machine.fmg[1].identity[0].principal_id
-}
