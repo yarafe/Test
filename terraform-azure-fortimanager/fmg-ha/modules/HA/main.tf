@@ -211,7 +211,7 @@ resource "azurerm_network_interface" "fmg1ifc" {
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.fmg1pip.id
-	  primary                       = true
+    primary                       = true
   }
   ip_configuration {
     name                          = "vip"
@@ -254,13 +254,13 @@ resource "azurerm_network_interface" "fmg2ifc" {
 }
 
 resource "azurerm_network_interface_security_group_association" "fmgnsg" {
-  count					            = 2
+  count			    = 2
   network_interface_id      = count.index == 0 ? azurerm_network_interface.fmg1ifc.id : azurerm_network_interface.fmg2ifc.id
   network_security_group_id = azurerm_network_security_group.fmgnsg.id
 }
 
 resource "azurerm_linux_virtual_machine" "fmg" {
-  count					        = 2
+  count			= 2
   name                  = "${var.prefix}-fmg${count.index+1}"
   location              = var.location
   resource_group_name   = var.resource_group_name
