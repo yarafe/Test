@@ -12,14 +12,14 @@ locals {
     faz1_vm_name            = "${local.faz1_name}"
     faz1_license_file       = var.faz1_byol_license_file
     faz1_license_fortiflex  = var.faz1_byol_fortiflex_license_token
-	  faz1_byol_serial_number = var.faz1_byol_serial_number
+    faz1_byol_serial_number = var.faz1_byol_serial_number
     faz_username            = var.username
     faz_ssh_public_key      = var.faz_ssh_public_key_file
     faz1_ipaddr             = azurerm_network_interface.faz1ifc.private_ip_address
     faz_mask                = cidrnetmask(var.subnet_prefixes[0])	  
     faz_gw                  = cidrhost(var.subnet_prefixes[0], 1)
-	  ha_ip		  		          = var.ha_ip
-	  ha_ip_address		        = var.ha_ip == "public" ? azurerm_public_ip.hapip[0].ip_address : azurerm_network_interface.faz1ifc.ip_configuration[1].private_ip_address
+    ha_ip		    = var.ha_ip
+    ha_ip_address	    = var.ha_ip == "public" ? azurerm_public_ip.hapip[0].ip_address : azurerm_network_interface.faz1ifc.ip_configuration[1].private_ip_address
   }
   
   faz2_name = "${var.prefix}-faz2"
@@ -27,10 +27,10 @@ locals {
     faz2_vm_name            = "${local.faz2_name}"
     faz2_license_file       = var.faz2_byol_license_file
     faz2_license_fortiflex  = var.faz2_byol_fortiflex_license_token
-	  faz2_byol_serial_number	= var.faz2_byol_serial_number
+    faz2_byol_serial_number = var.faz2_byol_serial_number
     faz_username            = var.username
     faz_ssh_public_key      = var.faz_ssh_public_key_file
-	  faz2_ipaddr             = azurerm_network_interface.faz2ifc.private_ip_address
+    faz2_ipaddr             = azurerm_network_interface.faz2ifc.private_ip_address
     faz_mask                = cidrnetmask(var.subnet_prefixes[0])
     faz_gw                  = cidrhost(var.subnet_prefixes[0], 1)
   }
@@ -192,14 +192,14 @@ resource "azurerm_network_interface" "faz1ifc" {
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.faz1pip.id
-	  primary                       = true
+    primary                       = true
   }
   ip_configuration {
     name                          = "vip"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = var.ha_ip == "public" ? azurerm_public_ip.hapip[0].id : null
-	  primary                       = false
+    primary                       = false
   }
 
   lifecycle {
@@ -218,7 +218,7 @@ resource "azurerm_network_interface" "faz2ifc" {
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.faz2pip.id
-	  primary                       = true
+    primary                       = true
   }
   dynamic "ip_configuration" {
   for_each = var.ha_ip == "public" ? [1] : []
@@ -226,7 +226,7 @@ resource "azurerm_network_interface" "faz2ifc" {
     name                          = "vip"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
-	  primary                       = false
+    primary                       = false
    }
   }
   lifecycle {
@@ -235,13 +235,13 @@ resource "azurerm_network_interface" "faz2ifc" {
 }
 
 resource "azurerm_network_interface_security_group_association" "faznsg" {
-  count					            = 2
+  count			    = 2
   network_interface_id      = count.index == 0 ? azurerm_network_interface.faz1ifc.id : azurerm_network_interface.faz2ifc.id
   network_security_group_id = azurerm_network_security_group.faznsg.id
 }
 
 resource "azurerm_linux_virtual_machine" "faz" {
-  count					        = 2
+  count			= 2
   name                  = "${var.prefix}-faz${count.index+1}"
   location              = var.location
   resource_group_name   = var.resource_group_name
