@@ -46,7 +46,7 @@ module "faz-ha" {
   prefix                           	= var.prefix
   location                         	= var.location
   resource_group_name              	= azurerm_resource_group.resourcegroup.name 
-  subscription_id= data.azurerm_subscription.current.subscription_id
+  subscription_id                   = data.azurerm_subscription.current.subscription_id
   username                         	= var.username
   password                         	= var.password
   faz_version                      	= var.faz_version
