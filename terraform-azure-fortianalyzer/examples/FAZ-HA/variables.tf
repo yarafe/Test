@@ -44,12 +44,12 @@ variable "faz1_byol_license_file" {
 }
 
 variable "faz1_byol_fortiflex_license_token" {
-  default = "C51FECF204BBFB2C9281"
+  default = ""
 }
 
 variable "faz1_byol_serial_number" {
   description = "FAZ1 Serial Number is required for FAZ-HA deployment"
-  default = "FZVMELTM24000717"
+  default = ""
 }
 
 variable "faz2_byol_license_file" {
@@ -57,12 +57,12 @@ variable "faz2_byol_license_file" {
 }
 
 variable "faz2_byol_fortiflex_license_token" {
-  default = "9D7D9866627BCD898FB7"
+  default = ""
 }
 
 variable "faz2_byol_serial_number" {
   description = "FAZ2 Serial Number is required for FAZ-HA deployment"
-  default = "FZVMELTM24000718"
+  default = ""
 }
 
 variable "faz_ssh_public_key_file" {
