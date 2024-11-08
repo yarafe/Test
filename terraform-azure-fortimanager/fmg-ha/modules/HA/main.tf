@@ -12,14 +12,14 @@ locals {
     fmg1_vm_name            = "${local.fmg1_name}"
     fmg1_license_file       = var.fmg1_byol_license_file
     fmg1_license_fortiflex  = var.fmg1_byol_fortiflex_license_token
-	  fmg1_byol_serial_number = var.fmg1_byol_serial_number
+    fmg1_byol_serial_number = var.fmg1_byol_serial_number
     fmg_username            = var.username
     fmg_ssh_public_key      = var.fmg_ssh_public_key_file
     fmg1_ipaddr             = azurerm_network_interface.fmg1ifc.private_ip_address
     fmg_mask                = cidrnetmask(var.subnet_prefixes[0])
     fmg_gw                  = cidrhost(var.subnet_prefixes[0], 1)
-	  ha_ip		  		          = var.ha_ip
-	  ha_ip_address		        = var.ha_ip == "public" ? azurerm_public_ip.hapip[0].ip_address : azurerm_network_interface.fmg1ifc.ip_configuration[1].private_ip_address
+    ha_ip		    = var.ha_ip
+    ha_ip_address           = var.ha_ip == "public" ? azurerm_public_ip.hapip[0].ip_address : azurerm_network_interface.fmg1ifc.ip_configuration[1].private_ip_address
   }
   
   fmg2_name = "${var.prefix}-fmg2"
@@ -27,10 +27,10 @@ locals {
     fmg2_vm_name            = "${local.fmg2_name}"
     fmg2_license_file       = var.fmg2_byol_license_file
     fmg2_license_fortiflex  = var.fmg2_byol_fortiflex_license_token
-	  fmg2_byol_serial_number	= var.fmg2_byol_serial_number
+    fmg2_byol_serial_number = var.fmg2_byol_serial_number
     fmg_username            = var.username
     fmg_ssh_public_key      = var.fmg_ssh_public_key_file
-	  fmg2_ipaddr             = azurerm_network_interface.fmg2ifc.private_ip_address
+    fmg2_ipaddr             = azurerm_network_interface.fmg2ifc.private_ip_address
     fmg_mask                = cidrnetmask(var.subnet_prefixes[0])
     fmg_gw                  = cidrhost(var.subnet_prefixes[0], 1)
   }
@@ -218,7 +218,7 @@ resource "azurerm_network_interface" "fmg1ifc" {
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = var.ha_ip == "public" ? azurerm_public_ip.hapip[0].id : null
-	  primary                       = false
+    primary                       = false
   }
 
   lifecycle {
@@ -237,7 +237,7 @@ resource "azurerm_network_interface" "fmg2ifc" {
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.fmg2pip.id
-	  primary                       = true
+    primary                       = true
   }
   dynamic "ip_configuration" {
   for_each = var.ha_ip == "public" ? [1] : []
@@ -245,7 +245,7 @@ resource "azurerm_network_interface" "fmg2ifc" {
     name                          = "vip"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
-	  primary                       = false
+    primary                       = false
    }
   }
   lifecycle {
