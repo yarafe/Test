@@ -36,7 +36,7 @@ variable "ha_ip" {
 
 variable "faz_version" {
   description = "FortiAnalyzer version by default the 'latest' available version in the Azure Marketplace is selected"
-  default     = "7.4.0"
+  default     = "latest"
 }
 
 variable "faz1_byol_license_file" {
@@ -44,7 +44,7 @@ variable "faz1_byol_license_file" {
 }
 
 variable "faz1_byol_fortiflex_license_token" {
-  default = "A8B1D37D3D68D71E8A75"
+  default = "C51FECF204BBFB2C9281"
 }
 
 variable "faz1_byol_serial_number" {
@@ -57,7 +57,7 @@ variable "faz2_byol_license_file" {
 }
 
 variable "faz2_byol_fortiflex_license_token" {
-  default = "D5642D8FC63F20FE8E6A"
+  default = "9D7D9866627BCD898FB7"
 }
 
 variable "faz2_byol_serial_number" {

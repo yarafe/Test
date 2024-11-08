@@ -36,6 +36,9 @@ variable "ha_ip" {
 # Names and data sources of linked Azure resource
 ##############################################################################################################
 
+variable subscription_id {
+}
+
 variable "resource_group_name" {
 }
 
@@ -57,7 +60,7 @@ variable "subnet_prefixes" {
 
 variable "faz_version" {
   description = "Fortianalyzer version by default the 'latest' available version in the Azure Marketplace is selected"
-  default     = "7.4.0"
+  default     = "latest"
 }
 
 variable "faz1_byol_license_file" {
