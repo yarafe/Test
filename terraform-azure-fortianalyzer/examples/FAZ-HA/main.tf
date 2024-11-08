@@ -43,24 +43,24 @@ module "vnet" {
 module "faz-ha" {
   source = "../modules/HA"
 
-  prefix                           	= var.prefix
-  location                         	= var.location
-  resource_group_name              	= azurerm_resource_group.resourcegroup.name 
+  prefix                            = var.prefix
+  location                          = var.location
+  resource_group_name               = azurerm_resource_group.resourcegroup.name 
   subscription_id                   = data.azurerm_subscription.current.subscription_id
-  username                         	= var.username
-  password                         	= var.password
-  faz_version                      	= var.faz_version
+  username                          = var.username
+  password                          = var.password
+  faz_version                       = var.faz_version
   faz1_byol_license_file            = var.faz1_byol_license_file
   faz1_byol_fortiflex_license_token = var.faz1_byol_fortiflex_license_token
-  faz1_byol_serial_number			      = var.faz1_byol_serial_number
+  faz1_byol_serial_number           = var.faz1_byol_serial_number
   faz2_byol_license_file            = var.faz2_byol_license_file
   faz2_byol_fortiflex_license_token = var.faz2_byol_fortiflex_license_token
-  faz2_byol_serial_number			      = var.faz2_byol_serial_number
+  faz2_byol_serial_number           = var.faz2_byol_serial_number
   faz_accelerated_networking        = var.faz_accelerated_networking
-  ha_ip		  		                    = var.ha_ip
-  subnet_id          				        = module.vnet.vnet_subnets[0]
-  virtual_network_id 				        = module.vnet.vnet_id
-  subnet_prefixes     				      = var.subnet_prefixes 
+  ha_ip_address                     = var.ha_ip
+  subnet_id                         = module.vnet.vnet_subnets[0]
+  virtual_network_id                = module.vnet.vnet_id
+  subnet_prefixes                   = var.subnet_prefixes 
   depends_on = [
     module.vnet
   ]
