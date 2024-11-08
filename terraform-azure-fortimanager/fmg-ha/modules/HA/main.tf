@@ -1,6 +1,6 @@
 ##############################################################################################################
 #
-# FortiManager - High Availability  FortiManager VM-A
+# FortiManager - High Availability  
 # Terraform deployment template for Microsoft Azure
 #
 ##############################################################################################################
@@ -9,34 +9,35 @@
 locals {
   fmg1_name = "${var.prefix}-fmg1"
   fmg1_vars = {
-    fmg1_vm_name           = "${local.fmg1_name}"
-    fmg1_license_file      = var.fmg1_byol_license_file
-    fmg1_license_fortiflex = var.fmg1_byol_fortiflex_license_token
-	fmg1_byol_serial_number = var.fmg1_byol_serial_number
-    fmg_username          = var.username
-    fmg_ssh_public_key    = var.fmg_ssh_public_key_file
-    fmg1_ipaddr            = azurerm_network_interface.fmg1ifc.private_ip_address
-    fmg_mask              = cidrnetmask(var.subnet_prefixes[0])
-	ha_pip				  = azurerm_public_ip.hapip.ip_address		  
-    fmg_gw                = cidrhost(var.subnet_prefixes[0], 1)
+    fmg1_vm_name            = "${local.fmg1_name}"
+    fmg1_license_file       = var.fmg1_byol_license_file
+    fmg1_license_fortiflex  = var.fmg1_byol_fortiflex_license_token
+	  fmg1_byol_serial_number = var.fmg1_byol_serial_number
+    fmg_username            = var.username
+    fmg_ssh_public_key      = var.fmg_ssh_public_key_file
+    fmg1_ipaddr             = azurerm_network_interface.fmg1ifc.private_ip_address
+    fmg_mask                = cidrnetmask(var.subnet_prefixes[0])
+    fmg_gw                  = cidrhost(var.subnet_prefixes[0], 1)
+	  ha_ip		  		          = var.ha_ip
+	  ha_ip_address		        = var.ha_ip == "public" ? azurerm_public_ip.hapip[0].ip_address : azurerm_network_interface.fmg1ifc.ip_configuration[1].private_ip_address
   }
   
   fmg2_name = "${var.prefix}-fmg2"
   fmg2_vars = {
-    fmg2_vm_name           = "${local.fmg2_name}"
-    fmg2_license_file      = var.fmg2_byol_license_file
-    fmg2_license_fortiflex = var.fmg2_byol_fortiflex_license_token
-	fmg2_byol_serial_number	= var.fmg2_byol_serial_number
-    fmg_username          = var.username
-    fmg_ssh_public_key    = var.fmg_ssh_public_key_file
-	fmg2_ipaddr            = azurerm_network_interface.fmg2ifc.private_ip_address
-    fmg_mask              = cidrnetmask(var.subnet_prefixes[0])
-    fmg_gw                = cidrhost(var.subnet_prefixes[0], 1)
+    fmg2_vm_name            = "${local.fmg2_name}"
+    fmg2_license_file       = var.fmg2_byol_license_file
+    fmg2_license_fortiflex  = var.fmg2_byol_fortiflex_license_token
+	  fmg2_byol_serial_number	= var.fmg2_byol_serial_number
+    fmg_username            = var.username
+    fmg_ssh_public_key      = var.fmg_ssh_public_key_file
+	  fmg2_ipaddr             = azurerm_network_interface.fmg2ifc.private_ip_address
+    fmg_mask                = cidrnetmask(var.subnet_prefixes[0])
+    fmg_gw                  = cidrhost(var.subnet_prefixes[0], 1)
   }
   
   fmg_combined_vars = merge(local.fmg1_vars, local.fmg2_vars)
-  fmg1_customdata = base64encode(templatefile("${path.module}/fmg1-customdata.tftpl", local.fmg_combined_vars))
-  fmg2_customdata = base64encode(templatefile("${path.module}/fmg2-customdata.tftpl", local.fmg_combined_vars))
+  fmg1_customdata   = base64encode(templatefile("${path.module}/fmg1-customdata.tftpl", local.fmg_combined_vars))
+  fmg2_customdata   = base64encode(templatefile("${path.module}/fmg2-customdata.tftpl", local.fmg_combined_vars))
   
 
   fmg_plan = {
@@ -190,6 +191,7 @@ resource "azurerm_public_ip" "fmg2pip" {
 }
 
 resource "azurerm_public_ip" "hapip" {
+  count               = var.ha_ip == "public" ? 1 : 0
   name                = "ha-pip"
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -209,14 +211,14 @@ resource "azurerm_network_interface" "fmg1ifc" {
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.fmg1pip.id
-	primary                       = true
+	  primary                       = true
   }
   ip_configuration {
     name                          = "vip"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.hapip.id
-	primary                       = false
+    public_ip_address_id          = var.ha_ip == "public" ? azurerm_public_ip.hapip[0].id : null
+	  primary                       = false
   }
 
   lifecycle {
@@ -235,13 +237,16 @@ resource "azurerm_network_interface" "fmg2ifc" {
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.fmg2pip.id
-	primary                       = true
+	  primary                       = true
   }
-  ip_configuration {
+  dynamic "ip_configuration" {
+  for_each = var.ha_ip == "public" ? [1] : []
+  content {
     name                          = "vip"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
-	primary                       = false
+	  primary                       = false
+   }
   }
   lifecycle {
     ignore_changes = [ip_configuration["subnet_id"]]
@@ -249,13 +254,13 @@ resource "azurerm_network_interface" "fmg2ifc" {
 }
 
 resource "azurerm_network_interface_security_group_association" "fmgnsg" {
-  count					    = 2
+  count					            = 2
   network_interface_id      = count.index == 0 ? azurerm_network_interface.fmg1ifc.id : azurerm_network_interface.fmg2ifc.id
   network_security_group_id = azurerm_network_security_group.fmgnsg.id
 }
 
 resource "azurerm_linux_virtual_machine" "fmg" {
-  count					= 2
+  count					        = 2
   name                  = "${var.prefix}-fmg${count.index+1}"
   location              = var.location
   resource_group_name   = var.resource_group_name

@@ -1,6 +1,6 @@
 ##############################################################################################################
 #
-# FortiManager - a standalone FortiManager VM
+# FortiManager - High Availability
 # Terraform deployment template for Microsoft Azure
 #
 ##############################################################################################################
@@ -17,7 +17,7 @@ output "deployment_summary" {
     fmg1_private_ip_address = azurerm_network_interface.fmg1ifc.private_ip_address
 	fmg2_public_ip_address  = data.azurerm_public_ip.fmg2pip.ip_address
     fmg2_private_ip_address = azurerm_network_interface.fmg2ifc.private_ip_address
-	ha_public_ip_address  =  var.ha_ip == "public" && length(data.azurerm_public_ip.hapip) > 0 ? data.azurerm_public_ip.hapip[0].ip_address : null
+	ha_ip_address  =  var.ha_ip == "public" && length(data.azurerm_public_ip.hapip) > 0 ? data.azurerm_public_ip.hapip[0].ip_address : azurerm_network_interface.fmg1ifc.ip_configuration[1].private_ip_address
   })
 }
 
@@ -45,7 +45,6 @@ data "azurerm_public_ip" "hapip" {
   resource_group_name = var.resource_group_name
 }
 
-output "ha_public_ip_address" {
-  value = var.ha_ip == "public" && length(data.azurerm_public_ip.hapip) > 0 ? data.azurerm_public_ip.hapip[0].ip_address : null
-}
+output "ha_ip_address" {
+  value = var.ha_ip == "public" && length(data.azurerm_public_ip.hapip) > 0 ? data.azurerm_public_ip.hapip[0].ip_address : azurerm_network_interface.fmg1ifc.ip_configuration[1].private_ip_address
 }

@@ -1,6 +1,6 @@
 ##############################################################################################################
 #
-# FortiManager - a standalone FortiManager VM
+# FortiManager - High Availability
 # Terraform deployment template for Microsoft Azure
 #
 ##############################################################################################################
