@@ -44,12 +44,12 @@ variable "fmg1_byol_license_file" {
 }
 
 variable "fmg1_byol_fortiflex_license_token" {
-  default = "65421D3DB80D0BE445FC"
+  default = ""
 }
 
 variable "fmg1_byol_serial_number" {
   description = "FMG1 Serial Number is required for FMG-HA deployment"
-  default = "FMVMELTM23000042"
+  default = ""
 }
 
 variable "fmg2_byol_license_file" {
@@ -57,12 +57,12 @@ variable "fmg2_byol_license_file" {
 }
 
 variable "fmg2_byol_fortiflex_license_token" {
-  default = "FEB9D705FD1E6CF83816"
+  default = ""
 }
 
 variable "fmg2_byol_serial_number" {
   description = "FMG2 Serial Number is required for FMG-HA deployment"
-  default = "FMVMELTM24000647"
+  default = ""
 }
 
 variable "fmg_ssh_public_key_file" {
