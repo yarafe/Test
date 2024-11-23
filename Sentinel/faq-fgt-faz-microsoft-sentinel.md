@@ -70,32 +70,128 @@ To establish the integration between Microsoft Sentinel and FortiGate, follow th
 Begin by setting up a Log Analytics Workspace as detailed in this [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal). Once established, proceed to onboard Sentinel with the created Log Analytics.
 For more information, visit the provided [link](https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard) for detailed instructions.
 
-### Utilize FortiGate Data Connector:
-Access Azure Marketplace to deploy the FortiGate Data Connector for Microsoft Sentinel, accompanied by workbooks and playbooks, all available for free. 
+### Utilize CEF Data Connector:
+Navigate to Microsoft Sentinel workspace ---> configuration ---> Data connector blade .
 
-![ Fortinet FortiGate Next-Generation Firewall connector for Microsoft Sentinel](images/FGT-dataconnector-marketplace.PNG)
+Search for 'Common Event Format (CEF) and install it. This will deploy for you Common Event Format (CEF) via AMA.
 
-Navigate to Microsoft Sentinel Configuration -> Data Connectors, where you will find the Fortinet connector installed.
-Click on "open connector page" to view the instructions provided.
+
+Open connector page for Common Event Format (CEF) via AMA.
 
 ![ Sentinel- Fortinet data connector](images/Fortinet-dataconnector.PNG)
+
+Create Data collection rule DCR (if you don't have):
+-use the same location as your log analytics workspace
+-add linux machine as a resource
+-collect facility log_local7
+
+You can find below an ARM template example for DCR configuration:
+
+<pre><code>
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dataCollectionRules_ya_dcr_ama_agent_name": {
+            "defaultValue": "mydcr",
+            "type": "String"
+        },
+        "workspaces_ya_faz_ama_externalid": {
+            "defaultValue": "/subscriptions/xxxxxxxxxxxxxxxxxxxxxx/resourceGroups/ya-faz-sentinel-ama/providers/Microsoft.OperationalInsights/workspaces/ya-faz-ama",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Insights/dataCollectionRules",
+            "apiVersion": "2023-03-11",
+            "name": "[parameters('dataCollectionRules_ya_dcr_ama_agent_name')]",
+            "location": "westeurope",
+            "tags": {
+                "createdBy": "Sentinel"
+            },
+            "kind": "Linux",
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "dataSources": {
+                    "syslog": [
+                        {
+                            "streams": [
+                                "Microsoft-CommonSecurityLog"
+                            ],
+                            "facilityNames": [
+                                "local7"
+                            ],
+                            "logLevels": [
+                                "Notice",
+                                "Warning",
+                                "Error",
+                                "Critical",
+                                "Alert",
+                                "Emergency"
+                            ],
+                            "name": "sysLogsDataSource-1039681479"
+                        },
+                        {
+                            "streams": [
+                                "Microsoft-CommonSecurityLog"
+                            ],
+                            "facilityNames": [
+                                "nopri"
+                            ],
+                            "logLevels": [
+                                "Emergency"
+                            ],
+                            "name": "sysLogsDataSource-1697966155"
+                        }
+                    ]
+                },
+                "destinations": {
+                    "logAnalytics": [
+                        {
+                            "workspaceResourceId": "[parameters('workspaces_ya_faz_ama_externalid')]",
+                            "name": "DataCollectionEvent"
+                        }
+                    ]
+                },
+                "dataFlows": [
+                    {
+                        "streams": [
+                            "Microsoft-CommonSecurityLog"
+                        ],
+                        "destinations": [
+                            "DataCollectionEvent"
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+</code></pre>
 
 ### CEF Collector Installation on Linux:
 Install the Common Event Format (CEF) collector on a Linux machine by executing the following Python script:
 
 <pre><code>
-sudo wget -O cef_installer.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/CEF/cef_installer.py &&sudo python cef_installer.py c7498055-e4c5-40e3-b6cd-5bf54be0debd rLysrkRNqtqFZteAWROvuEN6JQeqr5ZIUMCzE0JNaBYSc7Fxng0Kwi6ra4wkd8Nh1il/sdHufF3hXz/JoF2o4A==
+sudo wget -O Forwarder_AMA_installer.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Forwarder_AMA_installer.py&&sudo python3 Forwarder_AMA_installer.py
 </code></pre>
 
 
 ### Configure FortiGate Device:
 Following this configuration on the Linux machine, the FortiGate device is then set up to dispatch Syslog messages in CEF format to the designated proxy machine using the provided command:
+The facility to local7 has been configured should match "Collect" in the Data Collection Rule configuration.
 
 <pre><code>
 config log syslogd setting
     set status enable
     set port 514
     set server "x.x.x.x" # IP of the Syslog agent's address
+	set facility local7
     set format cef
 end
 </code></pre>
