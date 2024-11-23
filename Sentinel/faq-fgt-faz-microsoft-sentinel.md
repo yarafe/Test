@@ -75,11 +75,11 @@ Navigate to Microsoft Sentinel workspace ---> configuration ---> Data connector 
 
 Search for 'Common Event Format (CEF) and install it. This will deploy for you Common Event Format (CEF) via AMA.
 
-![ Sentinel- CEF-DataConnector](images/CEF-DataConnector.PNG)
+![ Sentinel- CEF-DataConnector](images/CEF-DataConnector.png)
 
 Open connector page for Common Event Format (CEF) via AMA.
 
-![ Sentinel- CEF via AMA-page](images/CEF via AMA-page.PNG)
+![ Sentinel- CEF via AMA-page](images/CEF via AMA-page.png)
 
 Create Data collection rule DCR (if you don't have):
 -use the same location as your log analytics workspace
