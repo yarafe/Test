@@ -75,10 +75,11 @@ Navigate to Microsoft Sentinel workspace ---> configuration ---> Data connector 
 
 Search for 'Common Event Format (CEF) and install it. This will deploy for you Common Event Format (CEF) via AMA.
 
+![ Sentinel- CEF-DataConnector](images/CEF-DataConnector.PNG)
 
 Open connector page for Common Event Format (CEF) via AMA.
 
-![ Sentinel- Fortinet data connector](images/Fortinet-dataconnector.PNG)
+![ Sentinel- CEF via AMA-page](images/CEF via AMA-page.PNG)
 
 Create Data collection rule DCR (if you don't have):
 -use the same location as your log analytics workspace
@@ -181,10 +182,8 @@ Install the Common Event Format (CEF) collector on a Linux machine by executing 
 sudo wget -O Forwarder_AMA_installer.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Forwarder_AMA_installer.py&&sudo python3 Forwarder_AMA_installer.py
 </code></pre>
 
-
 ### Configure FortiGate Device:
 Following this configuration on the Linux machine, the FortiGate device is then set up to dispatch Syslog messages in CEF format to the designated proxy machine using the provided command:
-The facility to local7 has been configured should match "Collect" in the Data Collection Rule configuration.
 
 <pre><code>
 config log syslogd setting
@@ -195,6 +194,8 @@ config log syslogd setting
     set format cef
 end
 </code></pre>
+
+The facility to local7 has been configured should match "Collect" in the Data Collection Rule configuration.
 
 ### Validation and Connectivity Check:
 Once the configuration is complete, check the Fortinet connector's status in Microsoft Sentinel to ensure successful connection. Validate connectivity by accessing the Log Analytics Workspace, as illustrated in the accompanying screenshot.
