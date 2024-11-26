@@ -176,6 +176,11 @@ The facility to local7 has been configured should match "Collect" in the Data Co
 
 ### Validation and Connectivity Check
 
+The following command can be used to check the log statistics sent from FortiGate:
+<pre><code>
+diagnose test application syslogd 4
+</code></pre>
+
 To validate that the syslog daemon is running on the TCP port and that the AMA is listening, run this command:
 <pre><code>
 netstat -lnptv
