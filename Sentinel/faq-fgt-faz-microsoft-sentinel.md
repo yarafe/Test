@@ -24,16 +24,11 @@ The Linux machine is structured with two key components:
 
 Syslog Daemon (Log Collector): Utilizing either rsyslog or syslog-ng, this daemon performs dual functions
 
--Actively listens for Syslog messages originating from FortiGate on TCP port 514. 
+-Actively listens for Syslog messages in CEF format originating from FortiGate on TCP port 514. 
 
--forwards only identified CEF messages to the Log Analytics Agent on localhost, utilizing TCP port 25226.
+-Send logs to Azure Monitor Agent (AMA) on localhost, utilizing TCP port 28330.
 
-Log Analytics Agent (OMS Agent): This agent, also referred to as the OMS Agent, engages in two critical tasks
-
--Listens for incoming CEF messages from the integrated Linux Syslog daemon, operating on TCP port 25226.
-
--Securely transmits these CEF messages over TLS to the Microsoft Sentinel workspace.
-
+Azure Monitor Agent (AMA): The agent parses the logs and then sends them to your Microsoft Sentinel (Log Analytics) workspace via HTTPS 443.
 
 ![FGT-Sentinel Integration-DataFlow](images/FGT-DataFlow.png)
 
@@ -181,7 +176,7 @@ To validate that the syslog daemon is running on the TCP port and that the AMA i
 netstat -lnptv
 </code></pre>
 
-![ Port Validation- AMA Agent](images/port-validation-ama-agent.png)                                                                                                                                                               -
+![ Port Validation- AMA](images/port-validation-ama.png)                                                                                                                                                               -
 
 To capture messages sent from a logger or a connected device, run this command in the background:
 <pre><code>
@@ -195,7 +190,7 @@ To verify that the connector is installed correctly, run the troubleshooting scr
 sudo wget -O Sentinel_AMA_troubleshoot.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Sentinel_AMA_troubleshoot.py&&sudo python3 Sentinel_AMA_troubleshoot.py --cef
 </code></pre>
 
-![ Troubleshooting- AMA ](images/troubleshooting-ama-agent.png)
+![ Troubleshooting- AMA ](images/troubleshooting-ama.png)
 
 Check data connector page and verify that the DCR is corectly assigned and that the log is well ingested in CommonSecurityLog Table
 
@@ -211,7 +206,7 @@ You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/conne
 In essence, you have the flexibility to toggle the traffic log on or off via the graphical user interface (GUI) on Fortigate devices, directing it to either Fortianalyzer or a syslog server, and specifying the severity level.
 Additionally, you can undertake more advanced filtering through CLI, allowing for tailored filtering based on specific values. Please refer to the following links:
 
-[Log syslogd filter](https://docs.fortinet.com/document/fortigate/7.4.1/cli-reference/411620/config-log-syslogd-filter)
+[Log syslogd filter](https://docs.fortinet.com/document/fortigate/7.6.0/cli-reference/273422104/config-log-syslogd-filter)
 
 
 
