@@ -60,9 +60,10 @@ Open connector page for Common Event Format (CEF) via AMA.
 ![ Sentinel- CEF via AMA-page](images/CEF via AMA-page.png)
 
 Create Data collection rule DCR (if you don't have):
--use the same location as your log analytics workspace
--add linux machine as a resource
--collect facility log_local7
+
+- use the same location as your log analytics workspace
+- add linux machine as a resource
+- collect facility log_local7
 
 You can find below an ARM template example for DCR configuration:
 
@@ -177,37 +178,36 @@ The facility to local7 has been configured should match "Collect" in the Data Co
 
 ### Validation and Connectivity Check:
 
+To validate that the syslog daemon is running on the TCP port and that the AMA is listening, run this command:
+<pre><code>
+netstat -lnptv
+</code></pre>
+
+![ Port Validation- AMA Agent](images/port-validation-ama-agent.png)                                                                                                                                                               -
+
+To capture messages sent from a logger or a connected device, run this command in the background:
+<pre><code>
+tcpdump -i any port 514 -A -vv &
+</code></pre>
+
+After you complete the validation, we recommend that you stop the tcpdump: Type fg and then select Ctrl+C
+
+To verify that the connector is installed correctly, run the troubleshooting script with one of these commands:
+<pre><code>
+sudo wget -O Sentinel_AMA_troubleshoot.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Sentinel_AMA_troubleshoot.py&&sudo python3 Sentinel_AMA_troubleshoot.py --cef
+</code></pre>
+
+![ Troubleshooting- AMA ](images/troubleshooting-ama-agent.png)
+troubleshooting-ama-agent
+
+Check data connector page and verify that the DCR is corectly assigned and that the log is well ingested in CommonSecurityLog Table
+
+![ DataConnector - Validation](images/dataconnector-validation.png)
+
+![ DataConnector - Validation](images/CommonSecurityLog.png)
 
 
-Once the configuration is complete, check the Fortinet connector's status in Microsoft Sentinel to ensure successful connection. Validate connectivity by accessing the Log Analytics Workspace, as illustrated in the accompanying screenshot.
-
-![ Logs Verification- Sentinel](images/recivedlogs-linux.PNG)
-
-You can also verify other installed components, such as workbooks and playbook templates.
-
-The installed workbook provides detailed analytics related to your traffic and events. 
-
-![Sentinel WorkBook](images/Sentinel-workbook.PNG)
-
-Once you save the workbook, you can find it under your resource group, where you'll discover insightful statistics about event actions, application protocols, and user activity.
-
-![Sentinel WorkBook Statistics](images/Sentinel-workbook-Statistics.PNG)
-
-Additionally, three playbook templates are installed:
-
-Fortinet-FortiGate-ResponseOnBlockIP: This enables SOC users to automatically respond to Microsoft Sentinel incidents involving IPs by adding or removing the IPs to the Microsoft Sentinel IP blocked group.
-
-Fortinet-FortiGate-IPEnrichment: This playbook adds the summary of address object and its group details to an incident.
-
-Fortinet-FortiGate-ResponseOnBlockURL: This allows SOC users to automatically respond to Microsoft Sentinel incidents involving URLs by adding the URLs to the Microsoft Sentinel URL blocked group.
-
-![Sentinel PlayBooks](images/Sentinel-Playbooks.PNG)
-
-
-You can review the [link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-Integrate-FortiGate-with-Microsoft-Sentinel/ta-p/199709) for more technical details about FortiGate integration With Microsoft Sentinel.
-
-
-
+You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal) for more technical details about FortiGate integration With Microsoft Sentinel.
 
 ## Log Filtering
 
