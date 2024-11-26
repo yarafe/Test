@@ -6,13 +6,10 @@ Microsoft Sentinel is a scalable, cloud-native solution offering Security Inform
 It provides intelligent security analytics and threat intelligence across the enterprise, offering a unified platform for attack detection, threat visibility, proactive hunting, and response.
 For further details, please refer to the following [link](https://learn.microsoft.com/en-us/azure/sentinel/overview).
 
-In this guide, we will outline two distinct integration scenarios with Microsoft Sentinel.
-The initial scenario involves integrating FortiGate with Sentinel through a Linux machine, while the second scenario focuses on FortiAnalyzer integration utilizing the Fluentd plugin.
+In this guide, we will outline Fortigate integration with Microsoft Sentinel via Azure Monitor Agent (AMA).
 
 As we are aware, retaining logs on a FortiGate device consumes instance resources such as disk space, CPU, and memory. To address this, the option to forward logging to FortiAnalyzer or a dedicated log server is available.
 Additionally, some clients perceive Microsoft Sentinel as an advantageous complement to FortiGuard for detecting attacks and threats. Having Sentinel as a central hub for logging can prove beneficial for SOC teams, serving as an umbrella monitoring and alerting system for the entire infrastructure.
-Conversely, log forwarding to Sentinel may incur significant costs, necessitating the implementation of an efficient filtering mechanism.
-This underscores the importance of integrating Fluentd with FortiAnalyzer. This integration enhances FortiAnalyzer with an additional vital functionality, complementing its existing advantages, allowing for effective log filtering and ensuring a streamlined, cost-effective process.
 
 ## Data Flow
 
@@ -24,13 +21,15 @@ The Linux machine is structured with two key components:
 
 Syslog Daemon (Log Collector): Utilizing either rsyslog or syslog-ng, this daemon performs dual functions
 
--Actively listens for Syslog messages in CEF format originating from FortiGate on TCP port 514. 
+-Actively listens for Syslog messages in CEF format originating from FortiGate on TCP/UDP port 514. 
 
 -Send logs to Azure Monitor Agent (AMA) on localhost, utilizing TCP port 28330.
 
 Azure Monitor Agent (AMA): The agent parses the logs and then sends them to your Microsoft Sentinel (Log Analytics) workspace via HTTPS 443.
 
 ![FGT-Sentinel Integration-DataFlow](images/FGT-DataFlow.png)
+
+For more details please review this [link](https://learn.microsoft.com/en-us/azure/sentinel/cef-syslog-ama-overview?tabs=forwarder)
 
 
 ## FortiGate integration with Microsoft Sentinel Setup
@@ -54,9 +53,15 @@ Open connector page for Common Event Format (CEF) via AMA.
 
 Create Data collection rule DCR (if you don't have):
 
-- use the same location as your log analytics workspace
-- add linux machine as a resource
-- collect facility log_local7
+- Use the same location as your log analytics workspace
+- Add linux machine as a resource
+- Collect facility log_local7 and set the min log level to be collected
+
+![ Create DCR1](images/create-dcr1.png)
+
+![ Create DCR2](images/create-dcr2.png)
+
+![ Create DCR3](images/create-dcr3.png)
 
 You can find below an ARM template example for DCR configuration:
 
@@ -203,10 +208,13 @@ You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/conne
 
 ## Log Filtering
 
+Log forwarding to Sentinel may incur significant costs, necessitating the implementation of an efficient filtering mechanism.
 In essence, you have the flexibility to toggle the traffic log on or off via the graphical user interface (GUI) on Fortigate devices, directing it to either Fortianalyzer or a syslog server, and specifying the severity level.
 Additionally, you can undertake more advanced filtering through CLI, allowing for tailored filtering based on specific values. Please refer to the following links:
 
 [Log syslogd filter](https://docs.fortinet.com/document/fortigate/7.6.0/cli-reference/273422104/config-log-syslogd-filter)
+
+On The other hands, you can select the minimum log level for each facility from DCR (collect tab) . When you select a log level, Microsoft Sentinel collects logs for the selected level and other levels with higher severity. For example, if you select LOG_ERR, Microsoft Sentinel collects logs for the LOG_ERR, LOG_CRIT, LOG_ALERT, and LOG_EMERG levels.
 
 
 
