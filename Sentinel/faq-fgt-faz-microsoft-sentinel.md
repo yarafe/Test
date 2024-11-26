@@ -42,11 +42,11 @@ Log Analytics Agent (OMS Agent): This agent, also referred to as the OMS Agent, 
 
 To establish the integration between Microsoft Sentinel and FortiGate, follow these steps:
 
-### Create Log Analytics Workspace:
+### Create Log Analytics Workspace
 Begin by setting up a Log Analytics Workspace as detailed in this [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal). Once established, proceed to onboard Sentinel with the created Log Analytics.
 For more information, visit the provided [link](https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard) for detailed instructions.
 
-### Utilize CEF Data Connector:
+### Utilize CEF Data Connector
 Navigate to Microsoft Sentinel workspace ---> configuration ---> Data connector blade .
 
 Search for 'Common Event Format (CEF) and install it. This will deploy for you Common Event Format (CEF) via AMA.
@@ -55,7 +55,7 @@ Search for 'Common Event Format (CEF) and install it. This will deploy for you C
 
 Open connector page for Common Event Format (CEF) via AMA.
 
-![ Sentinel- CEF via AMA-page](images/CEF via AMA-page.png)
+![ Sentinel- CEF via AMA-page](images/CEF-via-AMA-page.png)
 
 Create Data collection rule DCR (if you don't have):
 
@@ -152,14 +152,14 @@ You can find below an ARM template example for DCR configuration:
 
 </code></pre>
 
-### CEF Collector Installation on Linux:
+### CEF Collector Installation on Linux
 Install the Common Event Format (CEF) collector on a Linux machine by executing the following Python script:
 
 <pre><code>
 sudo wget -O Forwarder_AMA_installer.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Forwarder_AMA_installer.py&&sudo python3 Forwarder_AMA_installer.py
 </code></pre>
 
-### Configure FortiGate Device:
+### Configure FortiGate Device
 Following this configuration on the Linux machine, the FortiGate device is then set up to dispatch Syslog messages with TCP port 514 in CEF format to the designated proxy machine using the provided command:
 
 <pre><code>
@@ -174,7 +174,7 @@ end
 
 The facility to local7 has been configured should match "Collect" in the Data Collection Rule configuration.
 
-### Validation and Connectivity Check:
+### Validation and Connectivity Check
 
 To validate that the syslog daemon is running on the TCP port and that the AMA is listening, run this command:
 <pre><code>
