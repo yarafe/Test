@@ -162,7 +162,7 @@ config log syslogd setting
     set status enable
     set server "172.19.0.7"
     set mode reliable
-	set facility local7
+    set facility local7
     set format cef
 end
 </code></pre>
