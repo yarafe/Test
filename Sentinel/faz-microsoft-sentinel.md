@@ -85,11 +85,11 @@ Configure the remote server type as "Forward via Output Plugin" and select your 
 
 Prerequisites:
 - Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
-- Onboard Sentinel with Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard).
+- Microsoft Sentinel onboarded with the Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/sentinel quickstart-onboard).
 - Dedicated linux VM [link](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu).
 - Fortigate with FortiAnalyzer Integration [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303/configuring-fortianalyzer).
 
-follow the following steps:
+Steps for Configuration:
 * **Install Syslog Data Connector**
 
     - Navigate to Microsoft Sentinel workspace ---> configuration ---> Data connector blade.
@@ -100,6 +100,12 @@ follow the following steps:
         - Add linux machine as a resource
         - Collect facility log_local7 and set the min log level to be collected
 
+    ![ Create DCR1](images/create-dcr1.png)
+
+    ![ Create DCR2](images/create-dcr2.png)
+
+    ![ Create DCR3](images/create-dcr3.png)
+
 * **Log Collector Installation on Linux** 
 
     Run the following command to install and apply log collector:
@@ -108,7 +114,7 @@ follow the following steps:
     </code></pre>
 * **Configure FortiAnalyzer**
 
-    Following this configuration on the Linux machine, the FortiAnalyzer device is then set up to dispatch Syslog messages with TCP port 514 in CEF format to the designated proxy machine using the provided command:
+    After completing the setup on the Linux VM, configure your FortiAnalyzer device to forward Syslog messages with TCP 514. Use the following settings:
     <pre><code>
     config system log-forward
         edit 1
