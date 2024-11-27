@@ -21,8 +21,8 @@ The Linux machine is structured with two key components:
 
 * **Syslog Daemon (Log Collector):** Utilizing either rsyslog or syslog-ng, this daemon performs dual functions:
 
-- Actively listens for Syslog messages in CEF format originating from FortiGate on TCP/UDP port 514. 
-- Send logs to Azure Monitor Agent (AMA) on localhost, utilizing TCP port 28330.
+    - Actively listens for Syslog messages in CEF format originating from FortiGate on TCP/UDP port 514. 
+    - Send logs to Azure Monitor Agent (AMA) on localhost, utilizing TCP port 28330.
 
 * **Azure Monitor Agent (AMA):** The agent parses the logs and then sends them to your Microsoft Sentinel (Log Analytics) workspace via HTTPS 443.
 
