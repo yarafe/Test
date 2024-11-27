@@ -87,7 +87,7 @@ Prerequisites:
 - Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
 - Microsoft Sentinel onboarded with the Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azuresentinelquickstart-onboard).
 - Dedicated linux VM [link](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu).
-- Fortigate with FortiAnalyzer Integration [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303 configuring-fortianalyzer).
+- Fortigate with FortiAnalyzer Integration [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide 712303configuring-fortianalyzer).
 
 Steps for Configuration:
 * **Install Syslog Data Connector**
