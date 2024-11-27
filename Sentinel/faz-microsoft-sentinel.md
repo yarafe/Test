@@ -85,16 +85,18 @@ Configure the remote server type as "Forward via Output Plugin" and select your 
 
 Prerequisites:
 - Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
-- Microsoft Sentinel onboarded with the Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/sentinel quickstart-onboard).
+- Microsoft Sentinel onboarded with the Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azuresentinelquickstart-onboard).
 - Dedicated linux VM [link](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu).
-- Fortigate with FortiAnalyzer Integration [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303/configuring-fortianalyzer).
+- Fortigate with FortiAnalyzer Integration [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303 configuring-fortianalyzer).
 
 Steps for Configuration:
 * **Install Syslog Data Connector**
 
     - Navigate to Microsoft Sentinel workspace ---> configuration ---> Data connector blade.
     - Search for 'Syslog' and install it. This will deploy syslog via AMA data connector.
-    - Open connector page for syslog via AMA. 
+    ![Sentinel- Syslog-DataConnector](images/Syslog-via-AMA-page.png)
+    - Open connector page for syslog via AMA.
+    ![Sentinel- Syslog-DataConnector Page](images/syslog-DataConnector.png) 
     - Create DCR (if you don't have):
         - Use the same location as your log analytics workspace
         - Add linux machine as a resource
