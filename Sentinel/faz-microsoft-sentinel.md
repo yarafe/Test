@@ -108,6 +108,91 @@ Steps for Configuration:
 
     ![ Create DCR3](images/create-dcr3.png)
 
+You can find below an ARM template example for DCR configuration:
+
+<pre><code>
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dataCollectionRules_ya_dcr_syslog_name": {
+            "defaultValue": "ya-dcr-syslog",
+            "type": "String"
+        },
+        "workspaces_ya_ama_externalid": {
+            "defaultValue": "/subscriptions/f7f4728a-781f-470f-b029-bac8a9df75af/resourceGroups/ya-faz-sentinel-ama/providers/Microsoft.OperationalInsights/workspaces/ya-ama",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Insights/dataCollectionRules",
+            "apiVersion": "2023-03-11",
+            "name": "[parameters('dataCollectionRules_ya_dcr_syslog_name')]",
+            "location": "westeurope",
+            "tags": {
+                "createdBy": "Sentinel"
+            },
+            "kind": "Linux",
+            "properties": {
+                "dataSources": {
+                    "syslog": [
+                        {
+                            "streams": [
+                                "Microsoft-Syslog"
+                            ],
+                            "facilityNames": [
+                                "local7"
+                            ],
+                            "logLevels": [
+                                "Notice",
+                                "Warning",
+                                "Error",
+                                "Critical",
+                                "Alert",
+                                "Emergency"
+                            ],
+                            "name": "sysLogsDataSource-1039681479"
+                        },
+                        {
+                            "streams": [
+                                "Microsoft-Syslog"
+                            ],
+                            "facilityNames": [
+                                "nopri"
+                            ],
+                            "logLevels": [
+                                "Emergency"
+                            ],
+                            "name": "sysLogsDataSource-1697966155"
+                        }
+                    ]
+                },
+                "destinations": {
+                    "logAnalytics": [
+                        {
+                            "workspaceResourceId": "[parameters('workspaces_ya_ama_externalid')]",
+                            "name": "DataCollectionEvent"
+                        }
+                    ]
+                },
+                "dataFlows": [
+                    {
+                        "streams": [
+                            "Microsoft-Syslog"
+                        ],
+                        "destinations": [
+                            "DataCollectionEvent"
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
+</code></pre>
+
 * **Log Collector Installation on Linux** 
 
     Run the following command to install and apply log collector:
