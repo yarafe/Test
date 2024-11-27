@@ -87,10 +87,11 @@ Prerequisites:
 - Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
 - Onboard Sentinel with Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard).
 - Dedicated linux VM [link](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu).
-- Integrate Fortigate with FortiAnalyzer [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303/configuring-fortianalyzer).
+- Fortigate with FortiAnalyzer Integration [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303/configuring-fortianalyzer).
 
 follow the following steps:
 * **Install Syslog Data Connector**
+
     - Navigate to Microsoft Sentinel workspace ---> configuration ---> Data connector blade.
     - Search for 'Syslog' and install it. This will deploy syslog via AMA data connector.
     - Open connector page for syslog via AMA. 
@@ -98,13 +99,15 @@ follow the following steps:
         - Use the same location as your log analytics workspace
         - Add linux machine as a resource
         - Collect facility log_local7 and set the min log level to be collected
-    - 
+
 * **Log Collector Installation on Linux** 
+
     Run the following command to install and apply log collector:
     <pre><code>
     sudo wget -O Forwarder_AMA_installer.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Forwarder_AMA_installer.py&&sudo python Forwarder_AMA_installer.py
     </code></pre>
 * **Configure FortiAnalyzer**
+
     Following this configuration on the Linux machine, the FortiAnalyzer device is then set up to dispatch Syslog messages with TCP port 514 in CEF format to the designated proxy machine using the provided command:
     <pre><code>
     config system log-forward
