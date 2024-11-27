@@ -134,35 +134,30 @@ Steps for Configuration:
 
 ### FortiAnalyzer via Fluent Bit (Log Ingestion API)
 
-
-### Diagnose and Troubleshooting Fluentd from FortiAnalyzer Cli
+## Validation and Troubleshooting
+### FortiAnalyzer via Fluentd
 
 To verify Fluentd write status, execute the command:
-
 <pre><code>
 diagnose test application fwdplugind 4
 </code></pre>
 
 To ensure the presence of Fluentd log files, utilize the following command:
-
 <pre><code>
 diagnose sql fluentd log-tail
 </code></pre>
 
 Enable Fluentd logging with the command:
-
 <pre><code>
 diagnose test application fwdplugind 201 log enable
 </code></pre>
 
 After one minute, rewrite the command:
-
 <pre><code>
 diagnose test application fwdplugind 201 log enable
 </code></pre>
 
 To display processed events, use the command:
-
 <pre><code>
 diagnose sql fluentd log-tail
 </code></pre>
@@ -172,6 +167,43 @@ diagnose sql fluentd log-tail
 Review the received logs from the Log Analytics Workspace, as depicted in the screenshot.
 
 ![Fluentd Diagnose](images/loganalyticsworkspace-logs-verification.PNG)
+
+### FortiAnalyzer via Azure Monitor Agent (AMA)
+
+The following command can be used to check the log forwarding status from FortiAnalyzer cli:
+<pre><code>
+diagnose test application logfwd 4
+</code></pre>
+ Visit the [link](https://community.fortinet.com/t5/FortiAnalyzer/Technical-Tip-How-to-configure-and-troubleshoot-Log-Forwarding/ta-p/277214) for more details.
+To validate that the syslog daemon is running on the TCP port and that the AMA is listening, run this command:
+<pre><code>
+netstat -lnptv
+</code></pre>
+
+![ Port Validation- AMA](images/port-validation-ama.png)
+
+To capture messages sent from a logger or a connected device, run this command in the background:
+<pre><code>
+tcpdump -i any port 514 -A -vv &
+</code></pre>
+
+After you complete the validation, we recommend that you stop the tcpdump: Type fg and then select Ctrl+C
+
+To verify that the connector is installed correctly, run the troubleshooting script with one of these commands:
+<pre><code>
+sudo wget -O Sentinel_AMA_troubleshoot.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Sentinel_AMA_troubleshoot.py&&sudo python3 Sentinel_AMA_troubleshoot.py --cef
+</code></pre>
+
+![ Troubleshooting- AMA ](images/troubleshooting-ama.png)
+
+Check data connector page and verify that the DCR is corectly assigned and that the log is well ingested in Syslog Table
+
+![ DataConnector - Validation](images/dataconnector-validation.png)
+
+![ DataConnector - Validation](images/CommonSecurityLog.png)
+
+
+You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal) for more technical details about FortiGate integration With Microsoft Sentinel.
 
 ## Log Filtering
 
