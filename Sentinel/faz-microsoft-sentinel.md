@@ -37,11 +37,14 @@ For additional details, you can refer to the provided [link](https://learn.micro
 The seamless integration of Fluentd with FortiAnalyzer removes the need for an additional proxy server, streamlining the installation process of a data collector between FortiAnalyzer and the Azure Log Analytics workspace. 
 This approach offers an efficient way to manage log transmission and analysis.
 
+![FAZ-Sentinel Integration via Fluentd-DataFlow](images/FAZ-Fuentd-DataFlow)
+
 **Please note that Microsoft has announced the deprecation of the HTTP Data Collector API. This API will no longer function as of September 14, 2026. As a result, Fluentd integration scenarios relying on this API will also cease to function on the same date.
 The recommended replacement is the Logs Ingestion API, which offers enhanced capabilities for log integration moving forward.**
 
-![FAZ-Sentinel Integration-DataFlow](images/FAZ-DataFlow.png)
+### FortiAnalyzer Integration with Microsoft Sentinel via Azure Monitor Agent (AMA)
 
+![FAZ-Sentinel Integration via AMA-DataFlow](images/FAZ-AMA-DataFlow.png)
 
 ## FortiAnalyzer integration with Microsoft Sentinel Setup
 
