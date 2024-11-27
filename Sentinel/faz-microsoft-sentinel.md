@@ -288,6 +288,11 @@ Check data connector page and verify that the DCR is corectly assigned and that 
 
 ![ DataConnector - Validation](images/syslog.png)
 
+Open your DCR from Azure portal and navigate to monitoring --> Metrics
+set the metric to log ingestion per min
+![ DCR-metrics - Validation](images/DCR-metrics.png)
+
+more details can be found about DCR validation from the [link](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection-monitor)
 
 You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal) for more technical details about FortiGate integration With Microsoft Sentinel.
 
