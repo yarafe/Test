@@ -44,10 +44,24 @@ The recommended replacement is the Logs Ingestion API, which offers enhanced cap
 
 ### FortiAnalyzer Integration with Microsoft Sentinel via Azure Monitor Agent (AMA)
 
+To ingest CEF logs from FortiAnalyzer into Microsoft Sentinel, a dedicated Linux machine is configured to serve as proxy server for log collection and forwarding to the Microsoft Sentinel workspace.
+
+The Linux machine is structured with two key components:
+
+* **Syslog Daemon (Log Collector):** Utilizing either rsyslog or syslog-ng, this daemon performs dual functions:
+
+    - Actively listens for Syslog messages in CEF format originating from FortiGate on TCP/UDP port 514. 
+    - Send logs to Azure Monitor Agent (AMA) on localhost, utilizing TCP port 28330.
+
+* **Azure Monitor Agent (AMA):** The agent parses the logs and then sends them to your Microsoft Sentinel (Log Analytics) workspace via HTTPS 443.
+
 ![FAZ-Sentinel Integration via AMA-DataFlow](images/FAZ-AMA-DataFlow.png)
+
+For more details please review this [link](https://learn.microsoft.com/en-us/azure/sentinel/cef-syslog-ama-overview?tabs=forwarder)
 
 ## FortiAnalyzer integration with Microsoft Sentinel Setup
 
+### FortiAnalyzer via Fluentd 
 To begin, initiate the creation of a Log Analytics Workspace. The process details can be found in the following [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
 
 Once the Log Analytics Workspace is established, proceed to onboard Microsoft Sentinel by linking it to the created Log Analytics Workspace. No configuration for data connector is required for the FortiAnalyzer integration, as Fluentd will directly transmit logs to the Log Analytics Workspace.
@@ -66,6 +80,49 @@ Retrieve the ID and key for the Log Analytics Workspace from Settings -> Agents,
 Move to System Settings -> Advanced -> Log Forwarding -> Settings. 
 
 Configure the remote server type as "Forward via Output Plugin" and select your designated output profile.
+
+### FortiAnalyzer via Azure Monitor Agent (AMA)
+
+Prerequisites:
+- Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
+- Onboard Sentinel with Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard).
+- Dedicated linux VM [link](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu).
+- Integrate Fortigate with FortiAnalyzer [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303/configuring-fortianalyzer).
+
+follow the following steps:
+* **Install Syslog Data Connector**
+    - Navigate to Microsoft Sentinel workspace ---> configuration ---> Data connector blade.
+    - Search for 'Syslog' and install it. This will deploy syslog via AMA data connector.
+    - Open connector page for syslog via AMA. 
+    - Create DCR (if you don't have):
+        - Use the same location as your log analytics workspace
+        - Add linux machine as a resource
+        - Collect facility log_local7 and set the min log level to be collected
+    - 
+* **Log Collector Installation on Linux** 
+    Run the following command to install and apply log collector:
+    <pre><code>
+    sudo wget -O Forwarder_AMA_installer.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Forwarder_AMA_installer.py&&sudo python Forwarder_AMA_installer.py
+    </code></pre>
+* **Configure FortiAnalyzer**
+    Following this configuration on the Linux machine, the FortiAnalyzer device is then set up to dispatch Syslog messages with TCP port 514 in CEF format to the designated proxy machine using the provided command:
+    <pre><code>
+    config system log-forward
+        edit 1
+            set mode forwarding
+            set fwd-max-delay realtime
+            set server-name "linux syslog"
+            set server-addr "liux VM IP address"
+            set fwd-server-type syslog
+            set fwd-reliable enable
+            set fwd-facility local7
+            set signature 6581725315585679982
+        next
+    end
+    </code></pre>
+
+### FortiAnalyzer via Fluent Bit (Log Ingestion API)
+
 
 ### Diagnose and Troubleshooting Fluentd from FortiAnalyzer Cli
 

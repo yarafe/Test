@@ -164,7 +164,7 @@ Following this configuration on the Linux machine, the FortiGate device is then 
 <pre><code>
 config log syslogd setting
     set status enable
-    set server "172.19.0.7"
+    set server "liux VM IP address"
     set mode reliable
     set facility local7
     set format cef
