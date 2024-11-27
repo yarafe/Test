@@ -175,6 +175,7 @@ The following command can be used to check the log forwarding status from FortiA
 diagnose test application logfwd 4
 </code></pre>
  Visit the [link](https://community.fortinet.com/t5/FortiAnalyzer/Technical-Tip-How-to-configure-and-troubleshoot-Log-Forwarding/ta-p/277214) for more details.
+
 To validate that the syslog daemon is running on the TCP port and that the AMA is listening, run this command:
 <pre><code>
 netstat -lnptv
@@ -198,9 +199,9 @@ sudo wget -O Sentinel_AMA_troubleshoot.py https://raw.githubusercontent.com/Azur
 
 Check data connector page and verify that the DCR is corectly assigned and that the log is well ingested in Syslog Table
 
-![ DataConnector - Validation](images/dataconnector-validation.png)
+![ DataConnector - Validation](images/syslog-dataconnector-validation.png)
 
-![ DataConnector - Validation](images/CommonSecurityLog.png)
+![ DataConnector - Validation](images/syslog.png)
 
 
 You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal) for more technical details about FortiGate integration With Microsoft Sentinel.
