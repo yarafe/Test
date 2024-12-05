@@ -236,7 +236,26 @@ You can use powershell script to create and configure the previous requirements 
 - Dedicated linux VM [link](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu).
 - Fortigate with FortiAnalyzer Integration [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303/configuring-fortianalyzer).
 
+Deployment Steps
 
+- Install Fluent Bit on linux VM
+
+Install the most recent version release from the script.
+<pre><code>
+curl https://raw.githubusercontent.com/fluent/fluent-bit/master/install.sh | sh
+</code></pre>
+
+- Start Fluent-Bit
+<pre><code>
+sudo systemctl start fluent-bit
+</code></pre>
+
+- Update apt database
+<pre><code>
+sudo apt-get update
+</code></pre>
+
+Follow the [link](https://docs.fluentbit.io/manual/installation/linux/ubuntu) for more details.
 
 
 
@@ -317,6 +336,41 @@ Set the metric to log ingestion per min
 more details can be found about DCR validation from the [link](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection-monitor)
 
 You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal) for more technical details about FortiGate integration With Microsoft Sentinel.
+
+### FortiAnalyzer via Fluent Bit (Log Ingestion API)
+
+- fluent-bit status
+<pre><code>
+systemctl status fluent-bit
+</code></pre>
+
+The output should be similar to this:
+<pre><code>
+ fluent-bit.service - Fluent Bit
+     Loaded: loaded (/usr/lib/systemd/system/fluent-bit.service; disabled; preset: enabled)
+     Active: active (running) since Thu 2024-12-05 10:27:05 UTC; 43min ago
+       Docs: https://docs.fluentbit.io/manual/
+   Main PID: 1903 (fluent-bit)
+      Tasks: 4 (limit: 19120)
+     Memory: 16.0M (peak: 18.5M)
+        CPU: 1.423s
+     CGroup: /system.slice/fluent-bit.service
+             └─1903 /opt/fluent-bit/bin/fluent-bit -c //etc/fluent-bit/fluent-bit.conf
+
+Dec 05 11:10:30 ya-fluentbit fluent-bit[1903]: [0] cpu.local: [[1733397029.646640947, {}], {"cpu_p"=>0.000000, "user_p"=>0.000000, "system_p"=>0.000000, "cpu0.p_cpu"=>0.000000, "cpu0.p_user"=>0.000000, "cpu0.p_system"=>0.000000, "cpu1.p>
+Dec 05 11:10:31 ya-fluentbit fluent-bit[1903]: [0] cpu.local: [[1733397030.646687865, {}], {"cpu_p"=>0.000000, "user_p"=>0.000000, "system_p"=>0.000000, "cpu0.p_cpu"=>0.000000, "cpu0.p_user"=>0.000000, "cpu0.p_system"=>0.000000, "cpu1.p>
+Dec 05 11:10:32 ya-fluentbit fluent-bit[1903]: [0] cpu.local: [[1733397031.646783683, {}], {"cpu_p"=>0.000000, "user_p"=>0.000000, "system_p"=>0.000000, "cpu0.p_cpu"=>0.000000, "cpu0.p_user"=>0.000000, "cpu0.p_system"=>0.000000, "cpu1.p>
+Dec 05 11:10:33 ya-fluentbit fluent-bit[1903]: [0] cpu.local: [[1733397032.646658300, {}], {"cpu_p"=>0.000000, "user_p"=>0.000000, "system_p"=>0.000000, "cpu0.p_cpu"=>0.000000, "cpu0.p_user"=>0.000000, "cpu0.p_system"=>0.000000, "cpu1.p>
+Dec 05 11:10:34 ya-fluentbit fluent-bit[1903]: [0] cpu.local: [[1733397033.646643817, {}], {"cpu_p"=>0.000000, "user_p"=>0.000000, "system_p"=>0.000000, "cpu0.p_cpu"=>0.000000, "cpu0.p_user"=>0.000000, "cpu0.p_system"=>0.000000, "cpu1.p>
+Dec 05 11:10:35 ya-fluentbit fluent-bit[1903]: [0] cpu.local: [[1733397034.646651935, {}], {"cpu_p"=>0.250000, "user_p"=>0.000000, "system_p"=>0.250000, "cpu0.p_cpu"=>0.000000, "cpu0.p_user"=>0.000000, "cpu0.p_system"=>0.000000, "cpu1.p>
+</code></pre>
+
+- Restart fluent-bit
+<pre><code>
+sudo systemctl restart fluent-bit
+</code></pre>
+
+
 
 ## Log Filtering
 
