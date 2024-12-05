@@ -218,7 +218,7 @@ You can find below an ARM template example for DCR configuration:
     </code></pre>
 
 ### FortiAnalyzer via Fluent Bit (Log Ingestion API)
-Prerequisites:
+**Prerequisites**
 - Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
 - Microsoft Sentinel added to Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azuresentinelquickstart-onboard).
 - A Microsoft Entra application to authenticate against the API [link](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app?tabs=certificate) and:
@@ -236,7 +236,7 @@ You can use powershell script to create and configure the previous requirements 
 - Dedicated linux VM [link](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu).
 - Fortigate with FortiAnalyzer Integration [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303/configuring-fortianalyzer).
 
-Deployment Steps
+**Deployment Steps**
 
 - Install Fluent Bit on linux VM
 
