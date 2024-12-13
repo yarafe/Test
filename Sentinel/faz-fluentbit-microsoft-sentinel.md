@@ -238,6 +238,177 @@ You can use powershell script to create and configure the previous requirements 
 
 **Deployment Steps**
 
+- Create DCR and custom table based on DCR 
+Navigate to Log Analytics Workspace- > Settings -> Tables
+Then create - > New custom log (DCR-based)
+
+
+![ Create Custom Table](images/customtable1.png)
+
+You can create new DCR and assign it to custom Table
+![ Create DCR From Custom Table](images/create-dcr-from-customtable.png)
+
+upload sample file
+You can find an example below:
+<pre><code>
+{
+  "TenantId": "6c18f28f-69e1-4169-bbd9-afdab7d434a7",
+  "SourceSystem": "Linux",
+  "TimeGenerated": "2024-11-22T09:11:52.112475Z",
+  "Computer": "ya-faz-a.internal.cloudapp.net",
+  "EventTime_UTC": "2024-11-22T09:11:52Z",
+  "Facility": "local7",
+  "HostName": "ya-faz-a.internal.cloudapp.net",
+  "SeverityLevel": "alert",
+  "SyslogMessage": "logver=704052702 timestamp=1732270307 devname=\"ya-fgt\" devid=\"FGVM4VTM24000494\" vd=\"root\" date=2024-11-22 time=10:11:47 eventtime=1732266707529291220 tz=\"+0100\" logid=\"0100032002\" type=\"event\" subtype=\"system\" level=\"alert\" logdesc=\"Admin login failed\" sn=\"0\" user=\"bitrix\" ui=\"ssh(170.0.235.253)\" method=\"ssh\" srcip=170.0.235.253 dstip=172.19.0.4 action=\"login\" status=\"failed\" reason=\"name_invalid\" msg=\"Administrator bitrix login failed from ssh(170.0.235.253) because of invalid user name\"",
+  "HostIP": "172.19.0.5",
+  "MG": "00000000-0000-0000-0000-000000000002",
+  "CollectorHostName": "ya-ama-agent",
+  "Type": "Syslog",
+  "_ResourceId": "/subscriptions/f7f4728a-781f-470f-b029-bac8a9df75af/resourcegroups/ya-faz-sentinel-ama/providers/microsoft.compute/virtualmachines/ya-ama-agent"
+}
+</code></pre>
+
+Add transofrmation if it is needed
+<pre><code>
+source
+| where SyslogMessage startswith "logver="
+| extend 
+    SourceIP = extract(@"srcip=(\d+\.\d+\.\d+\.\d+)", 1, SyslogMessage),
+    DestinationIP = extract(@"dstip=(\d+\.\d+\.\d+\.\d+)", 1, SyslogMessage),
+    SourcePort = extract(@"srcport=(\d+)", 1, SyslogMessage),
+    DestinationPort = extract(@"dstport=(\d+)", 1, SyslogMessage),
+    DeviceId = extract(@"devid=""([^""]+)""", 1, SyslogMessage),
+    Severity = extract(@"level=""([^""]+)""", 1, SyslogMessage)
+| project TimeGenerated,SourceIP, DestinationIP, SourcePort, DestinationPort, DeviceId, Severity
+</code></pre>
+![ Create DCR From Custom Table](images/customtable-transformation-editor.png)
+
+![ Custom Table Review](images/customtable-review.png)
+
+ARM template for DCR example 
+<pre><code>
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dataCollectionRules_ya_dcr_fazsyslog_name": {
+            "defaultValue": "ya-dcr-fazsyslog",
+            "type": "String"
+        },
+        "dataCollectionEndpoints_ya_dce_log_ingestion_externalid": {
+            "defaultValue": "/subscriptions/xxxxxxxxxxxxxxxxxxxxx/resourceGroups/ya-faz-fluentbit/providers/Microsoft.Insights/dataCollectionEndpoints/ya-dce-log-ingestion",
+            "type": "String"
+        },
+        "workspaces_ya_faz_fluentbit_externalid": {
+            "defaultValue": "/subscriptions/xxxxxxxxxxxxxxxxxxxxx/resourceGroups/ya-faz-fluentbit/providers/microsoft.operationalinsights/workspaces/ya-faz-fluentbit",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Insights/dataCollectionRules",
+            "apiVersion": "2023-03-11",
+            "name": "[parameters('dataCollectionRules_ya_dcr_fazsyslog_name')]",
+            "location": "westeurope",
+            "properties": {
+                "dataCollectionEndpointId": "[parameters('dataCollectionEndpoints_ya_dce_log_ingestion_externalid')]",
+                "streamDeclarations": {
+                    "Custom-fazsyslog_CL": {
+                        "columns": [
+                            {
+                                "name": "TenantId",
+                                "type": "string"
+                            },
+                            {
+                                "name": "SourceSystem",
+                                "type": "string"
+                            },
+                            {
+                                "name": "TimeGenerated",
+                                "type": "datetime"
+                            },
+                            {
+                                "name": "Computer",
+                                "type": "string"
+                            },
+                            {
+                                "name": "EventTime_UTC",
+                                "type": "datetime"
+                            },
+                            {
+                                "name": "Facility",
+                                "type": "string"
+                            },
+                            {
+                                "name": "HostName",
+                                "type": "string"
+                            },
+                            {
+                                "name": "SeverityLevel",
+                                "type": "string"
+                            },
+                            {
+                                "name": "SyslogMessage",
+                                "type": "string"
+                            },
+                            {
+                                "name": "HostIP",
+                                "type": "string"
+                            },
+                            {
+                                "name": "MG",
+                                "type": "string"
+                            },
+                            {
+                                "name": "CollectorHostName",
+                                "type": "string"
+                            },
+                            {
+                                "name": "Type",
+                                "type": "string"
+                            },
+                            {
+                                "name": "_ResourceId",
+                                "type": "string"
+                            }
+                        ]
+                    }
+                },
+                "dataSources": {},
+                "destinations": {
+                    "logAnalytics": [
+                        {
+                            "workspaceResourceId": "[parameters('workspaces_ya_faz_fluentbit_externalid')]",
+                            "name": "4c11d0df4293420da6212e470364eaae"
+                        }
+                    ]
+                },
+                "dataFlows": [
+                    {
+                        "streams": [
+                            "Custom-fazsyslog_CL"
+                        ],
+                        "destinations": [
+                            "4c11d0df4293420da6212e470364eaae"
+                        ],
+                        "transformKql": "source\n| where SyslogMessage startswith \"logver=\"\n| extend \n    SourceIP = extract(@\"srcip=(\\d+\\.\\d+\\.\\d+\\.\\d+)\", 1, SyslogMessage),\n    DestinationIP = extract(@\"dstip=(\\d+\\.\\d+\\.\\d+\\.\\d+)\", 1, SyslogMessage),\n    SourcePort = extract(@\"srcport=(\\d+)\", 1, SyslogMessage),\n    DestinationPort = extract(@\"dstport=(\\d+)\", 1, SyslogMessage),\n    DeviceId = extract(@\"devid=\"\"([^\"\"]+)\"\"\", 1, SyslogMessage),\n    Severity = extract(@\"level=\"\"([^\"\"]+)\"\"\", 1, SyslogMessage)\n| project TimeGenerated,SourceIP, DestinationIP, SourcePort, DestinationPort, DeviceId, Severity\n",
+                        "outputStream": "Custom-fazsyslog_CL"
+                    }
+                ]
+            }
+        }
+    ]
+}
+</code></pre>
+
+Select Access Control (IAM) for the DCR and then select Add role assignment.
+Select Monitoring Metrics Publisher > Next.
+Select User, group, or service principal for Assign access to and choose Select members. Select the application that you created and then choose Select.
+
+You can find more details from [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/tutorial-logs-ingestion-portal)
+
 - Install Fluent Bit on linux VM
 
 Install the most recent version release from the script.
@@ -257,7 +428,74 @@ sudo apt-get update
 
 Follow the [link](https://docs.fluentbit.io/manual/installation/linux/ubuntu) for more details.
 
+-Add parser for Syslog-rfc5424
+<pre><code>
+sudo nano /etc/fluent-bit/parsers.conf
+</code></pre>
 
+<pre><code>
+[PARSER]
+    Name         mysyslog-rfc5424
+    Format       regex
+    Regex        ^<(?<pri>[0-9]+)>1 (?<time>[^ ]+) (?<host>[^ ]+) (?<app>[^\s]+) (?<pid>[^\s]+) (?<msgid>[^\s]+) (?<structured>[^\]]*\])?(?<message>.+)$
+    Time_Key     time
+    Time_Format  %Y-%m-%dT%H:%M:%S%z
+</code></pre>
+
+- Configure fluent-bit to forward logging to log analytics workspace
+<pre><code>
+sudo nano /etc/fluent-bit/fluent-bit.conf
+</code></pre>
+ 
+![ App Registeration](images/app-registeration.png)
+
+![ client-secret](images/client-secret.png)
+
+![ DCE URL](images/dce-url.png)
+
+![ DCR ID](images/dcr-id.png)
+
+<pre><code>
+ [INPUT]
+    Name   syslog
+    Mode   udp
+    Listen 0.0.0.0
+    Port   514
+    Parser mysyslog-rfc5424
+    Tag    faz
+
+
+[OUTPUT]
+    Name            azure_logs_ingestion
+    Match           faz
+    client_id       **************************
+    client_secret   **************************
+    tenant_id       **************************
+    dce_url         https://ya-dce-log-ingestion-ebl4.westeurope-1.ingest.monitor.azure.com
+    dcr_id          dcr-f43cbb987d6c45efa8319f5d0c0c1aee
+    table_name      fazsyslog_CL
+    time_generated  true
+    time_key        TimeGenerated
+    Compress        true
+
+</code></pre>
+
+FortiAnalyzer Configuration
+
+<pre><code>
+config system log-forward
+    edit 1
+        set mode forwarding
+        set fwd-max-delay realtime
+        set server-name "dce"
+        set server-addr "fluent-bit IP address"
+        set server-port 514
+        set fwd-server-type syslog
+        set fwd-syslog-format rfc-5424
+        set signature 3799479601930374274
+    next
+end
+</code></pre>
 
 ## Validation and Troubleshooting
 ### FortiAnalyzer via Fluentd
@@ -368,6 +606,10 @@ Dec 05 11:10:35 ya-fluentbit fluent-bit[1903]: [0] cpu.local: [[1733397034.64665
 - Restart fluent-bit
 <pre><code>
 sudo systemctl restart fluent-bit
+</code></pre>
+
+<pre><code>
+sudo journalctl -u fluent-bit -f
 </code></pre>
 
 
