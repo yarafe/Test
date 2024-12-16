@@ -53,7 +53,7 @@ The Linux machine is structured with two key components:
 
 * **Azure Monitor Agent (AMA):** The agent parses the logs and then sends them to your Microsoft Sentinel (Log Analytics) workspace via HTTPS 443.
 
-This setup requires a Data Collection Rule (DCR) to define:
+This setup requires also a Data Collection Rule (DCR) to define:
 
    - The Linux machine as a resource for log collection.
    - The Syslog table in the Log Analytics workspace as the destination for the collected logs.
@@ -80,6 +80,8 @@ Additional guidance on this step is available in the [link](https://learn.micros
 
 Upon authorizing FortiGate from FortiAnalyzer, establish an output profile for log forwarding. Navigate to System Settings -> Advanced -> Log Forwarding -> Output Profile and create a new output profile.
 
+![FAZ Output Profile- Fluentd](images/FAZ_outputprofile.PNG)
+
 Specify the type as "Azure Log Analytics" and utilize the default configuration. Subsequently, fill in the customer ID with the Workspace ID and the primary key value into the shared_key field.
 
 Retrieve the ID and key for the Log Analytics Workspace from Settings -> Agents, as illustrated in the provided screenshot.
@@ -87,6 +89,8 @@ Retrieve the ID and key for the Log Analytics Workspace from Settings -> Agents,
 ![Log Analytics Workspace-Id and Key](images/loganalyticsworkspace-id-key.PNG)
 
 Move to System Settings -> Advanced -> Log Forwarding -> Settings. 
+
+![FAZ Logforwarding Settings- Fluentd ](images/FAZ-logforwarding-settings.PNG)
 
 Configure the remote server type as "Forward via Output Plugin" and select your designated output profile.
 
