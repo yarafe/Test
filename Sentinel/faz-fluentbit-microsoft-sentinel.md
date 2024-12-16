@@ -54,7 +54,6 @@ The Linux machine is structured with two key components:
 * **Azure Monitor Agent (AMA):** The agent parses the logs and then sends them to your Microsoft Sentinel (Log Analytics) workspace via HTTPS 443.
 
 This setup requires a Data Collection Rule (DCR) to define:
-
     - The Linux machine as a resource for log collection.
     - The Syslog table in the Log Analytics workspace as the destination for the collected logs.
 
