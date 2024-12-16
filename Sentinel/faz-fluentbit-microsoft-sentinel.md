@@ -59,6 +59,8 @@ For more details please review this [link](https://learn.microsoft.com/en-us/azu
 
 ### FortiAnalyzer via Fluent Bit (Log Ingestion API)
 
+![FAZ-Sentinel Integration via FluentBit-DataFlow](images/FAZ-FluentBit-DataFlow.png)
+
 ## FortiAnalyzer integration with Microsoft Sentinel Setup
 
 ### FortiAnalyzer via Fluentd 
