@@ -17,6 +17,7 @@ Conversely, log forwarding to Sentinel may incur significant costs, necessitatin
 ### FortiAnalyzer Integration with Microsoft Sentinel via Fluentd Plugin
 
 Starting from version 7.4.0, FortiAnalyzer introduced support for log forwarding to log analytics workspace and other public cloud services through Fleuntd. You can visit the [link](https://docs.fortinet.com/document/fortianalyzer/7.4.0/new-features/198909/fluentd-support-for-public-cloud-integration) for more details.
+
 FortiAnalyzer seamlessly integrates with Microsoft Sentinel, offering enhanced support through log streaming to multiple destinations using the Fluentd output plugin. 
 Fluentd, an open-source data collector, serves as a comprehensive solution that unifies the process of collecting and consuming data. For additional details, please check the following [link](https://www.fluentd.org/architecture).
 
@@ -253,20 +254,12 @@ upload sample file
 You can find an example below:
 <pre><code>
 {
-  "TenantId": "6c18f28f-69e1-4169-bbd9-afdab7d434a7",
-  "SourceSystem": "Linux",
-  "TimeGenerated": "2024-11-22T09:11:52.112475Z",
-  "Computer": "ya-faz-a.internal.cloudapp.net",
-  "EventTime_UTC": "2024-11-22T09:11:52Z",
-  "Facility": "local7",
-  "HostName": "ya-faz-a.internal.cloudapp.net",
-  "SeverityLevel": "alert",
-  "SyslogMessage": "logver=704052702 timestamp=1732270307 devname=\"ya-fgt\" devid=\"FGVM4VTM24000494\" vd=\"root\" date=2024-11-22 time=10:11:47 eventtime=1732266707529291220 tz=\"+0100\" logid=\"0100032002\" type=\"event\" subtype=\"system\" level=\"alert\" logdesc=\"Admin login failed\" sn=\"0\" user=\"bitrix\" ui=\"ssh(170.0.235.253)\" method=\"ssh\" srcip=170.0.235.253 dstip=172.19.0.4 action=\"login\" status=\"failed\" reason=\"name_invalid\" msg=\"Administrator bitrix login failed from ssh(170.0.235.253) because of invalid user name\"",
-  "HostIP": "172.19.0.5",
-  "MG": "00000000-0000-0000-0000-000000000002",
-  "CollectorHostName": "ya-ama-agent",
-  "Type": "Syslog",
-  "_ResourceId": "/subscriptions/f7f4728a-781f-470f-b029-bac8a9df75af/resourcegroups/ya-faz-sentinel-ama/providers/microsoft.compute/virtualmachines/ya-ama-agent"
+  "pri": "189",
+  "host": "172.19.0.4",
+  "app": "-",
+  "pid": "-",
+  "msgid": "-",
+  "message": "- logver=706003401 timestamp=1734059922 devname=\"ya-fgt\" devid=\"FGVM4VTM24000495\" vd=\"root\" date=2024-12-13 time=03:18:42 eventtime=1734088722709530851 tz=\"-0800\" logid=\"0001000014\" type=\"traffic\" subtype=\"local\" level=\"notice\" srcip=172.19.0.4 srcport=7634 srcintf=\"root\" srcintfrole=\"undefined\" dstip=168.63.129.16 dstport=32526 dstintf=\"port1\" dstintfrole=\"undefined\" srccountry=\"Reserved\" dstcountry=\"United States\" sessionid=1391 proto=6 action=\"close\" policyid=0 service=\"tcp/32526\" trandisp=\"noop\" app=\"tcp/32526\" duration=1 sentbyte=2662 rcvdbyte=351 sentpkt=7 rcvdpkt=4"
 }
 </code></pre>
 

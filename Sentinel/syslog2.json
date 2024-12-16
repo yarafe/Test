@@ -1,0 +1,8 @@
+{
+  "pri": "189",
+  "host": "172.19.0.4",
+  "app": "-",
+  "pid": "-",
+  "msgid": "-",
+  "message": "- logver=706003401 timestamp=1734059922 devname=\"ya-fgt\" devid=\"FGVM4VTM24000495\" vd=\"root\" date=2024-12-13 time=03:18:42 eventtime=1734088722709530851 tz=\"-0800\" logid=\"0001000014\" type=\"traffic\" subtype=\"local\" level=\"notice\" srcip=172.19.0.4 srcport=7634 srcintf=\"root\" srcintfrole=\"undefined\" dstip=168.63.129.16 dstport=32526 dstintf=\"port1\" dstintfrole=\"undefined\" srccountry=\"Reserved\" dstcountry=\"United States\" sessionid=1391 proto=6 action=\"close\" policyid=0 service=\"tcp/32526\" trandisp=\"noop\" app=\"tcp/32526\" duration=1 sentbyte=2662 rcvdbyte=351 sentpkt=7 rcvdpkt=4"
+}
