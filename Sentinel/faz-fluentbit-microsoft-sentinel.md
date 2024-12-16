@@ -53,9 +53,14 @@ The Linux machine is structured with two key components:
 
 * **Azure Monitor Agent (AMA):** The agent parses the logs and then sends them to your Microsoft Sentinel (Log Analytics) workspace via HTTPS 443.
 
-![FAZ-Sentinel Integration via AMA-DataFlow](images/FAZ-AMA-DataFlow.png)
+This setup requires a Data Collection Rule (DCR) to define:
+
+    - The Linux machine as a resource for log collection.
+    - The Syslog table in the Log Analytics workspace as the destination for the collected logs.
 
 For more details please review this [link](https://learn.microsoft.com/en-us/azure/sentinel/cef-syslog-ama-overview?tabs=forwarder)
+
+![FAZ-Sentinel Integration via AMA-DataFlow](images/FAZ-AMA-DataFlow.png)
 
 ### FortiAnalyzer via Fluent Bit (Log Ingestion API)
 
