@@ -75,7 +75,7 @@ To integrate FortiAnalyzer with Sentinel via Logs Ingestion API, install Fluent 
    - Data Collection Rule (DCR): specifies how data should be collected, transformed, and sent to a destination, such as Log Analytics workspaces or storage. It defines the data sources, destinations, and any processing rules applied to the incoming data.
     Log Analytics Workspace
 
-Once Fluent Bit recieved logs from FortiAnalyzer using syslog daemon, It will forward logs to dce via https request. After that the icoming data can be transformed according to DCR configurations. 
+Once Fluent Bit receives logs from FortiAnalyzer via the syslog daemon, it forwards the logs to the Data Collection Endpoint (DCE) using HTTPS requests. The incoming data is then processed and transformed based on the configurations defined in the Data Collection Rule (DCR) before being ingested into the destination, such as a Log Analytics Workspace.
 
 For further details about log ingesion API, visit the following [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/logs-ingestion-api-overview).
 
