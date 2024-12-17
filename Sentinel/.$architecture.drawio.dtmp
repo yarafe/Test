@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.5.0 Chrome/112.0.5615.204 Electron/24.5.1 Safari/537.36" modified="2024-12-17T09:53:05.506Z" etag="-GT9kmAx75zRenN15NH7" version="21.5.0" type="device" pages="3">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.5.0 Chrome/112.0.5615.204 Electron/24.5.1 Safari/537.36" modified="2024-12-17T09:54:12.830Z" etag="Jmvs7cNUoin3JUcIQUSL" version="21.5.0" type="device" pages="3">
   <diagram name="fgt-single-vm" id="VOJnvQhmk6kvTq0DFbzb">
     <mxGraphModel dx="1434" dy="870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -31,6 +31,9 @@
         <mxCell id="v-rwaHu9YMq9_R5s2i5p-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeColor=#3333FF;" parent="igetMSzc9jm7YL5A2QUc-1" source="kwQ4lod3LPj0MxNfvOPQ-5" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="840" y="425.5454545454545" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="765" y="425" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="kwQ4lod3LPj0MxNfvOPQ-5" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#666666;fillColor=#f5f5f5;fontColor=#333333;" parent="igetMSzc9jm7YL5A2QUc-1" vertex="1">
