@@ -78,7 +78,6 @@ To integrate FortiAnalyzer with Sentinel via Logs Ingestion API, install Fluent 
 Once Fluent Bit receives logs from FortiAnalyzer via the syslog daemon, it forwards the logs to the Data Collection Endpoint (DCE) using HTTPS requests. The incoming data is then processed and transformed based on the configurations defined in the Data Collection Rule (DCR) before being ingested into the destination, such as a Log Analytics Workspace.
 
 For further details about log ingesion API, visit the following [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/logs-ingestion-api-overview).
-
 ![FAZ-Sentinel Integration via FluentBit-DataFlow](images/FAZ-Fluentbit-Dataflow.png)
 
 ## FortiAnalyzer integration with Microsoft Sentinel Setup
