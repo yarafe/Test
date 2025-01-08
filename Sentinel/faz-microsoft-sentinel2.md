@@ -174,47 +174,44 @@ You can find below an ARM template example for DCR configuration:
 
 ### Validation and Troubleshooting
 
-The following command can be used to check the log forwarding status from FortiAnalyzer cli:
+From the FortiAnalyzer CLI, use the following command to verify the log forwarding status:
 <pre><code>
 diagnose test application logfwd 4
 </code></pre>
  Visit the [link](https://community.fortinet.com/t5/FortiAnalyzer/Technical-Tip-How-to-configure-and-troubleshoot-Log-Forwarding/ta-p/277214) for more details.
 
-To validate that the syslog daemon is running on the TCP port and that the AMA is listening, run this command:
+To ensure the syslog daemon is running on the correct TCP port and the Azure Monitor Agent (AMA) is actively listening, execute the following command:
 <pre><code>
 netstat -lnptv
 </code></pre>
 
 ![ Port Validation- AMA](images/port-validation-ama.png)
 
-To capture messages sent from a logger or a connected device, run this command in the background:
+To capture messages sent from a logger or connected device, use this command:
 <pre><code>
 tcpdump -i any port 514 -A -vv &
 </code></pre>
+After completing the validation, stop the tcpdump process by typing fg followed by Ctrl+C.
 
-After you complete the validation, we recommend that you stop the tcpdump: Type fg and then select Ctrl+C
-
-To verify that the connector is installed correctly, run the troubleshooting script with one of these commands:
+To check if the connector is installed correctly, run the Sentinel troubleshooting script:
 <pre><code>
 sudo wget -O Sentinel_AMA_troubleshoot.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Sentinel_AMA_troubleshoot.py&&sudo python3 Sentinel_AMA_troubleshoot.py --cef
 </code></pre>
 
 ![ Troubleshooting- AMA ](images/troubleshooting-ama.png)
 
-Check data connector page and verify that the DCR is corectly assigned and that the log is well ingested in Syslog Table
+Confirm that the Data Collection Rule (DCR) is correctly assigned and that logs are being ingested into the Syslog table.
 
 ![ DataConnector - Validation](images/syslog-dataconnector-validation.png)
-
 ![ DataConnector - Validation](images/syslog.png)
 
-Open your DCR from Azure portal and navigate to monitoring --> Metrics
+From the Azure portal, navigate to the DCR's Monitoring > Metrics section and set the metric to "Log Ingestion per Minute" to validate log flow. Set the metric to log ingestion per min
 
-Set the metric to log ingestion per min
 ![ DCR-metrics - Validation](images/DCR-metrics.png)
 
-more details can be found about DCR validation from the [link](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection-monitor)
+For additional details on DCR validation, review the [link](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection-monitor)
 
-You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal) for more technical details about FortiGate integration With Microsoft Sentinel.
+To explore more about syslog  ingestion with Microsoft Sentinel via AMA, visit the official Microsoft Sentinel documentation [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal).
 
 
 
