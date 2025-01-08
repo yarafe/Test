@@ -1,6 +1,6 @@
 # FortiAnalyzer Integration with Microsoft Sentinel 
 
-## Introduction
+# Introduction
 
 Forwarding logs to FortiAnalyzer (FAZ) or a dedicated logging server is a widely recommended best practice to ensure centralized visibility, efficient monitoring, and enhanced threat analysis. However, some clients may require forwarding these logs to additional centralized hubs, such as Microsoft Sentinel, for further integration with their broader SIEM solutions. This dual-forwarding approach provides redundancy, advanced analytics, and supports diverse compliance or operational needs.
 
@@ -213,57 +213,9 @@ For additional details on DCR validation, review the [link](https://learn.micros
 
 To explore more about syslog  ingestion with Microsoft Sentinel via AMA, visit the official Microsoft Sentinel documentation [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal).
 
-
-
-
-
-
-
-
-
-
-
 ## Log Ingestion API with Fluent Bit
 
-
-
-## Fluentd Plugin
-
-
-
-## Data Flow
-
-### FortiAnalyzer Integration with Microsoft Sentinel via Fluentd Plugin
-
-Starting from version 7.4.0, FortiAnalyzer introduced support for log forwarding to log analytics workspace and other public cloud services through Fleuntd. You can visit the [link](https://docs.fortinet.com/document/fortianalyzer/7.4.0/new-features/198909/fluentd-support-for-public-cloud-integration) for more details.
-
-FortiAnalyzer seamlessly integrates with Microsoft Sentinel, offering enhanced support through log streaming to multiple destinations using the Fluentd output plugin. 
-Fluentd, an open-source data collector, serves as a comprehensive solution that unifies the process of collecting and consuming data. For additional details, please check the following [link](https://www.fluentd.org/architecture).
-
-This integration enables the logs forwarding to public cloud services. The plugin efficiently aggregates semi-structured data in real-time, facilitating the buffered data's transmission to Azure Log Analytics.
-
-FortiGate establishes communication with FortiAnalyzer and transmits logs via TCP port 514. Then FortiAnalyzer, leveraging Fluentd as a data collector, adeptly aggregates, filters, and securely transmits data to Azure Log Analytics workspace.
-
-Fleuntd send logs to a log analytics workspace in Azure monitor by using HTTP data collector API. This involves creating POST request with URL: 
-<pre><code>
-https://"log analytics workspace-id".ods.opinsights.azure.com/api/logs?api-version=2016-04-01
-</code></pre>
-
-For additional details, you can refer to the provided [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=powershell)
-
-The seamless integration of Fluentd with FortiAnalyzer removes the need for an additional proxy server, streamlining the installation process of a data collector between FortiAnalyzer and the Azure Log Analytics workspace. 
-This approach offers an efficient way to manage log transmission and analysis.
-
-![FAZ-Sentinel Integration via Fluentd-DataFlow](images/FAZ-Fuentd-DataFlow.png)
-
-**Please note that Microsoft has announced the deprecation of the HTTP Data Collector API. This API will no longer function as of September 14, 2026. As a result, Fluentd integration scenarios relying on this API will also cease to function on the same date.
-The recommended replacement is the Logs Ingestion API, which offers enhanced capabilities for log integration moving forward.**
-
-### FortiAnalyzer Integration with Microsoft Sentinel via Azure Monitor Agent (AMA)
-
-
-
-### FortiAnalyzer via Fluent Bit (Log Ingestion API)
+### Data Flow
 
 Fluent Bit is a lightweight, open-source telemetry agent designed to efficiently collect, process, and forward logs, metrics, and traces with minimal resource usage and seamless ecosystem integration. [Learn more](https://docs.fluentbit.io/manual/about/what-is-fluent-bit)
 
@@ -281,39 +233,8 @@ Once Fluent Bit receives logs from FortiAnalyzer via the syslog daemon, it forwa
 For further details about log ingesion API, visit the following [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/logs-ingestion-api-overview).
 ![FAZ-Sentinel Integration via FluentBit-DataFlow](images/FAZ-Fluentbit-Dataflow.png)
 
-## FortiAnalyzer integration with Microsoft Sentinel Setup
+### Deployment and Setup
 
-### FortiAnalyzer via Fluentd 
-
-Prerequisites:
-- Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
-- Microsoft Sentinel onboarded with the Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azuresentinelquickstart-onboard).
-- Fortigate with FortiAnalyzer Integration (optional) [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303/configuring-fortianalyzer).
-
-No configuration for data connector is required for the FortiAnalyzer integration, as Fluentd will directly transmit logs to the Log Analytics Workspace.
-Additional guidance on this step is available in the [link](https://docs.fortinet.com/document/fortianalyzer/7.4.0/new-features/198909/fluentd-support-for-public-cloud-integration).
-
-Upon authorizing FortiGate from FortiAnalyzer, establish an output profile for log forwarding. Navigate to System Settings -> Advanced -> Log Forwarding -> Output Profile and create a new output profile.
-
-![FAZ Output Profile- Fluentd](images/FAZ_outputprofile.PNG)
-
-Specify the type as "Azure Log Analytics" and utilize the default configuration. Subsequently, fill in the customer ID with the Workspace ID and the primary key value into the shared_key field.
-
-Retrieve the ID and key for the Log Analytics Workspace from Settings -> Agents, as illustrated in the provided screenshot.
-
-![Log Analytics Workspace-Id and Key](images/loganalyticsworkspace-id-key.PNG)
-
-Move to System Settings -> Advanced -> Log Forwarding -> Settings. 
-
-![FAZ Logforwarding Settings- Fluentd ](images/FAZ-logforwarding-settings.PNG)
-
-Configure the remote server type as "Forward via Output Plugin" and select your designated output profile.
-
-### FortiAnalyzer via Azure Monitor Agent (AMA)
-
-
-
-### FortiAnalyzer via Fluent Bit (Log Ingestion API)
 **Prerequisites**
 - Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
 - Microsoft Sentinel added to Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azuresentinelquickstart-onboard).
@@ -778,45 +699,7 @@ config system log-forward
 end
 </code></pre>
 
-## Validation and Troubleshooting
-### FortiAnalyzer via Fluentd
-
-To verify Fluentd write status, execute the command:
-<pre><code>
-diagnose test application fwdplugind 4
-</code></pre>
-
-To ensure the presence of Fluentd log files, utilize the following command:
-<pre><code>
-diagnose sql fluentd log-tail
-</code></pre>
-
-Enable Fluentd logging with the command:
-<pre><code>
-diagnose test application fwdplugind 201 log enable
-</code></pre>
-
-After one minute, rewrite the command:
-<pre><code>
-diagnose test application fwdplugind 201 log enable
-</code></pre>
-
-To display processed events, use the command:
-<pre><code>
-diagnose sql fluentd log-tail
-</code></pre>
-
-![Fluentd Diagnose](images/FAZ-diagnose.PNG)
-
-Review the received logs from the Log Analytics Workspace, as depicted in the screenshot.
-
-![Fluentd Diagnose](images/loganalyticsworkspace-logs-verification.PNG)
-
-### FortiAnalyzer via Azure Monitor Agent (AMA)
-
-
-
-### FortiAnalyzer via Fluent Bit (Log Ingestion API)
+### Validation and Troubleshooting
 
 - Start fluent-bit
 <pre><code>
@@ -864,7 +747,96 @@ sudo journalctl -u fluent-bit -f
 - DCR Metrics Validation
 ![DCR Metrics Validation-Log Ingestion API](images/dcr-metrics-log-ingestion-api.png)
 
-## Log Filtering
+## Fluentd Plugin
+
+### Data Flow
+
+**Please note that Microsoft has announced the deprecation of the HTTP Data Collector API. This API will no longer function as of September 14, 2026. As a result, Fluentd integration scenarios relying on this API will also cease to function on the same date.
+The recommended replacement is the Logs Ingestion API, which offers enhanced capabilities for log integration moving forward.**
+
+Starting from version 7.4.0, FortiAnalyzer introduced support for log forwarding to log analytics workspace and other public cloud services through Fleuntd. You can visit the [link](https://docs.fortinet.com/document/fortianalyzer/7.4.0/new-features/198909/fluentd-support-for-public-cloud-integration) for more details.
+
+FortiAnalyzer seamlessly integrates with Microsoft Sentinel, offering enhanced support through log streaming to multiple destinations using the Fluentd output plugin. 
+Fluentd, an open-source data collector, serves as a comprehensive solution that unifies the process of collecting and consuming data. For additional details, please check the following [link](https://www.fluentd.org/architecture).
+
+This integration enables the logs forwarding to public cloud services. The plugin efficiently aggregates semi-structured data in real-time, facilitating the buffered data's transmission to Azure Log Analytics.
+
+FortiGate establishes communication with FortiAnalyzer and transmits logs via TCP port 514. Then FortiAnalyzer, leveraging Fluentd as a data collector, adeptly aggregates, filters, and securely transmits data to Azure Log Analytics workspace.
+
+Fleuntd send logs to a log analytics workspace in Azure monitor by using HTTP data collector API. This involves creating POST request with URL: 
+<pre><code>
+https://"log analytics workspace-id".ods.opinsights.azure.com/api/logs?api-version=2016-04-01
+</code></pre>
+
+For additional details, you can refer to the provided [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=powershell)
+
+The seamless integration of Fluentd with FortiAnalyzer removes the need for an additional proxy server, streamlining the installation process of a data collector between FortiAnalyzer and the Azure Log Analytics workspace. 
+This approach offers an efficient way to manage log transmission and analysis.
+
+![FAZ-Sentinel Integration via Fluentd-DataFlow](images/FAZ-Fuentd-DataFlow.png)
+
+
+
+### Deployment and Setup
+
+Prerequisites:
+- Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
+- Microsoft Sentinel onboarded with the Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azuresentinelquickstart-onboard).
+- Fortigate with FortiAnalyzer Integration (optional) [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303/configuring-fortianalyzer).
+
+No configuration for data connector is required for the FortiAnalyzer integration, as Fluentd will directly transmit logs to the Log Analytics Workspace.
+Additional guidance on this step is available in the [link](https://docs.fortinet.com/document/fortianalyzer/7.4.0/new-features/198909/fluentd-support-for-public-cloud-integration).
+
+Upon authorizing FortiGate from FortiAnalyzer, establish an output profile for log forwarding. Navigate to System Settings -> Advanced -> Log Forwarding -> Output Profile and create a new output profile.
+
+![FAZ Output Profile- Fluentd](images/FAZ_outputprofile.PNG)
+
+Specify the type as "Azure Log Analytics" and utilize the default configuration. Subsequently, fill in the customer ID with the Workspace ID and the primary key value into the shared_key field.
+
+Retrieve the ID and key for the Log Analytics Workspace from Settings -> Agents, as illustrated in the provided screenshot.
+
+![Log Analytics Workspace-Id and Key](images/loganalyticsworkspace-id-key.PNG)
+
+Move to System Settings -> Advanced -> Log Forwarding -> Settings. 
+
+![FAZ Logforwarding Settings- Fluentd ](images/FAZ-logforwarding-settings.PNG)
+
+Configure the remote server type as "Forward via Output Plugin" and select your designated output profile.
+
+### Validation and Troubleshooting
+
+To verify Fluentd write status, execute the command:
+<pre><code>
+diagnose test application fwdplugind 4
+</code></pre>
+
+To ensure the presence of Fluentd log files, utilize the following command:
+<pre><code>
+diagnose sql fluentd log-tail
+</code></pre>
+
+Enable Fluentd logging with the command:
+<pre><code>
+diagnose test application fwdplugind 201 log enable
+</code></pre>
+
+After one minute, rewrite the command:
+<pre><code>
+diagnose test application fwdplugind 201 log enable
+</code></pre>
+
+To display processed events, use the command:
+<pre><code>
+diagnose sql fluentd log-tail
+</code></pre>
+
+![Fluentd Diagnose](images/FAZ-diagnose.PNG)
+
+Review the received logs from the Log Analytics Workspace, as depicted in the screenshot.
+
+![Fluentd Diagnose](images/loganalyticsworkspace-logs-verification.PNG)
+
+# Log Filtering
 
 In essence, you have the flexibility to toggle the traffic log on or off via the graphical user interface (GUI) on Fortigate devices, directing it to either Fortianalyzer or a syslog server, and specifying the severity level.
 Additionally, you can undertake more advanced filtering through CLI, allowing for tailored filtering based on specific values. Please refer to the following links:
