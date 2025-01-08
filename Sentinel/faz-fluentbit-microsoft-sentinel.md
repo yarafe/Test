@@ -288,23 +288,87 @@ You can find an example below:
 }
 </code></pre>
 
-Add transofrmation if it is needed
+Add transofrmation if it is needed.
+You can find below an example to extract the columns from message based on the aforementioned sample.
 <pre><code>
 source
-| where SyslogMessage startswith "logver="
-| extend 
-    SourceIP = extract(@"srcip=(\d+\.\d+\.\d+\.\d+)", 1, SyslogMessage),
-    DestinationIP = extract(@"dstip=(\d+\.\d+\.\d+\.\d+)", 1, SyslogMessage),
-    SourcePort = extract(@"srcport=(\d+)", 1, SyslogMessage),
-    DestinationPort = extract(@"dstport=(\d+)", 1, SyslogMessage),
-    DeviceId = extract(@"devid=""([^""]+)""", 1, SyslogMessage),
-    Severity = extract(@"level=""([^""]+)""", 1, SyslogMessage)
-| project TimeGenerated,SourceIP, DestinationIP, SourcePort, DestinationPort, DeviceId, Severity
+| extend
+    Date = extract(@"date=(\S+)", 1, message),
+    Time = extract(@"time=(\S+)", 1, message),
+    EventTime = extract(@"eventtime=(\S+)", 1, message),
+    Timestamp = extract(@"timestamp=(\d+)", 1, message),
+    LogId = extract(@"logid=""([^""]+)""", 1, message),
+    DeviceName = extract(@"devname=""([^""]+)""", 1, message),
+    DeviceId = extract(@"devid=""([^""]+)""", 1, message),
+    Vd = extract(@"vd=""([^""]+)""", 1, message),
+    Tz = extract(@"tz=""([^""]+)""", 1, message),
+    LogType = extract(@"type=""([^""]+)""", 1, message),
+    Subtype = extract(@"subtype=""([^""]+)""", 1, message),
+    Level = extract(@"level=""([^""]+)""", 1, message),
+    SrcIp = extract(@"srcip=(\d+\.\d+\.\d+\.\d+)", 1, message),
+    SrcPort = extract(@"srcport=(\d+)", 1, message),
+    SrcIntf = extract(@"srcintf=""([^""]+)""", 1, message),
+    SrcIntfRole = extract(@"srcintfrole=""([^""]+)""", 1, message),
+    DstIp = extract(@"dstip=(\d+\.\d+\.\d+\.\d+)", 1, message),
+    DstPort = extract(@"dstport=(\d+)", 1, message),
+    DstIntf = extract(@"dstintf=""([^""]+)""", 1, message),
+    DstIntfRole = extract(@"dstintfrole=""([^""]+)""", 1, message),
+    SrcCountry = extract(@"srccountry=""([^""]+)""", 1, message),
+    DstCountry = extract(@"dstcountry=""([^""]+)""", 1, message),
+    SessionId = extract(@"sessionid=(\d+)", 1, message),
+    Proto = extract(@"proto=(\d+)", 1, message),
+    Action = extract(@"action=""([^""]+)""", 1, message),
+    PolicyId = extract(@"policyid=(\d+)", 1, message),
+    Service = extract(@"service=""([^""]+)""", 1, message),
+    TranDisp = extract(@"trandisp=""([^""]+)""", 1, message),
+    App = extract(@"app=""([^""]+)""", 1, message),
+    Duration = extract(@"duration=(\d+)", 1, message),
+    SentByte = extract(@"sentbyte=(\d+)", 1, message),
+    RcvdByte = extract(@"rcvdbyte=(\d+)", 1, message),
+    SentPkt = extract(@"sentpkt=(\d+)", 1, message),
+    RcvdPkt = extract(@"rcvdpkt=(\d+)", 1, message)
+| project
+    TimeGenerated,
+    Date,
+    Time,
+    EventTime,
+    Timestamp,
+    LogId,
+    DeviceName,
+    DeviceId,
+    Vd,
+    Tz,
+    LogType,
+    Subtype,
+    Level,
+    SrcIp,
+    SrcPort,
+    SrcIntf,
+    SrcIntfRole,
+    DstIp,
+    DstPort,
+    DstIntf,
+    DstIntfRole, 
+    SrcCountry,
+    DstCountry,
+    SessionId,
+    Proto,
+    Action,
+    PolicyId,
+    Service,
+    TranDisp,
+    App,
+    Duration,
+    SentByte,
+    RcvdByte,
+    SentPkt,
+    RcvdPkt
 </code></pre>
 ![ Create DCR From Custom Table](images/customtable-transformation-editor.png)
 
 ![ Custom Table Review](images/customtable-review.png)
 
+You can create multiple custom tables attached to same DCR.
 ARM template for DCR example 
 <pre><code>
 {
@@ -316,11 +380,11 @@ ARM template for DCR example
             "type": "String"
         },
         "dataCollectionEndpoints_ya_dce_log_ingestion_externalid": {
-            "defaultValue": "/subscriptions/xxxxxxxxxxxxxxxxxxxxx/resourceGroups/ya-faz-fluentbit/providers/Microsoft.Insights/dataCollectionEndpoints/ya-dce-log-ingestion",
+            "defaultValue": "/subscriptions/xxxxxxxxxxxxxxxxxx/resourceGroups/ya-faz-fluentbit/providers/Microsoft.Insights/dataCollectionEndpoints/ya-dce-log-ingestion",
             "type": "String"
         },
         "workspaces_ya_faz_fluentbit_externalid": {
-            "defaultValue": "/subscriptions/xxxxxxxxxxxxxxxxxxxxx/resourceGroups/ya-faz-fluentbit/providers/microsoft.operationalinsights/workspaces/ya-faz-fluentbit",
+            "defaultValue": "/subscriptions/xxxxxxxxxxxxxxxxxxx/resourceGroups/ya-faz-fluentbit/providers/microsoft.operationalinsights/workspaces/ya-faz-fluentbit",
             "type": "String"
         }
     },
@@ -331,6 +395,9 @@ ARM template for DCR example
             "apiVersion": "2023-03-11",
             "name": "[parameters('dataCollectionRules_ya_dcr_fazsyslog_name')]",
             "location": "westeurope",
+            "identity": {
+                "type": "SystemAssigned"
+            },
             "properties": {
                 "dataCollectionEndpointId": "[parameters('dataCollectionEndpoints_ya_dce_log_ingestion_externalid')]",
                 "streamDeclarations": {
@@ -393,6 +460,102 @@ ARM template for DCR example
                                 "type": "string"
                             }
                         ]
+                    },
+                    "Custom-faztest_CL": {
+                        "columns": [
+                            {
+                                "name": "TimeGenerated",
+                                "type": "datetime"
+                            },
+                            {
+                                "name": "pri",
+                                "type": "string"
+                            },
+                            {
+                                "name": "host",
+                                "type": "string"
+                            },
+                            {
+                                "name": "app",
+                                "type": "string"
+                            },
+                            {
+                                "name": "pid",
+                                "type": "string"
+                            },
+                            {
+                                "name": "msgid",
+                                "type": "string"
+                            },
+                            {
+                                "name": "message",
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "Custom-faztransform_CL": {
+                        "columns": [
+                            {
+                                "name": "TimeGenerated",
+                                "type": "datetime"
+                            },
+                            {
+                                "name": "pri",
+                                "type": "string"
+                            },
+                            {
+                                "name": "host",
+                                "type": "string"
+                            },
+                            {
+                                "name": "app",
+                                "type": "string"
+                            },
+                            {
+                                "name": "pid",
+                                "type": "string"
+                            },
+                            {
+                                "name": "msgid",
+                                "type": "string"
+                            },
+                            {
+                                "name": "message",
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "Custom-table1_CL": {
+                        "columns": [
+                            {
+                                "name": "TimeGenerated",
+                                "type": "datetime"
+                            },
+                            {
+                                "name": "pri",
+                                "type": "string"
+                            },
+                            {
+                                "name": "host",
+                                "type": "string"
+                            },
+                            {
+                                "name": "app",
+                                "type": "string"
+                            },
+                            {
+                                "name": "pid",
+                                "type": "string"
+                            },
+                            {
+                                "name": "msgid",
+                                "type": "string"
+                            },
+                            {
+                                "name": "message",
+                                "type": "string"
+                            }
+                        ]
                     }
                 },
                 "dataSources": {},
@@ -414,6 +577,36 @@ ARM template for DCR example
                         ],
                         "transformKql": "source\n| where SyslogMessage startswith \"logver=\"\n| extend \n    SourceIP = extract(@\"srcip=(\\d+\\.\\d+\\.\\d+\\.\\d+)\", 1, SyslogMessage),\n    DestinationIP = extract(@\"dstip=(\\d+\\.\\d+\\.\\d+\\.\\d+)\", 1, SyslogMessage),\n    SourcePort = extract(@\"srcport=(\\d+)\", 1, SyslogMessage),\n    DestinationPort = extract(@\"dstport=(\\d+)\", 1, SyslogMessage),\n    DeviceId = extract(@\"devid=\"\"([^\"\"]+)\"\"\", 1, SyslogMessage),\n    Severity = extract(@\"level=\"\"([^\"\"]+)\"\"\", 1, SyslogMessage)\n| project TimeGenerated,SourceIP, DestinationIP, SourcePort, DestinationPort, DeviceId, Severity\n",
                         "outputStream": "Custom-fazsyslog_CL"
+                    },
+                    {
+                        "streams": [
+                            "Custom-faztest_CL"
+                        ],
+                        "destinations": [
+                            "4c11d0df4293420da6212e470364eaae"
+                        ],
+                        "transformKql": "source | extend TimeGenerated = now()",
+                        "outputStream": "Custom-faztest_CL"
+                    },
+                    {
+                        "streams": [
+                            "Custom-faztransform_CL"
+                        ],
+                        "destinations": [
+                            "4c11d0df4293420da6212e470364eaae"
+                        ],
+                        "transformKql": "source\n| extend TimeGenerated = now(),\n    DestinationIP = extract(@\"dstip=(\\d+\\.\\d+\\.\\d+\\.\\d+)\", 1, message),\n    SourcePort = extract(@\"srcport=(\\d+)\", 1, message)\n",
+                        "outputStream": "Custom-faztransform_CL"
+                    },
+                    {
+                        "streams": [
+                            "Custom-table1_CL"
+                        ],
+                        "destinations": [
+                            "4c11d0df4293420da6212e470364eaae"
+                        ],
+                        "transformKql": "source\n| extend\n    Date = extract(@\"ate=(\\S+)\", 1, message),\n    Time = extract(@\"time=(\\S+)\", 1, message),\n    EventTime = extract(@\"eventtime=(\\S+)\", 1, message),\n    Timestamp = extract(@\"timestamp=(\\d+)\", 1, message),\n    LogId = extract(@\"logid=\"\"([^\"\"]+)\"\"\", 1, message),\n    DeviceName = extract(@\"devname=\"\"([^\"\"]+)\"\"\", 1, message),\n    DeviceId = extract(@\"devid=\"\"([^\"\"]+)\"\"\", 1, message),\n    Vd = extract(@\"vd=\"\"([^\"\"]+)\"\"\", 1, message),\n    Tz = extract(@\"tz=\"\"([^\"\"]+)\"\"\", 1, message),\n    LogType = extract(@\"type=\"\"([^\"\"]+)\"\"\", 1, message),\n    Subtype = extract(@\"subtype=\"\"([^\"\"]+)\"\"\", 1, message),\n    Level = extract(@\"level=\"\"([^\"\"]+)\"\"\", 1, message),\n    SrcIp = extract(@\"srcip=(\\d+\\.\\d+\\.\\d+\\.\\d+)\", 1, message),\n    SrcPort = extract(@\"srcport=(\\d+)\", 1, message),\n    SrcIntf = extract(@\"srcintf=\"\"([^\"\"]+)\"\"\", 1, message),\n    SrcIntfRole = extract(@\"srcintfrole=\"\"([^\"\"]+)\"\"\", 1, message),\n    DstIp = extract(@\"dstip=(\\d+\\.\\d+\\.\\d+\\.\\d+)\", 1, message),\n    DstPort = extract(@\"dstport=(\\d+)\", 1, message),\n    DstIntf = extract(@\"dstintf=\"\"([^\"\"]+)\"\"\", 1, message),\n    DstIntfRole = extract(@\"dstintfrole=\"\"([^\"\"]+)\"\"\", 1, message),\n    SrcCountry = extract(@\"srccountry=\"\"([^\"\"]+)\"\"\", 1, message),\n    DstCountry = extract(@\"dstcountry=\"\"([^\"\"]+)\"\"\", 1, message),\n    SessionId = extract(@\"sessionid=(\\d+)\", 1, message),\n    Proto = extract(@\"proto=(\\d+)\", 1, message),\n    Action = extract(@\"action=\"\"([^\"\"]+)\"\"\", 1, message),\n    PolicyId = extract(@\"policyid=(\\d+)\", 1, message),\n    Service = extract(@\"service=\"\"([^\"\"]+)\"\"\", 1, message),\n    TranDisp = extract(@\"trandisp=\"\"([^\"\"]+)\"\"\", 1, message),\n    App = extract(@\"app=\"\"([^\"\"]+)\"\"\", 1, message),\n    Duration = extract(@\"duration=(\\d+)\", 1, message),\n    SentByte = extract(@\"sentbyte=(\\d+)\", 1, message),\n    RcvdByte = extract(@\"rcvdbyte=(\\d+)\", 1, message),\n    SentPkt = extract(@\"sentpkt=(\\d+)\", 1, message),\n    RcvdPkt = extract(@\"rcvdpkt=(\\d+)\", 1, message)\n| project\n    TimeGenerated,\n    Date,\n    Time,\n    EventTime,\n    Timestamp,\n    LogId,\n    DeviceName,\n    DeviceId,\n    Vd,\n    Tz,\n    LogType,\n    Subtype,\n    Level,\n    SrcIp,\n    SrcPort,\n    SrcIntf,\n    SrcIntfRole,\n    DstIp,\n    DstPort,\n    DstIntf,\n    DstIntfRole, \n    SrcCountry,\n    DstCountry,\n    SessionId,\n    Proto,\n    Action,\n    PolicyId,\n    Service,\n    TranDisp,\n    App,\n    Duration,\n    SentByte,\n    RcvdByte,\n    SentPkt,\n    RcvdPkt\n\n",
+                        "outputStream": "Custom-table1_CL"
                     }
                 ]
             }
@@ -492,7 +685,7 @@ sudo nano /etc/fluent-bit/fluent-bit.conf
     tenant_id       **************************
     dce_url         https://ya-dce-log-ingestion-ebl4.westeurope-1.ingest.monitor.azure.com
     dcr_id          dcr-f43cbb987d6c45efa8319f5d0c0c1aee
-    table_name      fazsyslog_CL
+    table_name      table1_CL
     time_generated  true
     time_key        TimeGenerated
     Compress        true
@@ -596,6 +789,10 @@ You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/conne
 
 ### FortiAnalyzer via Fluent Bit (Log Ingestion API)
 
+- Start fluent-bit
+<pre><code>
+sudo systemctl start fluent-bit
+</code></pre>
 - fluent-bit status
 <pre><code>
 systemctl status fluent-bit
@@ -627,11 +824,16 @@ Dec 05 11:10:35 ya-fluentbit fluent-bit[1903]: [0] cpu.local: [[1733397034.64665
 sudo systemctl restart fluent-bit
 </code></pre>
 
+- Check logging for troubleshooting 
 <pre><code>
 sudo journalctl -u fluent-bit -f
 </code></pre>
 
+- Table validayion from log analytics workspace
+![ Table Validation-Log Ingestion API](images/table-validation-log-ingestion-api.png)
 
+- DCR Metrics Validation
+![DCR Metrics Validation-Log Ingestion API](images/dcr-metrics-log-ingestion-api.png)
 
 ## Log Filtering
 
