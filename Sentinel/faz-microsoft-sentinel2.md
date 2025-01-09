@@ -773,21 +773,17 @@ Prerequisites:
 No configuration for data connector is required for the FortiAnalyzer integration, as Fluentd will directly transmit logs to the Log Analytics Workspace.
 Additional guidance on this step is available in the [link](https://docs.fortinet.com/document/fortianalyzer/7.4.0/new-features/198909/fluentd-support-for-public-cloud-integration).
 
-Upon authorizing FortiGate from FortiAnalyzer, establish an output profile for log forwarding. Navigate to System Settings -> Advanced -> Log Forwarding -> Output Profile and create a new output profile.
-
-![FAZ Output Profile- Fluentd](images/FAZ_outputprofile.PNG)
-
-Specify the type as "Azure Log Analytics" and utilize the default configuration. Subsequently, fill in the customer ID with the Workspace ID and the primary key value into the shared_key field.
-
-Retrieve the ID and key for the Log Analytics Workspace from Settings -> Agents, as illustrated in the provided screenshot.
-
-![Log Analytics Workspace-Id and Key](images/loganalyticsworkspace-id-key.PNG)
-
-Move to System Settings -> Advanced -> Log Forwarding -> Settings. 
-
-![FAZ Logforwarding Settings- Fluentd ](images/FAZ-logforwarding-settings.PNG)
-
-Configure the remote server type as "Forward via Output Plugin" and select your designated output profile.
+Steps for Configuration:
+* **Create an output profile** 
+    - Navigate to System Settings -> Advanced -> Log Forwarding -> Output Profile and create a new output profile.
+    ![FAZ Output Profile- Fluentd](images/FAZ_outputprofile.PNG)
+    - Specify the type as "Azure Log Analytics" and utilize the default configuration. Subsequently, fill in the customer ID with the Workspace ID and the primary key value into the shared_key field.
+    - Retrieve the ID and key for the Log Analytics Workspace from Settings -> Agents, as illustrated in the provided screenshot.
+    ![Log Analytics Workspace-Id and Key](images/loganalyticsworkspace-id-key.PNG)
+* **Create new log Forwarding**
+    - Move to System Settings -> Advanced -> Log Forwarding -> Settings. 
+    ![FAZ Logforwarding Settings- Fluentd ](images/FAZ-logforwarding-settings.PNG)
+    - Configure the remote server type as "Forward via Output Plugin" and select your designated output profile.
 
 ### Validation and Troubleshooting
 
