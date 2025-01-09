@@ -780,42 +780,40 @@ Steps for Configuration:
     - Specify the type as "Azure Log Analytics" and utilize the default configuration. Subsequently, fill in the customer ID with the Workspace ID and the primary key value into the shared_key field.
     - Retrieve the ID and key for the Log Analytics Workspace from Settings -> Agents, as illustrated in the provided screenshot.
     ![Log Analytics Workspace-Id and Key](images/loganalyticsworkspace-id-key.PNG)
-* **Create new log Forwarding**
+* **Create a new log Forwarding**
     - Move to System Settings -> Advanced -> Log Forwarding -> Settings. 
     ![FAZ Logforwarding Settings- Fluentd ](images/FAZ-logforwarding-settings.PNG)
     - Configure the remote server type as "Forward via Output Plugin" and select your designated output profile.
 
 ### Validation and Troubleshooting
 
-To verify Fluentd write status, execute the command:
+- To verify Fluentd write status, execute the command:
 <pre><code>
 diagnose test application fwdplugind 4
 </code></pre>
 
-To ensure the presence of Fluentd log files, utilize the following command:
+- To ensure the presence of Fluentd log files, utilize the following command:
 <pre><code>
 diagnose sql fluentd log-tail
 </code></pre>
 
-Enable Fluentd logging with the command:
+- Enable Fluentd logging with the command:
 <pre><code>
 diagnose test application fwdplugind 201 log enable
 </code></pre>
 
-After one minute, rewrite the command:
+- After one minute, rewrite the command:
 <pre><code>
 diagnose test application fwdplugind 201 log enable
 </code></pre>
 
-To display processed events, use the command:
+- To display processed events, use the command:
 <pre><code>
 diagnose sql fluentd log-tail
 </code></pre>
-
 ![Fluentd Diagnose](images/FAZ-diagnose.PNG)
 
-Review the received logs from the Log Analytics Workspace, as depicted in the screenshot.
-
+- Review the received logs from the Log Analytics Workspace, as depicted in the screenshot.
 ![Fluentd Diagnose](images/loganalyticsworkspace-logs-verification.PNG)
 
 # Log Filtering
