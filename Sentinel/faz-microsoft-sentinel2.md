@@ -828,13 +828,12 @@ diagnose sql fluentd log-tail
 
 Log forwarding to Sentinel may incur significant costs, necessitating the implementation of an efficient filtering mechanism.
 Fortianalyzer offers an intuitive GUI interface for efficiently filtering forwarded logs to log analytics workspace.You can set up device-specific filters based on configurable criteria, and also utilize free-text filtering directly from the GUI.
+
 ![FAZ log filtering GUI](images/FAZ-log-filtering.PNG)
 
-on the other hands, you have the flexibility to toggle the traffic log on or off via the graphical user interface (GUI) on Fortigate devices, directing it to either Fortianalyzer or a syslog server, and specifying the severity level.
+On the other hands, you have the flexibility to toggle the traffic log on or off via the graphical user interface (GUI) on Fortigate devices, directing it to either Fortianalyzer or a syslog server, and specifying the severity level.
 Additionally, you can undertake more advanced filtering through CLI, allowing for tailored filtering based on specific values. Please refer to the following links:
 
 [Log FortiAnalyzer filter](https://docs.fortinet.com/document/fortigate/7.4.1/cli-reference/449620/config-log-fortianalyzer-filter)
-
-You can exclude specific logs to be sent to FortiAnalyzer from Fortigate [Link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-exclude-specific-logs-to-be-sent-to/ta-p/222828).
-
-There are some recommened tips to minimize the forwarded logs from Fortigate to FortiAnalyzer [Link](https://community.fortinet.com/t5/FortiAnalyzer/Technical-Tip-Minimizing-logging-from-FortiGate-to-FortiAnalyzer/ta-p/198018)
+[exclude specific logs to be sent to FortiAnalyzer from Fortigate](https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-exclude-specific-logs-to-be-sent-to/ta-p/222828).
+[Minimize the forwarded logs from Fortigate to FortiAnalyzer](https://community.fortinet.com/t5/FortiAnalyzer/Technical-Tip-Minimizing-logging-from-FortiGate-to-FortiAnalyzer/ta-p/198018)
