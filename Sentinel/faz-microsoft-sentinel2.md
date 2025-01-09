@@ -603,11 +603,11 @@ You can create multiple custom tables attached to same DCR. ARM template for DCR
 - Step 3: Install Fluent Bit on linux VM
 
   - Run the installation script for the latest version:
-<pre><code>
-curl https://raw.githubusercontent.com/fluent/fluent-bit/master/install.sh | sh
-</code></pre>
+   <pre><code>
+   curl https://raw.githubusercontent.com/fluent/fluent-bit/master/install.sh | sh
+   </code></pre>
 
-  - Start Fluent-Bit
+   - Start Fluent-Bit
 <pre><code>
 sudo systemctl start fluent-bit
 </code></pre>
