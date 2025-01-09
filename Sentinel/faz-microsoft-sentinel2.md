@@ -254,13 +254,13 @@ You can use powershell script to create and configure the previous requirements 
 
 - Step 1: Create DCR and Custom Table(based on DCR)
 
-Navigate to Log Analytics Workspace Go to:
-Log Analytics Workspace -> Settings -> Tables
+Navigate to Log Analytics Workspace -> Settings -> Tables
 Then select: Create -> New custom log (DCR-based)
 ![ Create Custom Table](images/customtable1.png)
 Create a New DCR and assign it to your custom table.
 ![ Create DCR From Custom Table](images/create-dcr-from-customtable.png)
-Use the sample file provided below to define the schema for your custom table:
+Use the sample file to define the schema for your custom table. Ensure the sample aligns with the structure of syslog messages forwarded from FortiAnalyzer.
+The sample Below should match rfc-5424.
 <pre><code>
 {
   "pri": "189",
@@ -347,9 +347,6 @@ source
     RcvdPkt
 </code></pre>
 ![ Create DCR From Custom Table](images/customtable-transformation-editor.png)
-
-![ Custom Table Review](images/customtable-review.png)
-
 You can create multiple custom tables attached to same DCR. ARM template for DCR example:
 <pre><code>
 {
@@ -603,28 +600,26 @@ You can create multiple custom tables attached to same DCR. ARM template for DCR
     - Select User, group, or service principal for Assign access to and choose Select members.
     - Choose the application that you created and then click Select to confirm assignment.
 
-For more details, refer to the Azure Documentation [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/tutorial-logs-ingestion-portal)
-
 - Step 3: Install Fluent Bit on linux VM
 
-Run the installation script for the latest version:
+ - Run the installation script for the latest version:
 <pre><code>
 curl https://raw.githubusercontent.com/fluent/fluent-bit/master/install.sh | sh
 </code></pre>
 
-- Start Fluent-Bit
+ - Start Fluent-Bit
 <pre><code>
 sudo systemctl start fluent-bit
 </code></pre>
 
-- Update apt database
+ - Update apt database
 <pre><code>
 sudo apt-get update
 </code></pre>
 
-Follow the [link](https://docs.fluentbit.io/manual/installation/linux/ubuntu) for more details.
+Refer to the Fluent Bit Installation Guide for more details[link](https://docs.fluentbit.io/manual/installation/linux/ubuntu).
 
-- Add parser for Syslog-rfc5424
+ - Edit the parsers.conf file and add parser for Syslog-rfc5424
 <pre><code>
 sudo nano /etc/fluent-bit/parsers.conf
 </code></pre>
@@ -638,11 +633,12 @@ sudo nano /etc/fluent-bit/parsers.conf
     Time_Format  %Y-%m-%dT%H:%M:%S%z
 </code></pre>
 
-- Configure fluent-bit to forward logging to log analytics workspace
+ - Edit the fluent-bit.conf file and configure fluent-bit to forward logging to log analytics workspace
 <pre><code>
 sudo nano /etc/fluent-bit/fluent-bit.conf
 </code></pre>
  
+ The screenshots below provide the required configuration parameters for :App Registeration, client_secret, dce_url, dcr_id
 ![ App Registeration](images/app-registeration.png)
 
 ![ client-secret](images/client-secret.png)
@@ -651,6 +647,7 @@ sudo nano /etc/fluent-bit/fluent-bit.conf
 
 ![ DCR ID](images/dcr-id.png)
 
+You can find below an example about configuration file:
 <pre><code>
  [INPUT]
     Name   syslog
@@ -676,7 +673,7 @@ sudo nano /etc/fluent-bit/fluent-bit.conf
 
 </code></pre>
 
-FortiAnalyzer Configuration
+- Step 4 : Configure FortiAnalyzer to forward logging to fluent bit linux machine
 
 <pre><code>
 config system log-forward
@@ -692,6 +689,8 @@ config system log-forward
     next
 end
 </code></pre>
+
+For more details about log ingestion API deployment, refer to the Azure Documentation [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/tutorial-logs-ingestion-portal)
 
 ### Validation and Troubleshooting
 
