@@ -826,13 +826,29 @@ diagnose sql fluentd log-tail
 
 # Log Filtering
 
-Log forwarding to Sentinel may incur significant costs, necessitating the implementation of an efficient filtering mechanism.
-Fortianalyzer offers an intuitive GUI interface for efficiently filtering forwarded logs to log analytics workspace.You can set up device-specific filters based on configurable criteria, and also utilize free-text filtering directly from the GUI.
+Log forwarding to Microsoft Sentinel can lead to significant costs, making it essential to implement an efficient filtering mechanism. 
+
+* **FortiAnalyzer Log Filtering**
+
+FortiAnalyzer provides an intuitive graphical user interface (GUI) for managing and optimizing log forwarding to the Log Analytics Workspace.
+FortiAnalyzer allows users to set up device-specific filters based on configurable criteria. Additionally, users can apply free-text filtering directly from the GUI, simplifying the process of customizing log forwarding.
 
 ![FAZ log filtering GUI](images/FAZ-log-filtering.PNG)
 
+* **FortiGate Log Filtering**
+
 On the other hands, you have the flexibility to toggle the traffic log on or off via the graphical user interface (GUI) on Fortigate devices, directing it to either Fortianalyzer or a syslog server, and specifying the severity level.
 Additionally, you can undertake more advanced filtering through CLI, allowing for tailored filtering based on specific values. Please refer to the following links:
+
+On FortiGate devices, log forwarding settings can be adjusted directly via the GUI. Users can:
+
+    Enable or disable traffic logs.
+    Forward logs to FortiAnalyzer or a syslog server.
+    Specify the desired severity level.
+
+For more advanced filtering, FortiGate's CLI provides enhanced flexibility, enabling tailored filtering based on specific values.
+
+For detailed guidance on log filtering and optimization, refer to the following resources:
 
 [Log FortiAnalyzer filter](https://docs.fortinet.com/document/fortigate/7.4.1/cli-reference/449620/config-log-fortianalyzer-filter)
 
