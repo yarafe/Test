@@ -64,7 +64,6 @@ Steps for Configuration:
     ![ Create DCR3](images/create-dcr3.png)
 
 You can find below an ARM template example for DCR configuration:
-
 <pre><code>
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
@@ -226,7 +225,6 @@ To integrate FortiAnalyzer with Sentinel via Logs Ingestion API, install Fluent 
    - Data Collection Endpoint (DCE):  defines where and how telemetry data, like logs and metrics, is sent for processing and ingestion into Azure services. It acts as a connection point for data collection.
 
    - Data Collection Rule (DCR): specifies how data should be collected, transformed, and sent to a destination, such as Log Analytics workspaces or storage. It defines the data sources, destinations, and any processing rules applied to the incoming data.
-    Log Analytics Workspace
 
 Once Fluent Bit receives logs from FortiAnalyzer via the syslog daemon, it forwards the logs to the Data Collection Endpoint (DCE) using HTTPS requests. The incoming data is then processed and transformed based on the configurations defined in the Data Collection Rule (DCR) before being ingested into the destination, such as a Log Analytics Workspace.
 
@@ -241,32 +239,28 @@ For further details about log ingesion API, visit the following [link](https://l
 - A Microsoft Entra application to authenticate against the API [link](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app?tabs=certificate) and:
     - A service principal on the Microsoft Entra application
     - A secret for the Microsoft Entra application
-- A data collection endpoint (DCE) in same region as Log Analytics workspace, to receive data [link](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection-endpoint-overview?tabs=portal)
+- A data collection endpoint (DCE) in same region as Log Analytics workspace, to receive data [link](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection-endpoint-overview?tabs=portal).
 - Grants the app Contributor permissions to:
     -  The Log Analytics workspace
     - The resource group for data collection rules
     - The resource group for data collection endpoints
 
-You can use powershell script to create and configure the previous requirements [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/set-up-logs-ingestion-api-prerequisites)
-
+You can use powershell script to create and configure the previous requirements [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/set-up-logs-ingestion-api-prerequisites).
 
 - Dedicated linux VM [link](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu).
 - Fortigate with FortiAnalyzer Integration (optional) [link](https://docs.fortinet.com/document/fortigate/7.4.2/administration-guide/712303/configuring-fortianalyzer).
 
 **Deployment Steps**
 
-- Create DCR and custom table based on DCR 
-Navigate to Log Analytics Workspace- > Settings -> Tables
-Then create - > New custom log (DCR-based)
+- Step 1: Create DCR and Custom Table(based on DCR)
 
-
+Navigate to Log Analytics Workspace Go to:
+Log Analytics Workspace -> Settings -> Tables
+Then select: Create -> New custom log (DCR-based)
 ![ Create Custom Table](images/customtable1.png)
-
-You can create new DCR and assign it to custom Table
+Create a New DCR and assign it to your custom table.
 ![ Create DCR From Custom Table](images/create-dcr-from-customtable.png)
-
-upload sample file
-You can find an example below:
+Use the sample file provided below to define the schema for your custom table:
 <pre><code>
 {
   "pri": "189",
@@ -277,9 +271,7 @@ You can find an example below:
   "message": "- logver=706003401 timestamp=1734059922 devname=\"ya-fgt\" devid=\"FGVM4VTM24000495\" vd=\"root\" date=2024-12-13 time=03:18:42 eventtime=1734088722709530851 tz=\"-0800\" logid=\"0001000014\" type=\"traffic\" subtype=\"local\" level=\"notice\" srcip=172.19.0.4 srcport=7634 srcintf=\"root\" srcintfrole=\"undefined\" dstip=168.63.129.16 dstport=32526 dstintf=\"port1\" dstintfrole=\"undefined\" srccountry=\"Reserved\" dstcountry=\"United States\" sessionid=1391 proto=6 action=\"close\" policyid=0 service=\"tcp/32526\" trandisp=\"noop\" app=\"tcp/32526\" duration=1 sentbyte=2662 rcvdbyte=351 sentpkt=7 rcvdpkt=4"
 }
 </code></pre>
-
-Add transofrmation if it is needed.
-You can find below an example to extract the columns from message based on the aforementioned sample.
+Apply transformations to extract columns from the message field.
 <pre><code>
 source
 | extend
@@ -358,8 +350,7 @@ source
 
 ![ Custom Table Review](images/customtable-review.png)
 
-You can create multiple custom tables attached to same DCR.
-ARM template for DCR example 
+You can create multiple custom tables attached to same DCR. ARM template for DCR example:
 <pre><code>
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
@@ -605,15 +596,18 @@ ARM template for DCR example
 }
 </code></pre>
 
-Select Access Control (IAM) for the DCR and then select Add role assignment.
-Select Monitoring Metrics Publisher > Next.
-Select User, group, or service principal for Assign access to and choose Select members. Select the application that you created and then choose Select.
+- Step 2: Configure Access Control
+    - Navigate to Access Control (IAM) section for the DCR.
+    - Add role assignment.
+    - Select: Monitoring Metrics Publisher > Next.
+    - Select User, group, or service principal for Assign access to and choose Select members.
+    - Choose the application that you created and then click Select to confirm assignment.
 
-You can find more details from [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/tutorial-logs-ingestion-portal)
+For more details, refer to the Azure Documentation [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/tutorial-logs-ingestion-portal)
 
-- Install Fluent Bit on linux VM
+- Step 3: Install Fluent Bit on linux VM
 
-Install the most recent version release from the script.
+Run the installation script for the latest version:
 <pre><code>
 curl https://raw.githubusercontent.com/fluent/fluent-bit/master/install.sh | sh
 </code></pre>
@@ -630,7 +624,7 @@ sudo apt-get update
 
 Follow the [link](https://docs.fluentbit.io/manual/installation/linux/ubuntu) for more details.
 
--Add parser for Syslog-rfc5424
+- Add parser for Syslog-rfc5424
 <pre><code>
 sudo nano /etc/fluent-bit/parsers.conf
 </code></pre>
