@@ -2,18 +2,11 @@
 
 ## Introduction
 
-Microsoft Sentinel is a scalable, cloud-native solution offering Security Information and Event Management (SIEM) and Security Orchestration, Automation, and Response (SOAR).
-It provides intelligent security analytics and threat intelligence across the enterprise, offering a unified platform for attack detection, threat visibility, proactive hunting, and response.
-For further details, please refer to the following [link](https://learn.microsoft.com/en-us/azure/sentinel/overview).
+Some clients may require forwarding logs to additional centralized hubs, such as Microsoft Sentinel, to integrate with their SIEM solutions. This approach supports advanced analytics, diverse compliance requirements, and various operational needs.
 
-In this guide, we will outline Fortigate integration with Microsoft Sentinel via Azure Monitor Agent (AMA).
-
-As we are aware, retaining logs on a FortiGate device consumes instance resources such as disk space, CPU, and memory. To address this, the option to forward logging to FortiAnalyzer or a dedicated log server is available.
-Additionally, some clients perceive Microsoft Sentinel as an advantageous complement to FortiGuard for detecting attacks and threats. Having Sentinel as a central hub for logging can prove beneficial for SOC teams, serving as an umbrella monitoring and alerting system for the entire infrastructure.
+This guide provides a comprehensive walkthrough for integrating FortiGate with Microsoft Sentinel.
 
 ## Data Flow
-
-### FortiGate Integration with Microsoft Sentinel Scenario
 
 To ingest CEF logs from FortiGate into Microsoft Sentinel, a dedicated Linux machine is configured to serve as proxy server for log collection and forwarding to the Microsoft Sentinel workspace.
 
@@ -30,27 +23,32 @@ The Linux machine is structured with two key components:
 
 For more details please review this [link](https://learn.microsoft.com/en-us/azure/sentinel/cef-syslog-ama-overview?tabs=forwarder)
 
+## Deployment and Setup
 
-## FortiGate integration with Microsoft Sentinel Setup
+Prerequisites:
+- Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal).
+- Microsoft Sentinel onboarded with the Log Analytics Workspace [link](https://learn.microsoft.com/en-us/azuresentinelquickstart-onboard).
+- Dedicated linux VM [link](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu).
 
 To establish the integration between Microsoft Sentinel and FortiGate, follow these steps:
 
-### Create Log Analytics Workspace
-Begin by setting up a Log Analytics Workspace as detailed in this [link](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal). Once established, proceed to onboard Sentinel with the created Log Analytics.
-For more information, visit the provided [link](https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard) for detailed instructions.
+- [Install Common Event Format Data Connector](#install-common-event-format-data-connector)
+- [Create Data Collection Rule (DCR) (if you don't have one)](#create-data-collection-rule-dcr-if-you-dont-have-one)
+- [Install CEF Collector on Linux](#install-cef-collector-on-linux)
+- [Configure FortiGate Device](#configure-fortigate-device)
 
-### Utilize CEF Data Connector
-Navigate to Microsoft Sentinel workspace ---> configuration ---> Data connector blade .
+### Install Common Event Format Data Connector
 
-Search for 'Common Event Format (CEF) and install it. This will deploy for you Common Event Format (CEF) via AMA.
+- Navigate to Microsoft Sentinel workspace ---> configuration ---> Data connector blade .
+- Search for 'Common Event Format (CEF) and install it. This will deploy for you Common Event Format (CEF) via AMA.
 
 ![ Sentinel- CEF-DataConnector](images/CEF-DataConnector.png)
 
-Open connector page for Common Event Format (CEF) via AMA.
+- Open connector page for Common Event Format (CEF) via AMA.
 
 ![ Sentinel- CEF via AMA-page](images/CEF-via-AMA-page.png)
 
-Create Data collection rule DCR (if you don't have):
+### Create Data collection rule DCR (if you don't have)
 
 - Use the same location as your log analytics workspace
 - Add linux machine as a resource
@@ -63,7 +61,6 @@ Create Data collection rule DCR (if you don't have):
 ![ Create DCR3](images/create-dcr3.png)
 
 You can find below an ARM template example for DCR configuration:
-
 <pre><code>
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
@@ -151,9 +148,8 @@ You can find below an ARM template example for DCR configuration:
 
 </code></pre>
 
-### CEF Collector Installation on Linux
+### Install CEF Collector on Linux
 Install the Common Event Format (CEF) collector on a Linux machine by executing the following Python script:
-
 <pre><code>
 sudo wget -O Forwarder_AMA_installer.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Forwarder_AMA_installer.py&&sudo python3 Forwarder_AMA_installer.py
 </code></pre>
@@ -173,46 +169,44 @@ end
 
 The facility to local7 has been configured should match "Collect" in the Data Collection Rule configuration.
 
-### Validation and Connectivity Check
+## Validation and Connectivity Check
 
-The following command can be used to check the log statistics sent from FortiGate:
+- The following command can be used to check the log statistics sent from FortiGate:
 <pre><code>
 diagnose test application syslogd 4
 </code></pre>
 
-To validate that the syslog daemon is running on the TCP port and that the AMA is listening, run this command:
+- To validate that the syslog daemon is running on the TCP port and that the AMA is listening, run this command:
 <pre><code>
 netstat -lnptv
 </code></pre>
 
-![ Port Validation- AMA](images/port-validation-ama.png)                                                                                                                                                               -
+![ Port Validation- AMA](images/port-validation-ama.png)
 
-To capture messages sent from a logger or a connected device, run this command in the background:
+- To capture messages sent from a logger or a connected device, run this command in the background:
 <pre><code>
 tcpdump -i any port 514 -A -vv &
 </code></pre>
-
 After you complete the validation, we recommend that you stop the tcpdump: Type fg and then select Ctrl+C
 
-To verify that the connector is installed correctly, run the troubleshooting script with one of these commands:
+- To verify that the connector is installed correctly, run the troubleshooting script with one of these commands:
 <pre><code>
 sudo wget -O Sentinel_AMA_troubleshoot.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Sentinel_AMA_troubleshoot.py&&sudo python3 Sentinel_AMA_troubleshoot.py --cef
 </code></pre>
 
 ![ Troubleshooting- AMA ](images/troubleshooting-ama.png)
 
-Check data connector page and verify that the DCR is corectly assigned and that the log is well ingested in CommonSecurityLog Table
+- Check data connector page and verify that the DCR is corectly assigned and that the log is well ingested in CommonSecurityLog Table
 
 ![ DataConnector - Validation](images/dataconnector-validation.png)
 
 ![ DataConnector - Validation](images/CommonSecurityLog.png)
 
-
 You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal) for more technical details about FortiGate integration With Microsoft Sentinel.
 
 ## Log Filtering
 
-Log forwarding to Sentinel may incur significant costs, necessitating the implementation of an efficient filtering mechanism.
+Log forwarding to Microsoft Sentinel can lead to significant costs, making it essential to implement an efficient filtering mechanism. 
 In essence, you have the flexibility to toggle the traffic log on or off via the graphical user interface (GUI) on Fortigate devices, directing it to either Fortianalyzer or a syslog server, and specifying the severity level.
 Additionally, you can undertake more advanced filtering through CLI, allowing for tailored filtering based on specific values. Please refer to the following [link](https://docs.fortinet.com/document/fortigate/7.6.0/cli-reference/273422104/config-log-syslogd-filter).
 
