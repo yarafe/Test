@@ -643,15 +643,14 @@ You can create multiple custom tables attached to same DCR. ARM template for DCR
 
     ![ DCR ID](images/dcr-id.png)
     You can find below an example about configuration file:
-    <pre><code>
- [INPUT]
+<pre><code>
+[INPUT]
     Name   syslog
     Mode   udp
     Listen 0.0.0.0
     Port   514
     Parser mysyslog-rfc5424
     Tag    faz
-
 
 [OUTPUT]
     Name            azure_logs_ingestion
@@ -665,7 +664,6 @@ You can create multiple custom tables attached to same DCR. ARM template for DCR
     time_generated  true
     time_key        TimeGenerated
     Compress        true
-
 </code></pre>
 
 - Step 4 : Configure FortiAnalyzer to forward logging to fluent bit linux machine
