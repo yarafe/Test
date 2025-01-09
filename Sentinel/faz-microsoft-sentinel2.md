@@ -785,6 +785,14 @@ Steps for Configuration:
     ![FAZ Logforwarding Settings- Fluentd ](images/FAZ-logforwarding-settings.PNG)
     - Configure the remote server type as "Forward via Output Plugin" and select your designated output profile.
 
+FortiAnalyzer can ingest logs into the log analytics workspace using the Apache access log format. However, extracting the essential data from the message still requires additional steps.
+
+One approach is to utilize Azure functions for this purpose. For instance, to extract the Source Information (SrcInf) from the message, you can employ the following query and subsequently save it as a function:
+<pre><code>
+Table_name
+| extend SrcInf = extract(@'srcintf=\"(\S+)\"', 1, Message)
+</code></pre>
+
 ### Validation and Troubleshooting
 
 - To verify Fluentd write status, execute the command:
@@ -818,27 +826,15 @@ diagnose sql fluentd log-tail
 
 # Log Filtering
 
-In essence, you have the flexibility to toggle the traffic log on or off via the graphical user interface (GUI) on Fortigate devices, directing it to either Fortianalyzer or a syslog server, and specifying the severity level.
+Log forwarding to Sentinel may incur significant costs, necessitating the implementation of an efficient filtering mechanism.
+Fortianalyzer offers an intuitive GUI interface for efficiently filtering forwarded logs to log analytics workspace.You can set up device-specific filters based on configurable criteria, and also utilize free-text filtering directly from the GUI.
+![FAZ log filtering GUI](images/FAZ-log-filtering.PNG)
+
+on the other hands, you have the flexibility to toggle the traffic log on or off via the graphical user interface (GUI) on Fortigate devices, directing it to either Fortianalyzer or a syslog server, and specifying the severity level.
 Additionally, you can undertake more advanced filtering through CLI, allowing for tailored filtering based on specific values. Please refer to the following links:
 
 [Log FortiAnalyzer filter](https://docs.fortinet.com/document/fortigate/7.4.1/cli-reference/449620/config-log-fortianalyzer-filter)
 
-[Log syslogd filter](https://docs.fortinet.com/document/fortigate/7.4.1/cli-reference/411620/config-log-syslogd-filter)
+You can exclude specific logs to be sent to FortiAnalyzer from Fortigate [Link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-exclude-specific-logs-to-be-sent-to/ta-p/222828).
 
-To optimize logging from Fortigate to Fortianalyzer, you may find useful tips in this community post: 
-
-[Minimizing Logging Tips](https://community.fortinet.com/t5/FortiAnalyzer/Technical-Tip-Minimizing-logging-from-FortiGate-to-FortiAnalyzer/ta-p/198018)
-
-Fortianalyzer offers an intuitive GUI interface for efficiently filtering forwarded logs to log analytics workspace.You can set up device-specific filters based on configurable criteria, and also utilize free-text filtering directly from the GUI.
-
-![FAZ log filtering GUI](images/FAZ-log-filtering.PNG)
-You can view logs in CEF on remote syslog servers or FortiAnalyzer.
-
-With the appropriate setup, the syslog server has the capability to transmit logs in CEF format to the log analytics workspace through the Fortinet data connector. 
-While, FortiAnalyzer can ingest logs into the log analytics workspace using the Apache access log format. However, extracting the essential data from the message still requires additional steps.
-
-One approach is to utilize Azure functions for this purpose. For instance, to extract the Source Information (SrcInf) from the message, you can employ the following query and subsequently save it as a function:
-<pre><code>
-Table_name
-| extend SrcInf = extract(@'srcintf=\"(\S+)\"', 1, Message)
-</code></pre>
+There are some recommened tips to minimize the forwarded logs from Fortigate to FortiAnalyzer [Link](https://community.fortinet.com/t5/FortiAnalyzer/Technical-Tip-Minimizing-logging-from-FortiGate-to-FortiAnalyzer/ta-p/198018)
