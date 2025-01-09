@@ -600,38 +600,35 @@ You can create multiple custom tables attached to same DCR. ARM template for DCR
     - Select User, group, or service principal for Assign access to and choose Select members.
     - Choose the application that you created and then click Select to confirm assignment.
 
-- Step 3: Install Fluent Bit on linux VM
+- Step 3: Install and configure Fluent Bit on linux VM
 
   - Run the installation script for the latest version:
    <pre><code>
    curl https://raw.githubusercontent.com/fluent/fluent-bit/master/install.sh | sh
    </code></pre>
-
-   - Start Fluent-Bit
-<pre><code>
-sudo systemctl start fluent-bit
-</code></pre>
-
-  - Update apt database
-<pre><code>
-sudo apt-get update
-</code></pre>
-
-Refer to the Fluent Bit Installation Guide for more details[link](https://docs.fluentbit.io/manual/installation/linux/ubuntu).
+   Start Fluent-Bit
+   <pre><code>
+   sudo systemctl start fluent-bit
+   </code></pre>
+   Update apt database
+   <pre><code>
+   sudo apt-get update
+   </code></pre>
+   Refer to the Fluent Bit Installation Guide for more details[link](https://docs.fluentbit.io/manual/installation/linux/ubuntu).
 
   - Edit the parsers.conf file and add parser for Syslog-rfc5424
-<pre><code>
-sudo nano /etc/fluent-bit/parsers.conf
-</code></pre>
+   <pre><code>
+   sudo nano /etc/fluent-bit/parsers.conf
+   </code></pre>
 
-<pre><code>
+  <pre><code>
 [PARSER]
     Name         mysyslog-rfc5424
     Format       regex
     Regex        ^<(?<pri>[0-9]+)>1 (?<time>[^ ]+) (?<host>[^ ]+) (?<app>[^\s]+) (?<pid>[^\s]+) (?<msgid>[^\s]+) (?<structured>[^\]]*\])?(?<message>.+)$
     Time_Key     time
     Time_Format  %Y-%m-%dT%H:%M:%S%z
-</code></pre>
+  </code></pre>
 
   - Edit the fluent-bit.conf file and configure fluent-bit to forward logging to log analytics workspace
 <pre><code>
