@@ -836,6 +836,6 @@ Additionally, you can undertake more advanced filtering through CLI, allowing fo
 
 [Log FortiAnalyzer filter](https://docs.fortinet.com/document/fortigate/7.4.1/cli-reference/449620/config-log-fortianalyzer-filter)
 
-[exclude specific logs to be sent to FortiAnalyzer from Fortigate](https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-exclude-specific-logs-to-be-sent-to/ta-p/222828).
+[Exclude specific logs to be sent to FortiAnalyzer from Fortigate](https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-exclude-specific-logs-to-be-sent-to/ta-p/222828).
 
 [Minimize the forwarded logs from Fortigate to FortiAnalyzer](https://community.fortinet.com/t5/FortiAnalyzer/Technical-Tip-Minimizing-logging-from-FortiGate-to-FortiAnalyzer/ta-p/198018)
