@@ -1,10 +1,10 @@
-# FortiGate Integration with Microsoft Sentinel via AMA Agent
+# FortiGate Integration with Microsoft Sentinel via AMA 
 
 ## Introduction
 
 Some clients may require forwarding logs to additional centralized hubs, such as Microsoft Sentinel, to integrate with their SIEM solutions. This approach supports advanced analytics, diverse compliance requirements, and various operational needs.
 
-This guide provides a comprehensive walkthrough for integrating FortiGate with Microsoft Sentinel.
+This guide provides a comprehensive walkthrough for integrating FortiGate with Microsoft Sentinel via Azure Monitor Agent (AMA).
 
 ## Data Flow
 
