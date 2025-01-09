@@ -606,15 +606,15 @@ You can create multiple custom tables attached to same DCR. ARM template for DCR
    <pre><code>
    curl https://raw.githubusercontent.com/fluent/fluent-bit/master/install.sh | sh
    </code></pre>
-   Start Fluent-Bit
-   <pre><code>
-   sudo systemctl start fluent-bit
-   </code></pre>
-   Update apt database
-   <pre><code>
-   sudo apt-get update
-   </code></pre>
-   Refer to the Fluent Bit Installation Guide for more details[link](https://docs.fluentbit.io/manual/installation/linux/ubuntu).
+    Start Fluent-Bit
+    <pre><code>
+    sudo systemctl start fluent-bit
+    </code></pre>
+    Update apt database
+    <pre><code>
+    sudo apt-get update
+    </code></pre>
+    Refer to the Fluent Bit Installation Guide for more details [link](https://docs.fluentbit.io/manual/installation/linux/ubuntu).
 
   - Edit the parsers.conf file and add parser for Syslog-rfc5424
    <pre><code>
@@ -622,7 +622,7 @@ You can create multiple custom tables attached to same DCR. ARM template for DCR
    </code></pre>
 
   <pre><code>
-[PARSER]
+  [PARSER]
     Name         mysyslog-rfc5424
     Format       regex
     Regex        ^<(?<pri>[0-9]+)>1 (?<time>[^ ]+) (?<host>[^ ]+) (?<app>[^\s]+) (?<pid>[^\s]+) (?<msgid>[^\s]+) (?<structured>[^\]]*\])?(?<message>.+)$
@@ -631,21 +631,19 @@ You can create multiple custom tables attached to same DCR. ARM template for DCR
   </code></pre>
 
   - Edit the fluent-bit.conf file and configure fluent-bit to forward logging to log analytics workspace
-<pre><code>
-sudo nano /etc/fluent-bit/fluent-bit.conf
-</code></pre>
- 
- The screenshots below illustrate the required configuration parameters for client_id, client_secret, dce_url, and dcr_id.
-![ App Registeration](images/app-registeration.png)
+    <pre><code>
+    sudo nano /etc/fluent-bit/fluent-bit.conf
+    </code></pre>
+    The screenshots below illustrate the required configuration parameters for client_id, client_secret, dce_url, and dcr_id.
+    ![ App Registeration](images/app-registeration.png)
 
-![ client-secret](images/client-secret.png)
+    ![ client-secret](images/client-secret.png)
 
-![ DCE URL](images/dce-url.png)
+    ![ DCE URL](images/dce-url.png)
 
-![ DCR ID](images/dcr-id.png)
-
-You can find below an example about configuration file:
-<pre><code>
+    ![ DCR ID](images/dcr-id.png)
+    You can find below an example about configuration file:
+    <pre><code>
  [INPUT]
     Name   syslog
     Mode   udp
