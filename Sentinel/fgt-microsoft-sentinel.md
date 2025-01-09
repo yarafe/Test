@@ -48,7 +48,7 @@ To establish the integration between Microsoft Sentinel and FortiGate, follow th
 
 ![ Sentinel- CEF via AMA-page](images/CEF-via-AMA-page.png)
 
-### Create Data collection rule DCR (if you don't have)
+### Create Data collection rule DCR (if you don't have one)
 
 - Use the same location as your log analytics workspace
 - Add linux machine as a resource
