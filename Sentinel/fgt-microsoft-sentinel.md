@@ -180,20 +180,20 @@ diagnose test application syslogd 4
 sudo systemctl restart rsyslog
 </code></pre>
 
-- Validate that the syslog daemon is running on the TCP port and that the AMA is listening check the configuration file /etc/rsyslog.conf and run this command:
+- Validate that the syslog daemon is running on the TCP port and that the AMA is listening by reviewing the configuration file /etc/rsyslog.conf . After verification, use the following command to confirm:
 
 <pre><code>
 netstat -lnptv
 </code></pre>
 ![ Port Validation- AMA](images/port-validation-ama.png)
 
-- Capture messages sent from a logger or a connected device, run this command in the background:
+- Run the following command in the background to capture messages sent from a logger or a connected device:
 <pre><code>
 tcpdump -i any port 514 -A -vv &
 </code></pre>
 After you complete the validation, we recommend that you stop the tcpdump: Type fg and then select Ctrl+C
 
-- Verify that the connector is installed correctly, run the troubleshooting script with one of these commands:
+- Verify the correct installation of the connector by running the troubleshooting script using one of the following commands:
 <pre><code>
 sudo wget -O Sentinel_AMA_troubleshoot.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Sentinel_AMA_troubleshoot.py&&sudo python3 Sentinel_AMA_troubleshoot.py --cef
 </code></pre>
