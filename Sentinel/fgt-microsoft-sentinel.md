@@ -175,21 +175,25 @@ The facility to local7 has been configured should match "Collect" in the Data Co
 <pre><code>
 diagnose test application syslogd 4
 </code></pre>
+- Restart rsyslog
+<pre><code>
+sudo systemctl restart rsyslog
+</code></pre>
 
-- To validate that the syslog daemon is running on the TCP port and that the AMA is listening, run this command:
+- Validate that the syslog daemon is running on the TCP port and that the AMA is listening check the configuration file /etc/rsyslog.conf and run this command:
+
 <pre><code>
 netstat -lnptv
 </code></pre>
-
 ![ Port Validation- AMA](images/port-validation-ama.png)
 
-- To capture messages sent from a logger or a connected device, run this command in the background:
+- Capture messages sent from a logger or a connected device, run this command in the background:
 <pre><code>
 tcpdump -i any port 514 -A -vv &
 </code></pre>
 After you complete the validation, we recommend that you stop the tcpdump: Type fg and then select Ctrl+C
 
-- To verify that the connector is installed correctly, run the troubleshooting script with one of these commands:
+- Verify that the connector is installed correctly, run the troubleshooting script with one of these commands:
 <pre><code>
 sudo wget -O Sentinel_AMA_troubleshoot.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Sentinel_AMA_troubleshoot.py&&sudo python3 Sentinel_AMA_troubleshoot.py --cef
 </code></pre>
