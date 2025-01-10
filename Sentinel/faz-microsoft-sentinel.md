@@ -173,13 +173,18 @@ You can find below an ARM template example for DCR configuration:
 
 ### Validation and Troubleshooting
 
-From the FortiAnalyzer CLI, use the following command to verify the log forwarding status:
+- From the FortiAnalyzer CLI, use the following command to verify the log forwarding status:
 <pre><code>
 diagnose test application logfwd 4
 </code></pre>
  Visit the [link](https://community.fortinet.com/t5/FortiAnalyzer/Technical-Tip-How-to-configure-and-troubleshoot-Log-Forwarding/ta-p/277214) for more details.
 
-To ensure the syslog daemon is running on the correct TCP port and the Azure Monitor Agent (AMA) is actively listening, execute the following command:
+- Restart rsyslog
+<pre><code>
+sudo systemctl restart rsyslog
+</code></pre>
+
+- Validate that the syslog daemon is running on the TCP port and that the AMA is listening by reviewing the configuration file /etc/rsyslog.conf . After verification, use the following command to confirm:
 <pre><code>
 netstat -lnptv
 </code></pre>
@@ -836,9 +841,6 @@ Log forwarding to Microsoft Sentinel can lead to significant costs, making it es
     ![FAZ log filtering GUI](images/FAZ-log-filtering.PNG)
 
 *   **FortiGate Log Filtering**
-
-    On the other hands, you have the flexibility to toggle the traffic log on or off via the graphical user interface (GUI) on Fortigate devices, directing it to either Fortianalyzer or a syslog server, and specifying the severity level.
-    Additionally, you can undertake more advanced filtering through CLI, allowing for tailored filtering based on specific values. Please refer to the following links:
 
     On FortiGate devices, log forwarding settings can be adjusted directly via the GUI. Users can:
 
