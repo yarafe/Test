@@ -191,31 +191,30 @@ netstat -lnptv
 
 ![ Port Validation- AMA](images/port-validation-ama.png)
 
-To capture messages sent from a logger or connected device, use this command:
+- Use this command to capture messages sent from a logger or connected device :
 <pre><code>
 tcpdump -i any port 514 -A -vv &
 </code></pre>
 After completing the validation, stop the tcpdump process by typing fg followed by Ctrl+C.
 
-To check if the connector is installed correctly, run the Sentinel troubleshooting script:
+- Run the Sentinel troubleshooting script to check if the connector is installed correctly :
 <pre><code>
 sudo wget -O Sentinel_AMA_troubleshoot.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Sentinel_AMA_troubleshoot.py&&sudo python3 Sentinel_AMA_troubleshoot.py --cef
 </code></pre>
 
 ![ Troubleshooting- AMA ](images/troubleshooting-ama.png)
 
-Confirm that the Data Collection Rule (DCR) is correctly assigned and that logs are being ingested into the Syslog table.
+- Confirm that the Data Collection Rule (DCR) is correctly assigned and that logs are being ingested into the Syslog table.
 
 ![ DataConnector - Validation](images/syslog-dataconnector-validation.png)
 ![ DataConnector - Validation](images/syslog.png)
 
-From the Azure portal, navigate to the DCR's Monitoring > Metrics section and set the metric to "Log Ingestion per Minute" to validate log flow. Set the metric to log ingestion per min
+- From the Azure portal, navigate to the DCR's Monitoring > Metrics section and set the metric to "Log Ingestion per Minute" to validate log flow. Set the metric to log ingestion per min
 
 ![ DCR-metrics - Validation](images/DCR-metrics.png)
-
 For additional details on DCR validation, review the [link](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection-monitor)
 
-To explore more about syslog  ingestion with Microsoft Sentinel via AMA, visit the official Microsoft Sentinel documentation [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal).
+Visit the official Microsoft Sentinel documentation [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal) to explore more about syslog  ingestion with Microsoft Sentinel via AMA.
 
 ## Log Ingestion API with Fluent Bit
 
