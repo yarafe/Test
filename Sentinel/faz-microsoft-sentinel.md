@@ -613,11 +613,11 @@ You can create multiple custom tables attached to same DCR. ARM template for DCR
    <pre><code>
    curl https://raw.githubusercontent.com/fluent/fluent-bit/master/install.sh | sh
    </code></pre>
-    Start Fluent-Bit
+    - Start Fluent-Bit
     <pre><code>
     sudo systemctl start fluent-bit
     </code></pre>
-    Update apt database
+    - Update apt database
     <pre><code>
     sudo apt-get update
     </code></pre>
