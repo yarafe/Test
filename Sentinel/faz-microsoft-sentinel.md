@@ -261,8 +261,11 @@ You can use powershell script to create and configure the previous requirements 
 Navigate to Log Analytics Workspace -> Settings -> Tables
 Then select: Create -> New custom log (DCR-based)
 ![ Create Custom Table](images/customtable1.png)
+
 Create a New DCR and assign it to your custom table.
+
 ![ Create DCR From Custom Table](images/create-dcr-from-customtable.png)
+
 Use the sample file to define the schema for your custom table. Ensure the sample aligns with the structure of syslog messages forwarded from FortiAnalyzer.
 The sample Below should match rfc-5424.
 <pre><code>
