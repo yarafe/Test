@@ -36,6 +36,9 @@ To establish the integration between Microsoft Sentinel and FortiGate, follow th
 - [Install Common Event Format Data Connector](#install-common-event-format-data-connector)
 - [Create Data Collection Rule (DCR) (if you don't have one)](#create-data-collection-rule-dcr-if-you-dont-have-one)
 - [Install CEF Collector on Linux](#install-cef-collector-on-linux)
+- Create CA certificate
+- Configure rsyslog file with port 6514 and certificate 
+- Allow FortiAppSec management IP 
 - [Configure FortiAppSec Device](#configure-fortiappsec-device)
 
 ### Install Fortinet FortiWeb Cloud WAF-as-a-Service connector
