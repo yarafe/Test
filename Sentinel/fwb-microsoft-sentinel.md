@@ -32,7 +32,7 @@ Prerequisites:
 
 To establish the integration between Microsoft Sentinel and FortiGate, follow these steps:
 
--  Install Fortinet FortiWeb Cloud WAF-as-a-Service connector
+- [Install Fortinet FortiWeb Cloud WAF-as-a-Service connector](#install-fortinet-fortiweb-cloud-waf-as-a-service-connector)
 - [Install Common Event Format Data Connector](#install-common-event-format-data-connector)
 - [Create Data Collection Rule (DCR) (if you don't have one)](#create-data-collection-rule-dcr-if-you-dont-have-one)
 - [Install CEF Collector on Linux](#install-cef-collector-on-linux)
@@ -62,7 +62,7 @@ To establish the integration between Microsoft Sentinel and FortiGate, follow th
 - Add linux machine as a resource
 - Collect facility log_local7 and set the min log level to be collected
 
-![ Create DCR1](images/create-dcr1.png)
+![ Create DCR1](images/fwb-create-dcr1.png)
 
 ![ Create DCR2](images/create-dcr2.png)
 
@@ -70,16 +70,17 @@ To establish the integration between Microsoft Sentinel and FortiGate, follow th
 
 You can find below an ARM template example for DCR configuration:
 <pre><code>
+
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "dataCollectionRules_ya_dcr_ama_agent_name": {
-            "defaultValue": "mydcr",
+        "dataCollectionRules_WAF_a_a_S_name": {
+            "defaultValue": "WAF-a-a-S",
             "type": "String"
         },
-        "workspaces_ya_faz_ama_externalid": {
-            "defaultValue": "/subscriptions/xxxxxxxxxxxxxxxxxxxxxx/resourceGroups/ya-faz-sentinel-ama/providers/Microsoft.OperationalInsights/workspaces/ya-faz-ama",
+        "workspaces_ya_ama_externalid": {
+            "defaultValue": "/subscriptions/f7f4728a-781f-470f-b029-bac8a9df75af/resourceGroups/ya-faz-sentinel-ama/providers/Microsoft.OperationalInsights/workspaces/ya-ama",
             "type": "String"
         }
     },
@@ -88,15 +89,12 @@ You can find below an ARM template example for DCR configuration:
         {
             "type": "Microsoft.Insights/dataCollectionRules",
             "apiVersion": "2023-03-11",
-            "name": "[parameters('dataCollectionRules_ya_dcr_ama_agent_name')]",
+            "name": "[parameters('dataCollectionRules_WAF_a_a_S_name')]",
             "location": "westeurope",
             "tags": {
                 "createdBy": "Sentinel"
             },
             "kind": "Linux",
-            "identity": {
-                "type": "SystemAssigned"
-            },
             "properties": {
                 "dataSources": {
                     "syslog": [
@@ -134,7 +132,7 @@ You can find below an ARM template example for DCR configuration:
                 "destinations": {
                     "logAnalytics": [
                         {
-                            "workspaceResourceId": "[parameters('workspaces_ya_faz_ama_externalid')]",
+                            "workspaceResourceId": "[parameters('workspaces_ya_ama_externalid')]",
                             "name": "DataCollectionEvent"
                         }
                     ]
