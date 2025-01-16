@@ -1,4 +1,4 @@
-# FortiWeb Integration with Microsoft Sentinel via AMA 
+# FortiAppSec and FortiWeb Integration with Microsoft Sentinel via AMA 
 
 ## Introduction
 
