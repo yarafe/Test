@@ -32,14 +32,22 @@ Prerequisites:
 
 To establish the integration between Microsoft Sentinel and FortiGate, follow these steps:
 
+-  Install Fortinet FortiWeb Cloud WAF-as-a-Service connector
 - [Install Common Event Format Data Connector](#install-common-event-format-data-connector)
 - [Create Data Collection Rule (DCR) (if you don't have one)](#create-data-collection-rule-dcr-if-you-dont-have-one)
 - [Install CEF Collector on Linux](#install-cef-collector-on-linux)
-- [Configure FortiGate Device](#configure-fortigate-device)
+- [Configure FortiAppSec Device](#configure-fortiappsec-device)
+
+### Install Fortinet FortiWeb Cloud WAF-as-a-Service connector
+
+- Navigate to Microsoft Sentinel workspace ---> Content management ---> Content hub.
+- Search for "Fortinet FortiWeb Cloud WAF-as-a-Service connector" and install it. 
+
+![ Sentinel- fortiweb-connector](images/fortiweb-connector.png)
 
 ### Install Common Event Format Data Connector
 
-- Navigate to Microsoft Sentinel workspace ---> configuration ---> Data connector blade .
+- Navigate to Microsoft Sentinel workspace ---> Content management ---> Content hub.
 - Search for 'Common Event Format (CEF) and install it. This will deploy for you Common Event Format (CEF) via AMA.
 
 ![ Sentinel- CEF-DataConnector](images/CEF-DataConnector.png)
