@@ -4,22 +4,22 @@
 
 Some clients may require forwarding logs to additional centralized hubs, such as Microsoft Sentinel, to integrate with their SIEM solutions. This approach supports advanced analytics, diverse compliance requirements, and various operational needs.
 
-This guide provides a comprehensive walkthrough for integrating FortiWeb with Microsoft Sentinel via Azure Monitor Agent (AMA).
+This guide provides a comprehensive walkthrough for integrating FortiAppSec and FortiWeb VM with Microsoft Sentinel via Azure Monitor Agent (AMA).
 
 ## Data Flow
 
-To ingest CEF logs from FortiGate into Microsoft Sentinel, a dedicated Linux machine is configured to serve as proxy server for log collection and forwarding to the Microsoft Sentinel workspace.
+To ingest CEF logs from FortiAppSec into Microsoft Sentinel, a dedicated Linux machine is configured to serve as proxy server for log collection and forwarding to the Microsoft Sentinel workspace.
 
 The Linux machine is structured with two key components:
 
-* **Syslog Daemon (Log Collector):** Utilizing either rsyslog or syslog-ng, this daemon performs dual functions:
+* **Syslog Daemon (Log Collector):** using either rsyslog or syslog-ng, this daemon performs dual functions:
 
-    - Actively listens for Syslog messages in CEF format originating from FortiGate on TCP/UDP port 514. 
-    - Send logs to Azure Monitor Agent (AMA) on localhost, utilizing TCP port 28330.
+    - Actively listens for attack logs messages in CEF format sent by FortiAppSec over UDP 514, TCP 601 or SSL 6514. 
+    - Forwards the recieved logs to Azure Monitor Agent (AMA) on localhost, using TCP port 28330.
 
 * **Azure Monitor Agent (AMA):** The agent parses the logs and then sends them to your Microsoft Sentinel (Log Analytics) workspace via HTTPS 443.
 
-![FGT-Sentinel Integration-DataFlow](images/FGT-DataFlow.png)
+![Fortiappsec-DataFlow](images/Fortiappsec-dataflow.png)
 
 For more details please review this [link](https://learn.microsoft.com/en-us/azure/sentinel/cef-syslog-ama-overview?tabs=forwarder)
 
