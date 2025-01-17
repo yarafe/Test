@@ -37,8 +37,10 @@ To establish the integration between Microsoft Sentinel and FortiGate, follow th
 - [Create Data Collection Rule (DCR) (if you don't have one)](#create-data-collection-rule-dcr-if-you-dont-have-one)
 - [Install CEF Collector on Linux](#install-cef-collector-on-linux)
 - Create CA certificate
+openssl genrsa -out ca-syslog.key 2048
+openssl req -x509 -new -nodes -key ca-syslog.key -sha256 -days 3650 -out ca-syslog.pem
 - Configure rsyslog file with port 6514 and certificate 
-- Allow FortiAppSec management IP 
+- [Allow FortiAppSec management IP](#allow-fortiappsec-management-ip) 
 - [Configure FortiAppSec Device](#configure-fortiappsec-device)
 
 ### Install Fortinet FortiWeb Cloud WAF-as-a-Service connector
@@ -163,20 +165,32 @@ Install the Common Event Format (CEF) collector on a Linux machine by executing 
 sudo wget -O Forwarder_AMA_installer.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Forwarder_AMA_installer.py&&sudo python3 Forwarder_AMA_installer.py
 </code></pre>
 
-### Configure FortiGate Device
-Following this configuration on the Linux machine, the FortiGate device is then set up to dispatch Syslog messages with TCP port 514 in CEF format to the designated proxy machine using the provided command:
+### Allow FortiAppSec management IP
 
-<pre><code>
-config log syslogd setting
-    set status enable
-    set server "liux VM IP address"
-    set mode reliable
-    set facility local7
-    set format cef
-end
-</code></pre>
+It is recommended to configure your log server with filters that permit traffic exclusively from FortiAppSec. Ensure that only the following source IP addresses are allowed:
+- 3.226.2.163
+- 3.123.68.65
 
-The facility to local7 has been configured should match "Collect" in the Data Collection Rule configuration.
+### Configure FortiAppSec Device
+
+To export the attack logs to a log server:
+
+- Go to Log Settings.
+- Enable Attack Log Export and click Save. 
+- Click Add Log Server.
+- Configure the following settings:
+    - Name
+    - Server Type: Syslog
+    - IP/Domain and Port: Syslog IP address/6514
+    - Protocol : SSL
+    - Enable "Custom Certificate and Key" and add client certificate and private key
+    - Set your export options: Log Format: CEF:0 (ArcSight), Log Severity , Log Facility: local7 
+
+The facility log should match "Collect" in the Data Collection Rule configuration.
+Test the conectivity to syslog. You should get a message "A test message has been sent successfully to your server, please check if it is received."
+You can visit the [link](https://docs.fortinet.com/document/fortiappsec-cloud/latest/user-guide/681595/log-settings) for more details.
+
+![fortiappsec-config](images/fortiappsec-config.png)
 
 ## Validation and Connectivity Check
 
