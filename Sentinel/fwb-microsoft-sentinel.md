@@ -40,7 +40,7 @@ To establish the integration between Microsoft Sentinel and FortiGate, follow th
 - [Install rsyslog-gnutls on Linux VM](#install-rsyslog-gnutls-on-linux-vm) 
 - [Configure rsyslog file with port 6514 and certificate](#) 
 - [Allow FortiAppSec management IP](#allow-fortiappsec-management-ip) 
-- [Configure FortiAppSec Device](#configure-fortiappsec-device)
+- [Configure FortiAppSec](#configure-fortiappsec)
 
 ### Install Fortinet FortiWeb Cloud WAF-as-a-Service connector
 
@@ -235,7 +235,7 @@ It is recommended to configure your log server with filters that permit traffic 
 - 3.226.2.163
 - 3.123.68.65
 
-### Configure FortiAppSec Device
+### Configure FortiAppSec
 
 To export the attack logs to a log server:
 
