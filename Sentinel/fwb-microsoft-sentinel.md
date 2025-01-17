@@ -35,11 +35,10 @@ To establish the integration between Microsoft Sentinel and FortiGate, follow th
 - [Install Fortinet FortiWeb Cloud WAF-as-a-Service connector](#install-fortinet-fortiweb-cloud-waf-as-a-service-connector)
 - [Install Common Event Format Data Connector](#install-common-event-format-data-connector)
 - [Create Data Collection Rule (DCR) (if you don't have one)](#create-data-collection-rule-dcr-if-you-dont-have-one)
-- [Install CEF Collector on Linux](#install-cef-collector-on-linux)
-- Create CA certificate
-openssl genrsa -out ca-syslog.key 2048
-openssl req -x509 -new -nodes -key ca-syslog.key -sha256 -days 3650 -out ca-syslog.pem
-- Configure rsyslog file with port 6514 and certificate 
+- [Install CEF Collector on Linux VM](#install-cef-collector-on-linux-vm)
+- [Generate server certificate and key](#)
+- [Install rsyslog-gnutls on Linux VM](#install-rsyslog-gnutls-on-linux-vm) 
+- [Configure rsyslog file with port 6514 and certificate](#) 
 - [Allow FortiAppSec management IP](#allow-fortiappsec-management-ip) 
 - [Configure FortiAppSec Device](#configure-fortiappsec-device)
 
@@ -159,10 +158,75 @@ You can find below an ARM template example for DCR configuration:
 
 </code></pre>
 
-### Install CEF Collector on Linux
+### Install CEF Collector on Linux VM
 Install the Common Event Format (CEF) collector on a Linux machine by executing the following Python script:
 <pre><code>
 sudo wget -O Forwarder_AMA_installer.py https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/DataConnectors/Syslog/Forwarder_AMA_installer.py&&sudo python3 Forwarder_AMA_installer.py
+</code></pre>
+
+### Install rsyslog-gnutls on Linux VM
+
+Execute the following commands to install rsyslog-gnutls package:
+
+<pre><code>
+sudo apt update
+sudo apt install rsyslog-gnutls
+</code></pre>
+
+This will allow rsyslog to handle secure connections using TLS. 
+
+### Generate server certificate and key
+
+- Generate the CA:
+<pre><code>
+openssl genrsa -aes256 -out ca-key.pem 4096
+openssl req -x509 -new -nodes -extensions v3_ca -key ca-key.pem -days 365 -out ca-root.pem -sha512
+</code></pre>
+This creates two files: the CA file 'ca.pem' and its private key 'privkey.pem' - a password for the private key is required.
+
+- Create a serial file:
+<pre><code>
+echo 00 > serial.srl
+</code></pre>
+- Generate the server certificate and key:
+<pre><code>
+openssl genrsa -out server.key 4096
+openssl req -key server.key -new -out server.req
+openssl x509 -req -in server.req -CA ca-root.pem -CAkey ca-key.pem -CAserial serial.srl -out server.pem
+</code></pre>
+
+verify the permissions:
+<pre><code>
+yarafe@ya-ama-agent:~$ ls -l /etc/rsyslog.d/keys/
+total 12
+-rw-r--r-- 1 root root   2065 Jan 16 22:07 ca-root.pem
+-rw-r----- 1 root syslog 3268 Jan 16 22:08 server.key
+-rw-r--r-- 1 root root   1919 Jan 16 22:09 server.pem
+</code></pre>
+
+### Configure rsyslog file with port 6514 and certificate
+
+<pre><code>
+sudo nano /etc/rsyslog.conf
+</code></pre>
+
+You need to add the following to config file:
+<pre><code>
+global(
+DefaultNetstreamDriver="gtls"
+DefaultNetstreamDriverCAFile="/etc/rsyslog.d/keys/ca-root.pem"
+DefaultNetstreamDriverCertFile="/etc/rsyslog.d/keys/server.pem"
+DefaultNetstreamDriverKeyFile="/etc/rsyslog.d/keys/server.key"
+)
+
+module(load="imtcp" StreamDriver.Name="gtls" StreamDriver.Mode="1" StreamDriver.Authmode="anon")
+input(type="imtcp" port="6514")
+</code></pre>
+
+
+Restart rsyslog
+<pre><code>
+sudo systemctl restart rsyslog
 </code></pre>
 
 ### Allow FortiAppSec management IP
