@@ -258,10 +258,16 @@ You can visit the [link](https://docs.fortinet.com/document/fortiappsec-cloud/la
 
 ## Validation and Connectivity Check
 
-- The following command can be used to check the log statistics sent from FortiGate:
+- The following command show the rsyslog status:
 <pre><code>
-diagnose test application syslogd 4
+sudo systemctl status rsyslog
 </code></pre>
+
+- Start rsyslog
+<pre><code>
+sudo systemctl start rsyslog
+</code></pre>
+
 - Restart rsyslog
 <pre><code>
 sudo systemctl restart rsyslog
@@ -270,13 +276,13 @@ sudo systemctl restart rsyslog
 - Validate that the syslog daemon is running on the TCP port and that the AMA is listening by reviewing the configuration file /etc/rsyslog.conf . After verification, use the following command to confirm:
 
 <pre><code>
-netstat -lnptv
+sudo netstat -tuln
 </code></pre>
-![ Port Validation- AMA](images/port-validation-ama.png)
+![ Port Validation- AMA](images/port-validation-ama-fwb.png)
 
 - Run the following command in the background to capture messages sent from a logger or a connected device:
 <pre><code>
-tcpdump -i any port 514 -A -vv &
+sudo tcpdump -i any port 6514 -A -vv &
 </code></pre>
 After you complete the validation, we recommend that you stop the tcpdump: Type fg and then select Ctrl+C
 
