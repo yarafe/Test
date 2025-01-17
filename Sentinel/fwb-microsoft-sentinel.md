@@ -36,7 +36,7 @@ To establish the integration between Microsoft Sentinel and FortiGate, follow th
 - [Install Common Event Format Data Connector](#install-common-event-format-data-connector)
 - [Create Data Collection Rule (DCR) (if you don't have one)](#create-data-collection-rule-dcr-if-you-dont-have-one)
 - [Install CEF Collector on Linux VM](#install-cef-collector-on-linux-vm)
-- [Generate server certificate and key](#)
+- [Generate server certificate and key](#generate-server-certificate-and-key)
 - [Install rsyslog-gnutls on Linux VM](#install-rsyslog-gnutls-on-linux-vm) 
 - [Configure rsyslog file with port 6514 and certificate](#) 
 - [Allow FortiAppSec management IP](#allow-fortiappsec-management-ip) 
