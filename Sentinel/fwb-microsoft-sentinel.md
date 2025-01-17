@@ -295,9 +295,9 @@ sudo wget -O Sentinel_AMA_troubleshoot.py https://raw.githubusercontent.com/Azur
 
 - Check data connector page and verify that the DCR is corectly assigned and that the log is well ingested in CommonSecurityLog Table
 
-![ DataConnector - Validation](images/dataconnector-validation.png)
+![ DataConnector - Validation](images/fwb-dataconnector-validation.png)
 
-![ DataConnector - Validation](images/CommonSecurityLog.png)
+![ CommonSecurityLog - Validation](images/fwb-commonSecurityLog.png)
 
 You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal) for more technical details about FortiGate integration With Microsoft Sentinel.
 
