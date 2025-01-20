@@ -293,6 +293,10 @@ sudo wget -O Sentinel_AMA_troubleshoot.py https://raw.githubusercontent.com/Azur
 
 ![ Troubleshooting- AMA ](images/troubleshooting-ama.png)
 
+- Verify the log ingestion per minute related to DCR from Monitoring --> Metrics
+
+![ DataConnector - Validation](images/fwb-dcr-metrics.png)
+
 - Check data connector page and verify that the DCR is corectly assigned and that the log is well ingested in CommonSecurityLog Table
 
 ![ DataConnector - Validation](images/fwb-dataconnector-validation.png)
