@@ -56,6 +56,8 @@ This will install also some hunting queries, playbooks and workbook:
 - Fortiweb - WAF Allowed threat: Detects WAF "Allowed" action on threat events.
 - FortiWeb-BlockIP-URL: Provides the automation on blocking the suspicious/malicious IP and URL on fortiweb cloud waf.
 
+![ Sentinel- FWB-DataConnector](images/fwb-dataconnector.png)
+
 ### Install Common Event Format Data Connector
 
 - Navigate to Microsoft Sentinel workspace ---> Content management ---> Content hub.
