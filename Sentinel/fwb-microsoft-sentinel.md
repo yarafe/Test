@@ -49,6 +49,13 @@ To establish the integration between Microsoft Sentinel and FortiGate, follow th
 
 ![ Sentinel- fortiweb-connector](images/fortiweb-connector.png)
 
+This will install also some hunting queries, playbooks and workbook:
+- Fortiweb - identify owasp10 vulnerabilities: Query searches threats and helps to identify threats matching owaspTop10 vulnerabilities.
+- Fortiweb - Unexpected countries: Query searches requests by country and helps to identify requests coming from unexpected countries.
+- FortiWeb-enrichment: provides/updates the threat intel and essential details in comments section of triggered incident so that SOC analysts can directly take corrective measure to stop the attack.
+- Fortiweb - WAF Allowed threat: Detects WAF "Allowed" action on threat events.
+- FortiWeb-BlockIP-URL: Provides the automation on blocking the suspicious/malicious IP and URL on fortiweb cloud waf.
+
 ### Install Common Event Format Data Connector
 
 - Navigate to Microsoft Sentinel workspace ---> Content management ---> Content hub.
