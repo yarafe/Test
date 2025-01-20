@@ -299,7 +299,7 @@ sudo wget -O Sentinel_AMA_troubleshoot.py https://raw.githubusercontent.com/Azur
 
 ![ CommonSecurityLog - Validation](images/fwb-commonSecurityLog.png)
 
-You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal) for more technical details about FortiGate integration With Microsoft Sentinel.
+You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=portal) for more technical details about CEF integration With AMA.
 
 ## Log Filtering
 
