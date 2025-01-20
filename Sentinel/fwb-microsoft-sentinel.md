@@ -304,10 +304,10 @@ You can review the [link](https://learn.microsoft.com/en-us/azure/sentinel/conne
 ## Log Filtering
 
 Log forwarding to Microsoft Sentinel can lead to significant costs, making it essential to implement an efficient filtering mechanism. 
-In essence, you have the flexibility to toggle the traffic log on or off via the graphical user interface (GUI) on Fortigate devices, directing it to either Fortianalyzer or a syslog server, and specifying the severity level.
-Additionally, you can undertake more advanced filtering through CLI, allowing for tailored filtering based on specific values. Please refer to the following [link](https://docs.fortinet.com/document/fortigate/7.6.0/cli-reference/273422104/config-log-syslogd-filter).
 
-On The other hands, you can select the minimum log level for each facility from DCR (collect tab) . When you select a log level, Microsoft Sentinel collects logs for the selected level and other levels with higher severity. For example, if you select LOG_ERR, Microsoft Sentinel collects logs for the LOG_ERR, LOG_CRIT, LOG_ALERT, and LOG_EMERG levels.
+In the Data Collection Rules (DCR) tab under the Collect section, you can define the minimum log level for each facility. When a log level is selected, Microsoft Sentinel will collect logs for the chosen level and all levels with higher severity. For instance, if you select LOG_ERR, Microsoft Sentinel will capture logs for LOG_ERR, LOG_CRIT, LOG_ALERT, and LOG_EMERG.
+
+Similarly, for FortiAppSec, you can configure the desired log severity level directly through the log server options, ensuring precise control over which logs are forwarded to Microsoft Sentinel. 
 
 
 
