@@ -84,7 +84,7 @@ You can find below an ARM template example for DCR configuration:
             "type": "String"
         },
         "workspaces_ya_ama_externalid": {
-            "defaultValue": "/subscriptions/f7f4728a-781f-470f-b029-bac8a9df75af/resourceGroups/ya-faz-sentinel-ama/providers/Microsoft.OperationalInsights/workspaces/ya-ama",
+            "defaultValue": "/subscriptions/xxxxxxxxxxxxxxxxxxxxxxxxxxxx/resourceGroups/ya-faz-sentinel-ama/providers/Microsoft.OperationalInsights/workspaces/ya-ama",
             "type": "String"
         }
     },
