@@ -786,7 +786,7 @@
                 "imageReference": {
                   "publisher": "Fortinet",
                   "offer": "fortinet_fortigate-vm_v5",
-                  "sku": "[steps('instance').instancetype_x64_g2.fortiGateImageSKU]"
+                  "sku": "[steps('instance').instancetype_x64_g2.fortiGateImageSKU_x64_g2]"
                 },
                 "count": 1,
                 "visible": true
