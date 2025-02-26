@@ -547,7 +547,7 @@
           {
             "name": "instancetype_x64_g2",
             "type": "Microsoft.Common.Section",
-            "label": "Instance Type x64",
+            "label": "Instance Type x64_g2",
             "elements": [
               {
                 "name": "fortiGateImageSKU_x64_g2",
@@ -1715,11 +1715,11 @@
     ],
     "outputs": {
       "fortiGateNamePrefix": "[basics('fortiGateNamePrefix')]",
-      "fortiGateImageSKU_x64": "[steps('instance').instancetype_x64.fortiGateImageSKU_x64)]",
-      "fortiGateImageSKU_x64_g2": "[steps('instance').instancetype_x64.fortiGateImageSKU_x64_g2)]",
+      "fortiGateImageSKU_x64": "[steps('instance').instancetype_x64.fortiGateImageSKU_x64]",
+      "fortiGateImageSKU_x64_g2": "[steps('instance').instancetype_x64_g2.fortiGateImageSKU_x64_g2]",
       "fortiGateImageSKU_arm64": "[steps('instance').instancetype_arm64.fortiGateImageSKU_arm64]",
       "fortiGateImageVersion_x64": "[steps('instance').instancetype_x64.fortiGateImageVersion_x64]",
-      "fortiGateImageVersion_x64_g2": "[steps('instance').instancetype_x64.fortiGateImageVersion_x64_g2]",
+      "fortiGateImageVersion_x64_g2": "[steps('instance').instancetype_x64_g2.fortiGateImageVersion_x64_g2]",
       "fortiGateImageVersion_arm64": "[steps('instance').instancetype_arm64.fortiGateImageVersion_arm64]",
       "fortiGateInstanceArchitecture": "[basics('fortiGateInstanceArchitecture')]",
       "fortiGateName": "[steps('instance').virtualmachinename.fgtvmname]",
@@ -1727,7 +1727,7 @@
       "adminPassword": "[basics('adminPassword')]",
       "location": "[location()]",
       "instanceType_x64": "[steps('instance').instancetype_x64.selection_x64]",
-      "instanceType_x64_g2": "[steps('instance').instancetype_x64.selection_x64_g2]",
+      "instanceType_x64_g2": "[steps('instance').instancetype_x64_g2.selection_x64_g2]",
       "instanceType_arm64": "[steps('instance').instancetype_arm64.selection_arm64]",
       "availabilityOptions": "[steps('instance').availabilityOptions.availabilityOptions]",
       "existingAvailabilitySetName": "[steps('instance').availabilityOptions.availabilitySetSelector.name]",
