@@ -11,13 +11,13 @@
         "fortiGateNamePrefix": {
             "value": "" // TODO: Fill in parameter value
         },
-        "fortiGateImageSku_x64": {
+        "fortiGateImageSKU_x64": {
             "value": "fortinet_fg-vm"
         },
         "fortiGateImageSKU_x64_g2": {
             "value": "fortinet_fg-vm_g2"
         },
-        "fortiGateImageSku_arm64": {
+        "fortiGateImageSKU_arm64": {
             "value": "fortinet_fg-vm_arm64"
         },
         "fortiGateInstanceArchitecture": {
@@ -71,35 +71,17 @@
         "publicIP1ResourceGroup": {
             "value": ""
         },
-        "publicIP1AddressType": {
-            "value": "Static"
-        },
-        "publicIP2AddressSku": {
-            "value": "Standard"
-        },
-        "publicIP2AddressType": {
-            "value": "Static"
-        },
         "publicIP2Name": {
             "value": ""
         },
         "publicIP2ResourceGroup": {
             "value": ""
         },
-        "publicIP3AddressSku": {
-            "value": "Standard"
-        },
-        "publicIP3AddressType": {
-            "value": "Static"
-        },
         "publicIP3Name": {
             "value": ""
         },
         "publicIP3ResourceGroup": {
             "value": ""
-        },
-        "publicIP1AddressSku": {
-            "value": "Standard"
         },
         "vnetNewOrExisting": {
             "value": "new"
