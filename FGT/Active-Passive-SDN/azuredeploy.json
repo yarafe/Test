@@ -1416,6 +1416,7 @@
         },
         "storageProfile": {
           "imageReference": "[if(and(or(equals(variables('fortiGateImageSku'),'fortinet_fg-vm'),equals(variables('fortiGateImageSku'),'fortinet_fg-vm_arm64')),not(equals(parameters('customImageReference'),''))), variables('imageReferenceCustomImage'), variables('imageReferenceMarketplace'))]",
+          "diskControllerType": "[variables('diskControllerType')]",
           "osDisk": {
             "createOption": "FromImage"
           },
