@@ -31,8 +31,8 @@ jobs:
     env:
       TF_VAR_PREFIX: "FORTIQA-VNET-Peering-${{ github.run_id }}-${{ github.run_number }}"
       TF_VAR_LOCATION: "eastus"
-	  ACCOUNTCOUNT: 2
-	  CUSTOMDOMAIN:  ${{ secrets.CUSTOMDOMAIN }}
+      ACCOUNTCOUNT: "2"
+      CUSTOMDOMAIN:  ${{ secrets.CUSTOMDOMAIN }}
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
