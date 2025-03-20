@@ -76,9 +76,11 @@ jobs:
       - name: Terraform Apply
         if: inputs.destroy == 'false'
         run: terraform apply -auto-approve
+        working-directory: ${{ env.TFPath }}
 
       - name: Terraform Destroy
         if: inputs.destroy == 'true'
         run: terraform destroy -auto-approve
+        working-directory: ${{ env.TFPath }}
 
       
