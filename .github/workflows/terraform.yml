@@ -1,9 +1,15 @@
 name: '[FGT] TF - Test'
 
 env:
-  TFPath: yarafe/Test/main/training/
-
+  TFPath: training/
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'training/**.tf'
+      - 'training/**.tpl'
+      - 'training/**.hcl'
   workflow_dispatch:
     inputs:
       location:
@@ -29,7 +35,7 @@ jobs:
     name: 'Terraform YA-Test'
     runs-on: ubuntu-latest
     env:
-      TF_VAR_PREFIX: "FORTIQA-VNET-Peering-${{ github.run_id }}-${{ github.run_number }}"
+      TF_VAR_PREFIX: "FORTIQA-Training-${{ github.run_id }}-${{ github.run_number }}"
       TF_VAR_LOCATION: "eastus"
       ACCOUNTCOUNT: "2"
       CUSTOMDOMAIN:  ${{ secrets.CUSTOMDOMAIN }}
@@ -44,19 +50,43 @@ jobs:
 
       - name: Azure Login
         run: az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
-
-      - name: Terraform Init
+        
+      - name: "Setup Terraform"
+        uses: hashicorp/setup-terraform@v1
+        
+      - name: "Terraform Init"
+        id: init
         run: terraform init
+        working-directory: ${{ env.TFPath }}
 
-      - name: Terraform Plan
-        run: terraform plan
+      - name: "Terraform Validate"
+        id: validate
+        run: terraform validate
+        working-directory: ${{ env.TFPath }}
+
+      - name: "Terraform Format"
+        id: format
+        run: terraform fmt -check -diff
+        working-directory: ${{ env.TFPath }}
+
+      - name: "Terraform Plan"
+        id: plan
+        run: terraform plan -out plan.tfplan
+        working-directory: ${{ env.TFPath }}
+
+      - name: "Terraform Show"
+        id: show
+        run: terraform show -json plan.tfplan
+        working-directory: ${{ env.TFPath }}
 
       - name: Terraform Apply
         if: inputs.destroy == 'false'
         run: terraform apply -auto-approve
+        working-directory: ${{ env.TFPath }}
 
       - name: Terraform Destroy
         if: inputs.destroy == 'true'
         run: terraform destroy -auto-approve
+        working-directory: ${{ env.TFPath }}
 
       
