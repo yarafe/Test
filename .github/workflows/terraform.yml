@@ -29,7 +29,7 @@ jobs:
     name: 'Terraform YA-Test'
     runs-on: ubuntu-latest
     env:
-      TF_VAR_PREFIX: "FORTIQA-VNET-Peering-${{ github.run_id }}-${{ github.run_number }}"
+      TF_VAR_PREFIX: "FORTIQA-Training-${{ github.run_id }}-${{ github.run_number }}"
       TF_VAR_LOCATION: "eastus"
       ACCOUNTCOUNT: "2"
       CUSTOMDOMAIN:  ${{ secrets.CUSTOMDOMAIN }}
@@ -51,7 +51,7 @@ jobs:
       - name: "Terraform Init"
         id: init
         run: terraform init
-        working-directory: ${{ env.TFPath }}
+        working-directory: yarafe/Test/main/training/
 
       - name: "Terraform Validate"
         id: validate
