@@ -2,8 +2,14 @@ name: '[FGT] TF - Test'
 
 env:
   TFPath: yarafe/Test/main/training/
-
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'yarafe/Test/main/training/**.tf'
+      - 'yarafe/Test/main/training/**.tpl'
+      - 'yarafe/Test/main/training/**.hcl'
   workflow_dispatch:
     inputs:
       location:
