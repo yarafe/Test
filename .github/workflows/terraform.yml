@@ -1,0 +1,62 @@
+name: '[FGT] TF - Test'
+
+env:
+  TFPath: yarafe/Test/main/training/
+
+on:
+  workflow_dispatch:
+    inputs:
+      location:
+        description: 'Azure Region'
+        required: true
+        default: 'eastus'
+      prefix:
+        description: 'Deployment Prefix'
+        required: true
+        default: 'FORTIQA-VNET'
+      ACCOUNTCOUNT:
+        description: 'ACCOUNTCOUNT'
+        required: true
+        default: '2'		
+      destroy:
+        description: 'Destroy Infrastructure? (true/false)'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  terraform_Test:
+    name: 'Terraform YA-Test'
+    runs-on: ubuntu-latest
+    env:
+      TF_VAR_PREFIX: "FORTIQA-VNET-Peering-${{ github.run_id }}-${{ github.run_number }}"
+      TF_VAR_LOCATION: "eastus"
+	  ACCOUNTCOUNT: 2
+	  CUSTOMDOMAIN:  ${{ secrets.CUSTOMDOMAIN }}
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
+      steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        run: az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Terraform Apply
+        if: inputs.destroy == 'false'
+        run: terraform apply -auto-approve
+
+      - name: Terraform Destroy
+        if: inputs.destroy == 'true'
+        run: terraform destroy -auto-approve
+
+      
