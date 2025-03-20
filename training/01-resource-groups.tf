@@ -8,14 +8,6 @@
 # Resource Group
 ##############################################################################################################
 
-backend "azurerm" {
-    resource_group_name  = "External-Training-Utility"
-    storage_account_name = "terraform4training"
-    container_name       = "terraformstate"
-	key                  = "${var.StorageKey}"
-  }
-
-
 resource "azurerm_resource_group" "resourcegroup" {
   name     = "${var.PREFIX}-student${count.index}-RG"
   location = var.LOCATION
