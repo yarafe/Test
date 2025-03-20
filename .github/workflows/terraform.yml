@@ -1,15 +1,15 @@
 name: '[FGT] TF - Test'
 
 env:
-  TFPath: Test/training/
+  TFPath: training/
 on:
   push:
     branches:
       - main
     paths:
-      - 'Test/training/**.tf'
-      - 'Test/training/**.tpl'
-      - 'Test/training/**.hcl'
+      - 'training/**.tf'
+      - 'training/**.tpl'
+      - 'training/**.hcl'
   workflow_dispatch:
     inputs:
       location:
