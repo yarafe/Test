@@ -20,6 +20,10 @@ variable "CUSTOMDOMAIN" {
   description = "Verified custom domain to use for user accounts"
 }
 
+variable "StorageKey" {
+  description = "Azure Storage Key"
+}
+
 ##############################################################################################################
 # Minimum terraform version
 ##############################################################################################################
