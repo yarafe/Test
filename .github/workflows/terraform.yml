@@ -47,12 +47,31 @@ jobs:
         
       - name: "Setup Terraform"
         uses: hashicorp/setup-terraform@v1
-
-      - name: Terraform Init
+        
+      - name: "Terraform Init"
+        id: init
         run: terraform init
+        working-directory: ${{ env.TFPath }}
 
-      - name: Terraform Plan
-        run: terraform plan
+      - name: "Terraform Validate"
+        id: validate
+        run: terraform validate
+        working-directory: ${{ env.TFPath }}
+
+      - name: "Terraform Format"
+        id: format
+        run: terraform fmt -check -diff
+        working-directory: ${{ env.TFPath }}
+
+      - name: "Terraform Plan"
+        id: plan
+        run: terraform plan -out plan.tfplan
+        working-directory: ${{ env.TFPath }}
+
+      - name: "Terraform Show"
+        id: show
+        run: terraform show -json plan.tfplan
+        working-directory: ${{ env.TFPath }}
 
       - name: Terraform Apply
         if: inputs.destroy == 'false'
