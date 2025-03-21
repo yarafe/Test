@@ -19,7 +19,7 @@ on:
       prefix:
         description: 'Deployment Prefix'
         required: true
-        default: 'FORTIQA-VNET'
+        default: 'FORTIQA-Training'
       ACCOUNTCOUNT:
         description: 'ACCOUNTCOUNT'
         required: true
