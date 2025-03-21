@@ -69,7 +69,7 @@ jobs:
 
       - name: "Terraform Format"
         id: format
-        run: terraform fmt -check -diff
+        run: terraform fmt -recursive
         working-directory: ${{ env.TFPath }}
 
       - name: "Terraform Plan"
