@@ -25,7 +25,7 @@ on:
         required: true
         default: '2'		
       destroy:
-        description: 'Check the box to Destroy Infrastructure'
+        description: 'Check the box to destroy infrastructure'
         required: false
         default: 'false'
         type: boolean
