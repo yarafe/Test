@@ -74,7 +74,7 @@ jobs:
 
       - name: "Terraform unlock"
         id: unlock
-        run: terraform force-unlock d1c44fc9-6850-5a94-09be-38668193b6f5
+        run: terraform force-unlock -force d1c44fc9-6850-5a94-09be-38668193b6f5
         working-directory: ${{ env.TFPath }}
 
       - name: "Terraform Plan"
