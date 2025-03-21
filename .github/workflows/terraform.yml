@@ -35,6 +35,9 @@ jobs:
     name: 'Terraform YA-Test'
     runs-on: ubuntu-latest
     env:
+      TF_VAR_PREFIX: "FORTIQA-Training-${{ github.run_id }}-${{ github.run_number }}"
+      TF_VAR_LOCATION: "eastus"
+      TF_VAR_ACCOUNTCOUNT: "2"
       TF_VAR_CUSTOMDOMAIN:  ${{ secrets.CUSTOMDOMAIN }}
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
