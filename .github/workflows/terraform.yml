@@ -73,7 +73,7 @@ jobs:
         working-directory: ${{ env.TFPath }}
 
       - name: Force Unlock Terraform State
-        run: terraform force-unlock 25e7426e-5822-7e65-9865-bac269028c4b
+        run: terraform force-unlock -force 25e7426e-5822-7e65-9865-bac269028c4b
         working-directory: ${{ env.TFPath }}
 
       - name: "Terraform Plan"
