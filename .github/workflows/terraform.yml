@@ -83,7 +83,6 @@ jobs:
         working-directory: ${{ env.TFPath }}
 
       - name: Terraform Apply
-        if: inputs.destroy == 'false'
         run: terraform apply -auto-approve
         working-directory: ${{ env.TFPath }}
         
