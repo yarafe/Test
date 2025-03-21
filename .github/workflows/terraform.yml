@@ -72,9 +72,14 @@ jobs:
         run: terraform fmt -recursive
         working-directory: ${{ env.TFPath }}
 
+      - name: "Terraform unlock"
+        id: unlock
+        run: terraform force-unlock d1c44fc9-6850-5a94-09be-38668193b6f5
+        working-directory: ${{ env.TFPath }}
+
       - name: "Terraform Plan"
         id: plan
-        run: terraform plan -out plan.tfplan -lock=false
+        run: terraform plan -out plan.tfplan
         working-directory: ${{ env.TFPath }}
 
       - name: "Terraform Show"
@@ -82,7 +87,7 @@ jobs:
         run: terraform show -json plan.tfplan
         working-directory: ${{ env.TFPath }}
 
-      - name: Terraform Apply -lock=false
+      - name: Terraform Apply
         run: terraform apply -auto-approve
         working-directory: ${{ env.TFPath }}
         
