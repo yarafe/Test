@@ -57,7 +57,9 @@ jobs:
         
       - name: "Terraform Init"
         id: init
-        run: terraform init
+        run: |
+              terraform init \
+               -backend-config="key=${{ secrets.StorageKey }}"
         working-directory: ${{ env.TFPath }}
 
       - name: "Terraform Validate"
