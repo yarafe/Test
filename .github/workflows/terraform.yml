@@ -72,6 +72,10 @@ jobs:
         run: terraform fmt -recursive
         working-directory: ${{ env.TFPath }}
 
+      - name: Force Unlock Terraform State
+        run: terraform force-unlock 25e7426e-5822-7e65-9865-bac269028c4b
+        working-directory: ${{ env.TFPath }}
+
       - name: "Terraform Plan"
         id: plan
         run: terraform plan -out plan.tfplan
