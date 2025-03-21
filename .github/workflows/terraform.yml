@@ -35,7 +35,7 @@ jobs:
     name: 'Terraform YA-Test'
     runs-on: ubuntu-latest
     env:
-      TF_VAR_PREFIX: "FORTIQA-Training-${{ github.run_id }}-${{ github.run_number }}"
+      TF_VAR_PREFIX: "${{ github.event.inputs.prefix }}-${{ github.run_id }}-${{ github.run_number }}"
       TF_VAR_LOCATION: ${{ github.event.inputs.location }}
       TF_VAR_ACCOUNTCOUNT: ${{ github.event.inputs.ACCOUNTCOUNT }}
       TF_VAR_CUSTOMDOMAIN:  ${{ secrets.CUSTOMDOMAIN }}
@@ -70,10 +70,6 @@ jobs:
       - name: "Terraform Format"
         id: format
         run: terraform fmt -recursive
-        working-directory: ${{ env.TFPath }}
-
-      - name: Force Unlock Terraform State
-        run: terraform force-unlock -force 25e7426e-5822-7e65-9865-bac269028c4b
         working-directory: ${{ env.TFPath }}
 
       - name: "Terraform Plan"
