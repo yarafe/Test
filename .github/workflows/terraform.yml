@@ -35,7 +35,7 @@ jobs:
     name: 'Terraform YA-Test'
     runs-on: ubuntu-latest
     env:
-      TF_VAR_PREFIX: "${{ github.event.inputs.prefix }}-${{ github.run_id }}-${{ github.run_number }}"
+      TF_VAR_PREFIX: "${{ github.event.inputs.prefix }}"
       TF_VAR_LOCATION: ${{ github.event.inputs.location }}
       TF_VAR_ACCOUNTCOUNT: ${{ github.event.inputs.ACCOUNTCOUNT }}
       TF_VAR_CUSTOMDOMAIN:  ${{ secrets.CUSTOMDOMAIN }}
