@@ -64,6 +64,7 @@ This scenario is configured by default. You do not need to modify the Terraform 
 If you have already your Virtual wan and you want to deploy Fortigate NVAs in it. please consider the following:
 - Comment out or remove the Terraform code related to Virtual WAN and Virtual Hub in `examples/azurevirtualwan/main.tf`
 - Provide your existing WAN details by setting the following variables: 
+
   vhub_id                     = ""
   vhub_virtual_router_ip1     = ""
   vhub_virtual_router_ip2     = ""
