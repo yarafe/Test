@@ -64,11 +64,12 @@ This scenario is configured by default. You do not need to modify the Terraform 
 If you have already your Virtual wan and you want to deploy Fortigate NVAs in it. please consider the following:
 - Comment out or remove the Terraform code related to Virtual WAN and Virtual Hub in `examples/azurevirtualwan/main.tf`
 - Provide your existing WAN details by setting the following variables: 
-
+<code><pre>
 vhub_id                     = ""
 vhub_virtual_router_ip1     = ""
 vhub_virtual_router_ip2     = ""
 vhub_virtual_router_asn     = ""
+</code></pre>
 
 #### Scenario 3: Adding Spokes
 
@@ -79,11 +80,11 @@ If you want to add spokes, Uncomment the relevant code for spoke1 and spoke2 in 
 To disable public internet access:
 - Comment out or remove the elb-pip public IP resource in `examples/azurevirtualwan/main.tf` as following:
 - Update the internet_inbound variable in `examples/azurevirtualwan/main.tf` as follows:
-
-   internet_inbound = {
-      enabled        = false
-   }
-
+<code><pre>
+internet_inbound = {
+   enabled        = false
+}
+</code></pre>
 ## Support
 
 Fortinet-provided scripts in this and other GitHub projects do not fall under the regular Fortinet technical support scope and are not supported by FortiCare Support Services.
