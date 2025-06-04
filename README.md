@@ -12,12 +12,13 @@ For more information on deploying FortiGate NVAs in a vWAN Hub through the Azure
 ### Overview
 
 The provided Terraform code will deploy the following resources:
+
 In the Main Resource Group:
 
-- Virtual WAN with a Virtual Hub
+- Virtual WAN with a Virtual Hub.
 - Managed Identity with Reader role and Public IP join role assigned will be created if you don't provide your own.
-- Managed Application
-- Public IP Address
+- Managed Application.
+- Public IP Address.
 
 In the Managed Resource Group (name ends with -mrg):
 - FortiGate NVAs are deployed as hidden resources in the Azure Portal.
@@ -31,7 +32,6 @@ In the Managed Resource Group (name ends with -mrg):
 - Both roles "reader" and "joinpublicip" should be assigned to the existing managed identity.
 
 **Note 2:** You will get an error related to sensitive data because the outpit include sensitive data like password. You can avoid this error by adding sensitive = true to the output file.
-
 <code><pre>
 output "fortigate-azurevirtualwan-managed_application" {
   value = module.fgt_nva.fortigate-azurevirtualwan-managed_application
@@ -47,7 +47,6 @@ Follow these steps to deploy:
 3. Rename the file `terraform.tfvars.txt` to `terraform.tfvars`.
 4. Fill in the required variables in `terraform.tfvars` file.
 5. Run the following commands:
-
 <code><pre>
    terraform init
    terraform plan
@@ -58,7 +57,7 @@ Follow these steps to deploy:
 
 #### Scenario 1: Using a new Virtual WAN
 
-The default scenario
+This scenario is configured by default. You do not need to modify the Terraform code; just follow the provided instructions.
 
 #### Scenario 2: Using an existing Virtual WAN
 
