@@ -152,11 +152,6 @@ variable "fgt_additional_custom_data" {
   default     = ""
 }
 
-#variable "fgt_customdata_variables" {
-#  description = "FortiGate configuration appended to cloud-init"
-#  type        = map(object)
-#  default     = {}
-#}
 
 variable "fgt_customdata_variables" {
   description = "FortiGate configuration appended to cloud-init"

@@ -49,26 +49,12 @@ locals {
     ]
   ])
 
-datadisk_attachments = {
+  datadisk_attachments = {
     for d in local.datadisk_lun_map :
     d.datadisk_name => d
   }
 
-
-  #vm_datadiskdisk_count_map = { for k, query in local.fgt_customdata : k => var.fgt_datadisk_count }
-
-  #datadisk_lun_map = flatten([
-    #for vm_name, count in local.vm_datadiskdisk_count_map : [
-      #for i in range(count) : {
-        #datadisk_name = format("%s-%s-datadisk_%02d", var.prefix, vm_name, i)
-        #lun           = i
-      #}
-    #]
-  #])
-
-  #luns = { for k in local.datadisk_lun_map : k.datadisk_name => k.lun }
-
-    lb_pools_ip_addresses = { for lb_pool in flatten([
+  lb_pools_ip_addresses = { for lb_pool in flatten([
     for zonek, zonev in var.fgt_ip_configuration : [
       for fgtk, fgtv in zonev : [
         for ipck, ipcv in fgtv : [
@@ -126,25 +112,14 @@ resource "azurerm_network_interface" "fgtifcext" {
 
 
 
-#dynamic "ip_configuration" {
-#  for_each = var.fgt_ip_configuration["external"]
-#    content {
-#      name                                               = ip_configuration.value.name
-#      private_ip_address_allocation                      = ip_configuration.value.private_ip_address_allocation
-#      gateway_load_balancer_frontend_ip_configuration_id = ip_configuration.value.gateway_load_balancer_frontend_ip_configuration_resource_id
-#      primary                                            = ip_configuration.value.is_primary_ipconfiguration
-#      private_ip_address                                 = ip_configuration.value.private_ip_address == null ? null : ip_configuration.value.private_ip_address[count.index]
-#      private_ip_address_version                         = ip_configuration.value.private_ip_address_version
-#      public_ip_address_id                               = ip_configuration.value.public_ip_address_resource_ids == null ? null : ip_configuration.value.public_ip_address_resource_ids[count.index]
-#      subnet_id                                          = ip_configuration.value.private_ip_subnet_resource_id
-#    }
-#  }
-
-
 resource "azurerm_network_interface_security_group_association" "fgtaifcextnsg" {
   for_each = local.fgt_customdata
   network_interface_id      = azurerm_network_interface.fgtifcext[each.key].id
   network_security_group_id = azurerm_network_security_group.fgtnsg.id
+  depends_on = [
+    azurerm_network_interface.fgtifcext,
+    azurerm_network_security_group.fgtnsg
+  ]
 }
 
 resource "azurerm_network_interface" "fgtifcint" {
