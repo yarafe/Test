@@ -36,53 +36,117 @@ resource "azurerm_subnet" "subnets" {
 # Load Balancers
 ##############################################################################################################
 
-locals {
-  # produce a sequence [0,1,…,fgt_count-1]
-  fgt_indices = range(var.fgt_count)
+# locals {
+#   # produce a sequence [0,1,…,fgt_count-1]
+#   fgt_indices = range(var.fgt_count)
+#
+#   # build a flat list of objects, two per VM:
+#   fgt_nat_rules = flatten([
+#     for i in local.fgt_indices : [
+#       {
+#         fgt_index      = i
+#         name          = "${var.prefix}-fgt-${i+1}-MGMT-HTTPS"
+#         protocol      = "Tcp"
+#         frontend_port = 40030 + i
+#         backend_port  = 443
+#       },
+#       {
+#         fgt_index      = i
+#         name          = "${var.prefix}-fgt-${i+1}-MGMT-SSH"
+#         protocol      = "Tcp"
+#         frontend_port = 50030 + i
+#         backend_port  = 22
+#       }
+#     ]
+#   ])
+#
+#   # turn that list into a map keyed by rule-name
+#   fgt_nat_rules_map = {
+#     for r in local.fgt_nat_rules : r.name => r
+#   }
+# }
+#
+# # Create the NAT‐rules on your external LB
+# resource "azurerm_lb_nat_rule" "elbinboundrules" {
+#   for_each = local.fgt_nat_rules_map
+#
+#   name                           = each.key
+#   resource_group_name            = azurerm_resource_group.resourcegroup.name
+#   loadbalancer_id                = module.elb.azurerm_lb_id
+#   frontend_ip_configuration_name = module.elb.azurerm_lb_frontend_ip_configuration[0].name
+#   backend_address_pool_id  = module.fgt.fortigate_ipconfig_external_ids[tostring(each.value.fgt_index)]
+#   protocol                    = each.value.protocol
+#   frontend_port               = each.value.frontend_port
+#   backend_port                = each.value.backend_port
+#
+#   enable_floating_ip          = false
+#   idle_timeout_in_minutes     = 4
+#   enable_tcp_reset            = false
+# }
 
-  # build a flat list of objects, two per VM:
-  fgt_nat_rules = flatten([
-    for i in local.fgt_indices : [
-      {
-        fgt_index      = i
-        name          = "${var.prefix}-fgt-${i+1}-MGMT-HTTPS"
-        protocol      = "Tcp"
-        frontend_port = 40030 + i
-        backend_port  = 443
-      },
-      {
-        fgt_index      = i
-        name          = "${var.prefix}-fgt-${i+1}-MGMT-SSH"
-        protocol      = "Tcp"
-        frontend_port = 50030 + i
-        backend_port  = 22
-      }
-    ]
-  ])
 
-  # turn that list into a map keyed by rule-name
-  fgt_nat_rules_map = {
-    for r in local.fgt_nat_rules : r.name => r
-  }
+#output "nic_map_keys" {
+  #value = keys(module.fgt.fortigate_network_interface_external)
+#}
+
+
+resource "azurerm_lb_nat_rule" "elbinboundrules" {
+  for_each = merge({
+    for i in range(var.fgt_count) :
+    format("%s-fgt-%d-MGMT-SSH", var.prefix, i + 1) => {
+      name           = format("%s-fgt-%d-MGMT-SSH", var.prefix, i + 1)
+      protocol       = "Tcp"
+      frontend_port  = 50030 + i
+      backend_port   = 22
+    }
+  }, {
+    for i in range(var.fgt_count) :
+    format("%s-fgt-%d-MGMT-HTTPS", var.prefix, i + 1) => {
+      name           = format("%s-fgt-%d-MGMT-HTTPS", var.prefix, i + 1)
+      protocol       = "Tcp"
+      frontend_port  = 40030 + i
+      backend_port   = 443
+    }
+  })
+
+  name                            = each.value.name
+  resource_group_name             = azurerm_resource_group.resourcegroup.name
+  loadbalancer_id                 = module.elb.azurerm_lb_id
+  frontend_ip_configuration_name = module.elb.azurerm_lb_frontend_ip_configuration[0].name
+  protocol                        = each.value.protocol
+  frontend_port                   = each.value.frontend_port
+  backend_port                    = each.value.backend_port
+  enable_floating_ip              = false
+  idle_timeout_in_minutes         = 4
+  enable_tcp_reset                = false
 }
 
-# Create the NAT‐rules on your external LB
-resource "azurerm_lb_nat_rule" "elbinboundrules" {
-  depends_on = [module.fgt.fortigate_network_interface_external]
-  for_each = local.fgt_nat_rules_map
 
-  name                           = each.key
-  resource_group_name            = azurerm_resource_group.resourcegroup.name
-  loadbalancer_id                = module.elb.azurerm_lb_id
-  frontend_ip_configuration_name = module.fgt.fortigate_network_interface_external[(each.value.fgt_index)].ip_configuration.value.name
+resource "azurerm_network_interface_nat_rule_association" "nat_assoc" {
+  for_each = merge({
+    for idx in range(var.fgt_count) :
+    format("%s-fgt-%d-MGMT-SSH", var.prefix, idx + 1) => {
+      network_interface_id = module.fgt.fortigate_network_interface_external["node-${idx}"].id
+      ip_config_name       = "ipconfig1"
+      nat_rule_id          = azurerm_lb_nat_rule.elbinboundrules[format("%s-fgt-%d-MGMT-SSH", var.prefix, idx + 1)].id
+    }
+  }, {
+    for idx in range(var.fgt_count) :
+    format("%s-fgt-%d-MGMT-HTTPS", var.prefix, idx + 1) => {
+      network_interface_id = module.fgt.fortigate_network_interface_external["node-${idx}"].id
+      ip_config_name       = "ipconfig1"
+      nat_rule_id          = azurerm_lb_nat_rule.elbinboundrules[format("%s-fgt-%d-MGMT-HTTPS", var.prefix, idx + 1)].id
+    }
+  })
 
-  protocol                    = each.value.protocol
-  frontend_port               = each.value.frontend_port
-  backend_port                = each.value.backend_port
-
-  enable_floating_ip          = false
-  idle_timeout_in_minutes     = 4
-  enable_tcp_reset            = false
+  network_interface_id   = each.value.network_interface_id
+  ip_configuration_name  = each.value.ip_config_name
+  nat_rule_id            = each.value.nat_rule_id
+  
+  depends_on = [
+    module.fgt,
+    module.elb  
+  ]
 }
 
 module "elb" {
@@ -171,7 +235,7 @@ module "fgt" {
   fgt_version                        = var.fgt_version
   fgt_accelerated_networking         = var.fgt_accelerated_networking
   fgt_ip_configuration               = local.fgt_ip_configuration
-  fgt_availability_set               = true
+  fgt_availability_set               = var.fgt_availability_set
   fgt_availability_zone              = []
   fgt_datadisk_size                  = var.fgt_datadisk_size
   fgt_datadisk_count                 = var.fgt_datadisk_count

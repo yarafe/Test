@@ -70,6 +70,12 @@ variable "fgt_accelerated_networking" {
   default     = true
 }
 
+variable "fgt_availability_set" {
+  description = "Deploy FortiGate in a new Availability Set"
+  type        = bool
+  default     = true
+}
+
 variable "fgt_availability_zone" {
   description = "Availability Zones for FortiGate VMs"
   type        = list(string)
@@ -231,6 +237,7 @@ locals {
           private_ip_address_version    = "IPv4"
           private_ip_subnet_resource_id = azurerm_subnet.subnets["subnet-external"].id
           is_primary_ipconfiguration    = true
+          #load_balancer_nat_rules       = azurerm_lb_nat_rule.elbinboundrules.id
           load_balancer_backend_pools = {
             lb_pool_1 = {
               load_balancer_backend_pool_resource_id = module.elb.azurerm_lb_backend_address_pool_id
