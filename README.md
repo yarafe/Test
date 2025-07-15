@@ -8,12 +8,24 @@ Azure NAT Gateway is a managed solution that provides outbound internet access f
 
 If your organization needs deep security, visibility, and control over outbound traffic, a FortiGate VM (FGT-VM) is the natural upgrade path. FortiGate acts not just as a NAT device but as a next-generation firewall (NGFW) capable of enforcing comprehensive security policies, logging, and traffic inspection.
 
-
 ## Migration Use Cases
 
-- Traffic inspection, inbound and outbound connctivity, session controll and visibility 
-- Azure NAT Gateway operates at the subnet level and automatically assigns a public IP for outbound traffic from virtual machines. You cannot configure the specific public IP or source port used per VM. In contrast, FortiGate provides full control over source IP, ports, and NAT behavior through customizable policies. 
-- Some customers prefer deterministic routing through their own ISPs or wish to avoid using Microsoft’s backbone network for specific data paths, often to optimize routing and reduce latency. However, NAT Gateway does not support Public IP addresses with a routing preference set to "Internet." This requirement can be achieved using a FortiGate (FGT) VM.
+- **Enhancing Security and Compliance**
+For organizations with regulatory or audit requirements, Azure NAT Gateway may not provide the level of visibility and control needed for outbound traffic. Transitioning to a FortiGate VM enables advanced security features—such as deep packet inspection, policy-based NAT, and comprehensive logging—helping meet compliance standards while maintaining secure and controlled internet access.
+
+- **Granular Control and Expanded Public IP Requirements**
+As application environments grow, organizations may require more than the 16 public IPs supported by Azure NAT Gateway, along with precise control over how those IPs are used. Migrating to a FortiGate VM allows for significantly more public IP addresses and provides granular control through policy-based NAT, enabling specific outbound traffic to use designated IPs. This ensures better traffic segregation, simplifies whitelisting with external partners, and supports complex multi-tenant or multi-environment architectures.
+
+-  **Custom Routing Preference**
+Some customers require deterministic routing via their own ISPs to optimize latency or avoid Microsoft’s backbone. Since Azure NAT Gateway doesn't support public IPs with an "Internet" routing preference, a FortiGate VM provides the flexibility to meet this need with full control over outbound routing paths.
+
+- **IPv6 Outbound Connectivity**
+Organizations adopting IPv6 for scalability or regulatory compliance require native IPv6 support for outbound traffic. Azure NAT Gateway currently supports only IPv4, limiting dual-stack deployments. By deploying a FortiGate (FGT) VM, customers can enable and manage outbound IPv6 connectivity, apply security policies, and maintain full visibility for both IPv4 and IPv6 traffic.
+
+- **ICMP and IP Fragmentation Support**
+Certain applications and diagnostic tools rely on ICMP (e.g., ping, traceroute) and support for fragmented IP packets. Azure NAT Gateway does not support ICMP or IP fragmentation, which can impact troubleshooting and specific workloads. FortiGate (FGT) VM fully supports ICMP and fragmented packets, making it a suitable alternative for environments requiring advanced network diagnostics or protocols that depend on IP fragmentation.
+
+
 - Azure NAT Gateway supports a maximum of 16 public IP addresses [link](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-nat-gateway-limits). If your deployment requires more, consider using a FortiGate (FGT) VM, which can handle up to 256 public IPs through multiple NICs and advanced NAT configurations [link1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-resource-manager-virtual-networking-limits) [link2](https://community.fortinet.com/t5/FortiGate/Technical-Tip-FortiGate-can-create-max-32-secondary-IP-address/ta-p/230121).
 - Session visibility 
 - NAT Gateway doesn't support IPv6 
@@ -28,7 +40,7 @@ Azure NAT Gateway offers simple outbound access with limited control. FortiGate 
 - Full session visibility and logging
 - Inbound & outbound NAT support
 - Custom connection timeouts and granular policy control
-- Compliance with enterprise security standards (PCI, HIPAA, etc.)
+- Compliance with enterprise security standards.
 
 
 | Feature               | NAT Gateway    | FortiGate VM         |
@@ -50,7 +62,31 @@ Azure NAT Gateway offers simple outbound access with limited control. FortiGate 
 
 ## Migration Steps
 
+- choose Fortigate deployment scenario based on your requirements from this [link] (https://github.com/fortinet/azure-templates/tree/main/FortiGate).
+[Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/A-Single-VM)
+[Active-Passive-SDN](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Passive-SDN)
+[Active-Passive-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Passive-ELB-ILB)
+[Active-Active-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Active-ELB-ILB)
 
+- Diassociate subnets atttached to Azure NAT Gateway.
+
+- Associate your subnets to the routing table which points all traffic to FGT internal interface (Active-Passive-SDN - Single-VM) or to internal load balancer IP (Active-Passive-ELB-ILB or Active-Active-ELB-ILB Deployment).
+
+- Configure outbound connectivity.
+
+[Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/A-Single-VM#outbound-connections)
+
+[Active-Passive-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Passive-ELB-ILB#outbound-connections)
+
+
+- Delete azure NAT Gateway.
+
+## Resources
+
+- [Nat Gateway](https://learn.microsoft.com/en-us/azure/nat-gateway/nat-gateway-resource)
+- [Nat Gateway Limitations](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-nat-gateway-limits)
+- [Public IP addresses per network interface FGT VM](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-resource-manager-virtual-networking-limits)
+- [FGT Support 256 Secondary IP Addresses](https://community.fortinet.com/t5/FortiGate/Technical-Tip-FortiGate-can-create-max-32-secondary-IP-address/ta-p/230121).
 
 ## Support
 
