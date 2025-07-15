@@ -11,18 +11,23 @@ If your organization needs deep security, visibility, and control over outbound 
 ## Migration Use Cases
 
 - **Enhancing Security and Compliance**
+
 For organizations with regulatory or audit requirements, Azure NAT Gateway may not provide the level of visibility and control needed for outbound traffic. Transitioning to a FortiGate VM enables advanced security features—such as deep packet inspection, policy-based NAT, and comprehensive logging—helping meet compliance standards while maintaining secure and controlled internet access.
 
 - **Granular Control and Expanded Public IP Requirements**
+
 As application environments grow, organizations may require more than the 16 public IPs supported by Azure NAT Gateway, along with precise control over how those IPs are used. Migrating to a FortiGate VM allows for significantly more public IP addresses and provides granular control through policy-based NAT, enabling specific outbound traffic to use designated IPs. This ensures better traffic segregation, simplifies whitelisting with external partners, and supports complex multi-tenant or multi-environment architectures.
 
 -  **Custom Routing Preference**
+
 Some customers require deterministic routing via their own ISPs to optimize latency or avoid Microsoft’s backbone. Since Azure NAT Gateway doesn't support public IPs with an "Internet" routing preference, a FortiGate VM provides the flexibility to meet this need with full control over outbound routing paths.
 
 - **IPv6 Outbound Connectivity**
+
 Organizations adopting IPv6 for scalability or regulatory compliance require native IPv6 support for outbound traffic. Azure NAT Gateway currently supports only IPv4, limiting dual-stack deployments. By deploying a FortiGate (FGT) VM, customers can enable and manage outbound IPv6 connectivity, apply security policies, and maintain full visibility for both IPv4 and IPv6 traffic.
 
 - **ICMP and IP Fragmentation Support**
+
 Certain applications and diagnostic tools rely on ICMP (e.g., ping, traceroute) and support for fragmented IP packets. Azure NAT Gateway does not support ICMP or IP fragmentation, which can impact troubleshooting and specific workloads. FortiGate (FGT) VM fully supports ICMP and fragmented packets, making it a suitable alternative for environments requiring advanced network diagnostics or protocols that depend on IP fragmentation.
 
 ## FortiGate Key Features and NAT Gateway Limitations
