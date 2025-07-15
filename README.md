@@ -25,13 +25,6 @@ Organizations adopting IPv6 for scalability or regulatory compliance require nat
 - **ICMP and IP Fragmentation Support**
 Certain applications and diagnostic tools rely on ICMP (e.g., ping, traceroute) and support for fragmented IP packets. Azure NAT Gateway does not support ICMP or IP fragmentation, which can impact troubleshooting and specific workloads. FortiGate (FGT) VM fully supports ICMP and fragmented packets, making it a suitable alternative for environments requiring advanced network diagnostics or protocols that depend on IP fragmentation.
 
-
-- Azure NAT Gateway supports a maximum of 16 public IP addresses [link](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-nat-gateway-limits). If your deployment requires more, consider using a FortiGate (FGT) VM, which can handle up to 256 public IPs through multiple NICs and advanced NAT configurations [link1](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-resource-manager-virtual-networking-limits) [link2](https://community.fortinet.com/t5/FortiGate/Technical-Tip-FortiGate-can-create-max-32-secondary-IP-address/ta-p/230121).
-- Session visibility 
-- NAT Gateway doesn't support IPv6 
-- some other limitations
-
-
 ## FortiGate Key Features and NAT Gateway Limitations
 
 Azure NAT Gateway offers simple outbound access with limited control. FortiGate enhances this with:
