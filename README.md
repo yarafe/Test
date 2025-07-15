@@ -53,9 +53,9 @@ Azure NAT Gateway offers simple outbound access with limited control. FortiGate 
 | Public IP routing preference             | Only Microsoft Network   | Both Microsoft Network and Internet |
 | Public IP addresses   | 16               | up to 256              |
 | IP Fragmentation       | ❌ No          | ✅ Yes                |
-| ICMP      | ❌ No         | ✅ Yes (HA-SDN or Single FGT VM deployment)               |
+| ICMP      | ❌ No         | ✅ Yes (Active-Passive-SDN or Single FGT VM deployment)               |
 | Public IPs with DDoS protection      | ❌ No         | ✅ Yes              |
-| IPV6 Support          | ❌ NO          | ✅ Yes (HA-SDN or Single FGT VM deployment)                |
+| IPV6 Support          | ❌ NO          | ✅ Yes (Active-Passive-SDN or Single FGT VM deployment)                |
 | Security Compliance   | Limited | ✅ Yes|
 
 ## Migration Steps
@@ -69,11 +69,11 @@ Azure NAT Gateway offers simple outbound access with limited control. FortiGate 
 
 - Diassociate subnets atttached to Azure NAT Gateway.
 
-- Associate your subnets to the routing table which points all traffic to FGT internal interface (Active-Passive-SDN - Single-VM) or to internal load balancer IP (Active-Passive-ELB-ILB or Active-Active-ELB-ILB Deployment).
+- Associate your subnets (where your virtual machines reside) to the routing table which points all traffic to FGT internal interface (Active-Passive-SDN - Single-VM) or to internal load balancer IP (Active-Passive-ELB-ILB or Active-Active-ELB-ILB Deployment).
 
 - Configure outbound connectivity.
 
-    - [Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/A-Single-VM#outbound-connections)
+    - [Single-VM or Active-Passive-SDN](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/A-Single-VM#outbound-connections)
     - [Active-Passive-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Passive-ELB-ILB#outbound-connections)
     - [Active-Active-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Active-ELB-ILB#outbound-connections)
 
