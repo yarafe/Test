@@ -1,4 +1,4 @@
-# NAT Gateway Migration to FortiGate VM
+# Azure NAT Gateway Migration to FortiGate-VM
 
 ## Introduction
 
@@ -63,11 +63,8 @@ Azure NAT Gateway offers simple outbound access with limited control. FortiGate 
 - Select the appropriate FortiGate deployment scenario based on your requirements from this [link](https://github.com/fortinet/azure-templates/tree/main/FortiGate):
 
     - [Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/A-Single-VM)
-
     - [Active-Passive-SDN](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Passive-SDN)
-
     - [Active-Passive-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Passive-ELB-ILB)
-
     - [Active-Active-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Active-ELB-ILB)
 
 - Diassociate subnets atttached to Azure NAT Gateway.
@@ -77,9 +74,8 @@ Azure NAT Gateway offers simple outbound access with limited control. FortiGate 
 - Configure outbound connectivity.
 
     - [Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/A-Single-VM#outbound-connections)
-
     - [Active-Passive-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Passive-ELB-ILB#outbound-connections)
-
+    - [Active-Active-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Active-ELB-ILB#outbound-connections)
 
 - Delete azure NAT Gateway.
 
@@ -87,6 +83,7 @@ Azure NAT Gateway offers simple outbound access with limited control. FortiGate 
 
 - [Nat Gateway](https://learn.microsoft.com/en-us/azure/nat-gateway/nat-gateway-resource)
 - [Nat Gateway Limitations](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-nat-gateway-limits)
+- [FortiGate-VM Azure](https://docs.fortinet.com/document/fortigate-public-cloud/7.6.0/azure-administration-guide/128029)
 - [Public IP addresses per network interface FGT VM](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-resource-manager-virtual-networking-limits)
 - [FGT Support 256 Secondary IP Addresses](https://community.fortinet.com/t5/FortiGate/Technical-Tip-FortiGate-can-create-max-32-secondary-IP-address/ta-p/230121).
 
