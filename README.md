@@ -62,13 +62,13 @@ Azure NAT Gateway offers simple outbound access with limited control. FortiGate 
 
 - Select the appropriate FortiGate deployment scenario based on your requirements from this [link](https://github.com/fortinet/azure-templates/tree/main/FortiGate):
 
-[Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/A-Single-VM)
+    - [Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/A-Single-VM)
 
-[Active-Passive-SDN](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Passive-SDN)
+    - [Active-Passive-SDN](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Passive-SDN)
 
-[Active-Passive-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Passive-ELB-ILB)
+    - [Active-Passive-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Passive-ELB-ILB)
 
-[Active-Active-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Active-ELB-ILB)
+    - [Active-Active-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Active-ELB-ILB)
 
 - Diassociate subnets atttached to Azure NAT Gateway.
 
@@ -76,9 +76,9 @@ Azure NAT Gateway offers simple outbound access with limited control. FortiGate 
 
 - Configure outbound connectivity.
 
-[Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/A-Single-VM#outbound-connections)
+    - [Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/A-Single-VM#outbound-connections)
 
-[Active-Passive-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Passive-ELB-ILB#outbound-connections)
+    - [Active-Passive-ELB-ILB](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/Active-Passive-ELB-ILB#outbound-connections)
 
 
 - Delete azure NAT Gateway.
