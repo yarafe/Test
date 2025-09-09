@@ -9,8 +9,8 @@ on:
 env:
   PRODUCT: FortiADC
   PRODUCTSHORT: fad
-  PRODUCTOFFER: fortinet_FortiADC-vm_v5
-  PRODUCTSKU: fortinet_fw-vm
+  PRODUCTOFFER: fortinet-fortiadc
+  PRODUCTSKU: fad-vm-byol
 
 jobs:
   ARM-fad-Version-Update:
