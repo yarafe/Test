@@ -92,6 +92,6 @@ jobs:
         labels: |
           report
           automated pr
-        assignees: jvhoof
-        reviewers: jvhoof
+        assignees: yarafe
+        reviewers: yarafe
         draft: false
