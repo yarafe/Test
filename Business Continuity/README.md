@@ -17,7 +17,7 @@ In this article, we will focus on disk-level backup options as an alternative to
 
 ## Backup Procedure
 
-- Create Backup Vault as described in the [documentation] (https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault).
+- Create Backup Vault as described in the [documentation](https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault)
 - from backup vault under manage click on backup policies then add new policy
 ![backup policy](images/backup_policy.png)
 - click + from backup vault to start backup configuration. 
