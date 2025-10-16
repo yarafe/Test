@@ -17,18 +17,18 @@ In this article, we will focus on disk-level backup options as an alternative to
 
 ## Backup Procedure
 
-- Create Backup Vault as described in the [documentation](https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault)
-- from backup vault under manage click on backup policies then add new policy
+- Start by creating a Backup Vault in Azure as described in the [documentation](https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault)
+- From your Backup Vault, navigate to Manage → Backup policies and click Add to create a new policy
 ![backup policy](images/backup_policy.png)
-- click + from backup vault to start backup configuration. 
+- Click the + Add button in the Backup Vault to start a new backup configuration. 
 ![Configure backup](images/backup_vault-backup.png)
-- setect data resource type as azure disk
+- Choose Azure Disk as the data source type for your backup.
 ![config backup1](images/config_backup1.png)
-- add the created policy previously
+- Select the backup policy you created earlier.
 ![config backup2](images/config_backup2.png)
-- select the Fortigate disks that you want to backup. then review the reuired rules
+- Select the FortiGate VM disks that you want to back up then review the required role assignments and permissions.
 ![config backup3](images/config_backup3.png)
-- assigne missing rules. after that validate to be sure that everything is ok.
+- If any roles are missing, assign them as required.Once done, validate the configuration to ensure everything is properly set up.
 ![config backup4](images/config_backup4.png)
 
 ### Restore Procedure
