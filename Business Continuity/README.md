@@ -60,7 +60,7 @@ Managed disks can also be restored through the Azure Business Continuity Center.
 For detailed instructions, refer to Microsoft’s [documentation](https://learn.microsoft.com/en-us/azure/backup/restore-managed-disks)
 
 - After successfully restoring the required disks, create a new FortiGate virtual machine using the restored OS disk and attach the data disks. 
-For step-by-step instructions, refer to Microsoft’s official guide:[link](https://learn.microsoft.com/en-us/azure/virtual-machines/scripts/create-vm-from-managed-os-disks) form more info.
+For step-by-step instructions, refer to Microsoft’s official guide [link](https://learn.microsoft.com/en-us/azure/virtual-machines/scripts/create-vm-from-managed-os-disks) form more info.
 
 ## Support
 
