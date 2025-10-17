@@ -37,17 +37,30 @@ In this article, we will focus on disk-level backup options as an alternative to
 - If any roles are missing, assign them as required. Once done, validate the configuration to ensure everything is properly set up.
 ![config backup4](images/config_backup4.png)
 
+More information can be found from this [link](https://learn.microsoft.com/en-us/azure/backup/backup-managed-disks)
+
 ### Restore Procedure
 
+Once Azure Disk Backup is configured for your FortiGate virtual machine (VM), you can restore disks as needed — for example, after a system failure, configuration issue, or for testing and migration purposes.
+This section describes the steps required to restore FortiGate-managed disks from an Azure Backup Vault.
 
+- Open your Backup Vault in the Azure portal and click the Restore button to begin the recovery process.
+![restore 1](images/restore1.png)
 
-## Resources
+- From the list of available backup instances, locate and select the one corresponding to your FortiGate VM disks.
+![restore 2](images/restore2.png)
 
-- [Nat Gateway](https://learn.microsoft.com/en-us/azure/nat-gateway/nat-gateway-resource)
-- [Nat Gateway Limitations](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-nat-gateway-limits)
-- [FortiGate-VM Azure](https://docs.fortinet.com/document/fortigate-public-cloud/7.6.0/azure-administration-guide/128029)
-- [Public IP addresses per network interface FGT VM](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-resource-manager-virtual-networking-limits)
-- [FGT Support 256 Secondary IP Addresses](https://community.fortinet.com/t5/FortiGate/Technical-Tip-FortiGate-can-create-max-32-secondary-IP-address/ta-p/230121).
+- Select the restore point that represents the state you wish to recover.Each restore point corresponds to a specific backup timestamp.
+![restore 3](images/restore3.png)
+
+- Provide a name for the restored disk and select the target resource group where the restored disks will be created.
+![restore 4](restore4.png)
+
+Managed disks can also be restored through the Azure Business Continuity Center.
+For detailed instructions, refer to Microsoft’s [documentation](https://learn.microsoft.com/en-us/azure/backup/restore-managed-disks)
+
+- After successfully restoring the required disks, create a new FortiGate virtual machine using the restored OS disk and attach the data disks. 
+For step-by-step instructions, refer to Microsoft’s official guide:[link](https://learn.microsoft.com/en-us/azure/virtual-machines/scripts/create-vm-from-managed-os-disks) form more info.
 
 ## Support
 
