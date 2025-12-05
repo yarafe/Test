@@ -4,27 +4,30 @@
 
 :wave: - [Introduction](#introduction) - [Design](#design) - [Deployment](#deployment) - [Requirements](#requirements-and-limitations) - [Configuration](#configuration) - :wave:
 
-## Introduction
+## Backup FortiGate VM with Agentless Multi-Disk Crash-Consistent
 
-More and more enterprises are turning to Microsoft Azure to extend or replace internal data centers and take advantage of the elasticity of the public cloud. While Azure secures the infrastructure, you are responsible for protecting the resources you put in it. As workloads are being moved from local data centers connectivity and security are key elements to take into account. FortiGate-VM offers a consistent security posture and protects connectivity across public and private clouds, while high-speed VPN connections protect data.
+Azure Backup provides agentless VM backups using multi-disk crash-consistent restore points, available only with the Enhanced VM Backup Policy and supported in all Azure public regions. It supports Premium Storage–capable VM sizes (those with an “s” in the name, e.g., DSv2).
+Unsupported disks include Ultra Disks, Premium SSD v2, Ephemeral OS Disks, Shared Disks, and Write Accelerator–enabled disks.
+For details, see [Microsoft’s guide](https://docs.fortinet.com/document/fortigate/7.6.4/administration-guide/702257).
 
-This ARM template deploys a single FortiGate Next-Generation Firewall accompanied by the required infrastructure. Additionally, Fortinet Fabric Connectors deliver the ability to create dynamic security policies.
+### Backup Procedure
 
-## Design
+- Create a Recovery Services vault as described from [documentation](https://learn.microsoft.com/en-us/azure/backup/backup-create-recovery-services-vault#create-a-recovery-services-vault)
+- Go to your Recovery Services vault, select Manage > Backup policies, and click + Add to create a new policy.
+![Crash-Consistent Backup1](images/agentless_backup1.png)
+- Select Policy type as Virtual machine, set Policy subtype to Enhanced, and choose Consistency type as Only crash-consistent snapshot to enable agentless backups.
+![Crash-Consistent Backup2](images/agentless_backup2.png)
+- Start configuring backup for virtual machine in Azure.
+![Crash-Consistent Backup3](images/agentless_backup3.png)
+- Select the Enhanced policy created in the previous step, add the FortiGate VM, and enable the backup.
+![Crash-Consistent Backup4](images/agentless_backup4.png)
+- Azure Backup service creates a separate resource group to store the instant recovery points of managed virtual machines. The default naming format of resource group created by Azure Backup service is AzureBackupRG_{Geo}_{n}. 
+- You can backup now Fortigate VM or disable backup from protected items > Backup items.
+![Crash-Consistent Backup4](images/agentless_backup5.png)
 
-In Microsoft Azure, this single FortiGate-VM setup a basic setup to start exploring the capabilities of the next generation firewall. The central system will receive, using user-defined routing (UDR), all or specific traffic that needs inspection going to/coming from on-prem networks or the public internet.
+More information can be found from [link](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-agentless-multi-disk-crash-consistent).
 
-This Azure ARM template will automatically deploy a full working environment containing the following components.
-
-- 1 standalone FortiGate firewall
-- 1 VNETs containing a protected subnet
-- User Defined Routes (UDR) for the protected subnets
-
-![FortiGate-VM azure design](images/fgt-single-vm.png)
-
-This Azure ARM template can also be extended or customized based on your requirements. Additional subnets besides the ones mentioned above are not automatically generated. By extending the Azure ARM templates additional subnets can be added. Additional subnets will require their own routing tables.
-
-## Deployment
+## Restore Procedure
 
 For the deployment, you can use the Azure Portal, Azure CLI, Powershell or Azure Cloud Shell. The Azure ARM templates are exclusive to Microsoft Azure and can't be used in other cloud environments. The main template is the `azuredeploy.json` which you can use in the Azure Portal. A `deploy.sh` script is provided to facilitate the deployment. You'll be prompted to provide the 4 required variables:
 
