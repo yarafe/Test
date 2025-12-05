@@ -1,8 +1,16 @@
-# Backup  Fortigate with Azure Backup Vault
+# FortiGate VM Backup and Restore in Azure
 
 [![[FGT] ARM - A-Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/actions/workflows/fgt-arm-a-single-vm.yml/badge.svg)](https://github.com/40net-cloud/fortinet-azure-solutions/actions/workflows/fgt-arm-a-single-vm.yml) 
 
 :wave: - [Introduction](#introduction) - [Design](#design) - [Deployment](#deployment) - [Requirements](#requirements-and-limitations) - [Configuration](#configuration) - :wave:
+
+# Introduction
+
+Backing up and restoring FortiGate Virtual Machines (VMs) in Microsoft Azure is a critical part of maintaining business continuity, minimizing downtime, and protecting firewall configurations against data loss or corruption. This document provides a comprehensive overview of the procedures and best practices for creating, managing, and restoring backups of FortiGate VMs deployed in Azure environments. 
+To protect your FortiGate configurations and data, you can use several backup methods including: 
+- Backup FortiGate VM with agentless multi-disk crash-consistent.
+- Taking Azure-managed disk snapshots at scheduled intervals.
+You can also back up only the FortiGate configuration as described in the [documentation](https://docs.fortinet.com/document/fortigate/7.6.4/administration-guide/702257)
 
 ## Backup FortiGate VM with Agentless Multi-Disk Crash-Consistent
 
@@ -23,68 +31,44 @@ For details, see [Microsoft’s guide](https://docs.fortinet.com/document/fortig
 ![Crash-Consistent Backup4](images/agentless_backup4.png)
 - Azure Backup service creates a separate resource group to store the instant recovery points of managed virtual machines. The default naming format of resource group created by Azure Backup service is AzureBackupRG_{Geo}_{n}. 
 - You can backup now Fortigate VM or disable backup from protected items > Backup items.
-![Crash-Consistent Backup4](images/agentless_backup5.png)
+![Crash-Consistent Backup5](images/agentless_backup5.png)
 
 More information can be found from [link](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-agentless-multi-disk-crash-consistent).
 
-## Restore Procedure
+### Restore Procedure
 
-For the deployment, you can use the Azure Portal, Azure CLI, Powershell or Azure Cloud Shell. The Azure ARM templates are exclusive to Microsoft Azure and can't be used in other cloud environments. The main template is the `azuredeploy.json` which you can use in the Azure Portal. A `deploy.sh` script is provided to facilitate the deployment. You'll be prompted to provide the 4 required variables:
+You can choose the option that best fits your requirements: either deploy a new FortiGate VM or recover the faulty disk.
 
-- PREFIX : This prefix will be added to each of the resources created by the template for ease of use and visibility.
-- LOCATION : This is the Azure region where the deployment will be deployed.
-- USERNAME : The username used to login to the FortiGate GUI and SSH management UI.
-- PASSWORD : The password used for the FortiGate GUI and SSH management UI.
+#### Restore FortiGate with VM image version
 
-### Azure Portal
+- Use or create [Azure compute gallery](https://learn.microsoft.com/en-us/azure/virtual-machines/create-gallery)
+- Create an image definition using PowerShell
 
-Azure Portal Wizard:
-[![Azure Portal Wizard](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions%2Fmain%2FFortiGate%2FA-Single-VM%2Fazuredeploy.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions%2Fmain%2FFortiGate%2FA-Single-VM%2FcreateUiDefinition.json)
+<code><pre>
+$imageDefinition = New-AzGalleryImageDefinition -GalleryName yourGallery -ResourceGroupName yourRG -Location RGLocation -Name 'Fortigate' -OsState generalized -OsType Linux -Publisher 'fortinet' -Offer ' fortinet_fortigate-vm_v5' -Sku ' fortinet_fg-vm' -PurchasePlanPublisher fortinet -PurchasePlanProduct fortinet_fortigate-vm_v5 -PurchasePlanName fortinet_fg-vm -HyperVGeneration "V1" -Feature @(@{Name='IsAcceleratedNetworkSupported';Value='True'})
 
-Custom Deployment:
-[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions%2Fmain%2FFortiGate%2FA-Single-VM%2Fazuredeploy.json)
-[![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions$2Fmain%2FFortiGate%2FA-Single-VM%2Fazuredeploy.json)
+</code></pre>
 
-### Azure CLI
+The above PowerShell command is related to VM generation g1. For generation2 use SKU “fortinet_fg-vm_g2” and for arm64 use SKU “fortinet_fg-vm_arm64”.
+More details from [link](https://learn.microsoft.com/en-us/powershell/module/az.compute/new-azgalleryimagedefinition)
 
-To fast track the deployment, use the Azure Cloud Shell. The Azure Cloud Shell is an in-browser CLI that contains Terraform and other tools for deployment into Microsoft Azure. It is accessible via the Azure Portal or directly at [https://shell.azure.com/](https://shell.azure.com). You can copy and paste the below one-liner to get started with your deployment.
+- Navigate to the resource group AzureBackupRG_{Geo}_{n} where the restore point collections are stored.
+![Crash-Consistent restore_image1](images/restore_image1.png)
+- Select the desired restore point and choose OS_disk
+![Crash-Consistent restore_image2](images/restore_image2.png)
+- Click on create VM image version
+![Crash-Consistent restore_image3](images/restore_image3.png)
+- Add version number and select your Azure compute gallery and your VM definition
+![Crash-Consistent restore_image4](images/restore_image4.png)
+- Set default storage SKU and the replica count 
+![Crash-Consistent restore_image5](images/restore_image5.png)
 
-```
-cd ~/clouddrive/ && wget -qO- https://github.com/40net-cloud/fortinet-azure-solutions/archive/main.tar.gz | \
-tar zxf - && cd ~/clouddrive/fortinet-azure-solutions-main/FortiGate/A-Single-VM/ && ./deploy.sh
-```
-
-![Azure Cloud Shell](images/azure-cloud-shell.png)
-
-After deployment, you will be shown the IP addresses of all deployed components. This information is also stored in the output directory in the 'summary.out' file. You can access both management GUI's using the public management IP addresses using HTTPS on port 443.
-
-## Requirements and limitations
-
-The ARM template deploys different resources and it is required to have the access rights and quota in your Microsoft Azure subscription to deploy the resources.
-
-- The template will deploy Standard F2s VMs for this architecture. Other VM instances are supported as well with a minimum of 2 NICs. A list can be found [here](https://docs.fortinet.com/document/fortigate-public-cloud/7.0.0/azure-administration-guide/562841/instance-type-support)
-- Licenses for FortiGate
-  - BYOL: A demo license can be made available via your Fortinet partner or on our website. These can be injected during deployment or added after deployment. Purchased licenses need to be registered on the [Fortinet support site](http://support.fortinet.com). Download the .lic file after registration. Note, these files may not work until 60 minutes after it's initial creation.
-  - PAYG or OnDemand: These licenses are automatically generated during the deployment of the FortiGate systems.
-  - The password provided during deployment must need password complexity rules from Microsoft Azure:
-  - It must be 12 characters or longer
-  - It needs to contain characters from at least 3 of the following groups: uppercase characters, lowercase characters, numbers, and special characters excluding '\' or '-'
-- The terms for the FortiGate PAYG or BYOL image in the Azure Marketplace needs to be accepted once before usage. This is done automatically during deployment via the Azure Portal. For the Azure CLI the commands below need to be run before the first deployment in a subscription.
-  - BYOL
-`az vm image terms accept --publisher fortinet --offer fortinet_fortigate-vm_v5 --plan fortinet_fg-vm`
-  - PAYG
-`az vm image terms accept --publisher fortinet --offer fortinet_fortigate-vm_v5 --plan fortinet_fg-vm_payg_2023`
-
-## Configuration
-
-The FortiGate VMs need a specific configuration to match the deployed environment. This configuration can be injected during provisioning or afterwards via the different options including GUI, CLI, FortiManager or REST API.
-
-- [Default configuration using this template](doc/config-provisioning.md)
-- [Upload VHD](../Documentation/faq-upload-vhd.md)
-
-### Fabric Connector
-
-The FortiGate-VM uses [Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/) for the SDN Fabric Connector. A SDN Fabric Connector is created automatically during deployment. After deployment, it is required apply the 'Reader' role to the Azure Subscription you want to resolve Azure Resources from. More information can be found on the [Fortinet Documentation Libary](https://docs.fortinet.com/document/fortigate-public-cloud/7.2.0/azure-administration-guide/236610/configuring-an-sdn-connector-using-a-managed-identity).
+Once VM image version is created, you can use it to deploy a new FortiGate instance.
+-	Go to Fortinet [Azure solutions repository](https://github.com/40net-cloud/fortinet-azure-solutions/tree/main/FortiGate/A-Single-VM) and deploy to Azure Fortigate VM.
+- During the deployment in “Advanced” tab, add the resource id of the created vm image version. 
+![Crash-Consistent restore_image6](images/restore_image6.png)
+- After deployment you can detach the newly created data disk and attach your existing one or alternatively create a new data disk from the restore point and attach it to the FortiGate VM.
+![Crash-Consistent restore_image7](images/restore_image7.png)
 
 ## Support
 
