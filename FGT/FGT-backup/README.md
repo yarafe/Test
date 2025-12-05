@@ -10,6 +10,7 @@ Backing up and restoring FortiGate Virtual Machines (VMs) in Microsoft Azure is 
 To protect your FortiGate configurations and data, you can use several backup methods including: 
 - Backup FortiGate VM with agentless multi-disk crash-consistent.
 - Taking Azure-managed disk snapshots at scheduled intervals.
+
 You can also back up only the FortiGate configuration as described in the [documentation](https://docs.fortinet.com/document/fortigate/7.6.4/administration-guide/702257)
 
 ## Backup FortiGate VM with Agentless Multi-Disk Crash-Consistent
@@ -69,6 +70,53 @@ Once VM image version is created, you can use it to deploy a new FortiGate insta
 ![Crash-Consistent restore_image6](images/restore_image6.png)
 - After deployment you can detach the newly created data disk and attach your existing one or alternatively create a new data disk from the restore point and attach it to the FortiGate VM.
 ![Crash-Consistent restore_image7](images/restore_image7.png)
+
+
+## Backup FortiGate VM with Disks Snapshots
+
+Azure Disk Backup provides a native, cloud-integrated solution for protecting Azure managed disks. It combines simplicity, security, and affordability, allowing administrators to configure protection quickly and restore data with confidence when a disaster occurs. More details can be found from [link](https://learn.microsoft.com/en-us/azure/backup/disk-backup-overview)
+
+### Backup Procedure
+- Start by creating a Backup Vault in Azure as described in the [documentation](https://learn.microsoft.com/en-us/azure/backup/create-manage-backup-vault)
+- From your Backup Vault, navigate to Manage → Backup policies and click Add to create a new policy
+![Backup FortiGate VM with Disks Snapshots1](images/backup_disks_snapshots1.png)
+
+- Click the + Add button in the Backup Vault to start a new backup configuration.
+![Backup FortiGate VM with Disks Snapshots2](images/backup_disks_snapshots2.png)
+
+- Choose Azure Disk as the data source type for your backup.
+![Backup FortiGate VM with Disks Snapshots3](images/backup_disks_snapshots3.png)
+
+- Select the FortiGate VM disks that you want to back up then review the required role assignments and permissions.
+
+- If any roles are missing, assign them as required. Once done, validate the configuration to ensure everything is properly set up.
+
+
+More information can be found from [link](https://learn.microsoft.com/en-us/azure/backup/backup-managed-disks)
+
+### Restore Procedure
+
+- Open your Backup Vault in the Azure portal and click the Restore button to begin the recovery process.
+
+- From the list of available backup instances, locate and select the one corresponding to your FortiGate VM disks.
+
+- Select the restore point that represents the state you wish to recover.Each restore point corresponds to a specific backup timestamp.
+
+- Provide a name for the restored disk and select the target resource group where the restored disks will be created.
+
+- You can restore data disks with similar steps.
+  Managed disks can also be restored through the Azure Business Continuity Center. For detailed instructions, refer to [Microsoft’s documentation](https://learn.microsoft.com/en-us/azure/backup/restore-managed-disks)
+
+- After successfully restoring the required disks, you can replace the OS disk of an existing FortiGate virtual machine using the following Azure CLI command:
+
+<code><pre>
+az vm stop -n myVM -g myResourceGroup
+az vm update -g <resourceGroupName> -n <vmName> --os-disk /subscriptions/<subscriptionID>/resourceGroups/<resourceGroup>/providers/Microsoft.Compute/disks/<osDiskName>
+</code></pre>
+
+- Once the OS disk is updated, detach the existing data disk and attach the restored data disk.
+  For more information, refer to Microsoft’s official guide [link1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/os-disk-swap) [link2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal#attach-an-existing-disk)
+
 
 ## Support
 
