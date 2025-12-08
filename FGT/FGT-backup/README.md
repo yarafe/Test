@@ -99,7 +99,7 @@ az network nic ip-config update -g MyResourceGroup --nic-name MyNic -n MyIpConfi
 For detailed steps, refer to [Microsoft’s official documentation](https://learn.microsoft.com/en-us/cli/azure/network/nic/ip-config)
 
 #### Restore FortiGate disks
-Use restore disk options as explained in the following [documentation](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms#restore-disks)
+Use restore disk options as explained in [Microsoft documentation](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms#restore-disks).
 
 ## Backup FortiGate VM with Disks Snapshots
 
