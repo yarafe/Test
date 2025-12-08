@@ -110,7 +110,7 @@ After the restore completes successfully, you can reassign the NICs to different
 ```bash
 az network nic ip-config update -g MyResourceGroup --nic-name MyNic -n MyIpConfig --subnet mysubnetId
 ```
-For detailed steps, refer to [Microsoft’s official documentation](https://learn.microsoft.com/en-us/cli/azure/network/nic/ip-config)
+For detailed steps, refer to [Microsoft’s official documentation](https://learn.microsoft.com/en-us/cli/azure/network/nic/ip-config).
 
 #### Restore FortiGate disks
 Use restore disk options as explained in [Microsoft documentation](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms#restore-disks).
