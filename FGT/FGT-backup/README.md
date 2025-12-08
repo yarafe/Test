@@ -130,7 +130,7 @@ More information can be found from [link](https://learn.microsoft.com/en-us/azur
 ![Restore FortiGate VM with Disks Snapshots1](images/restore_disks_snapshots1.png)
 
 - From the list of available backup instances, locate and select the one corresponding to your FortiGate VM disks.
-![Restore FortiGate VM with Disks Snapshots2](images/restore_disks_snapshots.png)
+![Restore FortiGate VM with Disks Snapshots2](images/restore_disks_snapshots2.png)
 
 - Select the restore point that represents the state you wish to recover.Each restore point corresponds to a specific backup timestamp.
 ![Restore FortiGate VM with Disks Snapshots3](images/restore_disks_snapshots3.png)
