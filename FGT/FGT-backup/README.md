@@ -8,13 +8,16 @@
 
 Backing up and restoring FortiGate Virtual Machines (VMs) in Microsoft Azure is a critical part of maintaining business continuity, minimizing downtime, and protecting firewall configurations against data loss or corruption. This document provides a comprehensive overview of the procedures and best practices for creating, managing, and restoring backups of FortiGate VMs deployed in Azure environments. 
 To protect your FortiGate configurations and data, you can use several backup methods including: 
-- [Backup FortiGate VM with agentless multi-disk crash-consistent](#backup-fortigate-vm-with-agentless-multi-disk-crash-consistent): This method creates a crash-consistent backup of the entire FortiGate VM, including all attached disks. It allows you to fully restore the FortiGate VM when needed. Restore options include:
+- [Backup FortiGate VM with agentless multi-disk crash-consistent](#backup-fortigate-vm-with-agentless-multi-disk-crash-consistent)
+This method creates a crash-consistent backup of the entire FortiGate VM, including all attached disks. It allows you to fully restore the FortiGate VM when needed. Restore options include:
   - [Restore FortiGate with VM image version](#restore-fortigate-with-vm-image-version)
   - [Restore FortiGate from the Recovery Services Vault](#restore-fortigate-from-the-recovery-services-vault)
 
 We can replace only faulty disks without rebuilding the entire VM using:
   - [Restore FortiGate disks](#restore-fortigate-disks)
-- [Taking Azure-managed disk snapshots at scheduled intervals](#backup-fortigate-vm-with-disks-snapshots): We can restore faulty disks or replace disks. This method uses scheduled snapshots of Azure-managed disks. Snapshots provide fast, flexible disk-level recovery.
+
+- [Taking Azure-managed disk snapshots at scheduled intervals](#backup-fortigate-vm-with-disks-snapshots)
+ We can restore faulty disks or replace disks. This method uses scheduled snapshots of Azure-managed disks. Snapshots provide fast, flexible disk-level recovery.
   - [Restore with Disks Snapshots](#restore-procedure-1)
 
 You can also back up only the FortiGate configuration as described in the [documentation](https://docs.fortinet.com/document/fortigate/7.6.4/administration-guide/702257)
