@@ -71,6 +71,25 @@ Once VM image version is created, you can use it to deploy a new FortiGate insta
 - After deployment you can detach the newly created data disk and attach your existing one or alternatively create a new data disk from the restore point and attach it to the FortiGate VM.
 ![Crash-Consistent restore_image7](images/restore_image7.png)
 
+#### Restore FortiGate from the Recovery Services Vault 
+
+- You can restore the FortiGate VM from the Recovery Services vault by navigating Protected items > Backup items.
+Alternatively, you can restore it from the Business Continuity Center, as described in [Microsoft Official Documentation](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms)
+![Crash-Consistent Restore From Recovery Services Vault1](images/agentless_restore_recovery_services_vault1.png)
+
+agentless_restore_recovery_services_vault1
+- If you want to create a new FortiGate then Select the desired restore point,specify restore target as create new, specify the name for the new FortiGate VM, and complete the required fields such as VNet, Subnet, and Resource Group.
+![Crash-Consistent Restore From Recovery Services Vault2](images/agentless_restore_recovery_services_vault2.png)
+
+- The restored FortiGate VM will be deployed with multiple NICs placed in the same subnet by default.
+After the restore completes successfully, you can reassign the NICs to different subnets using the Azure CLI.
+<code><pre>
+az network nic ip-config update -g MyResourceGroup --nic-name MyNic -n MyIpConfig --subnet mysubnetId
+</code></pre>
+For detailed steps, refer to [Microsoft’s official documentation](https://learn.microsoft.com/en-us/cli/azure/network/nic/ip-config)
+
+#### Restore FortiGate disks
+Use restore disk options as explained in the following [documentation](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms#restore-disks)
 
 ## Backup FortiGate VM with Disks Snapshots
 
