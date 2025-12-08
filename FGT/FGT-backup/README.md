@@ -56,10 +56,24 @@ You can choose the option that best fits your requirements: either deploy a new 
 - Use or create [Azure compute gallery](https://learn.microsoft.com/en-us/azure/virtual-machines/create-gallery)
 - Create an image definition using PowerShell
 
-<code><pre>
-$imageDefinition = New-AzGalleryImageDefinition -GalleryName yourGallery -ResourceGroupName yourRG -Location RGLocation -Name 'Fortigate' -OsState generalized -OsType Linux -Publisher 'fortinet' -Offer ' fortinet_fortigate-vm_v5' -Sku ' fortinet_fg-vm' -PurchasePlanPublisher fortinet -PurchasePlanProduct fortinet_fortigate-vm_v5 -PurchasePlanName fortinet_fg-vm -HyperVGeneration "V1" -Feature @(@{Name='IsAcceleratedNetworkSupported';Value='True'})
+```powershell
+$imageDefinition = New-AzGalleryImageDefinition `
+  -GalleryName yourGallery `
+  -ResourceGroupName yourRG `
+  -Location RGLocation `
+  -Name 'Fortigate' `
+  -OsState generalized `
+  -OsType Linux `
+  -Publisher 'fortinet' `
+  -Offer 'fortinet_fortigate-vm_v5' `
+  -Sku 'fortinet_fg-vm' `
+  -PurchasePlanPublisher fortinet `
+  -PurchasePlanProduct fortinet_fortigate-vm_v5 `
+  -PurchasePlanName fortinet_fg-vm `
+  -HyperVGeneration "V1" `
+  -Feature @(@{Name='IsAcceleratedNetworkSupported';Value='True'})
+```
 
-</code></pre>
 
 The above PowerShell command is related to VM generation g1. For generation2 use SKU “fortinet_fg-vm_g2” and for arm64 use SKU “fortinet_fg-vm_arm64”.
 More details from [link](https://learn.microsoft.com/en-us/powershell/module/az.compute/new-azgalleryimagedefinition)
