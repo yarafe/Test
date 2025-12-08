@@ -2,7 +2,7 @@
 
 [![[FGT] ARM - A-Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/actions/workflows/fgt-arm-a-single-vm.yml/badge.svg)](https://github.com/40net-cloud/fortinet-azure-solutions/actions/workflows/fgt-arm-a-single-vm.yml) 
 
-:wave: - [Introduction](#introduction) - [Backup FortiGate VM with Agentless Multi-Disk Crash-Consistent](#backup-fortigate-vm-with-agentless-multi-disk-crash-consistent) - [Backup FortiGate VM with Disks Snapshots](#backup-fortigate-vm-with-disk-snapshots) - :wave:
+:wave: - [Introduction](#introduction) - [Backup FortiGate VM with Agentless Multi-Disk Crash-Consistent](#backup-fortigate-vm-with-agentless-multi-disk-crash-consistent) - [Backup FortiGate VM with Disks Snapshots](#backup-fortigate-vm-with-disks-snapshots) - :wave:
 
 # Introduction
 
