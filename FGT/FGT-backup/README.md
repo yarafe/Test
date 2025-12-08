@@ -2,7 +2,7 @@
 
 [![[FGT] ARM - A-Single-VM](https://github.com/40net-cloud/fortinet-azure-solutions/actions/workflows/fgt-arm-a-single-vm.yml/badge.svg)](https://github.com/40net-cloud/fortinet-azure-solutions/actions/workflows/fgt-arm-a-single-vm.yml) 
 
-:wave: - [Introduction](#introduction) - [Design](#design) - [Deployment](#deployment) - [Requirements](#requirements-and-limitations) - [Configuration](#configuration) - :wave:
+:wave: - [Introduction](#introduction) - [Backup FortiGate VM with Agentless Multi-Disk Crash-Consistent](#backupFortiGatevmwithagentlessmulti-diskcrash-consistent) - [Backup FortiGate VM with Disks Snapshots](#backupfortiGatevmwithdiskssnapshots) - :wave:
 
 # Introduction
 
@@ -88,21 +88,26 @@ Azure Disk Backup provides a native, cloud-integrated solution for protecting Az
 ![Backup FortiGate VM with Disks Snapshots3](images/backup_disks_snapshots3.png)
 
 - Select the FortiGate VM disks that you want to back up then review the required role assignments and permissions.
+![Backup FortiGate VM with Disks Snapshots4](images/backup_disks_snapshots4.png)
 
 - If any roles are missing, assign them as required. Once done, validate the configuration to ensure everything is properly set up.
-
+![Backup FortiGate VM with Disks Snapshots5](images/backup_disks_snapshots5.png)
 
 More information can be found from [link](https://learn.microsoft.com/en-us/azure/backup/backup-managed-disks)
 
 ### Restore Procedure
 
 - Open your Backup Vault in the Azure portal and click the Restore button to begin the recovery process.
+![Restore FortiGate VM with Disks Snapshots1](images/restore_disks_snapshots1.png)
 
 - From the list of available backup instances, locate and select the one corresponding to your FortiGate VM disks.
+![Restore FortiGate VM with Disks Snapshots2](images/restore_disks_snapshots.png)
 
 - Select the restore point that represents the state you wish to recover.Each restore point corresponds to a specific backup timestamp.
+![Restore FortiGate VM with Disks Snapshots3](images/restore_disks_snapshots3.png)
 
 - Provide a name for the restored disk and select the target resource group where the restored disks will be created.
+![Restore FortiGate VM with Disks Snapshots4](images/restore_disks_snapshots4.png)
 
 - You can restore data disks with similar steps.
   Managed disks can also be restored through the Azure Business Continuity Center. For detailed instructions, refer to [Microsoft’s documentation](https://learn.microsoft.com/en-us/azure/backup/restore-managed-disks)
