@@ -145,7 +145,7 @@ More information can be found from [link](https://learn.microsoft.com/en-us/azur
 
 ```bash
 az vm stop -n myVM -g myResourceGroup
-az vm update -g &lt;resourceGroupName&gt; -n &lt;vmName&gt; --os-disk /subscriptions/&lt;subscriptionID&gt;/resourceGroups/&lt;resourceGroup&gt;/providers/Microsoft.Compute/disks/&lt;osDiskName&gt;
+az vm update -g <resourceGroupName> -n <vmName> --os-disk /subscriptions/<subscriptionID>/resourceGroups/<resourceGroup>/providers/Microsoft.Compute/disks/<osDiskName>
 ```
 
 - Once the OS disk is updated, detach the existing data disk and attach the restored data disk.
