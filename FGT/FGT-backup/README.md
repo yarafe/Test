@@ -143,10 +143,10 @@ More information can be found from [link](https://learn.microsoft.com/en-us/azur
 
 - After successfully restoring the required disks, you can replace the OS disk of an existing FortiGate virtual machine using the following Azure CLI command:
 
-<code><pre>
+```bash
 az vm stop -n myVM -g myResourceGroup
-az vm update -g <resourceGroupName> -n <vmName> --os-disk /subscriptions/<subscriptionID>/resourceGroups/<resourceGroup>/providers/Microsoft.Compute/disks/<osDiskName>
-</code></pre>
+az vm update -g &lt;resourceGroupName&gt; -n &lt;vmName&gt; --os-disk /subscriptions/&lt;subscriptionID&gt;/resourceGroups/&lt;resourceGroup&gt;/providers/Microsoft.Compute/disks/&lt;osDiskName&gt;
+```
 
 - Once the OS disk is updated, detach the existing data disk and attach the restored data disk.
   For more information, refer to Microsoft’s official guide [link1](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/os-disk-swap) [link2](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal#attach-an-existing-disk)
