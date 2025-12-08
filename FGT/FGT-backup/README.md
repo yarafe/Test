@@ -107,9 +107,9 @@ Alternatively, you can restore it from the Business Continuity Center, as descri
 
 - The restored FortiGate VM will be deployed with multiple NICs placed in the same subnet by default.
 After the restore completes successfully, you can reassign the NICs to different subnets using the Azure CLI.
-<code><pre>
+```bash
 az network nic ip-config update -g MyResourceGroup --nic-name MyNic -n MyIpConfig --subnet mysubnetId
-</code></pre>
+```
 For detailed steps, refer to [Microsoft’s official documentation](https://learn.microsoft.com/en-us/cli/azure/network/nic/ip-config)
 
 #### Restore FortiGate disks
