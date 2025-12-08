@@ -88,7 +88,6 @@ Once VM image version is created, you can use it to deploy a new FortiGate insta
 Alternatively, you can restore it from the Business Continuity Center, as described in [Microsoft Official Documentation](https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms)
 ![Crash-Consistent Restore From Recovery Services Vault1](images/agentless_restore_recovery_services_vault1.png)
 
-agentless_restore_recovery_services_vault1
 - If you want to create a new FortiGate then Select the desired restore point,specify restore target as create new, specify the name for the new FortiGate VM, and complete the required fields such as VNet, Subnet, and Resource Group.
 ![Crash-Consistent Restore From Recovery Services Vault2](images/agentless_restore_recovery_services_vault2.png)
 
