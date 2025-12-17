@@ -1691,9 +1691,9 @@
               {
                 "name": "customimagesource",
                 "type": "Microsoft.Common.OptionsGroup",
-                "label": "Image Version source",
+                "label": "Image Version Source",
                 "defaultValue": "fortinetsite",
-                "toolTip": "Image Version source",
+                "toolTip": "Image Version Source",
                 "constraints": {
                   "required": false,
                   "allowedValues": [
