@@ -6,7 +6,7 @@
 iam_role_arn = ""
 
 # The external ID configured inside the IAM role. required when setting use_existing_iam_role to true. It can be used also to update iam_role_external_id
-iam_role_external_id = "lweid:aws:v2:lwintseemea-eu:849273209955:MaO7G/ndt4"
+iam_role_external_id = ""
 
 # The IAM role name. Required to match with iam_role_arn if use_existing_iam_role is set to true
 iam_role_name = "my-tf-ecr-role"
