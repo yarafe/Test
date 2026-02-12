@@ -52,6 +52,8 @@ Choose the Custom trust policy role type.
 
 In the Custom trust policy section, paste the custom trust policy for the role
 
+
+```json
 {
      "Version": "2012-10-17",
      "Statement": [
@@ -72,6 +74,7 @@ In the Custom trust policy section, paste the custom trust policy for the role
          }
      ]
  }
+```
 
 434813966438:role/lacework-platform is the Lacework FortiCNAPP account ID and Lacework FortiCNAPP role name.
 
