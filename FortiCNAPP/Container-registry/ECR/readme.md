@@ -6,25 +6,42 @@ The **Lacework FortiCNAPP Platform Scanner** provides automated vulnerability sc
 
 ## Deployment
 
-Create a private repository from aws cli using command:
+### Amazon Elastic Container Registry (ECR)
 
+- Create a private repository from aws cli using command [Link](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-create.html)
+
+```bash
 aws ecr create-repository --repository-name <name> --region <region>
+```
 
 https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html
 
-Authenticate your Docker client to the Amazon ECR registry to which you intend to push your image.
+- Authenticate your Docker client to the Amazon ECR registry to which you intend to push your image.
 
+```bash
 aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+```
 
+- List available images
+
+```bash
 docker images
+```
+- Tag image 
 
+```bash
 docker tag e9ae3c220b23 aws_account_id.dkr.ecr.region.amazonaws.com/my-repository:tag
+```
 
+- Push image to repository
+
+```bash
 docker push <aws_account_id>.dkr.ecr.region.amazonaws.com/<prefix/my-new-repository:tag>
+```
 
-Deployment
+## ECR Integration with FortiCNAPP 
 
-Manual
+### Manual
 
 AWS
 https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-custom.html
@@ -85,16 +102,16 @@ Specify the URL of your Amazon Elastic Container Registry (ECR) in the following
 <aws_account_id>.dkr.ecr.<YourRegion>.amazonaws.com
 
 
-Terraform
+### Terraform
 
-### Overview
+#### Overview
 
 The Terraform code provisions a resource group that includes the following resources:
 
 - AWS: IAM role with permission policy "AmazonEC2ContainerRegistryReadOnly" and trust policy.
 - FortiCNAPP: Container Registry integration with type Amazon Container Registry
 
-### Instructions
+#### Instructions
 
 Follow these steps to deploy:
 
