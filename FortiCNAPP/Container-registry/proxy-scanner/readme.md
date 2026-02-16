@@ -28,3 +28,33 @@ create repository
 Settings → Repositories → Create repository
 
 Create a new hosted Docker repository 
+
+
+
+Deploy the Proxy Scanner
+
+Before you deploy the proxy scanner, ensure that you set up a host machine with Docker installed.
+
+- Pull the latest Lacework FortiCNAPP proxy scanner image:
+
+    docker pull lacework/lacework-proxy-scanner:latest
+
+    verify :
+    docker images | grep lacework-proxy-scanner
+
+
+
+    Create a persistent storage location for the Lacework FortiCNAPP proxy scanner cache and change the ownership:
+
+    mkdir cache
+    chown -R 1000:65533 cache
+
+    Start the Lacework FortiCNAPP proxy scanner:
+
+     docker run -d --mount type=bind,source="$(pwd)"/cache,target=/opt/lacework/cache -v "$(pwd)"/config.yml:/opt/lacework/config/config.yml -p 8080:8080 lacework/lacework-proxy-scanner
+
+    For debugging purposes, add -e LOG_LEVEL=debug:
+
+    docker run -e LOG_LEVEL=debug -d --mount ...
+
+    Available LOG_LEVEL options = error|warn|debug

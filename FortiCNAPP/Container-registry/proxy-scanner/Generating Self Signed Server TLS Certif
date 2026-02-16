@@ -1,0 +1,59 @@
+Generating Self Signed Server TLS Certificates
+
+The following steps use Oracle Java 7+ keytool (Unix/Windows) to generate self-signed server certificates which can be used with Sonatype server products.
+
+Openssl is needed only when creating certificates for use in a reverse proxy such as Apache or nginx.
+
+    Generate public private key pair using keytool:
+
+    keytool -genkeypair -keystore keystore.jks -storepass password -alias example.com \
+     -keyalg RSA -keysize 2048 -validity 5000 -keypass password \
+     -dname 'CN=*.example.com, OU=Sonatype, O=Sonatype, L=Unspecified, ST=Unspecified, C=US' \
+     -ext 'SAN=DNS:nexus.example.com,DNS:clm.example.com,DNS:repo.example.com,DNS:www.example.com'
+
+    Output: keystore.jks
+
+sudo keytool -exportcert \
+  -keystore keystore.jks \
+  -alias example.com \
+  -rfc | sudo tee example.cert > /dev/null
+
+Output: example.cert
+
+Convert our Java specific keystore binary".jks" file to a widely compatible PKCS12 keystore ".p12" file:
+
+keytool -importkeystore -srckeystore keystore.jks -destkeystore example.p12 -deststor
+Output: example.p12
+
+
+
+docker rm nexus
+
+docker run -d \
+  -p 8081:8081 \
+  --name nexus \
+  -v nexus-data:/nexus-data \
+  -v /opt/sonatype/nexus/etc/ssl:/opt/sonatype/nexus/etc/ssl \
+  sonatype/nexus3
+
+
+docker run -d \
+  --name nexus \
+  -p 8081:8081 \
+  -p 8443:8443 \
+  -v nexus-data:/nexus-data \
+  sonatype/nexus3
+
+
+
+docker exec -it nexus bash
+
+ls /nexus-data/etc/nexus.properties
+ls /nexus-data/etc/ssl
+
+FILE=/nexus-data/etc/nexus.properties
+
+echo 'application-port-ssl=8443' >> $FILE
+echo 'ssl.etc=${karaf.data}/etc/ssl' >> $FILE
+
+sed -i 's|^# *nexus-args=.*|nexus-args=${jetty.etc}/jetty.xml,${jetty.etc}/jetty-http.xml,${jetty.etc}/jetty-https.xml,${jetty.etc}/jetty-requestlog.xml|' $FILE

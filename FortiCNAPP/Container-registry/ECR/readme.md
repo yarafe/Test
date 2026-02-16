@@ -14,7 +14,7 @@ The **Lacework FortiCNAPP Platform Scanner** provides automated vulnerability sc
 aws ecr create-repository --repository-name <name> --region <region>
 ```
 
-https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html
+![Private Repository AWS](images/AWS-ECR.png)
 
 - Authenticate your Docker client to the Amazon ECR registry to which you intend to push your image.
 
@@ -38,6 +38,7 @@ docker tag e9ae3c220b23 aws_account_id.dkr.ecr.region.amazonaws.com/my-repositor
 ```bash
 docker push <aws_account_id>.dkr.ecr.region.amazonaws.com/<prefix/my-new-repository:tag>
 ```
+More information can be found from [link.](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html)
 
 ## ECR Integration with FortiCNAPP 
 
