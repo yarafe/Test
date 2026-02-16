@@ -159,5 +159,5 @@ lacework vulnerability container list-assessments
 ```bash
 lacework vulnerability container show-assessment <sha256:hash>
 ```
-
+Additional details are available in the official documentation [link](https://docs.fortinet.com/document/forticnapp/latest/cli-reference/861350/container-vulnerability)
 
