@@ -45,13 +45,12 @@ More information can be found from [link.](https://docs.aws.amazon.com/AmazonECR
 ### Manual
 
 **AWS**
-https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-custom.html
 
 - In the navigation pane of the console, choose Roles and then choose Create role
 
 - Choose the Custom trust policy role type.
 
-- In the Custom trust policy section, paste the custom trust policy for the role
+- In the Custom trust policy section, paste the custom trust policy for the role [link](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-custom.html)
 
 
 ```json
@@ -95,20 +94,24 @@ This will allow lacework-platform to securely access AWS account  being integrat
 - Enter a role name and then create role.
 
 **FortiCNAPP**
-Setting -> Containers registries 
 
-Select platform Amazon Contaoner Registry ECR -> AWS IAM Role
+- Navigate to: Setting -> Containers registries 
 
-Add Name 
+- Select platform Amazon Contaoner Registry ECR -> AWS IAM Role
 
-Paste the external ID that you created when creating the cross-account role. If the external ID does not comply with the format requirements, click the Refresh icon to generate a new one. Then follow the steps to update the external ID in the AWS console before returning here to finish the integration.
+- Enter a Name for the integration 
 
-Specify the ARN of the cross-account role that Lacework FortiCNAPP uses to access your AWS resources.
+- Paste the external ID that you created when creating the cross-account role. If the external ID does not comply with the format requirements, click the Refresh icon to generate a new one. Then follow the steps to update the external ID in the AWS console before returning here to finish the integration.
+
+- Provide the ARN of the IAM role used by Lacework FortiCNAPP to access your AWS resources:
 arn:aws:iam::<aws_account_id>:role/<role_iam_name>
 
-Specify the URL of your Amazon Elastic Container Registry (ECR) in the following format:
+- Specify the URL of your Amazon Elastic Container Registry (ECR) in the following format:
 <aws_account_id>.dkr.ecr.<YourRegion>.amazonaws.com
 
+![FortiCNAPP-ECR-integration](images/FortiCNAPP-ECR-integration.png)
+
+For more information, refer to the official documentation at the following [link](https://docs.fortinet.com/document/forticnapp/latest/administration-guide/994696/integrate-amazon-elastic-container-registry)
 
 ### Terraform
 
