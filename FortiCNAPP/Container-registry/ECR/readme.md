@@ -44,14 +44,14 @@ More information can be found from [link.](https://docs.aws.amazon.com/AmazonECR
 
 ### Manual
 
-AWS
+**AWS**
 https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-custom.html
 
-In the navigation pane of the console, choose Roles and then choose Create role
+- In the navigation pane of the console, choose Roles and then choose Create role
 
-Choose the Custom trust policy role type.
+- Choose the Custom trust policy role type.
 
-In the Custom trust policy section, paste the custom trust policy for the role
+- In the Custom trust policy section, paste the custom trust policy for the role
 
 
 ```json
@@ -84,13 +84,17 @@ sts:ExternalId, provide an external ID,  consist of your Lacework FortiCNAPP ten
 - aws_account_id: AWS account being integrated
 - unique_id: a random 10 character string.
 
-Add permission "AmazonEC2ContainerRegistryReadOnly" 
+This will allow lacework-platform to securely access AWS account  being integrated using assum role.
 
-Enter a role name and then create role.
+![IAM Roles Truest Policy](images/AWS-Roles-Trustrelations.png)
 
+- Add permission "AmazonEC2ContainerRegistryReadOnly" 
 
+![IAM Roles Permission Policy](images/AWS-Roles-Policies.png)
 
-FortiCNAPP
+- Enter a role name and then create role.
+
+**FortiCNAPP**
 Setting -> Containers registries 
 
 Select platform Amazon Contaoner Registry ECR -> AWS IAM Role
