@@ -139,13 +139,24 @@ Follow these steps to deploy:
 
 ## Validate the Integration
 
+Navigate to: Setting -> Containers registries -> Your integration 
+
 ![FortiCNAPP-ECR-integration](images/FortiCNAPP-ECR-integration.png)
 
+Navigate to : Vulnerabilities -> Containers
 ![FortiCNAPP-ECR-vulnerabilities-containers](images/FortiCNAPP-ECR-vulnerabilities-containers.png)
 
-on-demand
+The following command requests an on-demand container vulnerability scan and waits for the scan to completeon-demand
+```bash
 lacework vuln ctr scan YourAWSAccount.dkr.ecr.YourRegion.amazonaws.com YourRepository YourTagOrImageDigest --poll
-
+```
 To view all container vulnerability assessments for your Lacework FortiCNAPP account for the last 24 hours (default):
-
+```bash
 lacework vulnerability container list-assessments
+```
+- To view a specific container vulnerability assessment use the command.
+```bash
+lacework vulnerability container show-assessment <sha256:hash>
+```
+
+
