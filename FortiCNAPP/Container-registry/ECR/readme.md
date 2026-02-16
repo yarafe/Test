@@ -89,7 +89,7 @@ This will allow lacework-platform to securely access AWS account  being integrat
 
 - Add permission "AmazonEC2ContainerRegistryReadOnly" 
 
-![IAM Roles Permission Policy](images/AWS-Roles-Policies.png)
+
 
 - Enter a role name and then create role.
 
