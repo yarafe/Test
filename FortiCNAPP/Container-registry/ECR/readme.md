@@ -109,8 +109,6 @@ arn:aws:iam::<aws_account_id>:role/<role_iam_name>
 - Specify the URL of your Amazon Elastic Container Registry (ECR) in the following format:
 <aws_account_id>.dkr.ecr.<YourRegion>.amazonaws.com
 
-![FortiCNAPP-ECR-integration](images/FortiCNAPP-ECR-integration.png)
-
 For more information, refer to the official documentation at the following [link](https://docs.fortinet.com/document/forticnapp/latest/administration-guide/994696/integrate-amazon-elastic-container-registry)
 
 ### Terraform
@@ -128,10 +126,10 @@ Follow these steps to deploy:
 
 1. Rename the file `terraform.tfvars.txt` to `terraform.tfvars`.
 2. Fill in the required variables in `terraform.tfvars` file.
-Create a new IAM role: use_existing_iam_role = false
-Fill in the following variable iam_role_name, lacework_integration_name
-Use an existing IAM role: use_existing_iam_role = true
-Fill in the following variable iam_role_arn, iam_role_external_id, iam_role_name, lacework_integration_name and 
+    - Create a new IAM role: use_existing_iam_role = false
+      Fill in the following variable iam_role_name, lacework_integration_name
+    - Use an existing IAM role: use_existing_iam_role = true
+      Fill in the following variable iam_role_arn, iam_role_external_id, iam_role_name, lacework_integration_name and 
 3. Run the following commands:
 <code><pre>
    terraform init
@@ -139,8 +137,12 @@ Fill in the following variable iam_role_arn, iam_role_external_id, iam_role_name
    terraform apply
 </code></pre>
 
-
 ## Validate the Integration
+
+![FortiCNAPP-ECR-integration](images/FortiCNAPP-ECR-integration.png)
+
+![FortiCNAPP-ECR-vulnerabilities-containers](images/FortiCNAPP-ECR-vulnerabilities-containers.png)
+
 on-demand
 lacework vuln ctr scan YourAWSAccount.dkr.ecr.YourRegion.amazonaws.com YourRepository YourTagOrImageDigest --poll
 
