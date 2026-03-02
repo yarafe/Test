@@ -1,4 +1,4 @@
-:wave: [Introduction](#introduction) • [Amazon ECR](#amazon-elastic-container-registry-ecr) • [ECR Integration with FortiCNAPP](#ecr-integration-with-forticnapp) • [Manual Deployment](#manual) • [Terraform Deployment](#terraform) • [Terraform Overview](#overview) • [Terraform Instructions](#instructions) • [Validate the Integration](#validate-the-integration)
+:wave: [Introduction](#introduction) • [Amazon ECR](#amazon-elastic-container-registry-ecr) • [ECR Integration with FortiCNAPP](#ecr-integration-with-forticnapp) • [Deploy the Proxy Scanner](#deploy-the-proxy-scanner) • [Validate the Integration](#validate-the-integration)
 
 # Proxy Scanner Integration with Amazon Elastic Container Registry (ECR) 
 
@@ -44,8 +44,6 @@ More information can be found from [link.](https://docs.aws.amazon.com/AmazonECR
 
 ## ECR Integration with FortiCNAPP 
 
-### Manual
-
 **AWS**
 
 - In the navigation pane of the console, choose Roles and then choose Create role
@@ -72,7 +70,7 @@ More information can be found from [link.](https://docs.aws.amazon.com/AmazonECR
 
 For more information, refer to the official documentation at the following [link](https://docs.fortinet.com/document/forticnapp/latest/administration-guide/321350/integrate-proxy-scanner)
 
-### Deploy the Proxy Scanner
+## Deploy the Proxy Scanner
 
 - Before you deploy the proxy scanner, ensure that you set up a host machine with Docker installed.
 
@@ -115,32 +113,6 @@ docker run -d --mount type=bind,source="$(pwd)"/cache,target=/opt/lacework/cache
 ```bash
 docker run -e LOG_LEVEL=debug -d --mount ...
 ```
-
-### Terraform
-
-#### Overview
-
-The Terraform code provisions a resource group that includes the following resources:
-
-- AWS: IAM role with permission policy "AmazonEC2ContainerRegistryReadOnly" and trust policy.
-- FortiCNAPP: Container Registry integration with type Amazon Container Registry
-
-#### Instructions
-
-Follow these steps to deploy:
-
-1. Rename the file `terraform.tfvars.txt` to `terraform.tfvars`.
-2. Fill in the required variables in `terraform.tfvars` file.
-    - Create a new IAM role: use_existing_iam_role = false
-      Fill in the following variable iam_role_name, lacework_integration_name
-    - Use an existing IAM role: use_existing_iam_role = true
-      Fill in the following variable iam_role_arn, iam_role_external_id, iam_role_name, lacework_integration_name and 
-3. Run the following commands:
-<code><pre>
-   terraform init
-   terraform plan
-   terraform apply
-</code></pre>
 
 ## Validate the Integration
 
