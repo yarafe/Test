@@ -32,13 +32,13 @@ docker images
 - Tag image 
 
 ```bash
-docker tag e9ae3c220b23 aws_account_id.dkr.ecr.region.amazonaws.com/my-repository:tag
+docker tag e9ae3c220b23 <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-repository:tag
 ```
 
 - Push image to repository
 
 ```bash
-docker push <aws_account_id>.dkr.ecr.region.amazonaws.com/<prefix/my-new-repository:tag>
+docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<prefix/my-new-repository:tag>
 ```
 More information can be found from [link.](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html)
 
@@ -91,10 +91,10 @@ chown -R 1000:65533 cache
 static_cache_location: /opt/lacework
 default_registry:
 lacework:
-  account_name: variable account name
-  integration_access_token: integration token variable 
+  account_name: <account_name>
+  integration_access_token: <integration_access_token>
 registries:
-  - domain: variable
+  - domain: <aws_account_id>.dkr.ecr.<region>.amazonaws.com
     name: my-proxy-ecr-integration
     auth_type: ecr
     is_public: false
@@ -106,6 +106,10 @@ registries:
     go_binary_scanning:
       enable: true
 ```
+account_name: Lacework account name from your Lacework FortiCNAPP URL <account_name>.lacework.net
+integration_access_token: The integration's access token from the Lacework Console
+
+
 - Start the FortiCNAPP proxy scanner:
 
 ```bash
