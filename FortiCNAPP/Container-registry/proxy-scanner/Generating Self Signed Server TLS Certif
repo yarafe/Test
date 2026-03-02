@@ -13,10 +13,7 @@ Openssl is needed only when creating certificates for use in a reverse proxy suc
 
     Output: keystore.jks
 
-sudo keytool -exportcert \
-  -keystore keystore.jks \
-  -alias example.com \
-  -rfc | sudo tee example.cert > /dev/null
+keytool -exportcert -keystore keystore.jks -alias example.com -rfc > example.cert
 
 Output: example.cert
 
@@ -41,6 +38,7 @@ docker run -d \
   --name nexus \
   -p 8081:8081 \
   -p 8443:8443 \
+  -p 5001:5001 \
   -v nexus-data:/nexus-data \
   sonatype/nexus3
 
