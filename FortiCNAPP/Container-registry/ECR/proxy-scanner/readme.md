@@ -124,10 +124,6 @@ docker run -e LOG_LEVEL=debug -d --mount ...
 
 ## Validate the Integration
 
-Navigate to: Setting -> Containers registries -> Your integration 
-
-![FortiCNAPP-ECR-integration](images/FortiCNAPP-ECR-integration.png)
-
 Navigate to : Vulnerabilities -> Containers
 
 ![FortiCNAPP-ECR-vulnerabilities-containers](images/FortiCNAPP-ECR-vulnerabilities-containers.png)
