@@ -70,6 +70,8 @@ More information can be found from [link.](https://docs.aws.amazon.com/AmazonECR
 
 - Download credentials.json or Copy the authorization token and keep it to paste it later in config.yml file in proxy scanner VM.
 
+![FortiCNAPP Token](images/FortiCNAPP-Token.png)
+
 For more information, refer to the official documentation at the following [link](https://docs.fortinet.com/document/forticnapp/latest/administration-guide/321350/integrate-proxy-scanner)
 
 ## Deploy the Proxy Scanner
