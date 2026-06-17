@@ -228,9 +228,9 @@ HB-Lost-Threshold               : 10
 HA Primary Uptime               : Wed Jun 17 06:05:25 2026
 HA Primary state change timestamp: Wed Jun 17 06:05:40 2026
 HB-Lost-Threshold               : 10
-Primary                         : ya-fmg-fmg1, FMG-VMTMxxxxx, 172.16.136.105
+Primary                         : fmg1, FMG-VMTMxxxxx, 172.16.136.105
 -----
-Cluster member 1: ya-fmg-fmg2, FMGVMSTMxxxxxxx, 172.16.137.207
+Cluster member 1: fmg2, FMGVMSTMxxxxxxx, 172.16.137.207
 Last Heartbeat                  : 4 seconds ago
 Last Sync                       : 32 seconds ago
 Last Error                      : 
@@ -300,7 +300,7 @@ cluster status: up
 
 ip                              : 172.16.137.207
 serial number                   : FMGVMSTM25005639
-hostname                        : ya-fmg-fmg2
+hostname                        : fmg2
 role                            : secondary
 status                          : up
 pending sync'ed data(bytes)     : 0
@@ -309,6 +309,8 @@ secondary re-join alert         : off
 last error                      : n/a
 ```
 You can find additional commands for viewing and managing HA in the [official documentation](https://docs.fortinet.com/document/fortimanager/8.0.0/cli-reference/698226)
+
+- **After deployment , it could require to retype ha password**
 
 ## Supported FortiManager Versions
 
