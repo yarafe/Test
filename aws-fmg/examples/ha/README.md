@@ -121,14 +121,14 @@ config system ha
   set hb-lost-threshold 10
     config peer
       edit 1
-        set ip <b>FortiManager A Private IP address**
-        set serial-number <b>FortiManager A serial number**
+        set ip <b>FortiManager A Private IP address</b>
+        set serial-number <b>FortiManager A serial number</b>
       next
     end
   set priority 1
   set unicast enable
-  set password <b>ha-password**
-  set vip <b>FortiManager HA Private IP address**
+  set password <b>ha-password</b>
+  set vip <b>FortiManager HA Private IP address</b>
   set vrrp-interface "port1"
 end
 </code></pre>
