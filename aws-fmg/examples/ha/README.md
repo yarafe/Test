@@ -1,0 +1,245 @@
+# AWS FortiManager HA Terraform Module
+
+## Introduction
+
+This repository contains Terraform modules for deploying Fortinet FortiManager on AWS. The modules provide a comprehensive solution for centralized security logging and reporting in AWS environments.
+
+## Architecture & Design
+
+The module supports two topologies:
+
+1. **VRRP Automatic Failover with Public VIP**
+
+fmg1 and fmg2 land in different subnets / AZs — cross-AZ resilience.
+Each node gets its own EIP, plus public VIP attached to fmg1.
+Fazutil will create secondary private IP address for each eni1 on both fmgs and assign public VIP for the primary fmg. When Failover occurs, it will move Public VIP to the new primary fmg.
+
+2. **VRRP Automatic Failover with Private VIP** 
+
+Both nodes sit in the same subnet / AZ.
+No Public IPs are assigned to Fmgs.
+fmg1's ENI carries two private IPs: a primary address and the secondary private VIP HA address. Failover moves this secondary private IP between nodes.
+
+| Component | Resource | Notes |
+|-----------|----------|-------|
+| Compute | `aws_instance.fmg1`, `aws_instance.fmg2` | Identical sizing; encrypted gp2 100 GB root volume each |
+| Log storage | `aws_ebs_volume.fmg{1,2}_logs` | encrypted, log volum 500 GB Mounted as `/dev/sdf` |
+| Networking | `aws_network_interface.fmg{1,2}` | One ENI per node as primary interface; `fmg1` ENI holds the floating HA address in private mode |
+| Public addressing | `aws_eip.fmg1`, `aws_eip.fmg2`, `aws_eip.vip` | Created only in public vip mode |
+| Access control | `aws_security_group.fortimanager` | Ingress for management, logging, and HA sync |
+| Permissions | `aws_iam_role` / `aws_iam_instance_profile` | grants the IP-move permissions needed for failover |
+
+Security group ingress
+
+| Port / Protocol | Source | Purpose |
+|-----------------|--------|---------|
+| TCP 22 | `admin_cidr` | SSH access |
+| TCP 443 | `admin_cidr` | HTTPS management UI |
+| TCP 541 | `fortigate_cidr` | FGFM — secure device/log transmission |
+| UDP 514 | `fortigate_cidr` | Syslog reception |
+| TCP 5199 | `0.0.0.0/0` | FortiManager HA synchronization |
+
+## HA Modes Configurations
+
+1. VRRP Automatic Failover with Public VIP 
+
+**FMG1**
+
+<pre><code>
+config system ha
+  set failover-mode vrrp
+	set clusterid 10
+  set hb-interval 5
+  set hb-lost-threshold 10
+    config peer
+      edit 1
+        set ip <b>FortiManager B Private IP address</b>
+        set serial-number <b>FortiManager B serial number</b>
+      next
+    end
+  set priority 100
+  set unicast enable
+  set password <b>ha-password</b>
+  set vip <b>FortiManager HA Public IP address</b>
+  set vrrp-interface "port1"
+end
+</code></pre>
+
+**FMG2**
+
+<pre><code>
+config system ha
+  set failover-mode vrrp
+	set clusterid 10
+  set hb-interval 5
+  set hb-lost-threshold 10
+    config peer
+      edit 1
+        set ip <b>FortiManager A Private IP address</b>
+        set serial-number <b>FortiManager A serial number</b>
+      next
+    end
+  set priority 1
+  set unicast enable
+  set password <b>ha-password</b>
+  set vip <b>FortiManager HA Public IP address</b>
+  set vrrp-interface "port1"
+end
+</code></pre>
+
+2. VRRP Automatic Failover with Private VIP 
+
+**FMG1**
+
+<pre><code>
+config system ha
+  set failover-mode vrrp
+	set clusterid 10
+  set hb-interval 5
+  set hb-lost-threshold 10
+    config peer
+      edit 1
+        set ip <b>FortiManager B Private IP address</b>
+        set serial-number <b>FortiManager B serial number</b>
+      next
+    end
+  set priority 100
+  set unicast enable
+  set password <b>ha-password</b>
+  set vip <b>FortiManager HA Private IP address</b>
+  set vrrp-interface "port1"
+end
+</code></pre>
+
+**FMG2**
+
+<pre><code>
+config system ha
+  set failover-mode vrrp
+	set clusterid 10
+  set hb-interval 5
+  set hb-lost-threshold 10
+    config peer
+      edit 1
+        set ip <b>FortiManager A Private IP address**
+        set serial-number <b>FortiManager A serial number**
+      next
+    end
+  set priority 1
+  set unicast enable
+  set password <b>ha-password**
+  set vip <b>FortiManager HA Private IP address**
+  set vrrp-interface "port1"
+end
+</code></pre>
+
+## Terraform Deployment
+
+### Prerequisites and Requirements
+
+- AWS CLI configured with appropriate permissions
+- Terraform >= 1.0
+- AWS key pair for SSH access
+- For BYOL: Valid FortiManager license file
+- [FortiManager Supported instances](https://docs.fortinet.com/document/fortimanager-public-cloud/8.0.0/aws-administration-guide/351055/instance-type-support)
+- [FortiManager requires a minimum disk size of 500 GB](https://docs.fortinet.com/document/fortimanager-public-cloud/8.0.0/aws-administration-guide/655204/models)
+- During deployment the aws certificate (Amazon-RSA-2048-M01) added for both fmgs. This certificate can also be downloaded from this [link](https://www.amazontrust.com/repository/)
+
+### Features
+
+- **Automated AMI Discovery**: Automatically finds the latest FortiManager AMI based on license type (BYOL/PAYG) and version
+- **Flexible Licensing**: Support for both BYOL (Bring Your Own License) and PAYG (Pay As You Go) deployments
+- **Security**: Pre-configured security groups with appropriate rules for management and log collection
+- **Storage**: Configurable root and log storage volumes with encryption
+- **Networking**: Support for existing VPC/subnet infrastructure or automatic configuration
+- **IAM Integration**:  IAM roles grants the IP-move permissions needed for failover
+
+### Module Structure
+
+terraform-aws-fortimanager/
+├── modules/
+│   └── ha/                       # HA FortiManager deployment module
+├── examples/
+│   ├── main.tf                   # Example deployment configuration
+│   ├── variables.tf              # Input variable definitions
+│   ├── terraform.tfvars.example  # Example variable values
+│   └── outputs.tf                # Deployment outputs
+└── README.md
+
+### Recommendations
+
+1. **Restrict Management Access**: Always specify specific CIDR blocks for `admin_cidr_blocks`
+2. **Use Private Subnets**: Deploy in private subnets when possible
+3. **Enable Encryption**: Root and log volumes are encrypted by default
+4. **Regular Updates**: Keep FortiManager version updated
+
+
+### Instructions
+
+- Copy all Terraform configuration files into your working directory. Then, rename the file terraform.tfvars.example to terraform.tfvars. 
+The terraform.tfvars file contains all configurable input variables for the deployment. 
+
+- Set the variables from terraform.tfvars file
+
+- Run the following commands:
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+- You can delete the integration and remove all created resources using the following command:
+
+```bash
+terraform destroy
+```
+
+## Outputs
+
+The module provides comprehensive outputs including:
+- Instance information (ID, IPs, state)
+- Network details (security groups, interfaces)
+- Management URLs and SSH connection strings
+- Storage and IAM resource information
+
+## Troubleshooting
+
+Run the following command in the FortiManager CLI:
+
+- get system ha-status
+
+- get system ha
+
+- Forces the current Primary to release the role. A new election is carried out to find the new Primary. This command is also used to test the VRRP failover. Regardless of the priority, if this command is run on the Primary then it will become a Secondary.
+
+```
+diagnose ha force-vrrp-election
+```
+
+- Logging of the Azure Rest API calls
+```
+diagnose ha dump-cloud-api-log
+```
+
+You can find additional commands for viewing and managing HA in the [official documentation](https://docs.fortinet.com/document/fortimanager/8.0.0/cli-reference/698226)
+
+## Supported FortiManager Versions
+
+The module supports FortiManager versions 7.0 and above. You can specify versions using:
+
+- Exact version: `"7.4.5"`
+- Major.minor: `"7.4"` (latest patch version)
+- Major only: `"7"` (latest version in major release)
+
+## Support
+
+For issues and questions:
+1. Check the [examples](examples/) for common use cases
+2. Review Fortinet documentation for FortiManager
+3. Open an issue in this repository
+
+## References
+
+- [FortiManager AWS Administration Guide](https://docs.fortinet.com/document/fortimanager-public-cloud/7.6.0/aws-administration-guide/)
+- [AWS Marketplace - FortiManager](https://aws.amazon.com/marketplace/seller-profile?id=7de3dd38-52b2-4c1a-9fc1-93e7dfca9d6b)
+- [Terraform AWS Provider Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
