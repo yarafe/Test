@@ -214,8 +214,63 @@ The module provides comprehensive outputs including:
 Run the following command in the FortiManager CLI:
 
 - get system ha-status
+```
+ya-fmg-fmg1 # get system ha-status
+HA Health Status                : OK
+HA Role                         : Primary
+FMG-HA Status                   : Synchronized State
+Model                           : FortiManager-VM64-AWS
+Cluster-ID                      : 10
+Debug                           : off
+File-Quota                      : 4096
+HB-Interval                     : 5
+HB-Lost-Threshold               : 10
+HA Primary Uptime               : Wed Jun 17 06:05:25 2026
+HA Primary state change timestamp: Wed Jun 17 06:05:40 2026
+HB-Lost-Threshold               : 10
+Primary                         : ya-fmg-fmg1, FMG-VMTMxxxxx, 172.16.136.105
+-----
+Cluster member 1: ya-fmg-fmg2, FMGVMSTMxxxxxxx, 172.16.137.207
+Last Heartbeat                  : 4 seconds ago
+Last Sync                       : 32 seconds ago
+Last Error                      : 
+Total Synced Data (bytes)       : 51089
+Pending Synced Data (bytes)     : 0
+Estimated Sync Time Left (seconds): 0
+HA Sync status                  : up,in-sync
+System Usage stats              :
+        FMG-VMTM25013243(updated 0 seconds ago):
+                average-cpu-user/nice/system/idle=3.41%/0.00%/1.37%/95.17%, memory=6.48%
+        FMGVMSTM25005639(updated 4 seconds ago):
+                average-cpu-user/nice/system/idle=0.13%/0.00%/0.04%/99.82%, memory=5.73%
+```
 
-- get system ha
+- 
+```
+ya-fmg-fmg1 # get system ha
+failover-mode       : vrrp 
+mode                : primary 
+monitored-interfaces:
+monitored-ips:
+peer:
+    == [ 1 ]
+    id: 1           
+aws-access-key-id   : (null)
+aws-secret-access-key: *
+clusterid           : 10
+file-quota          : 4096
+hb-interval         : 5
+hb-lost-threshold   : 10
+local-cert          : (null)
+password            : *
+priority            : 100
+unicast             : enable 
+vip                 : 13.36.122.218 
+vip-interface       : (null)
+vrrp-adv-interval   : 3
+vrrp-interface      : port1 
+```
+
 
 - Forces the current Primary to release the role. A new election is carried out to find the new Primary. This command is also used to test the VRRP failover. Regardless of the priority, if this command is run on the Primary then it will become a Secondary.
 
@@ -225,7 +280,13 @@ diagnose ha force-vrrp-election
 
 - Logging of the Azure Rest API calls
 ```
-diagnose ha dump-cloud-api-log
+ya-fmg-fmg1 # diagnose ha dump-cloud-api-log
+2026/06/17 05:58:42 [aws-ec2] /bin/fazutil --logf=/var/ha/keepalived.log --logf-size=5M aws-ec2 --no-ssl --local add-ips -r --ip 13.36.122.218 --mac 06:45:81:db:45:3f --intf=port1
+2026/06/17 05:58:42 [add-ips] addIPs intf-id= instance-id= mac=06:45:81:db:45:3f sencond-ip=13.36.122.218 intf=port1
+2026/06/17 05:58:44 [add-ips] created secondary private IP 172.16.136.34 with viptag
+2026/06/17 05:58:45 [add-ips] associated: eipassoc-08c4f8d18ee675725
+2026/06/17 05:58:45 [add-ips] exec: ip addr add 172.16.136.34 dev port1
+2026/06/17 05:58:45 [add-ips] 
 ```
 
 You can find additional commands for viewing and managing HA in the [official documentation](https://docs.fortinet.com/document/fortimanager/8.0.0/cli-reference/698226)
