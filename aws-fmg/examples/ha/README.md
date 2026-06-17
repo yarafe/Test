@@ -2,7 +2,8 @@
 
 ## Introduction
 
-This repository contains Terraform modules for deploying Fortinet FortiManager on AWS. The modules provide a comprehensive solution for centralized security logging and reporting in AWS environments.
+This repository contains Terraform modules for deploying Fortinet FortiManager on AWS in a High Availability (HA) pair. FortiManager provides centralized management of Fortinet devices configuration, policy and object management, device provisioning, and firmware control across the environment. 
+The module automates the compute, networking, IAM, and security-group resources required for an active-passive cluster with VRRP-based automatic failover.
 
 ## Architecture & Design
 
@@ -160,6 +161,7 @@ end
 
 ### Module Structure
 
+```
 terraform-aws-fortimanager/
 ├── modules/
 │   └── ha/                       # HA FortiManager deployment module
@@ -169,6 +171,7 @@ terraform-aws-fortimanager/
 │   ├── terraform.tfvars.example  # Example variable values
 │   └── outputs.tf                # Deployment outputs
 └── README.md
+```
 
 ### Recommendations
 
