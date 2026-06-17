@@ -1,5 +1,7 @@
 # AWS FortiManager HA Terraform Module
 
+:wave: - [Introduction](#introduction) - [Architecture & Design](#architecture--design) - [HA Modes Configurations](#ha-modes-configurations) - [Terraform Deployment](#terraform-deployment) - [Troubleshooting](#troubleshooting) - :wave:
+
 ## Introduction
 
 This repository contains Terraform modules for deploying Fortinet FortiManager on AWS in a High Availability (HA) pair. FortiManager provides centralized management of Fortinet devices configuration, policy and object management, device provisioning, and firmware control across the environment. 
@@ -299,7 +301,7 @@ cluster status: up
 --- cluster member information ---
 
 ip                              : 172.16.137.207
-serial number                   : FMGVMSTM25005639
+serial number                   : FMGVMSTMxxxxxx
 hostname                        : fmg2
 role                            : secondary
 status                          : up
