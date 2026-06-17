@@ -14,17 +14,21 @@ fmg1 and fmg2 land in different subnets / AZs — cross-AZ resilience.
 Each node gets its own EIP, plus public VIP attached to fmg1.
 Fazutil will create secondary private IP address for each eni1 on both fmgs and assign public VIP for the primary fmg. When Failover occurs, it will move Public VIP to the new primary fmg.
 
+![FortiManager HA VRRP VIP Private IP design](images/fmg-vrrp-pubilc-vip.png)
+
 2. **VRRP Automatic Failover with Private VIP** 
 
 Both nodes sit in the same subnet / AZ.
 No Public IPs are assigned to Fmgs.
 fmg1's ENI carries two private IPs: a primary address and the secondary private VIP HA address. Failover moves this secondary private IP between nodes.
 
+![FortiManager HA VRRP VIP Private IP design](images/fmg-vrrp-private-vip.png)
+
 | Component | Resource | Notes |
 |-----------|----------|-------|
 | Compute | `aws_instance.fmg1`, `aws_instance.fmg2` | Identical sizing; encrypted gp2 100 GB root volume each |
 | Log storage | `aws_ebs_volume.fmg{1,2}_logs` | encrypted, log volum 500 GB Mounted as `/dev/sdf` |
-| Networking | `aws_network_interface.fmg{1,2}` | One ENI per node as primary interface; `fmg1` ENI holds the floating HA address in private mode |
+| Networking | `aws_network_interface.fmg{1,2}` | One ENI per node as primary interface; `fmg1` ENI holds VIP address in private mode |
 | Public addressing | `aws_eip.fmg1`, `aws_eip.fmg2`, `aws_eip.vip` | Created only in public vip mode |
 | Access control | `aws_security_group.fortimanager` | Ingress for management, logging, and HA sync |
 | Permissions | `aws_iam_role` / `aws_iam_instance_profile` | grants the IP-move permissions needed for failover |
