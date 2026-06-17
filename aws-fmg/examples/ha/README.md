@@ -213,9 +213,9 @@ The module provides comprehensive outputs including:
 
 Run the following command in the FortiManager CLI:
 
-- get system ha-status
+- Displays the current FortiManager High Availability (HA) status, including the HA role (primary/secondary), peer information, synchronization state, and cluster health.
 ```
-ya-fmg-fmg1 # get system ha-status
+fmg1 # get system ha-status
 HA Health Status                : OK
 HA Role                         : Primary
 FMG-HA Status                   : Synchronized State
@@ -245,9 +245,9 @@ System Usage stats              :
                 average-cpu-user/nice/system/idle=0.13%/0.00%/0.04%/99.82%, memory=5.73%
 ```
 
-- 
+- Displays the current High Availability (HA) configuration settings on the FortiManager, including the HA mode, group ID, priority, heartbeat interfaces, and other HA-related parameters.
 ```
-ya-fmg-fmg1 # get system ha
+fmg1 # get system ha
 failover-mode       : vrrp 
 mode                : primary 
 monitored-interfaces:
@@ -280,7 +280,7 @@ diagnose ha force-vrrp-election
 
 - Logging of the Azure Rest API calls
 ```
-ya-fmg-fmg1 # diagnose ha dump-cloud-api-log
+fmg1 # diagnose ha dump-cloud-api-log
 2026/06/17 05:58:42 [aws-ec2] /bin/fazutil --logf=/var/ha/keepalived.log --logf-size=5M aws-ec2 --no-ssl --local add-ips -r --ip 13.36.122.218 --mac 06:45:81:db:45:3f --intf=port1
 2026/06/17 05:58:42 [add-ips] addIPs intf-id= instance-id= mac=06:45:81:db:45:3f sencond-ip=13.36.122.218 intf=port1
 2026/06/17 05:58:44 [add-ips] created secondary private IP 172.16.136.34 with viptag
@@ -289,6 +289,25 @@ ya-fmg-fmg1 # diagnose ha dump-cloud-api-log
 2026/06/17 05:58:45 [add-ips] 
 ```
 
+- Get HA statistics and last error.
+```
+fmg1 # diagnose ha stats 
+===== HA Statistics =====
+
+cluster status: up
+
+--- cluster member information ---
+
+ip                              : 172.16.137.207
+serial number                   : FMGVMSTM25005639
+hostname                        : ya-fmg-fmg2
+role                            : secondary
+status                          : up
+pending sync'ed data(bytes)     : 0
+secondary down alert            : off
+secondary re-join alert         : off
+last error                      : n/a
+```
 You can find additional commands for viewing and managing HA in the [official documentation](https://docs.fortinet.com/document/fortimanager/8.0.0/cli-reference/698226)
 
 ## Supported FortiManager Versions
