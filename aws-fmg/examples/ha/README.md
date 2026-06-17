@@ -7,20 +7,20 @@ The module automates the compute, networking, IAM, and security-group resources 
 
 ## Architecture & Design
 
-The module supports two topologies:
+The module supports two topologies, both using VRRP for automatic failover and differing only in whether the VIP is publicly reachable. Choose based on how managed devices reach FortiManager: use the public-VIP mode when FortiGates connect over the internet and you want cross-AZ resilience, or the private-VIP mode for fully internal deployments where everything stays inside the VPC.
 
 1. **VRRP Automatic Failover with Public VIP**
 
-fmg1 and fmg2 land in different subnets / AZs — cross-AZ resilience.
+fmg1 and fmg2 land in different subnets / AZs cross-AZ resilience.
 Each node gets its own EIP, plus public VIP attached to fmg1.
-Fazutil will create secondary private IP address for each eni1 on both fmgs and assign public VIP for the primary fmg. When Failover occurs, it will move Public VIP to the new primary fmg.
+Once the HA cluster is successfully formed, FazUtil creates a secondary private IP address on eni1 interface of both FortiManager instances and assigns the public VIP to the primary FortiManager. During a failover , the public VIP is automatically reassigned to the new primary FortiManager, ensuring continuous management access.
 
 ![FortiManager HA VRRP VIP Private IP design](images/fmg-vrrp-pubilc-vip.png)
 
 2. **VRRP Automatic Failover with Private VIP** 
 
 Both nodes sit in the same subnet / AZ.
-No Public IPs are assigned to Fmgs.
+By default, no public IP addresses are assigned to the FortiManager instances. If direct management access from the internet is required, you can optionally assign public IP addresses to the management interfaces of the FortiManager nodes.
 fmg1's ENI carries two private IPs: a primary address and the secondary private VIP HA address. Failover moves this secondary private IP between nodes.
 
 ![FortiManager HA VRRP VIP Private IP design](images/fmg-vrrp-private-vip.png)
