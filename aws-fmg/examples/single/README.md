@@ -19,7 +19,7 @@ The module deploys one FortiManager EC2 instance attached to a single management
 | Compute | `aws_instance.fortimanager` | `m5.large` by default; encrypted gp2 100 GB root volume; IMDSv2 required |
 | Networking | `aws_network_interface.fortimanager_mgmt` | Single management ENI; optional static private IP via `private_ip` |
 | Public addressing | `aws_eip.fortimanager` | Created only when `create_public_ip = true` |
-| Log storage | `aws_ebs_volume.fortimanager_logs` | encrypted gp2 500 GB volume mounted as `/dev/sdf` |
+| Log storage | `aws_ebs_volume.fortimanager_logs` | encrypted gp3 500 GB volume mounted as `/dev/sdf` |
 | Access control | `aws_security_group.fortimanager` | Ingress for management and logging (see below) |
 | Permissions | `aws_iam_role` / `aws_iam_instance_profile` | Optional; read-only describe + logs + SSM |
 | AMI | `data.aws_ami.fortimanager_{byol,payg}` | Latest Marketplace AMI for the chosen license type/version |
