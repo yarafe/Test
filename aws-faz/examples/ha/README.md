@@ -476,7 +476,6 @@ For issues and questions:
 ## References
 
 - [FortiAnalyzer AWS Administration Guide](https://docs.fortinet.com/document/fortianalyzer-public-cloud/8.0.0/aws-administration-guide/)
-- [Setting up a FortiAnalyzer HA cluster](https://docs.fortinet.com/document/fortianalyzer/7.4.0/examples/201115/setting-up-a-fortianalyzer-ha-cluster)
+- [Setting up a FortiAnalyzer HA cluster](https://docs.fortinet.com/document/fortianalyzer-public-cloud/8.0.0/aws-administration-guide/215911/configuring-fortianalyzer-ha)
 - [FortiAnalyzer HA Configuration and Troubleshooting (Fortinet Community)](https://community.fortinet.com/t5/FortiAnalyzer/Technical-Tip-FortiAnalyzer-HA-Configuration-and-Troubleshooting/ta-p/219808)
-- [AWS Marketplace - FortiAnalyzer](https://aws.amazon.com/marketplace/seller-profile?id=7de3dd38-52b2-4c1a-9fc1-93e7dfca9d6b)
 - [Terraform AWS Provider Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
