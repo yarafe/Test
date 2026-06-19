@@ -324,7 +324,7 @@ Run the following commands in the FortiAnalyzer CLI:
 
 - shows the FortiAnalyzer HA configuration and current cluster details.
 ```
-faztest-faz1 # get system ha
+faz1 # get system ha
 local-cert          : (null)
 mode                : a-p 
 aws-access-key-id   : (null)
@@ -353,19 +353,19 @@ vip:
 
 - Displays the current FortiAnalyzer HA cluster state, including which node is primary/secondary, peer connectivity, and synchronization status.
 ```
-faztest-faz1 # diagnose ha status
+faz1 # diagnose ha status
 HA-Status: Primary (active)
      up-time: 1h17m39.332s
  config-sync: Allow
    serial-no: FAZ-VMTMxxxx
       fazuid: 1229478609
-    hostname: faztest-faz1
+    hostname: faz1
 
 HA-Secondary FAZHA@172.16.137.235 FAZ-VMTMxxxx
           ip: 172.16.137.235
    serial-no: FAZ-VMTMxxxx
       fazuid: 2233171479
-    hostname: faztest-faz2
+    hostname: faz2
      conn-st: up
 up/down-time: 1h17m38.981s
     conn-msg: 
@@ -375,7 +375,7 @@ data-init-sync-st: done, 1h17m18.320s
 
 - Displays detailed HA performance and synchronization statistics in FortiAnalyzer, such as log sync counters, packet/transfer statistics, heartbeat status, and cluster sync health.
 ```
-faztest-faz1 # diagnose ha stats 
+faz1 # diagnose ha stats 
 keepalived data:
 keepalived data:
    State = MASTER
@@ -421,7 +421,7 @@ cluster status: up
 
 ip                              : 172.16.137.235
 serial number                   : FAZ-VMTMxxxxxxx
-hostname                        : faztest-faz2
+hostname                        : faz2
 role                            : secondary
 status                          : up
 pending sync'ed data(bytes)     : 0
