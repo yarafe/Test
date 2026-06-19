@@ -8,7 +8,7 @@ This repository contains Terraform modules for deploying Fortinet FortiAnalyzer 
 
 ## Architecture & Design
 
-The module deploys two FortiAnalyzer EC2 instances (`faz1`/`faz2`) and wires them into an HA cluster. Cluster role, virtual IP behavior, and subnet placement all depend on the chosen HA mode.
+The module deploys two FortiAnalyzer EC2 instances and wires them into an HA cluster. Cluster role, virtual IP behavior, and subnet placement all depend on the chosen HA mode.
 
 The module supports three topologies, selected by `ha_mode` (`a-p` or `a-a`) and, for active-passive, `ha_ip` (`public` or `private`):
 
@@ -317,17 +317,6 @@ The module provides comprehensive outputs including:
 - Network details (security groups, interfaces)
 - Management URLs and SSH connection strings
 - Storage and IAM resource information
-
-
-
-### Limitations
-
-- **Subnet count is mode-dependent.** Active-passive with a private VIP requires exactly 1 subnet and 1 AZ; all other modes require exactly 2 (enforced by variable validation).
-- **`create_iam_role` defaults to `false`.** Active-passive failover relies on the appliance moving the VIP/secondary IP via the AWS API, which needs this role. Set `create_iam_role = true` for a-p deployments.
-- **AWS API reachability is required for failover.** The VIP/secondary IP only moves when FortiAnalyzer can reach the AWS EC2 API. For air-gapped / no-internet deployments, create an interface VPC endpoint for `com.amazonaws.<region>.ec2`.
-- **Permissive security group.** The module includes a broad "all traffic from the VPC CIDR" ingress rule and opens SSH (TCP 22) to `0.0.0.0/0`. Tighten both before production. There is also a malformed `protocol = "22"` rule that can be removed.
-- **IMDSv2 not enforced.** The instances allow `http_tokens = "optional"` (IMDSv1). Set to `"required"` unless a dependency prevents it.
-
 
 ## Troubleshooting
 
