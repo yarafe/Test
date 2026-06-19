@@ -333,10 +333,120 @@ The module provides comprehensive outputs including:
 
 Run the following commands in the FortiAnalyzer CLI:
 
-- `get system ha-status`
-- `diagnose system ha status`
+- shows the FortiAnalyzer HA configuration and current cluster details.
+```
+faztest-faz1 # get system ha
+local-cert          : (null)
+mode                : a-p 
+aws-access-key-id   : (null)
+aws-secret-access-key: *
+cfg-sync-hb-interval: 4
+group-id            : 1
+group-name          : FAZHA 
+hb-interface        : port1 
+hb-interval         : 5
+healthcheck         : 
+initial-sync        : enable 
+initial-sync-threads: 4
+load-balance        : round-robin 
+log-sync            : enable 
+password            : *
+peer:
+    == [ 1 ]
+    id: 1           
+preferred-role      : primary 
+priority            : 100
+unicast             : enable 
+vip:
+    == [ 1 ]
+    id: 1   
+```
 
-Enable HA debug output (run on both nodes before/while forming the cluster to surface errors):
+- Displays the current FortiAnalyzer HA cluster state, including which node is primary/secondary, peer connectivity, and synchronization status.
+```
+faztest-faz1 # diagnose ha status
+HA-Status: Primary (active)
+     up-time: 1h17m39.332s
+ config-sync: Allow
+   serial-no: FAZ-VMTMxxxx
+      fazuid: 1229478609
+    hostname: faztest-faz1
+
+HA-Secondary FAZHA@172.16.137.235 FAZ-VMTMxxxx
+          ip: 172.16.137.235
+   serial-no: FAZ-VMTMxxxx
+      fazuid: 2233171479
+    hostname: faztest-faz2
+     conn-st: up
+up/down-time: 1h17m38.981s
+    conn-msg: 
+  cfgsync-st: up, 1h16m57.308s
+data-init-sync-st: done, 1h17m18.320s
+```
+
+- Displays detailed HA performance and synchronization statistics in FortiAnalyzer, such as log sync counters, packet/transfer statistics, heartbeat status, and cluster sync health.
+```
+faztest-faz1 # diagnose ha stats 
+keepalived data:
+keepalived data:
+   State = MASTER
+   Last transition = 1781855860.342000 (Fri Jun 19 00:57:40.342000 2026)
+keepalived data:
+keepalived data:
+   Status = GOOD
+   State = idle
+keepalived data:
+   State = UP, RUNNING, no broadcast, loopback, no multicast
+   State = UP, RUNNING
+
+keepalived stats:
+  Advertisements:
+    Received: 14
+    Sent: 546
+  Became master: 1
+  Released master: 0
+  Packet Errors:
+    Length: 0
+    TTL: 0
+    Invalid Type: 0
+    Advertisement Interval: 0
+    Address List: 0
+  Authentication Errors:
+    Invalid Type: 0
+    Type Mismatch: 0
+    Failure: 0
+  Priority Zero:
+    Received: 0
+    Sent: 0
+
+Notifications from keepalived 4 times
+ last one at 2026, Jun 19 00:57:42 (143), transit from Secondary to Primary
+
+Notifications to logfwd 6 times
+ last one at 2026, Jun 19 01:26:28 (1869), forwarding to FAZHA@172.16.137.235
+===== HA Statistics =====
+
+cluster status: up
+
+--- cluster member information ---
+
+ip                              : 172.16.137.235
+serial number                   : FAZ-VMTMxxxxxxx
+hostname                        : faztest-faz2
+role                            : secondary
+status                          : up
+pending sync'ed data(bytes)     : 0
+secondary down alert            : off
+secondary re-join alert         : off
+last error                      : n/a
+```
+
+- Check the traffic between HA peers
+```
+diagnose sniffer packet <ha-interface> 'host <peer-ip>' 4
+```
+
+- Enable HA debug output (run on both nodes before/while forming the cluster to surface errors):
 
 ```
 diagnose debug application ha 255
@@ -351,11 +461,10 @@ diagnose ha force-cfg-resync
 Common issues:
 - **Cluster never forms** — do not enable initial sync on both nodes at once. Enable `initial-sync` on the primary only; stop sync on the secondary (or reboot it), then sync from the primary.
 - **VIP does not move on failover** — confirm `create_iam_role = true` and that the instances can reach the AWS EC2 API (internet or a VPC endpoint).
-- **Peers cannot reach each other** — verify VRRP (IP protocol 112) and TCP 5199 are allowed between the nodes (covered by the VPC-CIDR rule, but confirm if you tighten the security group).
-- **Preemption (v7.4.7 / v7.6.2 and later)** — preemption is enabled by default when a node's preferred role is primary; disable it if you do not want automatic failback.
-- **After deployment , it could require to retype ha password**
+- **Peers cannot reach each other** — check security group inbound rules to verify allowed traffic between nodes.
+- **After deployment, cluster may not be formed until retype ha password**
 
-You can find additional HA commands in the [FortiAnalyzer CLI reference](https://docs.fortinet.com/document/fortianalyzer/8.0.0/cli-reference).
+You can find additional HA commands in the [FortiAnalyzer CLI reference](https://docs.fortinet.com/document/fortianalyzer/8.0.0/cli-reference/118618/ha).
 
 ## Support
 
