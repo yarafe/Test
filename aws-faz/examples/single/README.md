@@ -10,7 +10,7 @@ This module deploys a single, standalone Fortinet FortiAnalyzer VM on AWS. Forti
 
 The module deploys one FortiAnalyzer EC2 instance attached to a single management ENI. A public Elastic IP and a dedicated encrypted log volume are both optional. There is no peer, VIP, or failover logic — for that, use the HA module.
 
-![FortiAnalyzer Single Deployment](images/faz-Single.png)
+![FortiAnalyzer Single Deployment](images/faz-s.png)
 
 **Deployed components**
 
