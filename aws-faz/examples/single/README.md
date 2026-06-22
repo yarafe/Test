@@ -89,8 +89,8 @@ When `create_iam_role = true`, the instance role grants read-only access to EC2 
 - An existing VPC and subnet (`vpc_id`, `subnet_id`)
 - AWS key pair for SSH access (`key_name`)
 - For BYOL: a valid FortiAnalyzer license file or FortiFlex token
-- [FortiAnalyzer supported instances](https://docs.fortinet.com/document/fortianalyzer-public-cloud/8.0.0/aws-administration-guide/)
-- Size the log volume for your retention needs (default 500 GB)
+- [FortiAnalyzer supported instances](https://docs.fortinet.com/document/fortianalyzer-public-cloud/8.0.0/aws-administration-guide/369910/instance-type-support)
+- [FortiAnalyzer requires a minimum disk size of 500 GB](https://docs.fortinet.com/document/fortianalyzer-public-cloud/8.0.0/aws-administration-guide/571011/deploying-fortianalyzer-vm-using-manual-launch)
 
 ### Features
 
