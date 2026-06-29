@@ -110,7 +110,7 @@ Fortinet-provided scripts in this and other GitHub projects do not fall under th
 ## References
 
 - [FortiAnalyzer AWS Administration Guide](https://docs.fortinet.com/document/fortianalyzer-public-cloud/7.6.0/aws-administration-guide/)
-- [AWS Marketplace — FortiAnalyzer](https://aws.amazon.com/marketplace/seller-profile?id=7de3dd38-52b2-4c1a-9fc1-93e7dfca9d6b)
+- [AWS Marketplace — FortiAnalyzer](https://aws.amazon.com/marketplace/pp/prodview-6dt7z5twj7t7a?sr=0-3&ref_=ucaf&applicationId=AWSMPContessa)
 - [Terraform AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 
 ## License
