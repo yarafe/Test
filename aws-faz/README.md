@@ -37,17 +37,18 @@ terraform-aws-fortianalyzer/
 │   ├── single/                  # Single FortiAnalyzer deployment module
 │   └── ha/                      # HA deployment module (a-a / a-p)
 ├── examples/
-│   ├── single/                  # Single example (creates VPC + subnet, calls the module)
+│   ├── single/                  # Single example
 │   │   ├── main.tf
 │   │   ├── variables.tf
 │   │   ├── outputs.tf
 │   │   └── terraform.tfvars.example
+│   │   └── README.md
 │   └── ha/                      # HA example
 │       ├── main.tf
 │       ├── variables.tf
 │       ├── outputs.tf
 │       └── terraform.tfvars.example
-├── list_faz_amis.sh             # Helper: list FortiAnalyzer AMIs by version/region
+│       └── README.md
 └── README.md
 ```
 
@@ -61,7 +62,7 @@ terraform-aws-fortianalyzer/
 - AWS key pair for SSH access
 - For BYOL: a valid FortiAnalyzer license file or FortiFlex token
 - [FortiAnalyzer AWS Administration Guide — supported instances and models](https://docs.fortinet.com/document/fortianalyzer-public-cloud/7.6.0/aws-administration-guide/)
-- A dedicated, adequately sized log volume — FortiAnalyzer is a logging appliance, so size storage to your retention needs
+- [FortiAnalyzer requires a minimum disk size of 500 GB](docs.fortinet.com/document/fortianalyzer-public-cloud/8.0.0/aws-administration-guide/571011/deploying-fortianalyzer-vm-using-manual-launch)
 
 ### Quick start
 
@@ -93,13 +94,6 @@ See the example READMEs for the full variable reference, architecture diagrams, 
 | **PAYG** | No license input required — set `faz_license_type = "payg"`. |
 | **BYOL (file)** | Set `faz_license_type = "byol"` and supply the `.lic` file via the relevant `*_byol_license_file` variable. |
 | **BYOL (FortiFlex)** | Set `faz_license_type = "byol"` and supply the token via the relevant `*_byol_fortiflex_license_token` variable. |
-
-The modules resolve the AMI automatically from the license type and `faz_version`. To inspect which AMIs are available before deploying:
-
-```bash
-./list_faz_amis.sh 7.6            # all regions, version 7.6
-./list_faz_amis.sh 7.6 eu-north-1 # specific region
-```
 
 ### Supported versions
 
