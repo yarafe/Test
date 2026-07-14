@@ -4,7 +4,9 @@
 
 ## Introduction
 
-FortiNAC is a zero-trust access solution that oversees and protects all digital assets connected to the enterprise network, covering devices ranging from IT, IoT, OT/ICS, to IoMT.
+FortiNAC is a zero-trust access solution that oversees and protects all digital assets connected to the enterprise network, covering devices ranging from IT, IoT, OT/ICS, to IoMT. It provides visibility, control, and automated response for everything that connects to the network.
+
+FortiNAC operates out-of-band: it manages network devices (switches, wireless controllers, firewalls) over SNMP, SSH, and RADIUS rather than sitting inline in the data path. This makes Microsoft Azure a natural place to host it. The main use case for FortiNAC in Azure is a **centrally hosted NAC deployment**: the FortiNAC VM runs in Azure and manages on-premises network infrastructure — across one or multiple sites — over a VPN or ExpressRoute connection, without requiring an appliance in every location. Endpoints authenticate and get profiled through the local switches and access points, while policy decisions and enforcement are driven from the FortiNAC instance in Azure.
 
 ## Design
 
@@ -43,7 +45,38 @@ Custom deployment:
 
 ## Post-deployment configuration
 
-After the VM is deployed, the initial appliance configuration is completed using the FortiNAC **Config Wizard**, used in conjunction with the [FortiNAC-F Deployment Guide](https://docs.fortinet.com/document/fortinac-f/7.6.0/fortinac-deployment-guide/452316/overview). For virtual appliances, the appliance is reached over `port1`.
+### First access and licensing
+
+1. **Login via the serial console** with the default credentials: user `admin` and an empty password. You will be prompted to set a new password.
+
+2. **Collect the UUID and MAC address** required for licensing:
+
+   ```
+   get hardware status
+   ```
+
+   Note the `UUID` and `MAC` values from the output.
+
+3. **Register the product** on [support.fortinet.com](https://support.fortinet.com) using the UUID and MAC address, then generate and download the license keys. See [Generate and download keys](https://docs.fortinet.com/document/fortinac-f/7.6.0/azure-deployment-guide/14971/generate-and-download-keys) in the Azure Deployment Guide.
+
+4. **Verify the management interface configuration** on `port1`. The interface uses DHCP and must allow HTTPS Admin UI and SSH access:
+
+   ```
+   config system interface
+     edit port1
+       set mode dhcp
+       set allowaccess https-adminui ssh
+     next
+   end
+   ```
+
+   The Admin UI is served on **HTTPS port 8443** — make sure TCP 8443 is allowed in the Network Security Group to reach the GUI.
+
+5. **Login to the Admin UI** at `https://<port1-ip>:8443` using the default FortiNAC Admin UI credentials: user `root`, password `YAMS`. Change this password immediately after the first login.
+
+### Config Wizard
+
+After the first login, the initial appliance configuration is completed using the FortiNAC **Config Wizard**, used in conjunction with the [FortiNAC-F Deployment Guide](https://docs.fortinet.com/document/fortinac-f/7.6.0/fortinac-deployment-guide/452316/overview). For virtual appliances, the appliance is reached over `port1`.
 
 Before starting the Config Wizard, have the following available:
 
