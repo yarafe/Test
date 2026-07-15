@@ -1,4 +1,4 @@
-# FortiNAC
+# FortiNAC- A Single VM
 
 :wave: - [Introduction](#introduction) - [Design](#design) - [Deployment](#deployment) - [Post-deployment configuration](#post-deployment-configuration) :wave:
 
@@ -34,11 +34,6 @@ Size the instance type according to the number of managed endpoints, as document
 | FNC-CAX-VM | Up to 50 000 | Large | 32 | 96 | 100 |
 | FNC-MX-VM (Manager) | Up to 100 CA servers | Large | 24 | 32 | 100 |
 
-¹ Managed Endpoints = total of endpoint devices registered, managed, and enforced.
-² vCPU values are guidelines only; VM resources may vary based on individual environments.
-
-> [!NOTE]
-> The template's default instance type is `Standard_D4s_v3` (4 vCPU, 16 GB), which is suitable for labs and proof-of-value deployments. For production, select an instance type matching the sizing profile above — for example `Standard_F8s_v2` (8 vCPU, 16 GB) for the Small profile.
 
 ## Deployment
 
@@ -99,8 +94,6 @@ Custom deployment:
      next
    end
    ```
-
-   In Azure, the subnet's default gateway is the first usable address of the subnet (e.g. `172.16.140.1` for `172.16.140.0/26`).
 
    The Admin UI is served on **HTTPS port 8443** — make sure TCP 8443 is allowed in the Network Security Group to reach the GUI.
 
