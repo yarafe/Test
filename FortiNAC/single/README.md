@@ -23,6 +23,23 @@ This Azure ARM template can also be extended or customized based on your require
 
 The VM is deployed with a single network interface attached to `port1`, which is used for management and communication with your network infrastructure. If you plan to use an isolation network served by the FortiNAC Service Network Interface (`port2`), a second subnet and network interface are required. Configuring `port1` and `port2` in the same network is not recommended or supported.
 
+### VM Server Resource Sizing
+
+Size the instance type according to the number of managed endpoints, as documented in the [FortiNAC Data Sheet](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/fortinac.pdf):
+
+| VM SKU | Managed Endpoints¹ | Target Environment | vCPU² | Memory (GB) | Disk (GB) |
+| --- | --- | --- | --- | --- | --- |
+| FNC-CAX-VM | Up to 15 000 | Small | 8 | 16 | 100 |
+| FNC-CAX-VM | Up to 30 000 | Medium | 24 | 32 | 100 |
+| FNC-CAX-VM | Up to 50 000 | Large | 32 | 96 | 100 |
+| FNC-MX-VM (Manager) | Up to 100 CA servers | Large | 24 | 32 | 100 |
+
+¹ Managed Endpoints = total of endpoint devices registered, managed, and enforced.
+² vCPU values are guidelines only; VM resources may vary based on individual environments.
+
+> [!NOTE]
+> The template's default instance type is `Standard_D4s_v3` (4 vCPU, 16 GB), which is suitable for labs and proof-of-value deployments. For production, select an instance type matching the sizing profile above — for example `Standard_F8s_v2` (8 vCPU, 16 GB) for the Small profile.
+
 ## Deployment
 
 For the deployment, you can use the Azure Portal, Azure CLI, Powershell or Azure Cloud Shell. The Azure ARM templates are exclusive to Microsoft Azure and can't be used in other cloud environments. The main template is the `mainTemplate.json` which you can use in the Azure Portal. You'll be prompted to provide at least the required variables:
@@ -61,20 +78,33 @@ Custom deployment:
 
 3. **Register the product** on [support.fortinet.com](https://support.fortinet.com) using the UUID and MAC address, then generate and download the license keys. See [Generate and download keys](https://docs.fortinet.com/document/fortinac-f/7.6.0/azure-deployment-guide/14971/generate-and-download-keys) in the Azure Deployment Guide.
 
-4. **Verify the management interface configuration** on `port1`. The interface uses DHCP and must allow HTTPS Admin UI and SSH access:
+4. **Assign a static IP address** to the VM in Azure. Navigate to **Azure Portal > Virtual Machines >** your FortiNAC VM **> Networking > Network Interface > IP configurations**, select the primary interface, set the Private IP address settings to **Static**, and assign a private address within the subnet of the default route. See [Step 2: Assign a Static IP Address](https://docs.fortinet.com/document/fortinac-f/7.6.0/azure-deployment-guide/215384/step-2-assign-a-static-ip-address) in the Azure Deployment Guide.
+
+5. **Verify the `port1` configuration and the static route to the default gateway** on the appliance. The interface must allow HTTPS Admin UI and SSH access, and a static default route (`0.0.0.0/0`) must point to the subnet's default gateway on `port1`:
 
    ```
    config system interface
      edit port1
-       set mode dhcp
+       set mode static
+       set ip <port1-ip>/<mask>
        set allowaccess https-adminui ssh
+     next
+   end
+
+   config system route
+     edit 1
+       set dst 0.0.0.0/0
+       set gateway <subnet-default-gateway>
+       set device port1
      next
    end
    ```
 
+   In Azure, the subnet's default gateway is the first usable address of the subnet (e.g. `172.16.140.1` for `172.16.140.0/26`).
+
    The Admin UI is served on **HTTPS port 8443** — make sure TCP 8443 is allowed in the Network Security Group to reach the GUI.
 
-5. **Login to the Admin UI** at `https://<port1-ip>:8443` using the default FortiNAC Admin UI credentials: user `root`, password `YAMS`. Change this password immediately after the first login.
+6. **Login to the Admin UI** at `https://<port1-ip>:8443` using the default FortiNAC Admin UI credentials: user `root`, password `YAMS`. Change this password immediately after the first login.
 
 ### Config Wizard
 
@@ -93,6 +123,12 @@ Notes:
 - Changes made in the Config Wizard are stored in a temporary file and are only applied once saved, so the data displayed may not represent the current configuration of the appliance.
 
 For the full step-by-step procedure, see the [FortiNAC-F 7.6 Configuration Wizard guide](https://docs.fortinet.com/document/fortinac-f/7.6.0/configuration-wizard/209349/overview).
+
+## Resources
+
+- [FortiNAC Data Sheet](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/fortinac.pdf)
+- [FortiNAC-F 7.6 Azure Deployment Guide](https://docs.fortinet.com/document/fortinac-f/7.6.0/azure-deployment-guide/591825/overview)
+- [FortiNAC-F 7.6 Configuration Wizard](https://docs.fortinet.com/document/fortinac-f/7.6.0/configuration-wizard/209349/overview)
 
 ## Support
 Fortinet-provided scripts in this and other GitHub projects do not fall under the regular Fortinet technical support scope and are not supported by FortiCare Support Services.
