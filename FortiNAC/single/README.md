@@ -29,19 +29,21 @@ For the deployment, you can use the Azure Portal, Azure CLI, Powershell or Azure
 
 - PREFIX : This prefix will be added to each of the resources created by the template for ease of use and visibility.
 - LOCATION : This is the Azure region where the deployment will be deployed.
-- USERNAME : The username used to login to the FortiNAC GUI and SSH management UI.
-- PASSWORD : The password used for the FortiNAC GUI and SSH management UI.
 
-Licensing can be provided during deployment as a BYOL license file or a FortiFlex token via the optional `FortiNACLicenseBYOL` and `FortiNACLicenseFortiFlex` parameters.
+> [!WARNING]
+> No credentials are set during deployment. The FortiNAC appliance boots with **factory default credentials**: CLI via serial console `admin` with an empty password, and Admin UI (HTTPS port 8443) `root` / `YAMS`. Change both immediately after the first login — see [Post-deployment configuration](#post-deployment-configuration).
+
+> [!NOTE]
+> Licensing is done after deployment by registering the appliance UUID and MAC address on [support.fortinet.com](https://support.fortinet.com) and downloading the license keys. See [Generate and download keys](https://docs.fortinet.com/document/fortinac-f/7.6.0/azure-deployment-guide/14971/generate-and-download-keys).
 
 ### Azure Portal
 
 Azure Portal Wizard:
-[![Azure Portal Wizard](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions%2Fmain%2FFortiNAC%2Fsingle%2FmainTemplate.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions%2Fmain%2FFortiNAC%2Fsingle%2FcreateUiDefinition.json)
+[![Azure Portal Wizard](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fyarafe%2FTest%2Fmain%2FFortiNAC%2Fsingle%2FmainTemplate.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fyarafe%2FTest%2Fmain%2FFortiNAC%2Fsingle%2FcreateUiDefinition.json)
 
 Custom deployment:
-[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions%2Fmain%2FFortiNAC%2Fsingle%2FmainTemplate.json)
-[![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2F40net-cloud%2Ffortinet-azure-solutions%2Fmain%2FFortiNAC%2Fsingle%2FmainTemplate.json)
+[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fyarafe%2FTest%2Fmain%2FFortiNAC%2Fsingle%2FmainTemplate.json)
+[![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fyarafe%2FTest%2Fmain%2FFortiNAC%2Fsingle%2FmainTemplate.json)
 
 ## Post-deployment configuration
 
