@@ -29,7 +29,14 @@ Size the instance type according to the number of users, as documented in the [F
 | --- | --- | --- | --- |
 | 20 - 1000 | 4 - 64 | 16 - 256 | 2 TB - 16 TB |
 
-For the log and video disks, video recordings consume roughly 250 MB per hour of session; the recommended log to video disk ratio is 1:3. Plan the video disk size according to the number of recorded sessions and their duration.
+### Log and video disk requirements
+
+| Disk | Minimum size | Purpose |
+| --- | --- | --- |
+| Log disk | 10 GB | System and event logs |
+| Video disk | 10 GB | Privileged session video recordings (~250 MB per hour of session) |
+
+The recommended log to video disk ratio is **1:3**. Plan the video disk size according to the number of recorded sessions and their duration.
 
 ## Deployment
 
@@ -39,9 +46,6 @@ For the deployment, you can use the Azure Portal, Azure CLI, Powershell or Azure
 - LOCATION : This is the Azure region where the deployment will be deployed.
 - USERNAME : The username used to login to the FortiPAM GUI and SSH CLI.
 - PASSWORD : The password used for the FortiPAM GUI and SSH CLI.
-
-> [!NOTE]
-> The FortiPAM marketplace image requires terms acceptance before the first deployment. The `deploy.sh` script runs `az vm image terms accept --urn fortinet:fortinet-fortipam:fortinet-fpam:1.9.0` automatically. When deploying via the Azure Portal for the first time, accept the terms in the Marketplace wizard.
 
 > [!WARNING]
 > Licensing is done **after deployment**. FortiPAM uses a BYOL (yearly user subscription) model: the license file (`.lic`) is uploaded via SCP or the GUI once the VM is running — it is NOT injected during deployment. An evaluation license is not available on Azure, and each FortiPAM instance must have its own valid license. See [Post-deployment configuration](#post-deployment-configuration).
