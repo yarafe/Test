@@ -1,90 +1,65 @@
-# Terraform CH1 Errors
+# Challenge 3: App Deployment in AWS
 
-The examples focus on two common Terraform troubleshooting patterns:
 
-1. **Provider schema changes** — an argument is no longer supported because its name changed.
-2. **Resource dependency and attribute references** — manually constructing an Azure resource ID can cause Terraform to miss the dependency on the resource being referenced.
+## What it deploys
 
-## 1. Unsupported Argument: `enable_ip_forwarding`
-
-### Error
-
-```text
-Error: Unsupported argument
-
-  on main.tf line 163, in resource "azurerm_network_interface" "external":
-  163:   enable_ip_forwarding = true
-
-An argument named "enable_ip_forwarding" is not expected here.
+```
+Internet ──HTTP :80──► ALB (dev-app-alb-xxxxxx) ──HTTP :80──► EC2 nginx (dev-app-ec2)
+                        │                                         │
+                        └─ access logs ► S3 bucket                └─ IAM role ► reads DB password from SSM
+VPC 10.20.0.0/16 · 2 public subnets · IGW · route table
 ```
 
-### Root Cause
-
-The AzureRM provider changed the property name for IP forwarding on `azurerm_network_interface`.
-
-In **AzureRM 4.x**, the deprecated `enable_ip_forwarding` property was removed and replaced with `ip_forwarding_enabled`.
-
-### Fix
-
-Replace:
-
-```hcl
-enable_ip_forwarding = true
+```
+.
+├── main.tf / variables.tf / outputs.tf        # root: network + module call
+└── modules/web_service/
+    └── main.tf / variables.tf / outputs.tf    # ALB, TG, EC2, SGs, IAM, S3, SSM
 ```
 
-with:
+Naming convention: `<env>-<service>-<resource>[-<suffix>]` → e.g. `dev-app-alb-k3x9p2`
 
-```hcl
-ip_forwarding_enabled = true
+## Rules
+
+- Do **not** delete or loosen any `validation` block.
+- AWS limits: ALB / target group name ≤ 32 chars (letters, digits, hyphens); S3 bucket name 3–63 chars, `a-z 0-9 - .` only.
+- Region `eu-west-1`. Cost ≈ ALB + t3.micro, a few cents per hour. **Destroy at the end of the day.**
+- Terraform ≥ 1.5.
+
+---
+
+## Part 1 — Make it deploy (2 bugs)
+
+```bash
+terraform init
+terraform plan
+terraform apply
 ```
 
-## 2. Virtual Machine Not Found When Attaching a Data Disk
+Fix every error. For each bug, write down **which command** revealed it and **why there**.
 
-### Error
+Questions:
+1. Why does one bug appear only at `apply`, even though `plan` was clean?
+2. After the failed `apply`, run `terraform state list`. What already exists in AWS? Will the next `apply` recreate it?
 
-```text
-Error: Virtual Machine (Subscription: ""
-Resource Group Name: "tf-fgt-rg"
-Virtual Machine Name: "tf-fgt") was not found
+Done when `app_url` (http://…) opens a page in your browser. From the terminal: `curl $(terraform output -raw app_url)`.
 
-  with azurerm_virtual_machine_data_disk_attachment.fgt_data,
-  on main.tf line 281, in resource "azurerm_virtual_machine_data_disk_attachment" "fgt_data":
-  281: resource "azurerm_virtual_machine_data_disk_attachment" "fgt_data" {
+---
+
+## Part 2 — State challenge: lost and found
+
+run
+```bash
+terraform state rm module.app.aws_s3_bucket_policy.alb_logs
 ```
 
-### Original Configuration
+Tasks:
+1. Prove the bucket policy still exists in AWS.
+2. Run `terraform plan`. What does Terraform want to do, and what would happen in AWS if you applied it?
+3. Bring the policy back under Terraform management using an **`import` block** (no `terraform import` CLI).
 
-The VM ID was manually constructed as a string:
+## Cleanup
 
-```hcl
-virtual_machine_id = "/subscriptions/${var.subscription_id}/resourceGroups/${azurerm_resource_group.fgt.name}/providers/Microsoft.Compute/virtualMachines/${var.prefix}-fgt"
+```bash
+terraform destroy
 ```
-
-### Recommended Fix
-
-Reference the Terraform-managed VM resource directly:
-
-```hcl
-virtual_machine_id = azurerm_linux_virtual_machine.fgt.id
-```
-### Why This Is Better
-
-Terraform understands references between resources. By using:
-
-```hcl
-azurerm_linux_virtual_machine.fgt.id
-```
-
-Terraform creates an **implicit dependency** between the disk attachment and the Linux VM.
-
-The attachment therefore depends on the VM resource being created and its ID being available.
-
-By contrast, this:
-
-```hcl
-"/subscriptions/${var.subscription_id}/.../virtualMachines/${var.prefix}-fgt"
-```
-
-is primarily just a string assembled from variables and attributes. Terraform does not get a direct dependency on `azurerm_linux_virtual_machine.fgt` from that expression.
-
-
