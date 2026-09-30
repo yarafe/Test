@@ -19,13 +19,6 @@ VPC 10.20.0.0/16 · 2 public subnets · IGW · route table
 
 Naming convention: `<env>-<service>-<resource>[-<suffix>]` → e.g. `dev-app-alb-k3x9p2`
 
-## Rules
-
-- Do **not** delete or loosen any `validation` block.
-- AWS limits: ALB / target group name ≤ 32 chars (letters, digits, hyphens); S3 bucket name 3–63 chars, `a-z 0-9 - .` only.
-- Region `eu-west-1`. Cost ≈ ALB + t3.micro, a few cents per hour. **Destroy at the end of the day.**
-- Terraform ≥ 1.5.
-
 ---
 
 ## Part 1 — Make it deploy (2 bugs)
