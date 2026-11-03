@@ -23,10 +23,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Download latest CVEs
+      - name: Download CVEs
+        working-directory: latest-month-cves
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
-        run: python latest-month-cves/fetch_cves.py
+        run: python fetch_cves.py
 
       - name: Commit reports to GitHub
         run: |
@@ -35,9 +36,16 @@ jobs:
 
           git add latest-month-cves/reports/
 
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
+          if ! git diff --cached --quiet; then
             git commit -m "Update monthly CVE reports"
             git push origin HEAD:main
+          else
+            echo "No changes to commit"
           fi
+
+      - name: Upload CSV artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: latest-month-cves
+          path: latest-month-cves/reports/*.csv
+          retention-days: 30
