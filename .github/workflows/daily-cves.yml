@@ -1,3 +1,4 @@
+
 name: Daily CVE Download
 
 on:
@@ -6,21 +7,37 @@ on:
       timezone: 'Europe/Brussels'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   download:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Download CVEs published this month
+
+      - name: Download latest CVEs
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         run: python latest-month-cves/fetch_cves.py
-      - name: Save CSV to GitHub Actions
-        uses: actions/upload-artifact@v4
-        with:
-          name: latest-month-cves
-          path: reports/*.csv
-          retention-days: 30
+
+      - name: Commit reports to GitHub
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add reports/
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update monthly CVE reports"
+            git push origin HEAD:main
+          fi
