@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Critical CVEs — 2026-11</title>
+  <style>
+    :root {color-scheme:light; font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+    body {background:#f5f7fb; color:#172334; margin:0; line-height:1.5}
+    main {max-width:1030px; margin:0 auto; padding:28px 18px 60px}
+    h1 {margin:0 0 7px; font-size:2rem} .muted,.meta {color:#526377; font-size:.9rem}
+    .top {display:flex; gap:14px; flex-wrap:wrap; align-items:center; justify-content:space-between}
+    input {border:1px solid #b9c5d3; border-radius:9px; padding:12px; font:inherit; min-width:250px}
+    .card {background:#fff; border:1px solid #e0e5ec; border-radius:14px; padding:20px; margin:18px 0; box-shadow:0 2px 8px #12243c0a}
+    .headline {display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+    h2 {margin:0;font-size:1.2rem} .pill {background:#fff0ef;color:#a52426;padding:5px 10px;border-radius:20px;font-weight:700;font-size:.85rem}
+    .summary {font-size:1rem} dl {display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+    dl>div {border-top:1px solid #e9edf3; padding-top:11px; min-width:0}
+    dt {color:#40556b;font-size:.84rem;font-weight:700;margin-bottom:5px} dd {margin:0;overflow-wrap:anywhere}
+    a {color:#0757ad} li {margin:3px 0} ul {padding-left:20px;margin:3px 0}
+    .info,.empty {background:#e9f1fb;padding:12px;border-radius:10px;margin:18px 0;color:#334760}
+    @media(max-width:640px) {dl {grid-template-columns:1fr} input {width:100%;min-width:0;box-sizing:border-box}}
+  </style>
+</head>
+<body><main>
+  <div class="top"><div><h1>Critical CVEs — 2026-11</h1>
+  <p class="muted">45 Critical / 912 total CVEs · Generated 2026-11-03 18:41 UTC</p></div>
+  <input id="search" type="search" placeholder="Search CVE or description" aria-label="Search CVEs"></div>
+  <div class="info">Source: NIST NVD CVE API. Entries are filtered by the selected CVSS metric's <b>CRITICAL</b> severity.
+  Affected versions are NVD CPE applicability conditions (which may include additional AND constraints), not vendor-confirmed fixed versions.
+  SAPIs and solutions may require vendor advisory verification. Data and severity can change after publication.</div>
+  <section id="results">
+        <article class="card" data-search="cve-2026-44267 elo is a purely functional expression language for no-code tools. prior to 1.0.1, plain elo strings supplied to defaultformats.elo.parse(), bin/elo, or elo-lang.org/try can use .constructor.constructor to reach javascript function because the member_access handler in src/transform.ts does not reject meta-properties, src/compilers/javascript.ts emits the surviving property directly, and src/parser.ts accepts constructor as an ordinary identifier. the resulting generated javascript executes attacker-selected code in the host runtime. this permits browser script execution and session compromise on the auto-running playground and arbitrary node.js code execution on library, ci, or devops hosts. this plain-string path is distinct from the programmatic ast-object injection issue. this issue is fixed in version 1.0.1.">
+          <div class="headline"><h2>CVE-2026-44267</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-03 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-44267" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Elo is a purely functional expression language for no-code tools. Prior to 1.0.1, plain Elo strings supplied to defaultFormats.elo.parse(), bin/elo, or elo-lang.org/try can use .constructor.constructor to reach JavaScript Function because the member_access handler in src/transform.ts does not reject meta-properties,…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-33R5-XMM8-V6X5</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-44266 elo is a purely functional expression language for no-code tools. prior to 1.0.1, the ruby backend in src/compilers/ruby.ts embeds attacker-controlled text in ruby double-quoted strings without escaping #, so ruby interpolation forms in the string-literal emitter or the labelled subtype-constraint branch become executable ruby. the affected entry points include the /try playground with the ruby target, bin/eloc -t ruby -x, and defaultformats.elo.parse() followed by ruby emission. a failing labelled subtype constraint evaluates its message, while an ordinary string literal is evaluated when the compiled ruby runs, allowing ruby code and shell command execution through backticks. javascript, python, and sql emission are not affected by this ruby-specific path. this issue is fixed in version 1.0.1.">
+          <div class="headline"><h2>CVE-2026-44266</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-03 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-44266" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Elo is a purely functional expression language for no-code tools. Prior to 1.0.1, the Ruby backend in src/compilers/ruby.ts embeds attacker-controlled text in Ruby double-quoted strings without escaping #, so Ruby interpolation forms in the string-literal emitter or the labelled subtype-constraint branch become…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-7W38-GGH5-V542</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-28336 solarwinds dameware was found to be affected by a command injection vulnerability that could lead to the compromise of the remotely controlled host. authentication is required.">
+          <div class="headline"><h2>CVE-2026-28336</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-03 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-28336" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">SolarWinds Dameware was found to be affected by a command injection vulnerability that could lead to the compromise of the remotely controlled host. Authentication is required.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-109593 an unauthenticated attacker with network access to the sonicwall gms 9.5.2 and earlier versions may be able to read internal gms files, potentially exposing sensitive information.">
+          <div class="headline"><h2>CVE-2026-109593</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-03 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-109593" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">An unauthenticated attacker with network access to the SonicWall GMS 9.5.2 and earlier versions may be able to read internal GMS files, potentially exposing sensitive information.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: None; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-121392 freerdp before 3.32.2 contains an improper certificate validation vulnerability in tls_verify_certificate() that accepts common name fallback despite non-matching san entries and matches ip literals against dns strings. man-in-the-middle attackers holding a certificate from a client-trusted ca can bypass server identity checks to intercept rdp sessions, including keystrokes, clipboard, and screen content.">
+          <div class="headline"><h2>CVE-2026-121392</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-03 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-121392" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">FreeRDP before 3.32.2 contains an improper certificate validation vulnerability in tls_verify_certificate() that accepts Common Name fallback despite non-matching SAN entries and matches IP literals against DNS strings. Man-in-the-middle attackers holding a certificate from a client-trusted CA can bypass server…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-JQ25-3374-4262</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-89292 in eclipse mnestix browser versions 1.6.0 up until but excluding 2.3.0 it was possible for an unauthenticated attacker to exfiltrate the mnestix_backend_api_key for all configured infrastructures.">
+          <div class="headline"><h2>CVE-2026-89292</h2><span class="pill">CRITICAL · 9.2</span></div>
+          <p class="meta">Published 2026-11-03 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-89292" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In Eclipse Mnestix Browser versions 1.6.0 up until but excluding 2.3.0 it was possible for an unauthenticated attacker to exfiltrate the MNESTIX_BACKEND_API_KEY for all configured Infrastructures.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: None; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-121022 use of default password (cwe-1393) in the web client in axxonsoft axxon one before 3.0.0 on windows and linux allows a remote unauthenticated attacker to log in as the built-in administrator with the default credentials on a newly installed system, because the web client did not enforce the mandatory change of the default password on first login.">
+          <div class="headline"><h2>CVE-2026-121022</h2><span class="pill">CRITICAL · 9.2</span></div>
+          <p class="meta">Published 2026-11-03 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-121022" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Use of Default Password (CWE-1393) in the web client in AxxonSoft Axxon One before 3.0.0 on Windows and Linux allows a remote unauthenticated attacker to log in as the built-in administrator with the default credentials on a newly installed system, because the web client did not enforce the mandatory change of the…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-4052 this issue only impacts deployments where wso2 identity server is configured as a resident key manager with database sharing. in such environments, a self-registered user may gain access to the system rest apis of wso2 api manager by obtaining a token from the wso2 identity server token endpoint.">
+          <div class="headline"><h2>CVE-2026-4052</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-03 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-4052" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">This issue only impacts deployments where WSO2 Identity Server is configured as a Resident Key Manager with database sharing. In such environments, a self-registered user may gain access to the System REST APIs of WSO2 API Manager by obtaining a token from the WSO2 Identity Server token endpoint.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-13594 zoho corporation&#x27;s manageengine log360 and eventlog analyzer versions 13062 and below are vulnerable to an issue that could allow an adversary to gain unauthorized access to the product.">
+          <div class="headline"><h2>CVE-2026-13594</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-03 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-13594" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Zoho Corporation&#x27;s ManageEngine Log360 and EventLog Analyzer versions 13062 and below are vulnerable to an issue that could allow an adversary to gain unauthorized access to the product.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120534 the advanced custom fields: extended pro plugin for wordpress is vulnerable to limited code injection in all versions up to, and including, 0.9.2.6 via the render_field function. this is due to insufficient validation of form configuration parameters before merging into field settings and passing to call_user_func_array in the render_field method. this makes it possible for unauthenticated attackers to call arbitrary wordpress functions with controlled arguments. method 1 requires the administrator to enable the non-default &#x27;shortcode_preview&#x27; setting for the target form, while method 2 requires the server environment to lack openssl functions, causing acf pro&#x27;s acf_decrypt to fall back to unverified base64 decoding.">
+          <div class="headline"><h2>CVE-2026-120534</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-03 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120534" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Advanced Custom Fields: Extended PRO plugin for WordPress is vulnerable to Limited Code Injection in all versions up to, and including, 0.9.2.6 via the render_field function. This is due to insufficient validation of form configuration parameters before merging into field settings and passing to…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120518 the buddypress xprofile image field plugin for wordpress is vulnerable to arbitrary file deletion in all versions up to, and including, 3.1.0. this is due to bpxp_image_field_update_on_user_activation() calling unlink() on a path built from visitor-supplied signup metadata with no realpath() resolution, no containment check against the profile-image directory and no extension allow-list. submitting a zero-byte file with the &#x27;field_n_hidden&#x27; parameter during registration makes the plugin store the raw value, which is then resolved against the document root when the pending signup is activated. this makes it possible for unauthenticated attackers to delete arbitrary files on the server, which can easily lead to remote code execution when the right file (such as wp-config.php) is deleted. requires open registration and an image-type profile field on the signup form.">
+          <div class="headline"><h2>CVE-2026-120518</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-03 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120518" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The BuddyPress XProfile Image Field plugin for WordPress is vulnerable to arbitrary file deletion in all versions up to, and including, 3.1.0. This is due to bpxp_image_field_update_on_user_activation() calling unlink() on a path built from visitor-supplied signup metadata with no realpath() resolution, no containment…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: None; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-86596 the s2member plugin for wordpress is vulnerable to remote code execution in all versions up to, and including, &lt;= 260927 via the &#x27;item_name&#x27; parameter parameter. this is due to insufficient sanitization in strip_php_tags_deep(), which only strips literal &#x27;&lt;?&#x27; sequences, combined with a post-interpolation placeholder cleanup that reassembles a valid &#x27;&lt;?php&#x27; opener after the attacker-controlled value has already been embedded in the email template. this makes it possible for authenticated attackers, with custom-level access and above, to execute code on the server.">
+          <div class="headline"><h2>CVE-2026-86596</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-86596" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The s2Member plugin for WordPress is vulnerable to Remote Code Execution in all versions up to, and including, &lt;= 260927 via the &#x27;item_name&#x27; parameter parameter. This is due to insufficient sanitization in strip_php_tags_deep(), which only strips literal &#x27;&lt;?&#x27; sequences, combined with a post-interpolation placeholder…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-97718 cve-2026-97718 is a cross-site request forgery vulnerability in version 14.60 of the secure access server. because of a bypassed security control, an attacker can cause an admin to create an account under their control.">
+          <div class="headline"><h2>CVE-2026-97718</h2><span class="pill">CRITICAL · 9.4</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-97718" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">CVE-2026-97718 Is a cross-site request forgery vulnerability in version 14.60 of the Secure Access server. Because of a bypassed security control, an attacker can cause an admin to create an account under their control.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-116769 cve-2026-116769 is an authentication bypass vulnerability in secure access servers starting with version 13.0 and prior to 14.61. attackers can modify security settings of a client via the server.">
+          <div class="headline"><h2>CVE-2026-116769</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-116769" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">CVE-2026-116769 is an authentication bypass vulnerability in Secure Access servers starting with version 13.0 and prior to 14.61. Attackers can modify security settings of a client via the server.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: None; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-102435 the ultra addons for contact form 7 plugin for wordpress is vulnerable to arbitrary file deletion due to insufficient file path validation in the _getobjattr function in all versions up to, and including, 3.5.54. this makes it possible for unauthenticated attackers to delete arbitrary files on the server, which can easily lead to remote code execution when the right file is deleted (such as wp-config.php). this requires the pdf generator add-on to be active and a contact form 7 form to be configured for pdf generation, as the wpcf7_submission pop gadget chain relies on cf7 being present to complete the file deletion via __destruct(). note: this vulnerability can only be exploited when the pdf generator feature is enabled.">
+          <div class="headline"><h2>CVE-2026-102435</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-102435" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Ultra Addons for Contact Form 7 plugin for WordPress is vulnerable to arbitrary file deletion due to insufficient file path validation in the _getObjAttr function in all versions up to, and including, 3.5.54. This makes it possible for unauthenticated attackers to delete arbitrary files on the server, which can…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-105606 joomla extension - joomlaboat.com - unauthenticated arbitrary file upload in custom tables &lt; 3.7.8 - an unauthenticated attacker can upload a polyglot file with an attacker-controlled extension to the web-accessible tmp directory of any joomla site that exposes a public custom tables submission form, and the stored path is disclosed in the response. by default the uploaded file is served as static content, so the primary impact is an unauthenticated arbitrary file write to a web-accessible directory, which allows hosting of attacker-controlled content (for example phishing or malware pages) under the victim&#x27;s domain.">
+          <div class="headline"><h2>CVE-2026-105606</h2><span class="pill">CRITICAL · 9.5</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-105606" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Joomla Extension - joomlaboat.com - Unauthenticated arbitrary file upload in Custom Tables &lt; 3.7.8 - An unauthenticated attacker can upload a polyglot file with an attacker-controlled extension to the web-accessible tmp directory of any Joomla site that exposes a public Custom Tables submission form, and the stored…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-105604 joomla extension - dj-extensions.com - unauthenticated sql injection in dj-classifieds &lt; 3.11.3 - the joomla extension dj-classifieds is vulnerable to an unauthenticated sql injection vector in the frontend search.">
+          <div class="headline"><h2>CVE-2026-105604</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-105604" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Joomla Extension - dj-extensions.com - Unauthenticated SQL injection in DJ-Classifieds &lt; 3.11.3 - The Joomla extension DJ-Classifieds is vulnerable to an unauthenticated SQL injection vector in the frontend search.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-105603 joomla extension - dj-extensions.com - authenticated arbitrary file upload in dj-classifieds &lt; 3.11.3 - the joomla extension dj-classifieds is vulnerable to an unprivileged file upload, leading to full rce.">
+          <div class="headline"><h2>CVE-2026-105603</h2><span class="pill">CRITICAL · 9.4</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-105603" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Joomla Extension - dj-extensions.com - Authenticated arbitrary file upload in DJ-Classifieds &lt; 3.11.3 - The Joomla extension DJ-Classifieds is vulnerable to an unprivileged file upload, leading to full RCE.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-119085 improper neutralization of special elements used in a template engine in the publishing component of amazon virtual engineering workbench (vew) could allow a remote authenticated third party to run arbitrary code with the permissions of the publishing lambda&#x27;s iam role. this could allow access to data and resources across all tenant projects. the code is reachable through a crafted cloudformation template body containing template engine directives submitted through the product versioning api. to remediate this issue, users should redeploy from the latest version of awslabs/virtual-engineering-workbench.">
+          <div class="headline"><h2>CVE-2026-119085</h2><span class="pill">CRITICAL · 9.4</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-119085" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Improper neutralization of special elements used in a template engine in the publishing component of Amazon Virtual Engineering Workbench (VEW) could allow a remote authenticated third party to run arbitrary code with the permissions of the publishing Lambda&#x27;s IAM role. This could allow access to data and resources…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-MF9W-9V72-CQM9</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-88811 missing filtering in the suse rancher manager meta proxy could cause passed in rancher credentials to be leaked to cloud providers. this affects suse rancher 2.15.0 up to 2.15.3, 2.14.0 up to 2.14.7, 2.13.0 up to 2.13.11,">
+          <div class="headline"><h2>CVE-2026-88811</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-88811" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Missing filtering in the SUSE Rancher Manager meta proxy could cause passed in rancher credentials to be leaked to cloud providers. This affects SUSE Rancher 2.15.0 up to 2.15.3, 2.14.0 up to 2.14.7, 2.13.0 up to 2.13.11,</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-X82X-2QJ6-5RM2</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-106803 a stack-based buffer overflow exists in kamailio v6.1.3 and v6.1.4 in the ims_registrar_pcscf module. when processing a crafted application/reginfo+xml notify message, process_contact() copies an attacker-controlled port value from the alias parameter into a fixed 5-byte stack buffer without validating its length. an unauthenticated remote attacker can trigger stack corruption and terminate the p-cscf process, resulting in denial of service.">
+          <div class="headline"><h2>CVE-2026-106803</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-106803" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A stack-based buffer overflow exists in Kamailio v6.1.3 and v6.1.4 in the ims_registrar_pcscf module. When processing a crafted application/reginfo+xml NOTIFY message, process_contact() copies an attacker-controlled port value from the alias parameter into a fixed 5-byte stack buffer without validating its length. An…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-105769 kaniko before 1.25.20 can send a microsoft entra id (azure ad) access token for azure resource manager to an attacker-controlled registry host. kaniko uses the azure container registry credential helper github.com/chrismellard/docker-credential-acr-env, which decides whether a host is an acr registry with an unanchored regular expression, so any hostname containing .azurecr.io, .azurecr.cn, .azurecr.de or .azurecr.us is accepted. kaniko consults this helper for any registry that has no credentials in the docker config and is not a google or amazon ecr registry, before contacting the registry. a dockerfile that references an image on a lookalike host, such as from x.azurecr.io.attacker.com/img or copy --from=&lt;image&gt;, causes the helper to obtain a token from the build&#x27;s azure identity (service principal environment variables, federated workload identity token, or managed identity) and post it to https://&lt;host&gt;/oauth2/exchange. the attacker can use the token against azure resource manager with the identity&#x27;s role assignments until it expires, and can exchange it for credentials to any acr registry the identity can access. no run instruction or push is required. this issue is fixed in 1.25.20.">
+          <div class="headline"><h2>CVE-2026-105769</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-105769" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">kaniko before 1.25.20 can send a Microsoft Entra ID (Azure AD) access token for Azure Resource Manager to an attacker-controlled registry host. kaniko uses the Azure Container Registry credential helper github.com/chrismellard/docker-credential-acr-env, which decides whether a host is an ACR registry with an…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-5Q7H-W9JF-CX97</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-94290 suse rancher fleet clusters reference a kubeconfig secret that the controller uses to install and manage a fleet agent on the target cluster. the controller did not sufficiently restrict which kubeconfig secrets a fleet cluster object was allowed to reference. as a result, a fleet cluster defined in a namespace an ordinary user controls could be associated with administrative credentials for the management cluster itself, causing the controller to manage the management cluster on that user&#x27;s behalf and to run that user&#x27;s fleet content there with elevated privileges. this affects suse rancher fleet 0.16.0 up to 0.16.3, 0.15.0 up to 0.15.8, 0.14.0 up to 0.14.12, 0.13.0 up to 0.13.17 and possible older versions.">
+          <div class="headline"><h2>CVE-2026-94290</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-94290" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">SUSE Rancher Fleet clusters reference a kubeconfig secret that the controller uses to install and manage a Fleet agent on the target cluster. The controller did not sufficiently restrict which kubeconfig secrets a Fleet Cluster object was allowed to reference. As a result, a Fleet cluster defined in a namespace an…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-QFMW-GW96-FFCR</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120459 python-jose through 3.5.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to forge jwts because hmackey and cryptographyhmackey accept zero-length hmac secrets. when an application&#x27;s hs256/hs384/hs512 verification key resolves to empty, such as an oct jwk with empty k, attackers can forge tokens with arbitrary claims that jwt.decode accepts.">
+          <div class="headline"><h2>CVE-2026-120459</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120459" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">python-jose through 3.5.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to forge JWTs because HMACKey and CryptographyHMACKey accept zero-length HMAC secrets. When an application&#x27;s HS256/HS384/HS512 verification key resolves to empty, such as an oct JWK with empty k, attackers…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120447 hotgo 2.8.4 through 2.15.1 contains an authentication bypass vulnerability that allows unauthenticated attackers to choose the sms login verification code by supplying the code field to /admin/sms/send. attackers who know a user&#x27;s mobile number can set a known code and sign in through /admin/site/mobilelogin to take over accounts, including administrators.">
+          <div class="headline"><h2>CVE-2026-120447</h2><span class="pill">CRITICAL · 9.2</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120447" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">HotGo 2.8.4 through 2.15.1 contains an authentication bypass vulnerability that allows unauthenticated attackers to choose the SMS login verification code by supplying the Code field to /admin/sms/send. Attackers who know a user&#x27;s mobile number can set a known code and sign in through /admin/site/mobileLogin to take…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120442 ape-volo-admin before 3.6.1 contains an authentication bypass vulnerability that allows unauthenticated attackers to forge administrator tokens using a hardcoded jwt signing key in appsettings.json. attackers can sign tokens offline with the jti claim set to the seeded administrator id to gain full api control over users, roles, permissions and data.">
+          <div class="headline"><h2>CVE-2026-120442</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120442" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">ape-volo-admin before 3.6.1 contains an authentication bypass vulnerability that allows unauthenticated attackers to forge administrator tokens using a hardcoded JWT signing key in appsettings.json. Attackers can sign tokens offline with the jti claim set to the seeded administrator id to gain full API control over…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-116606 an authentication bypass in barracuda email security gateway versions earlier than 9.4.0.030 allows an unauthenticated remote attacker to invoke a configuration-import function and restore a crafted, compatible backup archive, resulting in unauthorized modification of the appliance’s global configuration.">
+          <div class="headline"><h2>CVE-2026-116606</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-116606" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">An authentication bypass in Barracuda Email Security Gateway versions earlier than 9.4.0.030 allows an unauthenticated remote attacker to invoke a configuration-import function and restore a crafted, compatible backup archive, resulting in unauthorized modification of the appliance’s global configuration.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120213 @fastify/http-proxy is a fastify plugin that proxies http requests to an upstream server under a configured prefix. in versions 9.0.0 through 11.6.5, when an application uses parameterized prefix and rewriteprefix options to pin clients to a fixed upstream path, the plugin substitutes url-decoded route parameters into rewriteprefix without re-encoding them. a parameter value that encodes a path separator together with a fragment or query delimiter therefore decodes into real separators and delimiters that inject extra upstream path segments and strip the mandatory suffix the rewriteprefix was meant to enforce, without using any dot-dot traversal. an unauthenticated remote attacker can use this to reach upstream locations outside the intended prefix, leading to path-restriction bypass and, depending on the upstream, server-side request forgery or authorization bypass in the proxied service. the issue is fixed in @fastify/http-proxy 11.6.6, and users should upgrade to 11.6.6 or later. there is no workaround other than upgrading.">
+          <div class="headline"><h2>CVE-2026-120213</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120213" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">@fastify/http-proxy is a Fastify plugin that proxies HTTP requests to an upstream server under a configured prefix. In versions 9.0.0 through 11.6.5, when an application uses parameterized prefix and rewritePrefix options to pin clients to a fixed upstream path, the plugin substitutes URL-decoded route parameters into…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-H3VP-4JFR-V364</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120345 a vulnerability was found in wavlink wn551x3-a m51x3_v251020-wo-182e965. this impacts the function sub_41a430 of the file /bin/ioos of the component dns resolution handler. performing a manipulation of the argument data results in os command injection. it is possible to initiate the attack remotely. the exploit has been made public and could be used. the vendor was contacted early about this disclosure.">
+          <div class="headline"><h2>CVE-2026-120345</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120345" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability was found in WAVLINK WN551X3-A M51X3_V251020-WO-182e965. This impacts the function sub_41a430 of the file /bin/ioos of the component DNS Resolution Handler. Performing a manipulation of the argument data results in os command injection. It is possible to initiate the attack remotely. The exploit has…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2025-11969 the system rest apis do not correctly enforce access control mechanisms, allowing users with lower privilege roles to execute administrative actions that should be restricted. this weakness permits unauthorized operations on the affected product. successful exploitation could enable a malicious actor to perform unauthorized administrative operations, including executing administrative functions. apis exposed through the wso2 api manager&#x27;s api gateway are not affected by this vulnerability.">
+          <div class="headline"><h2>CVE-2025-11969</h2><span class="pill">CRITICAL · 9.4</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-11969" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The System REST APIs do not correctly enforce access control mechanisms, allowing users with lower privilege roles to execute administrative actions that should be restricted. This weakness permits unauthorized operations on the affected product. Successful exploitation could enable a malicious actor to perform…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: Low</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120344 a vulnerability has been found in wavlink wn551x3-a m51x3_v251020-wo-182e965. this affects the function system of the file /bin/ioos of the component wireguard cli group handler. such manipulation of the argument group_name leads to os command injection. the attack may be performed from remote. the exploit has been disclosed to the public and may be used. the vendor was contacted early about this disclosure.">
+          <div class="headline"><h2>CVE-2026-120344</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120344" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability has been found in WAVLINK WN551X3-A M51X3_V251020-WO-182e965. This affects the function system of the file /bin/ioos of the component WireGuard CLI Group Handler. Such manipulation of the argument group_name leads to os command injection. The attack may be performed from remote. The exploit has been…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120283 a vulnerability was identified in linksys e8450 1.2.00.360516. affected is the function strcpy of the file /www/cgi-bin/portal.cgi. such manipulation of the argument hidden_timezone leads to stack-based buffer overflow. the attack can be executed remotely. the vendor was contacted early about this disclosure but did not respond in any way.">
+          <div class="headline"><h2>CVE-2026-120283</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120283" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability was identified in Linksys E8450 1.2.00.360516. Affected is the function strcpy of the file /www/cgi-bin/portal.cgi. Such manipulation of the argument hidden_timezone leads to stack-based buffer overflow. The attack can be executed remotely. The vendor was contacted early about this disclosure but did…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120281 a vulnerability was found in wavlink wn536ax6-a v260507. this affects the function strcpy of the file /protocol.csp of the component openvpn handler. the manipulation of the argument openvpn_ip results in stack-based buffer overflow. the attack may be launched remotely. the exploit has been made public and could be used. the vendor was contacted early about this disclosure.">
+          <div class="headline"><h2>CVE-2026-120281</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120281" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability was found in WAVLINK WN536AX6-A V260507. This affects the function strcpy of the file /protocol.csp of the component OpenVPN Handler. The manipulation of the argument openvpn_ip results in stack-based buffer overflow. The attack may be launched remotely. The exploit has been made public and could be…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120280 a vulnerability has been found in wavlink wn536ax6-a v260507. the impacted element is the function wireguard_cli_group handler of the file /protocol.csp of the component wireguard. the manipulation of the argument group_id/group_name leads to os command injection. the attack may be initiated remotely. the exploit has been disclosed to the public and may be used. the vendor was contacted early about this disclosure.">
+          <div class="headline"><h2>CVE-2026-120280</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120280" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability has been found in WAVLINK WN536AX6-A V260507. The impacted element is the function wireguard_cli_group handler of the file /protocol.csp of the component WireGuard. The manipulation of the argument group_id/group_name leads to os command injection. The attack may be initiated remotely. The exploit has…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120279 a flaw has been found in wavlink wn536ax6-a v260507. the affected element is an unknown function of the file /protocol.csp of the component openvpn_cli handler. executing a manipulation of the argument file_id can lead to os command injection. the attack can be launched remotely. the exploit has been published and may be used. the vendor was contacted early about this disclosure.">
+          <div class="headline"><h2>CVE-2026-120279</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120279" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A flaw has been found in WAVLINK WN536AX6-A V260507. The affected element is an unknown function of the file /protocol.csp of the component openvpn_cli Handler. Executing a manipulation of the argument file_id can lead to os command injection. The attack can be launched remotely. The exploit has been published and may…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120277 a security vulnerability has been detected in wavlink wn536ax6-a v260507_2.0.0. this issue affects the function sub_41a1d8 of the file /bin/ioos of the component wireguard cli group handler. such manipulation of the argument group_name leads to os command injection. it is possible to launch the attack remotely. the exploit has been disclosed publicly and may be used. the vendor was contacted early about this disclosure.">
+          <div class="headline"><h2>CVE-2026-120277</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120277" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A security vulnerability has been detected in WAVLINK WN536AX6-A V260507_2.0.0. This issue affects the function sub_41a1d8 of the file /bin/ioos of the component WireGuard CLI Group Handler. Such manipulation of the argument group_name leads to os command injection. It is possible to launch the attack remotely. The…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120276 a weakness has been identified in wavlink wn536ax6-a v260507_2.0.0. this vulnerability affects the function sub_416760 of the file /bin/ioos of the component web management interface. this manipulation of the argument group_name causes os command injection. it is possible to initiate the attack remotely. the exploit has been made available to the public and could be used for attacks. the vendor was contacted early about this disclosure.">
+          <div class="headline"><h2>CVE-2026-120276</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120276" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A weakness has been identified in WAVLINK WN536AX6-A V260507_2.0.0. This vulnerability affects the function sub_416760 of the file /bin/ioos of the component Web Management Interface. This manipulation of the argument group_name causes os command injection. It is possible to initiate the attack remotely. The exploit…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-62048 improper neutralization of special elements used in an sql command (&#x27;sql injection&#x27;) vulnerability in liquid web / stellarwp bookit bookit allows sql injection.this issue affects bookit: from n/a through 2.6.0.6.">
+          <div class="headline"><h2>CVE-2026-62048</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-01 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-62048" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Improper Neutralization of Special Elements used in an SQL Command (&#x27;SQL Injection&#x27;) vulnerability in Liquid Web / StellarWP BookIt bookit allows SQL Injection.This issue affects BookIt: from n/a through 2.6.0.6.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: None; Availability: Low</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120338 prefab ui&#x27;s generative ui sandbox runs caller-supplied python inside pyodide, python compiled to webassembly, in a deno subprocess. the feature is documented as isolation for untrusted code, including llm-written ui. from prefab-ui 0.14.0 through 0.20.2 the launcher starts deno with unrestricted --allow-read, --allow-write, and --allow-net, and the runner leaves the deno api on the javascript global object. pyodide&#x27;s js module proxies that global, so the python can call deno.readtextfilesync and deno.writetextfilesync. a caller who can supply the code can read and write files as the server os user, and can persist code execution by writing a .pth file into the server virtualenv&#x27;s site-packages. the usual remote path is fastmcp&#x27;s generativeui provider, which registers the mcp tool generate_prefab_ui and forwards that tool&#x27;s code argument into this sandbox. on a fastmcp server with no authentication configured, any client who can reach the server can call the tool. with authentication, any client allowed to call tools can. generative ui is opt-in, and the host must have deno installed. confirmed on prefab-ui 0.20.2. fixed in 0.21.0: after the runtime and prefab sources load, the runner revokes deno read, write, and network permission before it accepts code, the process is started with --no-prompt so a permission request cannot grant them again, and bootstrap network access is limited to cdn.jsdelivr.net. the fix is commit 030f074 (pull request 538).">
+          <div class="headline"><h2>CVE-2026-120338</h2><span class="pill">CRITICAL · 10.0</span></div>
+          <p class="meta">Published 2026-11-01 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120338" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Prefab UI&#x27;s Generative UI sandbox runs caller-supplied Python inside Pyodide, Python compiled to WebAssembly, in a Deno subprocess. The feature is documented as isolation for untrusted code, including LLM-written UI. From prefab-ui 0.14.0 through 0.20.2 the launcher starts Deno with unrestricted --allow-read,…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-595Q-JV4R-Q7J9</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120308 a beta9 tenant can attach a volume when deploying a function, endpoint, or task queue. the gateway builds the host path by joining the shared volumes root, the workspace name, and the volume identifier from the stub configuration. nothing checks that the identifier names a volume that workspace owns. parent-directory segments in the identifier collapse the joined path to the worker&#x27;s filesystem root, and the worker bind-mounts that path into the sandbox read-write unless the volume was explicitly marked read-only. a tenant with a workspace token can therefore read and write the worker&#x27;s files, including other tenants&#x27; volumes stored on that machine. confirmed against gateway 0.1.769 and worker 0.1.745. fixed in gateway 0.1.776 and worker 0.1.756: volume identifiers and mount paths are validated before a mount is built, including for stubs saved before the check existed, and the gateway rejects a volume that does not exist or is not owned by the workspace.">
+          <div class="headline"><h2>CVE-2026-120308</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-01 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120308" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A Beta9 tenant can attach a volume when deploying a function, endpoint, or task queue. The gateway builds the host path by joining the shared volumes root, the workspace name, and the volume identifier from the stub configuration. Nothing checks that the identifier names a volume that workspace owns. Parent-directory…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120307 the beta9 worker serves the sandbox file api from outside the container. gethostpathfromcontainerpath turns the tenant&#x27;s container path into a worker path. if the unresolved path starts with a mount destination, including the default upload mount at /tmp/.beta9, the remainder is joined onto that mount&#x27;s source with filepath.join, which cleans parent-directory segments after the prefix check. a long enough run of those segments names any absolute path on the worker. a path that matches no mount is joined onto the container root and opened in the worker&#x27;s own filesystem, so an absolute symbolic link such as /var/run pointing at /run is followed against the worker root. upload, download, stat, list, find-in-files, replace-in-files, and delete-file all call this helper. a tenant with a workspace token and one running sandbox can read, write, list, and delete files on the hosting worker as root, including files of other tenants on that machine. a read-only proof downloaded the worker pod&#x27;s kubernetes service account token through the file api for a path that did not exist inside the sandbox. in the shipped remote-node manifests that service account is bound to cluster-admin. fixed in worker 0.1.756: sandbox file operations and workspace sync open paths with os.openroot, so parent-directory and symlink lookups stay inside the container root or the mount source.">
+          <div class="headline"><h2>CVE-2026-120307</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-01 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120307" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Beta9 worker serves the sandbox file API from outside the container. getHostPathFromContainerPath turns the tenant&#x27;s container path into a worker path. If the unresolved path starts with a mount destination, including the default upload mount at /tmp/.beta9, the remainder is joined onto that mount&#x27;s source with…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120306 beta9 turns each shell command in a tenant image definition into a dockerfile run line and executes it with buildah on the build worker. the worker image sets buildah_isolation=chroot, and no buildah invocation passes --isolation, so the step only changes its filesystem root. it keeps the worker pod&#x27;s pid, network, ipc, and user namespaces, runs as uid 0, and holds cap_dac_override. pid 1 in that procfs is the worker entrypoint, so /proc/1/root is the worker container&#x27;s filesystem and is writable. that filesystem contains the runc, buildah, and runsc binaries the worker uses to start tenant containers, the worker&#x27;s kubernetes service account token, and the host directories mounted into the pod. worker pods are privileged. clip v2 layered builds are the default, so a tenant with a workspace token reaches this by submitting one image build. the read-only proof confirmed the shared namespaces, cap_dac_override, and that the worker&#x27;s runc binary is visible at /proc/1/root. fixed in worker 0.1.756: buildah run steps, including the workdir mkdir, use oci isolation with private pid, ipc, and network namespaces, and tenant arg values are passed only into the build container.">
+          <div class="headline"><h2>CVE-2026-120306</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-01 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120306" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Beta9 turns each shell command in a tenant image definition into a Dockerfile RUN line and executes it with Buildah on the build worker. The worker image sets BUILDAH_ISOLATION=chroot, and no buildah invocation passes --isolation, so the step only changes its filesystem root. It keeps the worker pod&#x27;s PID, network,…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120198 a vulnerability has been found in wavlink wl-wn530be1-a v251117. affected is the function con_check_read_finish of the file /protocol.csp. such manipulation of the argument group_name/ip-from leads to command injection. it is possible to launch the attack remotely. the exploit has been disclosed to the public and may be used. the vendor was contacted early about this disclosure.">
+          <div class="headline"><h2>CVE-2026-120198</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-01 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120198" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability has been found in WAVLINK WL-WN530BE1-A V251117. Affected is the function con_check_read_finish of the file /protocol.csp. Such manipulation of the argument group_name/IP-FROM leads to command injection. It is possible to launch the attack remotely. The exploit has been disclosed to the public and may…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120195 a security vulnerability has been detected in wavlink wl-wn579a3-a 2026-03-10-94f93d4. the impacted element is the function set_wzdgwmesh of the file /cgi-bin/adm.cgi of the component initial setup wizard. the manipulation of the argument wlan_ssid leads to os command injection. the attack is possible to be carried out remotely. the exploit has been disclosed publicly and may be used. the vendor was contacted early about this disclosure.">
+          <div class="headline"><h2>CVE-2026-120195</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-01 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120195" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A security vulnerability has been detected in WAVLINK WL-WN579A3-A 2026-03-10-94f93d4. The impacted element is the function set_wzdgwMesh of the file /cgi-bin/adm.cgi of the component Initial Setup Wizard. The manipulation of the argument wlan_ssid leads to os command injection. The attack is possible to be carried…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120189 a vulnerability was identified in d-link dir-505 1.10b02. affected is the function save_upload_file/mp_upload_file of the file /usr/bin/tftpd of the component tftp upload filename handler. the manipulation leads to stack-based buffer overflow. the attack is possible to be carried out remotely. the exploit is publicly available and might be used.">
+          <div class="headline"><h2>CVE-2026-120189</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-01 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120189" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability was identified in D-Link DIR-505 1.10B02. Affected is the function save_upload_file/mp_upload_file of the file /usr/bin/tftpd of the component TFTP Upload Filename Handler. The manipulation leads to stack-based buffer overflow. The attack is possible to be carried out remotely. The exploit is publicly…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article></section>
+  <script>
+    const search=document.getElementById('search');
+    search.addEventListener('input',()=>{
+      for (const card of document.querySelectorAll('.card')) {
+        card.hidden=!card.dataset.search.includes(search.value.toLowerCase().trim());
+      }
+    });
+  </script>
+</main></body></html>
