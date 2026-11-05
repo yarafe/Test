@@ -1,6 +1,6 @@
 # FortiCNAPP Windows Agent on Azure — Terraform
 
-Install the FortiCNAPP Windows agent on selected **existing Azure Windows VMs**, verify the service, and uninstall the agent when its Terraform extension is destroyed.
+Install the FortiCNAPP Windows agent on selected **multiple existing Azure Windows VMs**, verify the service, and uninstall the agent when its Terraform extension is destroyed.
 
 ## What it does
 
