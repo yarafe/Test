@@ -23,12 +23,1107 @@
 </head>
 <body><main>
   <div class="top"><div><h1>Critical CVEs — 2026-11</h1>
-  <p class="muted">192 Critical / 2629 total CVEs · Generated 2026-11-06 15:07 UTC</p></div>
+  <p class="muted">279 Critical / 3309 total CVEs · Generated 2026-11-07 14:06 UTC</p></div>
   <input id="search" type="search" placeholder="Search CVE or description" aria-label="Search CVEs"></div>
   <div class="info">Source: NIST NVD CVE API. Entries are filtered by the selected CVSS metric's <b>CRITICAL</b> severity.
   Affected versions are NVD CPE applicability conditions (which may include additional AND constraints), not vendor-confirmed fixed versions.
   SAPIs and solutions may require vendor advisory verification. Data and severity can change after publication.</div>
   <section id="results">
+        <article class="card" data-search="cve-2026-122041 the checkout field editor for woocommerce (pro) plugin for wordpress is vulnerable to unauthorized deletion of arbitrary attachments due to a missing capability/ownership check in the ajax_remove_uploaded() function in versions up to, and including, 3.8.0. the handler is registered for both wp_ajax and wp_ajax_nopriv and is gated solely by the &#x27;file_handling_nonce&#x27; nonce, which is emitted inside the public checkout page markup (data-nonce attribute) whenever a file upload checkout field is configured. this makes it possible for unauthenticated attackers to delete arbitrary attachments (including those belonging to other users or posts) by submitting a crafted attachment_id, which can lead to loss of important media and potential denial of service.">
+          <div class="headline"><h2>CVE-2026-122041</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-122041" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Checkout Field Editor for WooCommerce (Pro) plugin for WordPress is vulnerable to unauthorized deletion of arbitrary attachments due to a missing capability/ownership check in the ajax_remove_uploaded() function in versions up to, and including, 3.8.0. The handler is registered for both wp_ajax and wp_ajax_nopriv…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: None; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-119075 the registration form for woocommerce plugin for wordpress is vulnerable to privilege escalation due to a missing allow-list check in the formhandler::validate_checkout_fields() function in versions up to, and including, 1.1.4 the my account registration path (validate_fields()) validates a submitted &#x27;tgwcfb/user-roles&#x27; value against the form&#x27;s configured allowed roles, but the checkout registration path (validate_checkout_fields(), hooked to woocommerce_after_checkout_validation) stores the raw $_post[&#x27;user_roles&#x27;] value in $this-&gt;valid_data without any allow-list enforcement, and add_user_data() then injects that value into woocommerce_new_customer_data as the new account&#x27;s role. this makes it possible for unauthenticated attackers to elevate their privileges to administrator by supplying a user_roles=administrator parameter when creating an account during checkout, resulting in full site takeover.">
+          <div class="headline"><h2>CVE-2026-119075</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-119075" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Registration Form for WooCommerce plugin for WordPress is vulnerable to privilege escalation due to a missing allow-list check in the FormHandler::validate_checkout_fields() function in versions up to, and including, 1.1.4 The My Account registration path (validate_fields()) validates a submitted…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-118066 the appointment booking plugin – latepoint | calendar &amp; scheduling for wordpress plugin for wordpress is vulnerable to authentication bypass via account takeover in all versions up to, and including, 5.7.6. this is due to the `osmodel::build_conditions_query()` function in `lib/models/model.php` comparing where-clause values against the literal strings `&#x27;is null&#x27;` and `&#x27;is not null&#x27;` and concatenating a match directly into sql without binding it as a parameter, a flaw that neither `sanitize_text_field()` nor the 5.7.5 `is_scalar()` hardening guard closes, since both pass the scalar sentinel through unchanged. this makes it possible for unauthenticated attackers to send `params[password_reset_token]=is not null` to the public `customer_cabinet__change_password` ajax route to match every non-null `account_nonse` value, resolving to the lowest-id customer and overwriting that customer&#x27;s password to an attacker-chosen value — granting full access to their bookings, orders, and pii, and, when the `wp_users_as_customers` option is enabled, takeover of the linked wordpress subscriber or customer-role account. the attacker can first identify the target customer&#x27;s email by sending `params[order_intent_key]=is not null` to the public `steps__start_from_order_intent` route, which returns the name and email from the first matching order intent, and can then self-arm the required 15-minute password-reset freshness window by triggering a reset for that customer directly.">
+          <div class="headline"><h2>CVE-2026-118066</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-118066" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Appointment Booking Plugin – LatePoint | Calendar &amp; Scheduling for WordPress plugin for WordPress is vulnerable to Authentication Bypass via Account Takeover in all versions up to, and including, 5.7.6. This is due to the `OsModel::build_conditions_query()` function in `lib/models/model.php` comparing WHERE-clause…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-104014 the naimur email otp verification for woocommerce plugin for wordpress is vulnerable to authentication bypass in versions up to, and including, 2.1.0. this is due to the plugin&#x27;s password-reset finalization endpoint (the wp_ajax_nopriv_ceovw_update_new_password action handled by ceovw_ajax::update_new_password()) authorizing the reset solely by the presence of a database row marking an email as &#x27;verified&#x27;, with no timestamp check, no session binding, and no per-reset token — combined with mark_otp_as_verified_for_reset() leaving the row in that state after a user enters their code (abandoning the flow leaves the row behind), and a scheduled &#x27;ceovw_cleanup_expired_otps_event&#x27; cron that has no add_action() handler anywhere in the plugin so cleanup never runs. this makes it possible for unauthenticated attackers to take over any account whose owner previously requested and verified a password-reset code and did not immediately finish choosing a new password — the attacker needs only the victim&#x27;s email address and a nonce that the plugin itself localizes publicly into the ceovw_app global on the woocommerce account page for logged-out visitors, after which they call the endpoint, overwrite the victim&#x27;s password, and are returned a live wordpress_logged_in_ session cookie for that user (full site takeover if the account is an administrator).">
+          <div class="headline"><h2>CVE-2026-104014</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-104014" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Naimur Email OTP Verification for WooCommerce plugin for WordPress is vulnerable to authentication bypass in versions up to, and including, 2.1.0. This is due to the plugin&#x27;s password-reset finalization endpoint (the wp_ajax_nopriv_ceovw_update_new_password action handled by CEOVW_AJAX::update_new_password())…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-18838 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information and modify api configurations due to improper authentication. identity information supplied in requests is not sufficiently verified, which could allow a caller to impersonate another user.">
+          <div class="headline"><h2>CVE-2026-18838</h2><span class="pill">CRITICAL · 9.4</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-18838" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information and modify API configurations due to improper authentication. Identity information supplied in requests is not sufficiently verified, which could allow a caller to impersonate another user.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: Low</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-18836 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information due to server-side request forgery. the affected component can be made to send requests to unintended destinations and return the response to the attacker.">
+          <div class="headline"><h2>CVE-2026-18836</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-18836" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information due to server-side request forgery. The affected component can be made to send requests to unintended destinations and return the response to the attacker.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: Low; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-18535 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 are vulnerable to a regular expression denial of service (redos) attack and to improper neutralisation of wildcard query operators.">
+          <div class="headline"><h2>CVE-2026-18535</h2><span class="pill">CRITICAL · 9.6</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-18535" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 are vulnerable to a Regular Expression Denial of Service (ReDoS) attack and to improper neutralisation of wildcard query operators.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: None; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17410 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to access and modify other tenants&#x27; portal data due to improper neutralization of argument delimiters.">
+          <div class="headline"><h2>CVE-2026-17410</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17410" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to access and modify other tenants&#x27; portal data due to improper neutralization of argument delimiters.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17409 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to execute unauthorized administrative operations and obtain sensitive information due to improper handling of case sensitivity. access controls are not applied consistently to all variations of a request, which could allow restricted operations to be reached.">
+          <div class="headline"><h2>CVE-2026-17409</h2><span class="pill">CRITICAL · 9.4</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17409" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to execute unauthorized administrative operations and obtain sensitive information due to improper handling of case sensitivity. Access controls are not applied consistently to all variations of a request, which…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: Low; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17408 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to execute arbitrary code due to improper neutralization of special elements in an os command.">
+          <div class="headline"><h2>CVE-2026-17408</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17408" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to execute arbitrary code due to improper neutralization of special elements in an OS command.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17403 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to gain full administrative control due to the use of hard-coded credentials.">
+          <div class="headline"><h2>CVE-2026-17403</h2><span class="pill">CRITICAL · 9.0</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17403" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to gain full administrative control due to the use of hard-coded credentials.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17402 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary commands due to os command injection. user-supplied input is not properly neutralized before it is passed to the operating system, which could allow commands to run on the underlying host.">
+          <div class="headline"><h2>CVE-2026-17402</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17402" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary commands due to OS command injection. User-supplied input is not properly neutralized before it is passed to the operating system, which could allow commands to run on the…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17399 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to insufficient validation of uploaded content. content uploaded to the product is not sufficiently checked before it is processed, which could allow code to run on the server.">
+          <div class="headline"><h2>CVE-2026-17399</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17399" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to insufficient validation of uploaded content. Content uploaded to the product is not sufficiently checked before it is processed, which could allow code to run on the…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17396 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information due to sql injection.">
+          <div class="headline"><h2>CVE-2026-17396</h2><span class="pill">CRITICAL · 9.6</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17396" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information due to SQL injection.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17394 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information due to improperly controlled modification of object attributes. a user-supplied value could change an access-related setting that should be controlled by the system, which could expose sensitive information.">
+          <div class="headline"><h2>CVE-2026-17394</h2><span class="pill">CRITICAL · 9.6</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17394" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information due to improperly controlled modification of object attributes. A user-supplied value could change an access-related setting that should be controlled by the system,…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17392 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to gain unauthorized administrative access to other tenants due to ldap injection. user-supplied input is not properly neutralized in directory queries, which could change the query and grant access beyond the user&#x27;s own tenant.">
+          <div class="headline"><h2>CVE-2026-17392</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17392" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to gain unauthorized administrative access to other tenants due to LDAP injection. User-supplied input is not properly neutralized in directory queries, which could change the query and grant access…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17360 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to gain full administrative control due to the use of hard-coded credentials.">
+          <div class="headline"><h2>CVE-2026-17360</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17360" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to gain full administrative control due to the use of hard-coded credentials.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17359 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to improper control of generation of code. a user-supplied value can influence code that the product generates, which could lead to code execution.">
+          <div class="headline"><h2>CVE-2026-17359</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17359" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to improper control of generation of code. A user-supplied value can influence code that the product generates, which could lead to code execution.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17354 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to perform arbitrary file writes due to path traversal.">
+          <div class="headline"><h2>CVE-2026-17354</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17354" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to perform arbitrary file writes due to path traversal.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17353 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information and bypass security restrictions due to server-side request forgery.">
+          <div class="headline"><h2>CVE-2026-17353</h2><span class="pill">CRITICAL · 9.6</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17353" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information and bypass security restrictions due to server-side request forgery.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17344 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information due to server-side request forgery. a service that can be reached without authentication could be made to send requests to unintended destinations.">
+          <div class="headline"><h2>CVE-2026-17344</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17344" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information due to server-side request forgery. A service that can be reached without authentication could be made to send requests to unintended destinations.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: Low; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17342 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to improper control of generation of code.">
+          <div class="headline"><h2>CVE-2026-17342</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17342" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to improper control of generation of code.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17340 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to execute arbitrary code due to a path traversal vulnerability.">
+          <div class="headline"><h2>CVE-2026-17340</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17340" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to execute arbitrary code due to a path traversal vulnerability.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17339 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to access or delete resources belonging to other tenants due to path traversal.">
+          <div class="headline"><h2>CVE-2026-17339</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17339" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to access or delete resources belonging to other tenants due to path traversal.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: Low; Integrity: High; Availability: Low</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17338 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information due to broken object-level authorization.">
+          <div class="headline"><h2>CVE-2026-17338</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17338" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information due to broken object-level authorization.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: Low; Availability: Low</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17336 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary sql commands due to improper neutralization of special elements used in an sql command.">
+          <div class="headline"><h2>CVE-2026-17336</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17336" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary SQL commands due to improper neutralization of special elements used in an SQL command.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17329 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information due to improper validation of endpoint urls.">
+          <div class="headline"><h2>CVE-2026-17329</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17329" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information due to improper validation of endpoint URLs.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: Low; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17313 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information and take control of gateway configuration due to authentication bypass via an alternate path.">
+          <div class="headline"><h2>CVE-2026-17313</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17313" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information and take control of gateway configuration due to authentication bypass via an alternate path.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17301 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow an unauthenticated attacker to bypass authentication due to improper verification of a cryptographic signature.">
+          <div class="headline"><h2>CVE-2026-17301</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17301" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow an unauthenticated attacker to bypass authentication due to improper verification of a cryptographic signature.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17299 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to perform arbitrary file reads and server-side request forgery due to unrestricted resolution of external references. externally referenced content in submitted definitions is not sufficiently restricted when processed, and the retrieved content could be returned to the attacker.">
+          <div class="headline"><h2>CVE-2026-17299</h2><span class="pill">CRITICAL · 9.6</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17299" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to perform arbitrary file reads and server-side request forgery due to unrestricted resolution of external references. Externally referenced content in submitted definitions is not sufficiently…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17298 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information due to server-side request forgery.">
+          <div class="headline"><h2>CVE-2026-17298</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17298" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information due to server-side request forgery.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17297 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to perform an account takeover due to an open redirect vulnerability. the redirect address used during sign-in is not sufficiently validated, which could allow authentication results to be sent to an attacker-controlled location.">
+          <div class="headline"><h2>CVE-2026-17297</h2><span class="pill">CRITICAL · 9.6</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17297" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to perform an account takeover due to an open redirect vulnerability. The redirect address used during sign-in is not sufficiently validated, which could allow authentication results to be sent to an…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17296 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information due to server-side request forgery.">
+          <div class="headline"><h2>CVE-2026-17296</h2><span class="pill">CRITICAL · 9.6</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17296" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information due to server-side request forgery.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17292 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to take over ownership of other organizations due to broken object-level authorization. access checks on organization objects are incomplete, which could allow ownership of organizations the user does not control to be changed.">
+          <div class="headline"><h2>CVE-2026-17292</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17292" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to take over ownership of other organizations due to broken object-level authorization. Access checks on organization objects are incomplete, which could allow ownership of organizations the user does…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: Low; Integrity: High; Availability: Low</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17278 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to gain unauthorized access to sensitive api catalog and runtime configuration data due to improper authentication. information supplied by the client is not sufficiently verified, which could allow a caller to appear as a trusted party.">
+          <div class="headline"><h2>CVE-2026-17278</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17278" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to gain unauthorized access to sensitive API catalog and runtime configuration data due to improper authentication. Information supplied by the client is not sufficiently verified, which could allow a caller to appear as a trusted party.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17239 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to a path traversal vulnerability.">
+          <div class="headline"><h2>CVE-2026-17239</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17239" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to a path traversal vulnerability.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17158 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to gain elevated privileges due to improper authentication.">
+          <div class="headline"><h2>CVE-2026-17158</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17158" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to gain elevated privileges due to improper authentication.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17150 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code and access sensitive information from other tenants due to insufficient input validation. uploaded custom module content is not sufficiently validated before it is processed, which could allow code to run with access beyond the user&#x27;s own tenant.">
+          <div class="headline"><h2>CVE-2026-17150</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17150" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code and access sensitive information from other tenants due to insufficient input validation. Uploaded custom module content is not sufficiently validated before it is processed,…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17147 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code and perform unauthorized administrative actions due to a path traversal vulnerability.">
+          <div class="headline"><h2>CVE-2026-17147</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17147" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code and perform unauthorized administrative actions due to a path traversal vulnerability.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17146 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary javascript and obtain sensitive information due to improper input validation.">
+          <div class="headline"><h2>CVE-2026-17146</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17146" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary JavaScript and obtain sensitive information due to improper input validation.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17134 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary sql commands due to sql injection.">
+          <div class="headline"><h2>CVE-2026-17134</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17134" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary SQL commands due to SQL injection.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: Low</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17132 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary sql commands due to improper neutralization of special elements used in an sql command.">
+          <div class="headline"><h2>CVE-2026-17132</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17132" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary SQL commands due to improper neutralization of special elements used in an SQL command.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17131 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information due to server-side request forgery. restrictions on outbound requests can be bypassed, so the server could be made to contact unintended destinations and return the response.">
+          <div class="headline"><h2>CVE-2026-17131</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17131" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information due to server-side request forgery. Restrictions on outbound requests can be bypassed, so the server could be made to contact unintended destinations and return the response.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: Low; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17117 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to improperly controlled modification of object attributes. a user could set a field that should only be controlled by the system, which could lead to code execution.">
+          <div class="headline"><h2>CVE-2026-17117</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17117" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to improperly controlled modification of object attributes. A user could set a field that should only be controlled by the system, which could lead to code execution.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17066 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information and modify or delete data belonging to other tenants due to missing authorization.">
+          <div class="headline"><h2>CVE-2026-17066</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17066" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information and modify or delete data belonging to other tenants due to missing authorization.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17049 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information and modify arbitrary documents due to authorization bypass through user-controlled keys.">
+          <div class="headline"><h2>CVE-2026-17049</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17049" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information and modify arbitrary documents due to authorization bypass through user-controlled keys.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-16920 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to bypass security restrictions due to a confused deputy vulnerability.">
+          <div class="headline"><h2>CVE-2026-16920</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-16920" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to bypass security restrictions due to a confused deputy vulnerability.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-16918 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to access internal network resources due to server-side request forgery.">
+          <div class="headline"><h2>CVE-2026-16918</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-16918" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to access internal network resources due to server-side request forgery.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: Low; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-16884 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information due to an xml external entity (xxe) injection.">
+          <div class="headline"><h2>CVE-2026-16884</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-16884" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information due to an XML external entity (XXE) injection.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: Low; Availability: Low</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-16720 ibm api connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain valid access tokens for other users due to improper authentication. authentication against a connected directory service is not sufficiently enforced, which could allow another user&#x27;s identity to be assumed.">
+          <div class="headline"><h2>CVE-2026-16720</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-16720" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain valid access tokens for other users due to improper authentication. Authentication against a connected directory service is not sufficiently enforced, which could allow another user&#x27;s identity to be assumed.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-19803 the printcart store – web to print product designer for woocommerce plugin for wordpress is vulnerable to arbitrary file upload in all versions up to, and including, 2.13.2. this is due to the `nbu_crop_image` ajax handler accepting a user-supplied `url` parameter that `nbdesigner_io::convert_url_to_path()` concatenates onto the uploads base directory without normalizing or stripping `../` sequences, and then deriving both the output directory and output file extension via `pathinfo()` from the same attacker-controlled path — with no `stripimage()` call before `writeimage()` is invoked. this makes it possible for unauthenticated attackers to write attacker-controlled php content to arbitrary locations outside the uploads directory, resulting in remote code execution when the written file is subsequently requested. this vulnerability is only exploitable when the `nbdesigner_upload_popup_style` site option is set to `a` (advanced upload popup), which causes the handler to be registered for unauthenticated requests; however, the required `save-design` nonce is printed on the fully public frontend `upload-design-file` page, making it trivially obtainable by any anonymous visitor once that configuration is active.">
+          <div class="headline"><h2>CVE-2026-19803</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-19803" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Printcart Store – Web to Print Product Designer for WooCommerce plugin for WordPress is vulnerable to Arbitrary File Upload in all versions up to, and including, 2.13.2. This is due to the `nbu_crop_image` AJAX handler accepting a user-supplied `url` parameter that `Nbdesigner_IO::convert_url_to_path()`…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-17362 ibm api connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to create, modify, or delete tenants due to missing authorization.">
+          <div class="headline"><h2>CVE-2026-17362</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-17362" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to create, modify, or delete tenants due to missing authorization.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-123218 ibm aspera faspex 5.0.0 through 5.0.19 could allow an authorized user to craft a specific message to bypass user authorization and gain full administrative privileges.">
+          <div class="headline"><h2>CVE-2026-123218</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-123218" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">IBM Aspera Faspex 5.0.0 through 5.0.19 could allow an authorized user to craft a specific message to bypass user authorization and gain full administrative privileges.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-93754 the payever – woocommerce gateway plugin for wordpress is vulnerable to arbitrary file upload leading to remote code execution in various versions up to, and including, 4.8.0. three woocommerce-api callbacks (payever_set_sandbox_api_keys, payever_toggle_subscription, payever_synchronization_incoming) are registered with no authentication, capability check, or nonce, and the upload_image() routine writes a remotely fetched file to the public uploads directory using an attacker-controlled basename() before validating the file type. this makes it possible for unauthenticated attackers to write an executable php file and achieve remote code execution. note: the token-recovery leg of the full chain depends on the plugin&#x27;s outbound validatetoken() call to payever&#x27;s service; the unauthenticated hard-coded-credential identity overwrite (cwe-862/cwe-798) is independently exploitable.">
+          <div class="headline"><h2>CVE-2026-93754</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-07 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-93754" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The payever – WooCommerce Gateway plugin for WordPress is vulnerable to arbitrary file upload leading to remote code execution in various versions up to, and including, 4.8.0. Three WooCommerce-API callbacks (payever_set_sandbox_api_keys, payever_toggle_subscription, payever_synchronization_incoming) are registered…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-109469 authorization bypass through user-controlled key in entra device registration allows an unauthorized attacker to elevate privileges over a network.">
+          <div class="headline"><h2>CVE-2026-109469</h2><span class="pill">CRITICAL · 10.0</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-109469" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Authorization bypass through user-controlled key in Entra Device Registration allows an unauthorized attacker to elevate privileges over a network.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-68935 chartbrew is an open-source web application for creating charts from databases and apis. in versions 4.8.5 through 5.2.2, api connection creation and update operations accept the internal allowprivatehost field from user input. an authenticated user with permission to manage api connections can enable this field to bypass private and reserved-network destination restrictions. an upgrade migration also enables the override on pre-existing api connections. the per-connection setting takes precedence over cb_allow_private_network_calls , so disabling that instance option does not protect connections with the override enabled. successful exploitation allows requests to internal http services reachable from the chartbrew server, potentially disclosing information or triggering unauthorized actions depending on the target service. recognized cloud metadata endpoints remain separately blocked. this issue is fixed in version 5.2.3.">
+          <div class="headline"><h2>CVE-2026-68935</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-68935" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Chartbrew is an open-source web application for creating charts from databases and APIs. In versions 4.8.5 through 5.2.2, API connection creation and update operations accept the internal allowPrivateHost field from user input. An authenticated user with permission to manage API connections can enable this field to…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-4Q3V-5R7X-58Q2</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-59104 ugcs server before 6.2 contains an authentication bypass in the hci protocol login handler (loginhandler) exposed on tcp port 3334. when the user database contains exactly one user (the default single-operator installation), a loginrequest with empty userlogin and userpassword fields is interpreted as \&quot;use the only user\&quot; rather than as invalid credentials, and the server returns a fully authenticated session. because the service listens on all interfaces (0.0.0.0) without tls by default, an unauthenticated remote attacker with network access to port 3334 can obtain an authenticated session without knowing any credential and then issue privileged commands, including commanding connected drones and uploading flight routes.">
+          <div class="headline"><h2>CVE-2026-59104</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-59104" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">UgCS server before 6.2 contains an authentication bypass in the HCI protocol login handler (LoginHandler) exposed on TCP port 3334. When the user database contains exactly one user (the default single-operator installation), a LoginRequest with empty userLogin and userPassword fields is interpreted as \&quot;use the only…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-86044 jupyterlab desktop is the cross-platform desktop application for jupyterlab. prior to 4.6.2-1, jupyterlab desktop exposed getserverinfo to the renderer without confirming that the current page still had the local jupyter server origin. in a local managed session using jupyterlab before 4.4.8, an attacker can place a crafted mathjax link in an untrusted notebook. if a victim opens the notebook and clicks the link, the existing renderer navigates to an attacker-controlled site while retaining access to the preload bridge. the site can call getserverinfo to obtain the local server url and authentication token, then use the jupyter rest api to create and trust a notebook that executes arbitrary code as the victim. users whose environment already uses jupyterlab 4.4.8 or later are unaffected because the corrected link handling breaks the first step of the chain. this vulnerability is fixed in 4.6.2-1.">
+          <div class="headline"><h2>CVE-2026-86044</h2><span class="pill">CRITICAL · 9.6</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-86044" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">JupyterLab Desktop is the cross-platform desktop application for JupyterLab. Prior to 4.6.2-1, JupyterLab Desktop exposed getServerInfo to the renderer without confirming that the current page still had the local Jupyter server origin. In a local managed session using JupyterLab before 4.4.8, an attacker can place a…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-2MR8-962V-WC67</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-86005 chartbrew is an open-source web application that can connect directly to databases and apis and use the data to create charts. prior to 5.2.3, the administrative bullmq dashboard was mounted without an authentication check. the vulnerable surface is the bull board/bullmq administration dashboard at /apps/queues. a remote unauthenticated attacker reaches /apps/queues on a chartbrew instance where redis and bullmq are enabled and a reverse proxy does not independently block the route. the dashboard trusted network reachability as authorization and exposed its queue-management interface directly. redis and bullmq must be enabled and the route must be reachable. available actions depend on the installed bull board version and queue state, while confidentiality depends on job payload and log contents. an unauthenticated user can inspect exposed job payloads and logs and, when enabled by the installed version and queue state, retry or delete jobs or otherwise alter queue processing, affecting confidentiality, integrity, or availability. this issue is fixed in version 5.2.3.">
+          <div class="headline"><h2>CVE-2026-86005</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-86005" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Chartbrew is an open-source web application that can connect directly to databases and APIs and use the data to create charts. Prior to 5.2.3, the administrative BullMQ dashboard was mounted without an authentication check. The vulnerable surface is the Bull Board/BullMQ administration dashboard at /apps/queues. A…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-W8G3-J8RF-QC5J</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-85295 chartbrew is an open-source web application that can connect directly to databases and apis and use the data to create charts. prior to 5.2.3, four authentication helpers accepted session tokens signed with cb_secret, including known, weak, or shipped-default values. the vulnerable surface is session jwt fallback in server/modules/verifytoken.js, verifyuser.js, getuserfromtoken.js, and socketmanager.js across the api and socket layer. a stock source or repository docker compose deployment retains a known, weak, or default cb_secret and an attacker submits a forged hs256 token decoding to a target user id. knowing the symmetric secret lets the attacker create a token that the legacy verification fallback accepts as the target user without that user&#x27;s password or two-factor authentication. the condition includes stock source and repository docker compose installs and any otherwise known or weak cb_secret; a bare container where cb_secret is undefined is not affected by this fallback path. a forged session impersonates the chosen user across the entire api and socket layer and exercises that user&#x27;s chartbrew privileges. this issue is fixed in version 5.2.3.">
+          <div class="headline"><h2>CVE-2026-85295</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-85295" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Chartbrew is an open-source web application that can connect directly to databases and APIs and use the data to create charts. Prior to 5.2.3, four authentication helpers accepted session tokens signed with CB_SECRET, including known, weak, or shipped-default values. The vulnerable surface is session JWT fallback in…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-QVV4-R3Q6-8797</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-63439 2fauth is a web app to manage two-factor authentication (2fa) accounts and generate their security codes. prior to 8.0.0, when authentication_guard=reverse-proxy-guard is enabled, reverseproxyguard::user() reads the default remote_user identity header, or a custom identity header selected by the auth_proxy_header_for_user configuration setting, without confirming that the request originated from a configured trusted proxy. a remote client that can reach the application directly can forge the selected identity header and authenticate as an existing user, including an administrator, gaining access to stored 2fa secrets and account or application management functions. this issue is fixed in version 8.0.0.">
+          <div class="headline"><h2>CVE-2026-63439</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-63439" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">2FAuth is a web app to manage Two-Factor Authentication (2FA) accounts and generate their security codes. Prior to 8.0.0, when AUTHENTICATION_GUARD=reverse-proxy-guard is enabled, ReverseProxyGuard::user() reads the default REMOTE_USER identity header, or a custom identity header selected by the…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-MH8R-74X2-R457</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-63438 2fauth is a web app to manage two-factor authentication (2fa) accounts and generate their security codes. prior to 8.0.0, when authentication_guard=reverse-proxy-guard accepts authentication headers from a client that did not pass through a trusted proxy, remoteuserprovider::retrievebyid() creates an account for an unknown remote_user, promotes the first created account to administrator, and synchronizes the account email from the configured mail header. an unauthenticated remote client can therefore create an administrator on a fresh instance or impersonate and redirect email for a known account, exposing 2fa secrets and administrative functions. this issue is fixed in version 8.0.0.">
+          <div class="headline"><h2>CVE-2026-63438</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-63438" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">2FAuth is a web app to manage Two-Factor Authentication (2FA) accounts and generate their security codes. Prior to 8.0.0, when AUTHENTICATION_GUARD=reverse-proxy-guard accepts authentication headers from a client that did not pass through a trusted proxy, RemoteUserProvider::retrieveById() creates an account for an…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-R9XX-45M8-MW24</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-54349 chartbrew is an open-source web application that can connect directly to databases and apis and use the data to create charts. prior to 5.2.1, sql dashboard-variable substitution used attacker-controlled javascript replacement strings unsafely across sql connectors and separately failed to escape backslashes for mysql and mariadb quoted contexts. the vulnerable surface is public and embedded dashboard/chart requests that call applymysqlorpostgresvariables. an unauthenticated user sends crafted url filter values to a public or embedded chart backed by a stored sql query. replacement-string dollar sequences can alter sql independently of the database engine, while mysql and mariadb backslash handling provides a second quoted-string escape path. the target must expose a public or embedded chart using url-controlled variables in a sql query; only the backslash branch is specific to mysql and mariadb. injected sql can read, modify, or delete data available to the configured database account. this issue is fixed in version 5.2.1.">
+          <div class="headline"><h2>CVE-2026-54349</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-54349" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Chartbrew is an open-source web application that can connect directly to databases and APIs and use the data to create charts. Prior to 5.2.1, SQL dashboard-variable substitution used attacker-controlled JavaScript replacement strings unsafely across SQL connectors and separately failed to escape backslashes for MySQL…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-4WJ7-9GQ7-MRR2</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-102530 jupyterlab desktop is the cross-platform desktop application for jupyterlab. prior to 4.6.2-1, remote-server urls were inserted into the server-selection dialog and welcome view without safe encoding. an attacker who convinces a user to submit a crafted url can execute javascript in the welcome renderer and abuse its privileged ipc bridge to execute arbitrary code with the user’s privileges. the welcome view also unsafely renders rss news-feed titles; exploitation through this separate input path requires control over content delivered through the application’s jupyter blog feed or its cached feed data, rather than submission of a remote-server url. this issue affects all supported platforms and is fixed in version 4.6.2-1.">
+          <div class="headline"><h2>CVE-2026-102530</h2><span class="pill">CRITICAL · 9.4</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-102530" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">JupyterLab Desktop is the cross-platform desktop application for JupyterLab. Prior to 4.6.2-1, remote-server URLs were inserted into the server-selection dialog and Welcome view without safe encoding. An attacker who convinces a user to submit a crafted URL can execute JavaScript in the Welcome renderer and abuse its…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-VRJ4-R4FW-9RFH</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-58490 tracecat is an open-source security automation platform for teams and ai agents. from version 0.37.0 until 1.0.0-beta.49, docker compose deployments with saml enabled can render saml_signed_assertions and saml_signed_responses as empty values, overriding secure application defaults and disabling both signature requirements. an unauthenticated attacker who can reach the saml assertion consumer endpoint can submit a forged unsigned response for an existing tracecat user email address and obtain that user’s session. targeting an existing superadmin can result in superadmin account takeover. exploitation does not create users when saml user creation is disabled and does not affect default fargate or helm deployments. version 1.0.0-beta.49 removes the insecure deployment pass-through and requires signed assertions and responses.">
+          <div class="headline"><h2>CVE-2026-58490</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-58490" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Tracecat is an open-source security automation platform for teams and AI agents. From version 0.37.0 until 1.0.0-beta.49, Docker Compose deployments with SAML enabled can render SAML_SIGNED_ASSERTIONS and SAML_SIGNED_RESPONSES as empty values, overriding secure application defaults and disabling both signature…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-6G53-H6FH-C3PJ</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-124040 civetweb through 1.16, when built with use_http2 and enable_http2 on, contains a use-after-free vulnerability in handle_http2() that retains freed :method and :path pointers. unauthenticated remote attackers can send a later headers frame omitting these pseudo-headers to influence request method or path seen by access rules, or crash the server.">
+          <div class="headline"><h2>CVE-2026-124040</h2><span class="pill">CRITICAL · 9.2</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-124040" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">CivetWeb through 1.16, when built with USE_HTTP2 and enable_http2 on, contains a use-after-free vulnerability in handle_http2() that retains freed :method and :path pointers. Unauthenticated remote attackers can send a later HEADERS frame omitting these pseudo-headers to influence request method or path seen by access…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-71495 wanderer is a self-hosted trail database for saving and sharing adventures. prior to 0.20.0, when public_private_instance is not set to true, the unauthenticated post /api/v1/trail/download handler passes the attacker-controlled json url field directly to event.fetch() and returns the fetched response. this allows requests to internal services such as db:8090 and search:7700, cloud metadata addresses, and other network destinations, exposing returned data and permitting internal network reconnaissance or denial of service. this issue is fixed in version 0.20.0.">
+          <div class="headline"><h2>CVE-2026-71495</h2><span class="pill">CRITICAL · 10.0</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-71495" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Wanderer is a self-hosted trail database for saving and sharing adventures. Prior to 0.20.0, when PUBLIC_PRIVATE_INSTANCE is not set to true, the unauthenticated POST /api/v1/trail/download handler passes the attacker-controlled JSON url field directly to event.fetch() and returns the fetched response. This allows…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-7VQQ-MJJR-H9J5</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: None; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-119923 a heap-based buffer overflow in the tds prelogin parser in the babelfish for postgresql extension versions 1.0-1.5, 2.1-2.15, 3.1-3.12, 4.0-4.8, 5.1-5.4 and in amazon aurora postgresql with babelfish might allow remote attackers to execute arbitrary os commands as the database process user via a specially crafted malformed tds prelogin packet to the tds port. this record consolidates a related null-pointer-dereference finding in the same prelogin parser. to remediate this issue, we recommend users upgrade to babelfish for postgresql extension versions 4.10, 5.6, 6.1 or later. as a workaround, restrict network access to the tds port (default 1433). customers using amazon aurora postgresql with babelfish should upgrade their cluster to aurora postgresql 13.9.16 (1.5.5), 13.23.3 (1.17.2), 14.6.16 (2.3.5), 14.17.8 (2.12.4), 14.18.6 (2.13.3), 14.19.5 (2.14.2), 14.20.5 (2.15.2), 14.22.3 (2.16.1), 14.23.1 (2.17.0), 15.10.8 (3.8.4), 15.12.8 (3.9.4), 15.13.6 (3.10.3), 15.14.5 (3.11.2), 15.15.5 (3.12.2), 15.17.3 (3.13.1), 15.18.1 (3.14.0), 16.8.8 (4.5.5), 16.9.6 (4.6.3), 16.10.5 (4.7.2), 16.11.5 (4.8.2), 16.13.3 (4.9.1), 16.14.1 (4.10.0), 17.4.8 (5.1.4), 17.5.6 (5.2.3), 17.6.5 (5.3.2), 17.7.5 (5.4.2), 17.9.3 (5.5.1), 17.10.1 (5.6.0), 18.3.4 (6.0.2), 18.4.1 (6.1.0) or later, and apply any pending maintenance to ensure they are on the latest patch.">
+          <div class="headline"><h2>CVE-2026-119923</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-119923" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A heap-based buffer overflow in the TDS prelogin parser in the Babelfish for PostgreSQL extension versions 1.0-1.5, 2.1-2.15, 3.1-3.12, 4.0-4.8, 5.1-5.4 and in Amazon Aurora PostgreSQL with Babelfish might allow remote attackers to execute arbitrary OS commands as the database process user via a specially crafted…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-123832 in jetbrains clion before 2026.2 code execution was possible in safe mode via json compilation database">
+          <div class="headline"><h2>CVE-2026-123832</h2><span class="pill">CRITICAL · 9.6</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-123832" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In JetBrains CLion before 2026.2 code execution was possible in Safe Mode via JSON compilation database</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-123831 in jetbrains clion before 2026.2, 2026.1.4 code execution was possible in safe mode via meson project settings">
+          <div class="headline"><h2>CVE-2026-123831</h2><span class="pill">CRITICAL · 9.6</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-123831" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In JetBrains CLion before 2026.2, 2026.1.4 code execution was possible in Safe Mode via Meson project settings</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-122193 os command injection in the example ssm document provisioning script in trusted remote execution (rex) before 2026-07-28 might allow an authenticated remote user who is permitted to invoke the rex-ro or rex-rw ssm document to execute arbitrary commands as root on the managed instance, bypassing cedar policy enforcement. to remediate this issue, users should delete any rex-ro and rex-rw ssm documents created from the example script, in each account and region where it was run.">
+          <div class="headline"><h2>CVE-2026-122193</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-122193" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">OS command injection in the example SSM document provisioning script in Trusted Remote Execution (REX) before 2026-07-28 might allow an authenticated remote user who is permitted to invoke the Rex-RO or Rex-RW SSM document to execute arbitrary commands as root on the managed instance, bypassing Cedar policy…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-95G5-M242-WVHR</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-59105 jumis (formerly tildes jumis) creates and uses a microsoft sql server login named ##tilde_jumisadmin## whose password is derived deterministically from a single non-secret input - the sql server name (@@servername). the derivation algorithm is hard-coded in the client application and is identical across every installation; it contains a hard-coded secret key for entropy. because the only input (the server name) is not secret - the instance suffix is hard-coded and the host name is discoverable via the sql server browser service (udp 1434), the tds pre-login response, or dns/netbios - any party able to reach a jumis sql server can compute the password offline and authenticate. the ##tilde_jumisadmin## login is a member of the sysadmin server role. successful authentication therefore grants full administrative control of the sql server instance and read/write access to every customer&#x27;s accounting database hosted on it. the on-premise server installation also programmatically enables xp_cmdshell during routine operation, so sysadmin access escalates to operating-system command execution on the database server.">
+          <div class="headline"><h2>CVE-2026-59105</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-59105" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Jumis (formerly Tildes Jumis) creates and uses a Microsoft SQL Server login named ##Tilde_JumisAdmin## whose password is derived deterministically from a single non-secret input - the SQL Server name (@@servername). The derivation algorithm is hard-coded in the client application and is identical across every…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-123488 craft cms 4.0.0 before 4.18.9 and 5.0.0 before 5.11.2 contains an unauthenticated sql injection vulnerability in the element search endpoint because the attribute parameter is concatenated into the query unsanitized and emulated pdo prepares allow stacked statements. remote attackers can read and write the database, setting the admin flag or overwriting password hashes in the users table to gain administrator access.">
+          <div class="headline"><h2>CVE-2026-123488</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-123488" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Craft CMS 4.0.0 before 4.18.9 and 5.0.0 before 5.11.2 contains an unauthenticated SQL injection vulnerability in the element search endpoint because the attribute parameter is concatenated into the query unsanitized and emulated PDO prepares allow stacked statements. Remote attackers can read and write the database,…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-QCVP-GGX3-97R6</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
         <article class="card" data-search="cve-2026-114630 the elex wordpress helpdesk &amp; customer ticketing system plugin for wordpress is vulnerable to arbitrary file deletion due to insufficient file path validation in the factory_reset function in all versions up to, and including, 3.3.8 this makes it possible for unauthenticated attackers to delete arbitrary files on the server, which can easily lead to remote code execution when the right file is deleted (such as wp-config.php). this vulnerability is exploitable via a two-step chain: an unauthenticated attacker first stores an arbitrary ticket_attachment_path value by submitting a ticket through the nopriv eh_crm_new_ticket_post ajax endpoint (whose nonce is publicly exposed via the [wsdesk_support] shortcode), then triggers the factory_reset routine via a get request to wp-admin/admin.php?page=wsdesk_factory_reset, which is guarded only by is_admin() — a request-type check — rather than a capability check, causing unlink() to be called on the attacker-supplied path.">
           <div class="headline"><h2>CVE-2026-114630</h2><span class="pill">CRITICAL · 9.1</span></div>
           <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-114630" target="_blank" rel="noopener noreferrer">NVD record</a></p>
@@ -144,6 +1239,21 @@
             <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
             <div><dt>Attack Vector</dt><dd>Network</dd></div>
             <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-83493 a flaw was found in distributed-workloads. a remote attacker could exploit a vulnerability in the pull_request_target workflow by submitting a specially crafted pull request. this workflow processes untrusted code from the pull request author while operating with the base repository&#x27;s sensitive secrets, such as the snyk_token, and its default write token. consequently, an attacker could exfiltrate these secrets, leading to unauthorized access to the snyk integration and potential control over the repository.">
+          <div class="headline"><h2>CVE-2026-83493</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-06 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-83493" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A flaw was found in distributed-workloads. A remote attacker could exploit a vulnerability in the pull_request_target workflow by submitting a specially crafted pull request. This workflow processes untrusted code from the pull request author while operating with the base repository&#x27;s sensitive secrets, such as the…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
             <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
             <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
           </dl>
@@ -1166,6 +2276,21 @@
             <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
             <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
             <div><dt>Advisory references</dt><dd><ul><li><a href="https://github.com/FreeRDP/FreeRDP/security/advisories/GHSA-xc85-4mqc-xgcx" target="_blank" rel="noopener noreferrer">github.com</a></li><li><a href="https://www.vulncheck.com/advisories/freerdp-before-3.32.2-proxy-out-of-bounds-write-via-bitmap-cache-v2-capability" target="_blank" rel="noopener noreferrer">www.vulncheck.com</a></li></ul></dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-39430 on hp poly eagleeye cube usb 1.3.1-001267 devices, the administrator authentication flow is broken: session management and access controls are not enforced device-side. thus, an unauthenticated user can change administrator-level settings (without logging in) via a modified client that bypasses the login step or via a custom client to make the underlying administrator api calls. this allows unauthenticated users to perform administrative actions too such as exporting configuration files that include the internal device credentials for the administrator user and other network systems.">
+          <div class="headline"><h2>CVE-2026-39430</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-04 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-39430" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">On HP Poly EagleEye Cube USB 1.3.1-001267 devices, the administrator authentication flow is broken: session management and access controls are not enforced device-side. Thus, an unauthenticated user can change administrator-level settings (without logging in) via a modified client that bypasses the login step or via a…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
           </dl>
         </article>
 
@@ -2264,6 +3389,21 @@
           </dl>
         </article>
 
+        <article class="card" data-search="cve-2026-92610 in esmf-sdk-py-aspect-model-loader versions 2.1.2 to 2.2.1, the aspect model loader resolves cross-file model references by extracting the third and fourth colon-separated components of any urn:samm:… namespace declared in a parsed turtle file to build a directory to scan. a model file containing @prefix x: &lt;urn:samm:../../../foo:bar#&gt; or @prefix x: &lt;urn:samm:/abs/path:bar#&gt; causes the loader to glob and parse *.ttl files from arbitrary directories outside the intended models root, merging their contents into the returned graph.">
+          <div class="headline"><h2>CVE-2026-92610</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-03 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-92610" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In esmf-sdk-py-aspect-model-loader versions 2.1.2 to 2.2.1, the Aspect Model loader resolves cross-file model references by extracting the third and fourth colon-separated components of any urn:samm:… namespace declared in a parsed Turtle file to build a directory to scan. A model file containing @prefix x:…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
         <article class="card" data-search="cve-2026-121022 use of default password (cwe-1393) in the web client in axxonsoft axxon one before 3.0.0 on windows and linux allows a remote unauthenticated attacker to log in as the built-in administrator with the default credentials on a newly installed system, because the web client did not enforce the mandatory change of the default password on first login.">
           <div class="headline"><h2>CVE-2026-121022</h2><span class="pill">CRITICAL · 9.2</span></div>
           <p class="meta">Published 2026-11-03 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-121022" target="_blank" rel="noopener noreferrer">NVD record</a></p>
@@ -2504,6 +3644,21 @@
           </dl>
         </article>
 
+        <article class="card" data-search="cve-2026-120630 crewai contains an ssrf vulnerability caused by its ssrf guard and http client, which both miss malicious content in urls by checking opposite content passed to it, enabling any request that injects a malicious url to perform ssrf, such as with the scrapwebsitetool.">
+          <div class="headline"><h2>CVE-2026-120630</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120630" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">CrewAI contains an SSRF vulnerability caused by its SSRF guard and HTTP client, which both miss malicious content in URLs by checking opposite content passed to it, enabling any request that injects a malicious URL to perform SSRF, such as with the ScrapWebsiteTool.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
         <article class="card" data-search="cve-2026-119085 improper neutralization of special elements used in a template engine in the publishing component of amazon virtual engineering workbench (vew) could allow a remote authenticated third party to run arbitrary code with the permissions of the publishing lambda&#x27;s iam role. this could allow access to data and resources across all tenant projects. the code is reachable through a crafted cloudformation template body containing template engine directives submitted through the product versioning api. to remediate this issue, users should redeploy from the latest version of awslabs/virtual-engineering-workbench.">
           <div class="headline"><h2>CVE-2026-119085</h2><span class="pill">CRITICAL · 9.4</span></div>
           <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-119085" target="_blank" rel="noopener noreferrer">NVD record</a></p>
@@ -2579,6 +3734,21 @@
           </dl>
         </article>
 
+        <article class="card" data-search="cve-2026-16306 remote code execution in the `imodular.exe` uri handler in infinitt healthcare co., ltd. infinitt pacs allows a remote unauthenticated attacker to invoke unintended application functionality and potentially execute arbitrary code via a crafted `imodular:// uri` containing attacker-controlled command and argument parameters.">
+          <div class="headline"><h2>CVE-2026-16306</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-16306" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Remote Code Execution in the `IModular.exe` URI handler in INFINITT Healthcare Co., Ltd. INFINITT PACS allows a remote unauthenticated attacker to invoke unintended application functionality and potentially execute arbitrary code via a crafted `imodular:// URI` containing attacker-controlled command and argument…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
         <article class="card" data-search="cve-2026-120459 python-jose through 3.5.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to forge jwts because hmackey and cryptographyhmackey accept zero-length hmac secrets. when an application&#x27;s hs256/hs384/hs512 verification key resolves to empty, such as an oct jwk with empty k, attackers can forge tokens with arbitrary claims that jwt.decode accepts.">
           <div class="headline"><h2>CVE-2026-120459</h2><span class="pill">CRITICAL · 9.1</span></div>
           <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120459" target="_blank" rel="noopener noreferrer">NVD record</a></p>
@@ -2613,6 +3783,81 @@
           <div class="headline"><h2>CVE-2026-120442</h2><span class="pill">CRITICAL · 9.3</span></div>
           <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120442" target="_blank" rel="noopener noreferrer">NVD record</a></p>
           <p class="summary">ape-volo-admin before 3.6.1 contains an authentication bypass vulnerability that allows unauthenticated attackers to forge administrator tokens using a hardcoded JWT signing key in appsettings.json. Attackers can sign tokens offline with the jti claim set to the seeded administrator id to gain full API control over…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-114364 improper neutralization of special elements used in an sql command (&#x27;sql injection&#x27;) vulnerability in apache syncope. this cve covers an incomplete fix for cve-2026-77051: an administrator with adequate entitlements can achieve execution of arbitrary sql via stacked queries, leveraging unsanitized opevent parameters. reference: https://cve.org/cverecord?id=cve-2026-77051 this issue affects apache syncope: from 3.0.0-m0 through 3.0.16, from 4.0.0-m0 through 4.0.8, from 4.1.0-m0 through 4.1.3. users are recommended to upgrade to version 4.0.9 / 4.1.4, which fix this issue.">
+          <div class="headline"><h2>CVE-2026-114364</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-114364" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Improper neutralization of special elements used in an SQL command (&#x27;SQL injection&#x27;) vulnerability in Apache Syncope. This CVE covers an incomplete fix for CVE-2026-77051: an administrator with adequate entitlements can achieve execution of arbitrary SQL via stacked queries, leveraging unsanitized opEvent parameters.…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-113687 improper isolation or compartmentalization vulnerability in apache syncope. an administrator with adequate entitlements for implementations can create a malicious groovy class running untrusted code on a separate thread, thus bypassing the groovy security sandbox. this issue affects apache syncope: from 3.0.0-m0 through 3.0.16, from 4.0.0-m0 through 4.0.8, from 4.1.0-m0 through 4.1.3. users are recommended to upgrade to version 4.0.9 / 4.1.4, which fix this issue.">
+          <div class="headline"><h2>CVE-2026-113687</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-113687" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Improper isolation or compartmentalization vulnerability in Apache Syncope. An administrator with adequate entitlements for Implementations can create a malicious Groovy class running untrusted code on a separate Thread, thus bypassing the Groovy security sandbox. This issue affects Apache Syncope: from 3.0.0-M0…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-113511 authorization bypass through user-controlled key vulnerability in apache syncope. a delegated administrator can relocate a realm subtree across administrative realm boundaries without permission for the destination this issue affects apache syncope: from 3.0.0-m0 through 3.0.16, from 4.0.0-m0 through 4.0.8, from 4.1.0-m0 through 4.1.3. users are recommended to upgrade to version 4.0.9 / 4.1.4, which fix this issue.">
+          <div class="headline"><h2>CVE-2026-113511</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-113511" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Authorization bypass through User-Controlled key vulnerability in Apache Syncope. A delegated administrator can relocate a Realm subtree across administrative realm boundaries without permission for the destination This issue affects Apache Syncope: from 3.0.0-M0 through 3.0.16, from 4.0.0-M0 through 4.0.8, from…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-111959 out-of-bounds read vulnerability in apache arrow rust (`arrow` crate), from version 33.0.0 through to versions 57.3.1, 58.4.0, 59.3.1 and 60.0.0. improper validation of runendencoded arrays in the arraydata interface can allow reading data beyond the bounds of the child values array. users are recommended to upgrade to versions 60.1.0, 59.3.2, 58.4.1, 57.3.2 which fixes the issue.">
+          <div class="headline"><h2>CVE-2026-111959</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111959" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Out-of-bounds read vulnerability in Apache Arrow Rust (`arrow` crate), from version 33.0.0 through to versions 57.3.1, 58.4.0, 59.3.1 and 60.0.0. Improper validation of RunEndEncoded arrays in the ArrayData interface can allow reading data beyond the bounds of the child values array. Users are recommended to upgrade…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: None; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-109083 improper isolation or compartmentalization vulnerability in apache syncope. an administrator with adequate entitlements can import arbitrary bpmn process definitions via the rest api and then start the process. when a bpmn process containing a juel expression is imported and started, the expression is executed directly on the server, with no sandbox. this issue affects apache syncope: from 3.0.0-m0 through 3.0.16, from 4.0.0-m0 through 4.0.8, from 4.1.0 through 4.1.3. users are recommended to upgrade to version 4.0.9 / 4.1.4, which fix this issue by rejecting bpmn definitions including expression attributes.">
+          <div class="headline"><h2>CVE-2026-109083</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-109083" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Improper isolation or compartmentalization vulnerability in Apache Syncope. An administrator with adequate entitlements can import arbitrary BPMN process definitions via the REST API and then start the process. When a BPMN process containing a JUEL expression is imported and started, the expression is executed…</p>
           <dl>
             <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
             <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
@@ -2789,6 +4034,21 @@
           </dl>
         </article>
 
+        <article class="card" data-search="cve-2026-74759 google::auth versions 0.12 for perl allow server side request forgery via unvalidated credential_source urls in aws external account credentials. an external_account configuration with the aws subject token type selects google::auth::externalaccountcredentials::aws. its retrieve_subject_token sends requests to the imdsv2_session_token_url, url and region_url fields of credential_source without the host check that the other credential classes apply. any caller that builds credentials from a configuration it does not fully control issues get and put requests to hosts the configuration names, including internal services and link-local metadata endpoints.">
+          <div class="headline"><h2>CVE-2026-74759</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-01 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-74759" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Google::Auth versions 0.12 for Perl allow server side request forgery via unvalidated credential_source URLs in AWS external account credentials. An external_account configuration with the AWS subject token type selects Google::Auth::ExternalAccountCredentials::Aws. Its retrieve_subject_token sends requests to the…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
         <article class="card" data-search="cve-2026-62048 improper neutralization of special elements used in an sql command (&#x27;sql injection&#x27;) vulnerability in liquid web / stellarwp bookit bookit allows sql injection.this issue affects bookit: from n/a through 2.6.0.6.">
           <div class="headline"><h2>CVE-2026-62048</h2><span class="pill">CRITICAL · 9.3</span></div>
           <p class="meta">Published 2026-11-01 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-62048" target="_blank" rel="noopener noreferrer">NVD record</a></p>
@@ -2859,6 +4119,51 @@
             <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
             <div><dt>Attack Vector</dt><dd>Network</dd></div>
             <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-120263 when `[oauth2_client].account_linking` is set to `auto` (not the default) and registration is enabled, the link-account sign-up form looked up the existing account to link by the user name or email submitted in the form instead of the identity asserted by the oauth2 provider. an attacker with an account on a configured oauth2 provider could submit another user&#x27;s name, link their external identity to that gitea account and be signed in as it without its password, including as an administrator. the link persisted for later sign-ins. automatic linking now only happens when the existing account matches the provider&#x27;s email or provider-derived user name; otherwise the account password is required.">
+          <div class="headline"><h2>CVE-2026-120263</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-01 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120263" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">When `[oauth2_client].ACCOUNT_LINKING` is set to `auto` (not the default) and registration is enabled, the link-account sign-up form looked up the existing account to link by the user name or email submitted in the form instead of the identity asserted by the OAuth2 provider. An attacker with an account on a…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-8P3X-W464-4G6V</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-117685 the oci registry&#x27;s cross-repository blob mount checked the target package against the token&#x27;s `public-only` restriction, but checked the source blob only against the full account permissions of the token owner. a `public-only` token with `write:package` scope, whose owner can read a private package and write to a public package namespace, could mount a blob of the private package into the public package. the private blob, such as a container layer, could then be downloaded by anyone through the public package.">
+          <div class="headline"><h2>CVE-2026-117685</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-01 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-117685" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The OCI registry&#x27;s cross-repository blob mount checked the target package against the token&#x27;s `public-only` restriction, but checked the source blob only against the full account permissions of the token owner. A `public-only` token with `write:package` scope, whose owner can read a private package and write to a…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-8G99-G36H-5P2W</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-116289 gitea did not reject personal access tokens restricted to public resources (`public-only`) on the organization actions runner registration-token endpoint, and the runner registered with the resulting token was not limited to public repositories. holding only such a token with `write:organization` that belongs to an owner of a public organization, an attacker could register an organization-level runner and receive jobs of the organization&#x27;s private repositories that have actions enabled, including the workflow content, actions secrets and variables, and a task token with access to the private repository. the issue widens what the restricted token can reach; it gives nothing beyond what the owner&#x27;s full account can already do.">
+          <div class="headline"><h2>CVE-2026-116289</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-01 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-116289" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Gitea did not reject personal access tokens restricted to public resources (`public-only`) on the organization Actions runner registration-token endpoint, and the runner registered with the resulting token was not limited to public repositories. Holding only such a token with `write:organization` that belongs to an…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-QCGM-GGP8-22QC</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
             <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
             <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
           </dl>
