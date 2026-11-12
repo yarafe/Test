@@ -23,12 +23,597 @@
 </head>
 <body><main>
   <div class="top"><div><h1>Critical CVEs — 2026-11</h1>
-  <p class="muted">474 Critical / 6569 total CVEs · Generated 2026-11-11 15:18 UTC</p></div>
+  <p class="muted">514 Critical / 7154 total CVEs · Generated 2026-11-12 16:00 UTC</p></div>
   <input id="search" type="search" placeholder="Search CVE or description" aria-label="Search CVEs"></div>
   <div class="info">Source: NIST NVD CVE API. Entries are filtered by the selected CVSS metric's <b>CRITICAL</b> severity.
   Affected versions are NVD CPE applicability conditions (which may include additional AND constraints), not vendor-confirmed fixed versions.
   SAPIs and solutions may require vendor advisory verification. Data and severity can change after publication.</div>
   <section id="results">
+        <article class="card" data-search="cve-2026-120869 an unauthenticated attacker can bypass authentication controls to access restricted resources on the citrix netscaler console appliance">
+          <div class="headline"><h2>CVE-2026-120869</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120869" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">An unauthenticated attacker can bypass authentication controls to access restricted resources on the Citrix NetScaler Console appliance</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-19422 zohocorp manageengine ddi central versions below 6301 is affected by an authentication bypass vulnerability in windows dns and dhcp agent synchronization apis, allowing unauthenticated user to impersonate onboarded windows servers and perform unauthorized dns and dhcp modifications.">
+          <div class="headline"><h2>CVE-2026-19422</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-19422" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Zohocorp ManageEngine DDI Central versions below 6301 is affected by an authentication bypass vulnerability in Windows DNS and DHCP agent synchronization APIs, allowing unauthenticated user to impersonate onboarded Windows servers and perform unauthorized DNS and DHCP modifications.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: None; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-127046 the misp modules website component contains an information disclosure vulnerability in the external tools management interface. the /external_tools/list endpoint returned stored api keys (the api_key field) in its json response via the externaltools model serializer. additionally, the browser-based edit form pre-populated the api key input field with the stored credential value, exposing it in the dom. the /external_tools/list endpoint is accessible without authentication (the regression tests verify the response for both authenticated and unauthenticated clients), meaning any network-reachable client could retrieve the api keys for all configured external tools. these keys are used by the server to authenticate submissions to external analysis or enrichment services, so their disclosure allows an attacker to impersonate the misp instance or directly access those external services. the vulnerability also affected the edit workflow: the change_config endpoint previously required the api key to be present and non-empty on every save, forcing the key to round-trip through the client. the browser javascript stored the key in a reactive state object and updated the in-memory tool list with the credential value, further increasing the window of exposure in client-side memory and network traffic. affected component: the website sub-application of misp modules, specifically the external_tools module (serializer in models.py, list endpoint, and the external_tools_index.html template). the impact is limited to confidentiality of the stored api keys; no integrity or availability impact on the misp modules website itself is indicated by the patch.">
+          <div class="headline"><h2>CVE-2026-127046</h2><span class="pill">CRITICAL · 9.2</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-127046" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The MISP Modules website component contains an information disclosure vulnerability in the external tools management interface. The /external_tools/list endpoint returned stored API keys (the api_key field) in its JSON response via the ExternalTools model serializer. Additionally, the browser-based edit form…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: None; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-127016 the misp modules website component exposes external tool management endpoints (add, delete, change status, and change configuration) that did not enforce the optional administrator authentication policy. when admin_password was configured in the application environment, the module configuration endpoints correctly required an authenticated administrator session, but the external tools management handlers processed requests from anonymous users without any authorization check. an unauthenticated attacker with network access to the website could add arbitrary external tools, delete existing tools, toggle their active status, and modify their configurations including api keys and ingestion urls. this inconsistency allowed bypass of the intended access control for the external tools management functionality. the vulnerability is conditional on admin_password being set; installations without an admin password intentionally permit open management access by design. the affected component is the external_tools flask blueprint within the misp modules website application.">
+          <div class="headline"><h2>CVE-2026-127016</h2><span class="pill">CRITICAL · 9.2</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-127016" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The MISP Modules website component exposes external tool management endpoints (add, delete, change status, and change configuration) that did not enforce the optional administrator authentication policy. When ADMIN_PASSWORD was configured in the application environment, the module configuration endpoints correctly…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: Low; Integrity: High; Availability: Low</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-90908 a vulnerability in the genericadminauthenticator component of azul payara server and azul payara micro allows a remote, unauthenticated attacker to bypass jmx/rmi administrative access restrictions by spoofing the client host address. successful exploitation can grant administrative access to the mbean server and lead to remote code execution. azul payara micro is affected only when its jmx connector is enabled.">
+          <div class="headline"><h2>CVE-2026-90908</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-90908" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability in the GenericAdminAuthenticator component of Azul Payara Server and Azul Payara Micro allows a remote, unauthenticated attacker to bypass JMX/RMI administrative access restrictions by spoofing the client host address. Successful exploitation can grant administrative access to the MBean server and lead…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-110003 a vulnerability in the administration rest interface of azul payara allows a remote, unauthenticated attacker to bypass secure-admin remote-access restrictions by supplying an arbitrary value in the x-glassfish-authtoken http header. the header&#x27;s presence waives the remote-rejection check before the token is validated, and an invalid token falls through to password-based authentication, which succeeds without credentials on default domains configured with an empty administrative password. successful exploitation grants execution of arbitrary administrative commands, equivalent to complete compromise of the server.">
+          <div class="headline"><h2>CVE-2026-110003</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-110003" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability in the administration REST interface of Azul Payara allows a remote, unauthenticated attacker to bypass secure-admin remote-access restrictions by supplying an arbitrary value in the X-GlassFish-authToken HTTP header. The header&#x27;s presence waives the remote-rejection check before the token is…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-8333 a stored cross-site scripting vulnerability in microchip the timepictra platform could allow an authenticated, low-privileged attacker to store malicious script content that executes when another user views the affected page">
+          <div class="headline"><h2>CVE-2026-8333</h2><span class="pill">CRITICAL · 9.4</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-8333" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A stored cross-site scripting vulnerability in Microchip the TimePictra platform could allow an authenticated, low-privileged attacker to store malicious script content that executes when another user views the affected page</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-12591 zohocorp manageengine m365 manager plus versions below 4818 is affected by an authenticated technician may exploit insufficient permission validation in the delegated administration interface to escalate privileges beyond their intended scope, which could result in remote code execution during administrative processing.">
+          <div class="headline"><h2>CVE-2026-12591</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-12591" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Zohocorp ManageEngine M365 Manager Plus versions below 4818 is affected by an authenticated technician may exploit insufficient permission validation in the delegated administration interface to escalate privileges beyond their intended scope, which could result in remote code execution during administrative…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-12507 zohocorp manageengine assetexplorer versions below 7860, servicedesk plus versions below 15290, servicedesk plus msp versions below 15150, and supportcenter plus versions below 15150 are affected by a authenticated remote code execution vulnerability in the reports module. an authenticated user with the create query reports permission could exploit specially crafted database queries to execute arbitrary commands on the underlying server.">
+          <div class="headline"><h2>CVE-2026-12507</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-12507" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Zohocorp ManageEngine AssetExplorer versions below 7860, ServiceDesk Plus versions below 15290, ServiceDesk Plus MSP versions below 15150, and SupportCenter Plus versions below 15150 are affected by a authenticated remote code execution vulnerability in the Reports module. An authenticated user with the Create Query…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-124815 the clockinator lite wordpress plugin before 1.1.0 does not restrict access to several of its record deletion actions, and uses a user-supplied table name in a sql query without validating or escaping it, allowing unauthenticated users to perform sql injection attacks, deleting data from any database table and extracting sensitive information such as password hashes.">
+          <div class="headline"><h2>CVE-2026-124815</h2><span class="pill">CRITICAL · 10.0</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-124815" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Clockinator Lite WordPress plugin before 1.1.0 does not restrict access to several of its record deletion actions, and uses a user-supplied table name in a SQL query without validating or escaping it, allowing unauthenticated users to perform SQL injection attacks, deleting data from any database table and…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-124814 the ultimate addons for elementor forms wordpress plugin before 1.0.8 does not properly validate the extension of uploaded files in its bundled file upload field, allowing unauthenticated users to upload arbitrary files such as php scripts and achieve remote code execution.">
+          <div class="headline"><h2>CVE-2026-124814</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-124814" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Ultimate Addons for Elementor Forms WordPress plugin before 1.0.8 does not properly validate the extension of uploaded files in its bundled file upload field, allowing unauthenticated users to upload arbitrary files such as PHP scripts and achieve remote code execution.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-110959 the descope wordpress plugin before 1.2.0 does not validate the authentication token it receives before creating a wordpress session, accepting any non-empty token, so an unauthenticated attacker can obtain a session for any existing account, including an administrator, by supplying that account&#x27;s email address.">
+          <div class="headline"><h2>CVE-2026-110959</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-110959" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Descope WordPress plugin before 1.2.0 does not validate the authentication token it receives before creating a WordPress session, accepting any non-empty token, so an unauthenticated attacker can obtain a session for any existing account, including an administrator, by supplying that account&#x27;s email address.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-76954 an improper neutralization of special elements used in an sql command vulnerability in the auth api in synology diskstation manager (dsm) before 7.2.1-69057-13, 7.2.2-72806-10, 7.3.2-86009-5, and 7.4.1-90080-1 allows remote attackers to read or write arbitrary files and conduct denial-of-service attacks.">
+          <div class="headline"><h2>CVE-2026-76954</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76954" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">An improper neutralization of special elements used in an SQL command vulnerability in the Auth API in Synology DiskStation Manager (DSM) before 7.2.1-69057-13, 7.2.2-72806-10, 7.3.2-86009-5, and 7.4.1-90080-1 allows remote attackers to read or write arbitrary files and conduct denial-of-service attacks.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126785 a vulnerability has been found in rmalright tr-vision home 2.0.5. impacted is the function sub_11504 in the library wfanmanager.sys of the component ioctl handler. such manipulation leads to incorrect default permissions. the attack must be carried out locally. the vendor was contacted early about this disclosure but did not respond in any way.">
+          <div class="headline"><h2>CVE-2026-126785</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-12 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126785" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability has been found in rmalright TR-VISION HOME 2.0.5. Impacted is the function sub_11504 in the library WFanManager.sys of the component IOCTL Handler. Such manipulation leads to incorrect default permissions. The attack must be carried out locally. The vendor was contacted early about this disclosure but…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Local</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-67449 portabase is a database backup and restore tool for postgresql, mysql, mssql, mariadb, firebird sql, sqlite, mongodb, redis, files and docker volume. prior to version 1.21.2, a path traversal in the tus upload webhook handler (app/api/tus/hooks/route.ts) allowed an unauthenticated attacker to overwrite arbitrary files under the private data directory, including /data/private/keys/master_key.bin (the aes-256-gcm master key). this issue has been patched in version 1.21.2.">
+          <div class="headline"><h2>CVE-2026-67449</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-67449" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Portabase is a database backup and restore tool for PostgreSQL, MySQL, MsSQL, MariaDB, Firebird SQL, SQLite, MongoDB, Redis, Files and Docker Volume. Prior to version 1.21.2, a path traversal in the TUS upload webhook handler (app/api/tus/hooks/route.ts) allowed an unauthenticated attacker to overwrite arbitrary files…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-7697-VF3J-253J</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126263 a improper neutralization of special elements used in an sql command (&#x27;sql injection&#x27;) vulnerability in fortinet fortimail 8.0.0 through 8.0.1, fortimail 7.6.0 through 7.6.4, fortimail 7.4.0 through 7.4.6 may allow an authenticated attacker to execute unauthorized code or commands via specifically crafted requests.">
+          <div class="headline"><h2>CVE-2026-126263</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126263" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A improper neutralization of special elements used in an sql command (&#x27;sql injection&#x27;) vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.4, FortiMail 7.4.0 through 7.4.6 may allow an authenticated attacker to execute unauthorized code or commands via specifically crafted requests.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126262 a improper neutralization of special elements used in an sql command (&#x27;sql injection&#x27;) vulnerability in fortinet fortianalyzer 8.0.0 through 8.0.1, fortianalyzer 7.6.0 through 7.6.7, fortianalyzer 7.4.0 through 7.4.11, fortianalyzer 7.2.0 through 7.2.12, fortimanager 8.0.0, fortimanager 7.6.0 through 7.6.7, fortimanager 7.4.0 through 7.4.11, fortimanager 7.2.0 through 7.2.12 may allow an unauthenticated attacker who has access to the oftp port to execute code or command on the system via crafted oftp packets.">
+          <div class="headline"><h2>CVE-2026-126262</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126262" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A improper neutralization of special elements used in an sql command (&#x27;sql injection&#x27;) vulnerability in Fortinet FortiAnalyzer 8.0.0 through 8.0.1, FortiAnalyzer 7.6.0 through 7.6.7, FortiAnalyzer 7.4.0 through 7.4.11, FortiAnalyzer 7.2.0 through 7.2.12, FortiManager 8.0.0, FortiManager 7.6.0 through 7.6.7,…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126259 a missing authentication for critical function vulnerability in fortinet fortios 8.0.0, fortios 7.6.0 through 7.6.7, fortios 7.4.0 through 7.4.12, fortios 7.2.0 through 7.2.13 may allow an unauthenticated attacker with ha fgsp + standalone-config-sync, or autoscale to execute command as super admin via crafted ha packets.">
+          <div class="headline"><h2>CVE-2026-126259</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126259" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A missing authentication for critical function vulnerability in Fortinet FortiOS 8.0.0, FortiOS 7.6.0 through 7.6.7, FortiOS 7.4.0 through 7.4.12, FortiOS 7.2.0 through 7.2.13 may allow an unauthenticated attacker with HA FGSP + standalone-config-sync, or autoscale to execute command as super admin via crafted HA…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126257 a use of hard-coded password vulnerability in fortinet fortiauthenticator 8.0.0 through 8.0.3, fortiauthenticator 6.6.0 through 6.6.10 may allow an unauthenticated attacker to bypass credential validation in certain circumstances outside of the attacker&#x27;s control and gain unauthorized access.">
+          <div class="headline"><h2>CVE-2026-126257</h2><span class="pill">CRITICAL · 9.0</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126257" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A use of hard-coded password vulnerability in Fortinet FortiAuthenticator 8.0.0 through 8.0.3, FortiAuthenticator 6.6.0 through 6.6.10 may allow an unauthenticated attacker to bypass credential validation in certain circumstances outside of the attacker&#x27;s control and gain unauthorized access.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126254 a numeric truncation error vulnerability in fortinet fortios 8.0.0 through 8.0.1, fortios 7.6.0 through 7.6.7, fortios 7.4.0 through 7.4.12, fortios 7.2.0 through 7.2.13 may allow a configured ibgp neighbor to send malicious/malformed attributes to all connected routers via a specially crafted request">
+          <div class="headline"><h2>CVE-2026-126254</h2><span class="pill">CRITICAL · 9.6</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126254" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A numeric truncation error vulnerability in Fortinet FortiOS 8.0.0 through 8.0.1, FortiOS 7.6.0 through 7.6.7, FortiOS 7.4.0 through 7.4.12, FortiOS 7.2.0 through 7.2.13 may allow a configured ibgp neighbor to send malicious/malformed attributes to all connected routers via a specially crafted request</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: None; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126253 a authentication bypass by primary weakness vulnerability in fortinet fortios 8.0.0 through 8.0.1, fortios 7.6.0 through 7.6.7, fortios 7.4.0 through 7.4.12, fortios 7.2.0 through 7.2.13 may allow an unauthenticated attacker to broadcast lsa via specially crafted request">
+          <div class="headline"><h2>CVE-2026-126253</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126253" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A authentication bypass by primary weakness vulnerability in Fortinet FortiOS 8.0.0 through 8.0.1, FortiOS 7.6.0 through 7.6.7, FortiOS 7.4.0 through 7.4.12, FortiOS 7.2.0 through 7.2.13 may allow an unauthenticated attacker to broadcast LSA via specially crafted request</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Adjacent Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: None; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126251 a incorrect authorization vulnerability in fortinet fortiauthenticator 8.0.0 through 8.0.3, fortiauthenticator 6.6.0 through 6.6.10 may allow an attacker to bypass authentication and gain unauthorized access.">
+          <div class="headline"><h2>CVE-2026-126251</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126251" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A incorrect authorization vulnerability in Fortinet FortiAuthenticator 8.0.0 through 8.0.3, FortiAuthenticator 6.6.0 through 6.6.10 may allow an attacker to bypass authentication and gain unauthorized access.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: None; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126229 a authorization bypass through user-controlled key vulnerability in fortinet fortianalyzer 8.0.0 through 8.0.1, fortianalyzer 7.6.0 through 7.6.7, fortianalyzer 7.4.0 through 7.4.11, fortianalyzer 7.2.0 through 7.2.12, fortianalyzer 7.0 all versions, fortianalyzer cloud 8.0.1, fortianalyzer cloud 7.6.0 through 7.6.7, fortianalyzer cloud 7.4.1 through 7.4.11, fortianalyzer cloud 7.2.1 through 7.2.12, fortianalyzer cloud 7.0 all versions, fortimanager 8.0.0 through 8.0.1, fortimanager 7.6.0 through 7.6.7, fortimanager 7.4.0 through 7.4.11, fortimanager 7.2.0 through 7.2.12, fortimanager 7.0 all versions, fortimanager cloud 8.0.1, fortimanager cloud 7.6.0 through 7.6.7, fortimanager cloud 7.4.1 through 7.4.11, fortimanager cloud 7.2.1 through 7.2.12, fortimanager cloud 7.0 all versions may allow an authenticated administrator to access to other vdoms via specially crafted http requests.">
+          <div class="headline"><h2>CVE-2026-126229</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126229" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A authorization bypass through user-controlled key vulnerability in Fortinet FortiAnalyzer 8.0.0 through 8.0.1, FortiAnalyzer 7.6.0 through 7.6.7, FortiAnalyzer 7.4.0 through 7.4.11, FortiAnalyzer 7.2.0 through 7.2.12, FortiAnalyzer 7.0 all versions, FortiAnalyzer Cloud 8.0.1, FortiAnalyzer Cloud 7.6.0 through 7.6.7,…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126170 a improper encoding or escaping of output vulnerability in fortinet fortianalyzer 8.0.0 through 8.0.2, fortianalyzer 7.6.0 through 7.6.7, fortianalyzer cloud 8.0.1 through 8.0.2, fortianalyzer cloud 7.6.0 through 7.6.7, fortianalyzer-bigdata 7.6.0 through 7.6.2, fortimanager 8.0.0 through 8.0.2, fortimanager 7.6.0 through 7.6.7, fortimanager cloud 8.0.1 through 8.0.2, fortimanager cloud 7.6.0 through 7.6.7 may allow an unauthenticated attacker to execute unauthorized code or commands via a specially crafted http request">
+          <div class="headline"><h2>CVE-2026-126170</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126170" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A improper encoding or escaping of output vulnerability in Fortinet FortiAnalyzer 8.0.0 through 8.0.2, FortiAnalyzer 7.6.0 through 7.6.7, FortiAnalyzer Cloud 8.0.1 through 8.0.2, FortiAnalyzer Cloud 7.6.0 through 7.6.7, FortiAnalyzer-BigData 7.6.0 through 7.6.2, FortiManager 8.0.0 through 8.0.2, FortiManager 7.6.0…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126164 a improper neutralization of special elements used in an sql command (&#x27;sql injection&#x27;) vulnerability in fortinet fortimail 8.0.0 through 8.0.1, fortimail 7.6.0 through 7.6.6, fortimail 7.4.0 through 7.4.8, fortimail 7.2 all versions may allow an unauthenticated attacker to execute unauthorized code or commands via crafted requests.">
+          <div class="headline"><h2>CVE-2026-126164</h2><span class="pill">CRITICAL · 9.4</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126164" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A improper neutralization of special elements used in an sql command (&#x27;sql injection&#x27;) vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6, FortiMail 7.4.0 through 7.4.8, FortiMail 7.2 all versions may allow an unauthenticated attacker to execute unauthorized code or commands via…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: Low</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126157 a improper authentication vulnerability in fortinet fortimail 8.0.0 through 8.0.1, fortimail 7.6.0 through 7.6.6, fortimail 7.4.0 through 7.4.8, fortimail 7.2 all versions may allow an unauthenticated attacker to gain access to other users&#x27; secure email accounts via crafted http requests.">
+          <div class="headline"><h2>CVE-2026-126157</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126157" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A improper authentication vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6, FortiMail 7.4.0 through 7.4.8, FortiMail 7.2 all versions may allow an unauthenticated attacker to gain access to other users&#x27; secure email accounts via crafted HTTP requests.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126156 a authorization bypass through user-controlled key vulnerability in fortinet fortimail 8.0.0 through 8.0.1, fortimail 7.6.0 through 7.6.6, fortimail 7.4.0 through 7.4.8, fortimail 7.2 all versions may allow an unauthenticated remote attacker to take over an arbitrary ibe recipient account via crafted http requests.">
+          <div class="headline"><h2>CVE-2026-126156</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126156" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A authorization bypass through user-controlled key vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6, FortiMail 7.4.0 through 7.4.8, FortiMail 7.2 all versions may allow an unauthenticated remote attacker to take over an arbitrary IBE recipient account via crafted HTTP requests.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126155 a incorrect authorization vulnerability in fortinet fortimail 8.0.0 through 8.0.1, fortimail 7.6.0 through 7.6.6, fortimail 7.4.0 through 7.4.8, fortimail 7.2 all versions may allow an unauthenticated remote attacker to obtain an authenticated ibe webmail session as any ibe recipient and read or send their encrypted mail via crafted http requests.">
+          <div class="headline"><h2>CVE-2026-126155</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126155" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A incorrect authorization vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6, FortiMail 7.4.0 through 7.4.8, FortiMail 7.2 all versions may allow an unauthenticated remote attacker to obtain an authenticated IBE webmail session as any IBE recipient and read or send their encrypted…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126150 a weak password recovery mechanism for forgotten password vulnerability in fortinet fortimail 8.0.0, fortimail 7.6.0 through 7.6.5, fortimail 7.4.0 through 7.4.7, fortimail 7.2.0 through 7.2.9 may allow an unauthenticated attacker to reset the password of an arbitrary ibe webmail user and take over their account via specially crafted http requests.">
+          <div class="headline"><h2>CVE-2026-126150</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126150" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A weak password recovery mechanism for forgotten password vulnerability in Fortinet FortiMail 8.0.0, FortiMail 7.6.0 through 7.6.5, FortiMail 7.4.0 through 7.4.7, FortiMail 7.2.0 through 7.2.9 may allow an unauthenticated attacker to reset the password of an arbitrary IBE webmail user and take over their account via…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126148 a improper neutralization of special elements used in an os command (&#x27;os command injection&#x27;) vulnerability in fortinet fortimail 8.0.0 through 8.0.1, fortimail 7.6.0 through 7.6.6 may allow an unauthenticated attacker to execute unauthorized code or commands via crafted ha join-request packets.">
+          <div class="headline"><h2>CVE-2026-126148</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126148" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A improper neutralization of special elements used in an os command (&#x27;os command injection&#x27;) vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6 may allow an unauthenticated attacker to execute unauthorized code or commands via crafted HA join-request packets.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126147 a improper limitation of a pathname to a restricted directory (&#x27;path traversal&#x27;) vulnerability in fortinet fortimail 8.0.0 through 8.0.1, fortimail 7.6.0 through 7.6.6, fortimail 7.4.0 through 7.4.8, fortimail 7.2 all versions may allow an unauthenticated attacker to execute unauthorized code or commands via crafted requests.">
+          <div class="headline"><h2>CVE-2026-126147</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126147" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A improper limitation of a pathname to a restricted directory (&#x27;path traversal&#x27;) vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6, FortiMail 7.4.0 through 7.4.8, FortiMail 7.2 all versions may allow an unauthenticated attacker to execute unauthorized code or commands via crafted…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126812 blueprintue self-hosted edition before 4.3.7 contains an insecure default configuration in its docker compose examples that sets mysql_allow_empty_password=yes in database.env and publishes mariadb on port 3306. unauthenticated attackers reaching the docker host on port 3306 can log in as root without a password to read, modify, or delete user accounts, blueprints, and all databases.">
+          <div class="headline"><h2>CVE-2026-126812</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126812" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">blueprintUE Self-Hosted Edition before 4.3.7 contains an insecure default configuration in its Docker Compose examples that sets MYSQL_ALLOW_EMPTY_PASSWORD=yes in database.env and publishes MariaDB on port 3306. Unauthenticated attackers reaching the Docker host on port 3306 can log in as root without a password to…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-9F6R-VJC7-JQ67</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126806 wwbn avideo 14.3 through 29.7.1 contains a stored cross-site scripting vulnerability that allows uploaders to inject scripts via the videodownloadedlink value stored unescaped through objects/avideoencoder.json.php. attackers can embed event-handler payloads in the url host rendered as a source tag in view/managervideos_body.php, executing in administrator sessions to install plugin archives containing php.">
+          <div class="headline"><h2>CVE-2026-126806</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126806" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">WWBN AVideo 14.3 through 29.7.1 contains a stored cross-site scripting vulnerability that allows uploaders to inject scripts via the videoDownloadedLink value stored unescaped through objects/aVideoEncoder.json.php. Attackers can embed event-handler payloads in the URL host rendered as a Source tag in…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-2QQ6-QFCQ-JMR9</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126800 hydro @hydrooj/ui-default before 4.59.1 contains a stored cross-site scripting vulnerability that allows registered users to inject script by placing double quotes in language- class tokens within markdown-it-xss.ts. attackers can store a payload in their profile bio that executes when administrators or other users view it, stealing the non-httponly sid session cookie for session hijacking.">
+          <div class="headline"><h2>CVE-2026-126800</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126800" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Hydro @hydrooj/ui-default before 4.59.1 contains a stored cross-site scripting vulnerability that allows registered users to inject script by placing double quotes in language- class tokens within markdown-it-xss.ts. Attackers can store a payload in their profile bio that executes when administrators or other users…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126797 nextscan 1.1.0 through 1.2.0 contains an authentication bypass vulnerability in ns-admin that allows unauthenticated attackers to forge administrator tokens using a hardcoded jwt signing key. attackers can sign an hs256 x-access-token carrying the public super administrator role id to gain full access to user management, scan tasks and stored vulnerability results.">
+          <div class="headline"><h2>CVE-2026-126797</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126797" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">NextScan 1.1.0 through 1.2.0 contains an authentication bypass vulnerability in ns-admin that allows unauthenticated attackers to forge administrator tokens using a hardcoded JWT signing key. Attackers can sign an HS256 X-Access-Token carrying the public super administrator role ID to gain full access to user…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-65840 fider is a feedback portal for feature requests and suggestions. prior to version 0.36.0, in multi-tenant mode (host_mode=multi), an attacker can use an email verification key issued by tenant a to authenticate as the same email address on tenant b. this completely bypasses tenant isolation and allows unauthorized account takeover across tenants. single-host deployments (host_mode=single, the default) are not affected. this issue has been patched in version 0.36.0.">
+          <div class="headline"><h2>CVE-2026-65840</h2><span class="pill">CRITICAL · 9.6</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-65840" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Fider is a feedback portal for feature requests and suggestions. Prior to version 0.36.0, in multi-tenant mode (HOST_MODE=multi), an attacker can use an email verification key issued by Tenant A to authenticate as the same email address on Tenant B. This completely bypasses tenant isolation and allows unauthorized…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-VXJW-GV4F-VQ58</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126777 traccar 3.15 before 6.17.0 contains an authentication bypass vulnerability in ldapprovider.login() that fails to reject empty passwords, causing ldap binds to be performed as unauthenticated binds when ldap authentication is enabled. unauthenticated attackers who know a valid username can log in via post /api/session or http basic authentication with an empty password against directories that permit unauthenticated binds, obtaining sessions for any account including administrators.">
+          <div class="headline"><h2>CVE-2026-126777</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126777" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Traccar 3.15 before 6.17.0 contains an authentication bypass vulnerability in LdapProvider.login() that fails to reject empty passwords, causing LDAP binds to be performed as unauthenticated binds when LDAP authentication is enabled. Unauthenticated attackers who know a valid username can log in via POST /api/session…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-126768 opstree rems through 1.0.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to obtain valid jwts by setting the client-controlled is_local_auth field. attackers can send a post /api/v1/user/login/ request for the admin account with an invalid password and is_local_auth true to gain superuser administrative access.">
+          <div class="headline"><h2>CVE-2026-126768</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-126768" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">OpsTree REMS through 1.0.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to obtain valid JWTs by setting the client-controlled is_local_auth field. Attackers can send a POST /api/v1/user/login/ request for the admin account with an invalid password and is_local_auth true to gain…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-110697 a flaw was found in quay where the robot account listing function constructs a sql like pattern from user-controlled namespace names without escaping wildcard metacharacters. an attacker who creates a namespace containing an underscore character can match and retrieve robot accounts and their decrypted authentication tokens from other tenants&#x27; namespaces, leading to cross-tenant credential theft and unauthorized image operations.">
+          <div class="headline"><h2>CVE-2026-110697</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-110697" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A flaw was found in Quay where the robot account listing function constructs a SQL LIKE pattern from user-controlled namespace names without escaping wildcard metacharacters. An attacker who creates a namespace containing an underscore character can match and retrieve robot accounts and their decrypted authentication…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
         <article class="card" data-search="cve-2026-85632 missing authentication for critical function and improper validation of integrity check value vulnerability in sipay electronic money and payment services inc. woocommerce virtual pos module allows authentication bypass and application api message manipulation via man-in-the-middle. this issue affects woocommerce virtual pos module: from 26.8.3 before 26.9.1.">
           <div class="headline"><h2>CVE-2026-85632</h2><span class="pill">CRITICAL · 9.1</span></div>
           <p class="meta">Published 2026-11-11 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-85632" target="_blank" rel="noopener noreferrer">NVD record</a></p>
@@ -1809,6 +2394,21 @@
             <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
             <div><dt>Attack Vector</dt><dd>Network</dd></div>
             <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-107242 the node.js web service on vos (previously versa flexvnf) is used for url-based zero touch provisioning (ztp) of the vos appliance and is not required after provisioning is complete. this service generates session identifiers using uuid version 1 (uuidv1), which is derived from the system’s date and time and its mac address. as a result, successive identifiers differ only slightly and can be predicted. an attacker who can predict a user’s session id could hijack that user’s session. versa’s security hardening guide for hubs, branches, and controllers recommends disabling the node.js web service after the initial provisioning of the vos device. this vulnerability is not exploitable on vos devices where the node.js web service has been disabled.">
+          <div class="headline"><h2>CVE-2026-107242</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-107242" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Node.js web service on VOS (previously Versa FlexVNF) is used for URL-based Zero Touch Provisioning (ZTP) of the VOS appliance and is not required after provisioning is complete. This service generates session identifiers using UUID version 1 (UUIDv1), which is derived from the system’s date and time and its MAC…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: None; Availability: High</dd></div>
             <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
             <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
           </dl>
@@ -4289,7 +4889,7 @@
           </dl>
         </article>
 
-        <article class="card" data-search="cve-2026-83542 improper control of generation of code (&#x27;code injection&#x27;) in apache ofbiz 24.09 before 24.09.08 on all platforms allows a remote unauthenticated attacker to execute arbitrary code on the server by staging crafted widget xml in a multipart upload and overriding the maindecoratorlocation used by a manager login route through an anonymous json request, causing ofbiz to load the staged xml through its live screen descriptor mechanism and evaluate an unsandboxed groovy expression while rendering the authentication-failure page. further validation established the following: -- the exploit does not require a malformed or incomplete multipart body: a well-formed multipart request that is kept in flight and then allowed to complete normally is sufficient. -- the screen loader reads the widget xml from a live process file descriptor while the upload is streaming, rather than from any file the attacker persists to disk. -- the same underlying issue is also reachable through the public, explicitly unauthenticated /sfa/control/editportalpagecolumnwidth route, returning command output directly in an http 200 response — it is not limited to the login-failure rendering path used in the original report. users are recommended to upgrade to version 24.09.08, which fixes this issue.">
+        <article class="card" data-search="cve-2026-83542 improper control of generation of code (&#x27;code injection&#x27;) in apache ofbiz 24.09 before 24.09.08 on all platforms allows a remote unauthenticated attacker to execute arbitrary code on the server by staging crafted widget xml in a multipart upload and overriding the maindecoratorlocation used by a manager login route through an anonymous json request, causing ofbiz to load the staged xml through its live screen descriptor mechanism and evaluate an unsandboxed groovy expression while rendering the authentication-failure page. further validation established the following: -- the exploit does not require a malformed or incomplete multipart body: a well-formed multipart request that is kept in flight and then allowed to complete normally is sufficient. -- the screen loader reads the widget xml from a live process file descriptor while the upload is streaming, rather than from any file the attacker persists to disk. -- the same underlying issue is also reachable through the public, explicitly unauthenticated /sfa/control/editportalpagecolumnwidth route, returning command output directly in an http 200 response — it is not limited to the login-failure rendering path used in the original report. the described vulnerability was discovered independantly twice, with each having a cve assigned. see references. users are recommended to upgrade to version 24.09.08, which fixes this issue.">
           <div class="headline"><h2>CVE-2026-83542</h2><span class="pill">CRITICAL · 9.8</span></div>
           <p class="meta">Published 2026-11-05 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-83542" target="_blank" rel="noopener noreferrer">NVD record</a></p>
           <p class="summary">Improper Control of Generation of Code (&#x27;Code Injection&#x27;) in Apache OFBiz 24.09 before 24.09.08 on all platforms allows a remote unauthenticated attacker to execute arbitrary code on the server by staging crafted widget XML in a multipart upload and overriding the mainDecoratorLocation used by a manager login route…</p>
@@ -6784,13 +7384,13 @@
           <p class="meta">Published 2026-11-02 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-116606" target="_blank" rel="noopener noreferrer">NVD record</a></p>
           <p class="summary">An authentication bypass in Barracuda Email Security Gateway versions earlier than 9.4.0.030 allows an unauthenticated remote attacker to invoke a configuration-import function and restore a crafted, compatible backup archive, resulting in unauthorized modification of the appliance’s global configuration.</p>
           <dl>
-            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected versions</dt><dd><ul><li>barracuda:email_security_gateway_300_firmware: &lt; 9.4.0.030</li><li>barracuda:email_security_gateway_400_firmware: &lt; 9.4.0.030</li><li>barracuda:email_security_gateway_600_firmware: &lt; 9.4.0.030</li><li>barracuda:email_security_gateway_800_firmware: &lt; 9.4.0.030</li><li>barracuda:email_security_gateway_900_firmware: &lt; 9.4.0.030</li></ul></dd></div>
             <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
             <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
             <div><dt>Attack Vector</dt><dd>Network</dd></div>
             <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
             <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
-            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+            <div><dt>Advisory references</dt><dd><ul><li><a href="https://github.com/mandiant/Vulnerability-Disclosures/blob/master/2026/MNDT-2026-0042.md" target="_blank" rel="noopener noreferrer">github.com</a></li><li><a href="https://trust.barracuda.com/security/pre-authentication-authorization-bypass-command-injection" target="_blank" rel="noopener noreferrer">trust.barracuda.com</a></li></ul></dd></div>
           </dl>
         </article>
 
