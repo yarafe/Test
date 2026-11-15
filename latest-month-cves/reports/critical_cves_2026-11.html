@@ -23,12 +23,147 @@
 </head>
 <body><main>
   <div class="top"><div><h1>Critical CVEs — 2026-11</h1>
-  <p class="muted">628 Critical / 8144 total CVEs · Generated 2026-11-14 14:13 UTC</p></div>
+  <p class="muted">637 Critical / 8226 total CVEs · Generated 2026-11-15 14:48 UTC</p></div>
   <input id="search" type="search" placeholder="Search CVE or description" aria-label="Search CVEs"></div>
   <div class="info">Source: NIST NVD CVE API. Entries are filtered by the selected CVSS metric's <b>CRITICAL</b> severity.
   Affected versions are NVD CPE applicability conditions (which may include additional AND constraints), not vendor-confirmed fixed versions.
   SAPIs and solutions may require vendor advisory verification. Data and severity can change after publication.</div>
   <section id="results">
+        <article class="card" data-search="cve-2026-129483 cyrus sasl through 2.1.28 contains an authentication bypass vulnerability in the srp server mechanism because srp_server_mech_step2 does not reject client public values a that are multiples of n. unauthenticated network clients can send a equal to n to force a zero shared secret, authenticating as any existing user without the password and learning session keys.">
+          <div class="headline"><h2>CVE-2026-129483</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-15 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129483" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Cyrus SASL through 2.1.28 contains an authentication bypass vulnerability in the SRP server mechanism because srp_server_mech_step2 does not reject client public values A that are multiples of N. Unauthenticated network clients can send A equal to N to force a zero shared secret, authenticating as any existing user…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-125769 incorrect privilege assignment vulnerability in nasir ahmed advanced form integration advanced-form-integration allows privilege escalation.this issue affects advanced form integration: from n/a through 2.11.3.">
+          <div class="headline"><h2>CVE-2026-125769</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-15 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-125769" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Incorrect Privilege Assignment vulnerability in Nasir Ahmed Advanced Form Integration advanced-form-integration allows Privilege Escalation.This issue affects Advanced Form Integration: from n/a through 2.11.3.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-122662 deserialization of untrusted data vulnerability in barn2 plugins document library pro document-library-pro allows object injection.this issue affects document library pro: from n/a before 4.2.2.">
+          <div class="headline"><h2>CVE-2026-122662</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-15 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-122662" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Deserialization of Untrusted Data vulnerability in Barn2 Plugins Document Library Pro document-library-pro allows Object Injection.This issue affects Document Library Pro: from n/a before 4.2.2.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-129349 when authentication caching is enabled on defaultldaprealm, after a user logs in successfully once, subsequent logins for that user succeed with any password. a cached authentication skips the ldap bind, and the allowallcredentialsmatcher installed by default in defaultldaprealm accepts any credentials, allowing an attacker who knows a valid username to authenticate as that user. this issue affects all apache shiro versions through 3.0.0, only when using defaultldaprealm (or jndildaprealm) with authenticationcachingenabled set to true, which is not the default. mitigation: upgrade to version 3.0.1 or later, which fixes the issue by no longer installing allowallcredentialsmatcher by default. alternatively, disable authentication caching on the ldap realm (this is the default), or configure a credentials matcher, such as simplecredentialsmatcher, that verifies credentials against the cached authentication info.">
+          <div class="headline"><h2>CVE-2026-129349</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-15 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129349" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">When authentication caching is enabled on DefaultLdapRealm, after a user logs in successfully once, subsequent logins for that user succeed with any password. A cached authentication skips the LDAP bind, and the AllowAllCredentialsMatcher installed by default in DefaultLdapRealm accepts any credentials, allowing an…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-129444 a vulnerability was identified in d-link dsl-6740c 20131126. this affects an unknown function of the file /etc/templates/ftpd/ftpd_conf.php of the component ftp daemon. such manipulation leads to hard-coded credentials. the attack can be executed remotely. the exploit is publicly available and might be used.">
+          <div class="headline"><h2>CVE-2026-129444</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-15 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129444" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability was identified in D-Link DSL-6740C 20131126. This affects an unknown function of the file /etc/templates/ftpd/ftpd_conf.php of the component FTP Daemon. Such manipulation leads to hard-coded credentials. The attack can be executed remotely. The exploit is publicly available and might be used.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-129354 a flaw has been found in d-link dir-600l 2.17b02. affected by this issue is the function hnap_main of the file htdocs/cgibin of the component hnap handler. executing a manipulation can lead to stack-based buffer overflow. the attack can be executed remotely. the exploit has been published and may be used.">
+          <div class="headline"><h2>CVE-2026-129354</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-15 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129354" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A flaw has been found in D-Link DIR-600L 2.17b02. Affected by this issue is the function hnap_main of the file htdocs/cgibin of the component HNAP Handler. Executing a manipulation can lead to stack-based buffer overflow. The attack can be executed remotely. The exploit has been published and may be used.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-129353 a vulnerability was detected in d-link dir-600l 2.17/2.17b02. affected by this vulnerability is the function authenticationcgi_main of the file authentication.cgi. performing a manipulation of the argument id/password results in stack-based buffer overflow. remote exploitation of the attack is possible. the exploit is now public and may be used.">
+          <div class="headline"><h2>CVE-2026-129353</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-15 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129353" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability was detected in D-Link DIR-600L 2.17/2.17b02. Affected by this vulnerability is the function authenticationcgi_main of the file authentication.cgi. Performing a manipulation of the argument id/password results in stack-based buffer overflow. Remote exploitation of the attack is possible. The exploit is…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-129351 a security vulnerability has been detected in trendnet tew-657brm 1.00.1. this vulnerability affects the function sprintf of the file /setup.cgi of the component mini_httpd. such manipulation leads to out-of-bounds write. the attack can be executed remotely. the exploit has been disclosed publicly and may be used. the vendor explains: &quot;&quot;i am not able to confirm if such vulnerability exists as the product has been eol for more than 15 years. we will send out an announcement letting customers know.&quot; this vulnerability only affects products that are no longer supported by the maintainer.">
+          <div class="headline"><h2>CVE-2026-129351</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-14 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129351" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A security vulnerability has been detected in TRENDnet TEW-657BRM 1.00.1. This vulnerability affects the function sprintf of the file /setup.cgi of the component mini_httpd. Such manipulation leads to out-of-bounds write. The attack can be executed remotely. The exploit has been disclosed publicly and may be used. The…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-129261 a vulnerability was found in kingston fury ctrl rgb control software up to 2.0.66.0. the impacted element is an unknown function in the library ntiolib_x64.sys of the component ioctl handler. performing a manipulation results in exposed ioctl with insufficient access control. the attack is only possible with local access.">
+          <div class="headline"><h2>CVE-2026-129261</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-14 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129261" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability was found in Kingston FURY CTRL RGB Control Software up to 2.0.66.0. The impacted element is an unknown function in the library NTIOLib_X64.sys of the component IOCTL Handler. Performing a manipulation results in exposed ioctl with insufficient access control. The attack is only possible with local…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Local</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
         <article class="card" data-search="cve-2026-19907 the shipo plugin for wordpress is vulnerable to authentication bypass in versions 1.6 through 1.8.0. this is due to the `authenticate_rest_user()` function parsing the `logged_in_cookie` value and authenticating the named user without verifying the cookie&#x27;s cryptographic signature. the function&#x27;s intended `/wp-json/shipo/` route restriction can also be bypassed by placing that substring in the query string of an unrelated rest endpoint. this makes it possible for unauthenticated attackers who know an existing username to impersonate that user, including an administrator, and perform authorized actions through the rest api, including creating another administrator account.">
           <div class="headline"><h2>CVE-2026-19907</h2><span class="pill">CRITICAL · 9.8</span></div>
           <p class="meta">Published 2026-11-14 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-19907" target="_blank" rel="noopener noreferrer">NVD record</a></p>
