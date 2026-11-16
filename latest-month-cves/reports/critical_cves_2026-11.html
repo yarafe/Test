@@ -23,12 +23,162 @@
 </head>
 <body><main>
   <div class="top"><div><h1>Critical CVEs — 2026-11</h1>
-  <p class="muted">637 Critical / 8226 total CVEs · Generated 2026-11-15 14:48 UTC</p></div>
+  <p class="muted">668 Critical / 8473 total CVEs · Generated 2026-11-16 17:06 UTC</p></div>
   <input id="search" type="search" placeholder="Search CVE or description" aria-label="Search CVEs"></div>
   <div class="info">Source: NIST NVD CVE API. Entries are filtered by the selected CVSS metric's <b>CRITICAL</b> severity.
   Affected versions are NVD CPE applicability conditions (which may include additional AND constraints), not vendor-confirmed fixed versions.
   SAPIs and solutions may require vendor advisory verification. Data and severity can change after publication.</div>
   <section id="results">
+        <article class="card" data-search="cve-2026-129955 nodepress through 8.5.1 contains an authentication bypass vulnerability that allows unauthenticated attackers to gain administrator access by using the hardcoded default password &#x27;root&#x27;. attackers can send base64-encoded &#x27;root&#x27; to post /admin/login when np_admin_default_password is unset to obtain admin tokens and fully control the site.">
+          <div class="headline"><h2>CVE-2026-129955</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-16 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129955" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">NodePress through 8.5.1 contains an authentication bypass vulnerability that allows unauthenticated attackers to gain administrator access by using the hardcoded default password &#x27;root&#x27;. Attackers can send base64-encoded &#x27;root&#x27; to POST /admin/login when NP_ADMIN_DEFAULT_PASSWORD is unset to obtain admin tokens and…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-129952 nodepress through 8.5.1 contains an authentication bypass vulnerability that allows unauthenticated remote attackers to gain administrator access by forging jwts with the hardcoded &#x27;nodepress-secret&#x27; fallback key. attackers can sign hs256 bearer tokens with the default issuer, audience, and role &#x27;admin&#x27; to access administrator-only apis for article, comment, options, and file management.">
+          <div class="headline"><h2>CVE-2026-129952</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-16 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129952" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">NodePress through 8.5.1 contains an authentication bypass vulnerability that allows unauthenticated remote attackers to gain administrator access by forging JWTs with the hardcoded &#x27;nodepress-secret&#x27; fallback key. Attackers can sign HS256 bearer tokens with the default issuer, audience, and role &#x27;admin&#x27; to access…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-129941 prime cms (@primecms/core) through 0.4.0-beta.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to register accounts via the createuser mutation on /prime/graphql. because the isauthenticated() guard has its check commented out and createability() hard-codes every role to admin, attackers can log in with full administrative control over content, users, webhooks and settings.">
+          <div class="headline"><h2>CVE-2026-129941</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-16 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129941" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Prime CMS (@primecms/core) through 0.4.0-beta.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to register accounts via the createUser mutation on /prime/graphql. Because the isAuthenticated() guard has its check commented out and createAbility() hard-codes every role to admin,…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-93664 a deserialization of untrusted data vulnerability affecting station launcher app in 3dexperience platform from release 3dexperience r2023x through release 3dexperience r2026x could lead to an unauthenticated remote code execution.">
+          <div class="headline"><h2>CVE-2026-93664</h2><span class="pill">CRITICAL · 10.0</span></div>
+          <p class="meta">Published 2026-11-16 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-93664" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A Deserialization of Untrusted Data vulnerability affecting Station Launcher App in 3DEXPERIENCE platform from Release 3DEXPERIENCE R2023x through Release 3DEXPERIENCE R2026x could lead to an unauthenticated remote code execution.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-77033 an os command injection vulnerability affecting station launcher app in 3dexperience platform from release 3dexperience r2023x through release 3dexperience r2026x could allow an attacker to execute arbitrary commands on the server.">
+          <div class="headline"><h2>CVE-2026-77033</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-16 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-77033" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">An OS Command Injection vulnerability affecting Station Launcher App in 3DEXPERIENCE platform from Release 3DEXPERIENCE R2023x through Release 3DEXPERIENCE R2026x could allow an attacker to execute arbitrary commands on the server.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-19732 an os command injection vulnerability affecting station launcher app in 3dexperience platform from release 3dexperience r2023x through release 3dexperience r2026x could allow an attacker to execute arbitrary commands on the server.">
+          <div class="headline"><h2>CVE-2026-19732</h2><span class="pill">CRITICAL · 9.9</span></div>
+          <p class="meta">Published 2026-11-16 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-19732" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">An OS Command Injection vulnerability affecting Station Launcher App in 3DEXPERIENCE platform from Release 3DEXPERIENCE R2023x through Release 3DEXPERIENCE R2026x could allow an attacker to execute arbitrary commands on the server.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-111559 batflat cms does not sanitize data passed to the /contact endpoint. a remote unauthenticated attacker can send a post request with a crafted message, causing arbitrary php code execution with www-data user privileges. the project is no longer maintained and the issue has not been fixed.">
+          <div class="headline"><h2>CVE-2026-111559</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-16 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111559" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Batflat CMS does not sanitize data passed to the /contact endpoint. A remote unauthenticated attacker can send a POST request with a crafted message, causing arbitrary PHP code execution with www-data user privileges. The project is no longer maintained and the issue has not been fixed.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-129552 tensei through 0.11.5 contains an authentication bypass vulnerability in @tensei/auth that falls back to the hard-coded jwt signing key &#x27;auth-secret-key&#x27; when jwt_secret is unset. unauthenticated attackers can sign tokens with arbitrary user ids accepted by populatecontextfromtoken to impersonate any user, including administrators.">
+          <div class="headline"><h2>CVE-2026-129552</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-16 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129552" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Tensei through 0.11.5 contains an authentication bypass vulnerability in @tensei/auth that falls back to the hard-coded JWT signing key &#x27;auth-secret-key&#x27; when JWT_SECRET is unset. Unauthenticated attackers can sign tokens with arbitrary user ids accepted by populateContextFromToken to impersonate any user, including…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-129550 tensei through 0.11.5 contains a privilege escalation vulnerability in @tensei/auth that allows unauthenticated or authenticated users to assign themselves arbitrary roles via the exposed user roles field. attackers can supply a roles array during registration, a post to the users route, or a patch to their own record to gain administrator permissions.">
+          <div class="headline"><h2>CVE-2026-129550</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-16 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129550" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Tensei through 0.11.5 contains a privilege escalation vulnerability in @tensei/auth that allows unauthenticated or authenticated users to assign themselves arbitrary roles via the exposed User Roles field. Attackers can supply a roles array during registration, a POST to the users route, or a PATCH to their own record…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-125795 improper control of filename for include/require statement in php program (&#x27;php remote file inclusion&#x27;) vulnerability in estatik estatik estatik allows php local file inclusion.this issue affects estatik: from n/a through 4.3.6.">
+          <div class="headline"><h2>CVE-2026-125795</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-15 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-125795" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Improper Control of Filename for Include/Require Statement in PHP Program (&#x27;PHP Remote File Inclusion&#x27;) vulnerability in Estatik Estatik estatik allows PHP Local File Inclusion.This issue affects Estatik: from n/a through 4.3.6.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
         <article class="card" data-search="cve-2026-129483 cyrus sasl through 2.1.28 contains an authentication bypass vulnerability in the srp server mechanism because srp_server_mech_step2 does not reject client public values a that are multiples of n. unauthenticated network clients can send a equal to n to force a zero shared secret, authenticating as any existing user without the password and learning session keys.">
           <div class="headline"><h2>CVE-2026-129483</h2><span class="pill">CRITICAL · 9.3</span></div>
           <p class="meta">Published 2026-11-15 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129483" target="_blank" rel="noopener noreferrer">NVD record</a></p>
@@ -96,6 +246,36 @@
           <dl>
             <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
             <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-127048 the custom block builder wordpress plugin before 3.0.0 does not properly deny unauthorised requests to its rest routes, as its permission checks return a non-error response that wordpress treats as granted, allowing unauthenticated users to execute arbitrary php code on the server.">
+          <div class="headline"><h2>CVE-2026-127048</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-15 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-127048" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Custom Block Builder WordPress plugin before 3.0.0 does not properly deny unauthorised requests to its REST routes, as its permission checks return a non-error response that WordPress treats as granted, allowing unauthenticated users to execute arbitrary PHP code on the server.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-110960 the auth armor wordpress plugin through 1.0.3 does not require authentication on several handlers available to logged-out users, which leak the site&#x27;s stored api credentials and allow an unauthenticated attacker to reset an administrator&#x27;s enrollment and take over that administrator account.">
+          <div class="headline"><h2>CVE-2026-110960</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-15 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-110960" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Auth Armor WordPress plugin through 1.0.3 does not require authentication on several handlers available to logged-out users, which leak the site&#x27;s stored API credentials and allow an unauthenticated attacker to reset an administrator&#x27;s enrollment and take over that administrator account.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
             <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
             <div><dt>Attack Vector</dt><dd>Network</dd></div>
             <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
@@ -219,6 +399,21 @@
             <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
             <div><dt>Attack Vector</dt><dd>Network</dd></div>
             <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-116528 the chargely free subscriptions for woocommernce wordpress plugin through 1.0 does not perform any authorization check on a rest api route that returns its stored configuration, allowing unauthenticated attackers to retrieve the live woocommerce rest api consumer key and secret it holds, which grant read and write access to the whole store.">
+          <div class="headline"><h2>CVE-2026-116528</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-14 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-116528" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Chargely Free Subscriptions For Woocommernce WordPress plugin through 1.0 does not perform any authorization check on a REST API route that returns its stored configuration, allowing unauthenticated attackers to retrieve the live WooCommerce REST API consumer key and secret it holds, which grant read and write…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
             <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
             <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
           </dl>
@@ -3689,6 +3884,96 @@
           </dl>
         </article>
 
+        <article class="card" data-search="cve-2026-97888 the embedded http server does not clear the security identity established during a request before its worker thread handles the next request. a remote unauthenticated attacker can have their request processed with the identity of a previously authenticated user, gaining that user&#x27;s privileges. only applications served by the embedded http server that authenticate programmatically or via basic authentication are affected. users are recommended to block network access to the embedded http server from untrusted clients, or to migrate to the tomcat based tomee distributions.">
+          <div class="headline"><h2>CVE-2026-97888</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-97888" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The embedded HTTP server does not clear the security identity established during a request before its worker thread handles the next request. A remote unauthenticated attacker can have their request processed with the identity of a previously authenticated user, gaining that user&#x27;s privileges. Only applications served…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-97880 the embedded openejb http server dispatches some requests to rest endpoints configured for http basic authentication without verifying credentials. a remote unauthenticated attacker can invoke protected resources, bypassing authentication. only deployments that use the embedded http server with basic authentication are affected. users are recommended to block network access to the embedded http server from untrusted clients, or to migrate to the tomcat based tomee distributions.">
+          <div class="headline"><h2>CVE-2026-97880</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-97880" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The embedded OpenEJB HTTP server dispatches some requests to REST endpoints configured for HTTP Basic authentication without verifying credentials. A remote unauthenticated attacker can invoke protected resources, bypassing authentication. Only deployments that use the embedded HTTP server with Basic authentication…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-97874 when hessian remoting is configured with basic authentication, the authentication check is not applied to hessian endpoints of applications deployed under a non-root context path. a remote unauthenticated attacker can invoke the exposed ejb methods without credentials. users are recommended to block network access to hessian endpoints from untrusted clients, or to migrate to another remoting protocol.">
+          <div class="headline"><h2>CVE-2026-97874</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-97874" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">When Hessian remoting is configured with BASIC authentication, the authentication check is not applied to Hessian endpoints of applications deployed under a non-root context path. A remote unauthenticated attacker can invoke the exposed EJB methods without credentials. Users are recommended to block network access to…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-97870 when hessian remoting endpoints are served by the embedded http server, configured authentication and transport security requirements are silently ignored. a remote unauthenticated attacker can invoke the exposed ejb methods without credentials or over an unencrypted connection. only deployments that use the embedded http server rather than tomcat and rely on these settings are affected. users are recommended to block network access to hessian endpoints from untrusted clients, or to migrate to another remoting protocol.">
+          <div class="headline"><h2>CVE-2026-97870</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-97870" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">When Hessian remoting endpoints are served by the embedded HTTP server, configured authentication and transport security requirements are silently ignored. A remote unauthenticated attacker can invoke the exposed EJB methods without credentials or over an unencrypted connection. Only deployments that use the embedded…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-97849 the embedded derby network service ignores its configured bind address and listens on all network interfaces. when the service is enabled, a remote attacker with network access can connect to the database server and read or modify data. users are recommended to upgrade to version 10.3.0 or 11.0.0-m2, which fix the issue.">
+          <div class="headline"><h2>CVE-2026-97849</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-97849" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The embedded Derby network service ignores its configured bind address and listens on all network interfaces. When the service is enabled, a remote attacker with network access can connect to the database server and read or modify data. Users are recommended to upgrade to version 10.3.0 or 11.0.0-M2, which fix the…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-86336 apache tomee running on jdk 21 or later skips ejb method authorization checks, allowing callers to invoke ejb methods without the configured access restrictions being enforced. users are recommended to upgrade to version 10.3.0 or 11.0.0-m2, which fix the issue.">
+          <div class="headline"><h2>CVE-2026-86336</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-86336" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Apache TomEE running on JDK 21 or later skips EJB method authorization checks, allowing callers to invoke EJB methods without the configured access restrictions being enforced. Users are recommended to upgrade to version 10.3.0 or 11.0.0-M2, which fix the issue.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
         <article class="card" data-search="cve-2026-125758 aptabase before commit 61d4c01 contains an authentication bypass vulnerability that allows unauthenticated attackers to forge sign-in links by using the publicly known example auth_secret. attackers can enumerate registered e-mails via /api/_auth/signin, forge hs256 jwts redeemed by /api/_auth/continue, impersonate users, export analytics data, and transfer app ownership.">
           <div class="headline"><h2>CVE-2026-125758</h2><span class="pill">CRITICAL · 9.1</span></div>
           <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-125758" target="_blank" rel="noopener noreferrer">NVD record</a></p>
@@ -3749,10 +4034,190 @@
           </dl>
         </article>
 
+        <article class="card" data-search="cve-2026-111261 the jakarta security ldap identity store accepts an empty password as valid if the directory server allows unauthenticated binds, which some directory servers do by default. a remote attacker can then authenticate as any existing user without knowing the password. users are recommended to upgrade to version 10.3.0 or 11.0.0-m2, which fix the issue.">
+          <div class="headline"><h2>CVE-2026-111261</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111261" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Jakarta Security LDAP identity store accepts an empty password as valid if the directory server allows unauthenticated binds, which some directory servers do by default. A remote attacker can then authenticate as any existing user without knowing the password. Users are recommended to upgrade to version 10.3.0 or…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-111260 the jakarta security openid connect authentication mechanism generates the state and nonce values with a non-cryptographic random number generator and insufficient entropy. a remote attacker who predicts these values can forge an authentication callback that logs a victim into the attacker&#x27;s account, and the replay protection for id tokens is weakened. users are recommended to upgrade to version 10.3.0 or 11.0.0-m2, which fix the issue.">
+          <div class="headline"><h2>CVE-2026-111260</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111260" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Jakarta Security OpenID Connect authentication mechanism generates the state and nonce values with a non-cryptographic random number generator and insufficient entropy. A remote attacker who predicts these values can forge an authentication callback that logs a victim into the attacker&#x27;s account, and the replay…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-111259 the embedded server generates http session identifiers with a non-cryptographic random number generator by default. a remote attacker who observes a session identifier can predict the identifiers issued to other users and hijack their sessions, if the application relies on http sessions for authentication. users are recommended to upgrade to version 10.3.0 or 11.0.0-m2, which fix the issue.">
+          <div class="headline"><h2>CVE-2026-111259</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111259" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The embedded server generates HTTP session identifiers with a non-cryptographic random number generator by default. A remote attacker who observes a session identifier can predict the identifiers issued to other users and hijack their sessions, if the application relies on HTTP sessions for authentication. Users are…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-111256 when jax-ws or jax-rs endpoints are published by the embedded openejb http server rather than tomcat, some configured authentication methods are silently ignored and the endpoint is published without authentication. a remote unauthenticated attacker can invoke the exposed operations without credentials. only deployments that use the embedded http server and rely on such an authentication method are affected. users are recommended to block network access to the embedded http server from untrusted clients, or to migrate to the tomcat based tomee distributions.">
+          <div class="headline"><h2>CVE-2026-111256</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111256" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">When JAX-WS or JAX-RS endpoints are published by the embedded OpenEJB HTTP server rather than Tomcat, some configured authentication methods are silently ignored and the endpoint is published without authentication. A remote unauthenticated attacker can invoke the exposed operations without credentials. Only…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-111250 the embedded openejb http server reports every request as authenticated when an application requests authentication programmatically. a remote unauthenticated attacker can access functionality protected this way. only applications served by the embedded http server that rely on programmatic authentication are affected. users are recommended to block network access to the embedded http server from untrusted clients, or to migrate to the tomcat based tomee distributions.">
+          <div class="headline"><h2>CVE-2026-111250</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111250" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The embedded OpenEJB HTTP server reports every request as authenticated when an application requests authentication programmatically. A remote unauthenticated attacker can access functionality protected this way. Only applications served by the embedded HTTP server that rely on programmatic authentication are…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-111249 the development-time livereload support listens on all network interfaces without authentication and accepts websocket connections from any origin. a network attacker, or a web page visited by the developer, can observe the names of changed files in the watched folder and the server version, and reach the deployed applications through the additional port. this only affects livereload enabled in the embedded maven plugin. users are recommended to upgrade to version 10.3.0 or 11.0.0-m2, which fix the issue.">
+          <div class="headline"><h2>CVE-2026-111249</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111249" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The development-time LiveReload support listens on all network interfaces without authentication and accepts websocket connections from any origin. A network attacker, or a web page visited by the developer, can observe the names of changed files in the watched folder and the server version, and reach the deployed…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-111245 after a successful ws-security usernametoken authentication, the caller identity stays associated with the worker thread once the request completes when web services are served by the standalone openejb http server. a remote unauthenticated attacker whose request is later processed on the same thread can invoke protected ejb methods with the identity of a previously authenticated user. users are recommended to upgrade to version 10.3.0 or 11.0.0-m2, which fix the issue.">
+          <div class="headline"><h2>CVE-2026-111245</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111245" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">After a successful WS-Security UsernameToken authentication, the caller identity stays associated with the worker thread once the request completes when web services are served by the standalone OpenEJB HTTP server. A remote unauthenticated attacker whose request is later processed on the same thread can invoke…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-111244 when microprofile jwt role-based access control is used, the access constraints of jax-rs resources are not always enforced as declared: resources that declare an empty set of allowed roles are accessible to every caller, resource classes that inherit the same method from a common superclass share their constraints, and class-level constraints declared on a superclass are ignored. a remote attacker can invoke resources that should be denied to them, in some configurations without authentication. users are recommended to upgrade to version 10.3.0 or 11.0.0-m2, which fix the issue.">
+          <div class="headline"><h2>CVE-2026-111244</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111244" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">When MicroProfile JWT role-based access control is used, the access constraints of JAX-RS resources are not always enforced as declared: resources that declare an empty set of allowed roles are accessible to every caller, resource classes that inherit the same method from a common superclass share their constraints,…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-111243 a negative microprofile jwt clock skew setting is not rejected and disables validation of the token expiration and other time-based claims. in such configurations, an attacker in possession of an expired token can still authenticate with it. users are recommended to upgrade to version 10.3.0 or 11.0.0-m2, which fix the issue.">
+          <div class="headline"><h2>CVE-2026-111243</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111243" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A negative MicroProfile JWT clock skew setting is not rejected and disables validation of the token expiration and other time-based claims. In such configurations, an attacker in possession of an expired token can still authenticate with it. Users are recommended to upgrade to version 10.3.0 or 11.0.0-M2, which fix…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-111240 the jdbc based jaas login module accepts a login without a password for accounts whose stored password is null. a remote attacker who knows the user name of such an account can authenticate as that user and obtain its roles. only deployments using this login module with null passwords in the user table are affected. users are recommended to upgrade to version 10.3.0 or 11.0.0-m2, which fix the issue.">
+          <div class="headline"><h2>CVE-2026-111240</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111240" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The JDBC based JAAS login module accepts a login without a password for accounts whose stored password is NULL. A remote attacker who knows the user name of such an account can authenticate as that user and obtain its roles. Only deployments using this login module with NULL passwords in the user table are affected.…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
         <article class="card" data-search="cve-2026-108186 improper input validation in zoom workplace for windows may allow an unauthenticated user to conduct an escalation of privilege via network access.">
           <div class="headline"><h2>CVE-2026-108186</h2><span class="pill">CRITICAL · 9.6</span></div>
           <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-108186" target="_blank" rel="noopener noreferrer">NVD record</a></p>
           <p class="summary">Improper Input Validation in Zoom Workplace for Windows may allow an unauthenticated user to conduct an escalation of privilege via network access.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-87756 the internal system ejbs used for remote deployment and configuration did not enforce their administrative role check when the server ran with the default profile. a remote unauthenticated attacker able to reach the remote ejb endpoint could deploy arbitrary applications and execute code. only installations that enabled the system applications and a remote ejb endpoint are exposed. users are recommended to upgrade to version 10.3.0 or 11.0.0-m2, which fix the issue.">
+          <div class="headline"><h2>CVE-2026-87756</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-87756" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The internal system EJBs used for remote deployment and configuration did not enforce their administrative role check when the server ran with the default profile. A remote unauthenticated attacker able to reach the remote EJB endpoint could deploy arbitrary applications and execute code. Only installations that…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-111264 the security constraint generated for ejb jax-ws endpoints with configured authentication protects only some http methods. a remote unauthenticated attacker can bypass authentication by sending requests with another http method. users are recommended to upgrade to version 10.3.0 or 11.0.0-m2, which fix the issue.">
+          <div class="headline"><h2>CVE-2026-111264</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-10 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-111264" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The security constraint generated for EJB JAX-WS endpoints with configured authentication protects only some HTTP methods. A remote unauthenticated attacker can bypass authentication by sending requests with another HTTP method. Users are recommended to upgrade to version 10.3.0 or 11.0.0-M2, which fix the issue.</p>
           <dl>
             <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
             <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
@@ -4669,13 +5134,13 @@
           <p class="meta">Published 2026-11-08 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-6715" target="_blank" rel="noopener noreferrer">NVD record</a></p>
           <p class="summary">IBM Concert 1.0 through 3.0.1.1 allows an attacker can supply crafted input that is incorporated into an operating system command without adequate validation or sanitization. Successful exploitation allows remote attackers to execute arbitrary commands on the underlying operating system with the privileges of the…</p>
           <dl>
-            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected versions</dt><dd><ul><li>ibm:concert: &gt;= 1.0.0, &lt;= 3.0.1.1</li></ul></dd></div>
             <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
             <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
             <div><dt>Attack Vector</dt><dd>Network</dd></div>
             <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
             <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
-            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+            <div><dt>Advisory references</dt><dd><ul><li><a href="https://www.ibm.com/support/pages/node/7294607" target="_blank" rel="noopener noreferrer">www.ibm.com</a></li></ul></dd></div>
           </dl>
         </article>
 
@@ -4699,13 +5164,13 @@
           <p class="meta">Published 2026-11-08 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15266" target="_blank" rel="noopener noreferrer">NVD record</a></p>
           <p class="summary">IBM Concert 1.0 through 3.0.1.1 contains components that allow potentially unsafe command execution, which could be exploited to run arbitrary system commands on the host.</p>
           <dl>
-            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected versions</dt><dd><ul><li>ibm:concert: &gt;= 1.0.0, &lt;= 3.0.1.1</li></ul></dd></div>
             <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
             <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
             <div><dt>Attack Vector</dt><dd>Network</dd></div>
             <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
             <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
-            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+            <div><dt>Advisory references</dt><dd><ul><li><a href="https://www.ibm.com/support/pages/node/7294607" target="_blank" rel="noopener noreferrer">www.ibm.com</a></li></ul></dd></div>
           </dl>
         </article>
 
@@ -4729,13 +5194,13 @@
           <p class="meta">Published 2026-11-08 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-107331" target="_blank" rel="noopener noreferrer">NVD record</a></p>
           <p class="summary">IBM DataStage on Cloud Pak for Data 5.4.0.0 could allow a remote authenticated attacker to obtain sensitive information due to an absolute-path traversal vulnerability.</p>
           <dl>
-            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected versions</dt><dd><ul><li>ibm:datastage_on_cloud_pak_for_data: version 5.4.0</li></ul></dd></div>
             <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
             <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
             <div><dt>Attack Vector</dt><dd>Network</dd></div>
             <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
             <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
-            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+            <div><dt>Advisory references</dt><dd><ul><li><a href="https://www.ibm.com/support/pages/node/7294270" target="_blank" rel="noopener noreferrer">www.ibm.com</a></li></ul></dd></div>
           </dl>
         </article>
 
@@ -6769,13 +7234,13 @@
           <p class="meta">Published 2026-11-05 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-117691" target="_blank" rel="noopener noreferrer">NVD record</a></p>
           <p class="summary">A flaw was found in the SAML HTTP-Redirect binding implementation of Keycloak. The issue occurs because the server processes percent-encoded parameter names (like %53AMLResponse) while the signature verification logic only checks literal parameter names. An attacker can use this discrepancy to provide a crafted,…</p>
           <dl>
-            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected versions</dt><dd><ul><li>redhat:build_of_keycloak: &gt;= 26.6, &lt; 26.6.9</li></ul></dd></div>
             <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
             <div><dt>Advisory IDs</dt><dd>RHSA-2026:96039, RHSA-2026:96040</dd></div>
             <div><dt>Attack Vector</dt><dd>Network</dd></div>
             <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
             <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
-            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+            <div><dt>Advisory references</dt><dd><ul><li><a href="https://access.redhat.com/errata/RHSA-2026:96039" target="_blank" rel="noopener noreferrer">access.redhat.com</a></li><li><a href="https://access.redhat.com/errata/RHSA-2026:96040" target="_blank" rel="noopener noreferrer">access.redhat.com</a></li><li><a href="https://access.redhat.com/security/cve/CVE-2026-117691" target="_blank" rel="noopener noreferrer">access.redhat.com</a></li><li><a href="https://bugzilla.redhat.com/show_bug.cgi?id=2561977" target="_blank" rel="noopener noreferrer">bugzilla.redhat.com</a></li></ul></dd></div>
           </dl>
         </article>
 
