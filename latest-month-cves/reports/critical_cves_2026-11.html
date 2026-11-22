@@ -23,12 +23,222 @@
 </head>
 <body><main>
   <div class="top"><div><h1>Critical CVEs — 2026-11</h1>
-  <p class="muted">1010 Critical / 12567 total CVEs · Generated 2026-11-21 15:25 UTC</p></div>
+  <p class="muted">1036 Critical / 12879 total CVEs · Generated 2026-11-22 15:24 UTC</p></div>
   <input id="search" type="search" placeholder="Search CVE or description" aria-label="Search CVEs"></div>
   <div class="info">Source: NIST NVD CVE API. Entries are filtered by the selected CVSS metric's <b>CRITICAL</b> severity.
   Affected versions are NVD CPE applicability conditions (which may include additional AND constraints), not vendor-confirmed fixed versions.
   SAPIs and solutions may require vendor advisory verification. Data and severity can change after publication.</div>
   <section id="results">
+        <article class="card" data-search="cve-2026-131782 deserialization of untrusted data vulnerability in mra13 / team tips and tricks hq simple shopping cart wordpress-simple-paypal-shopping-cart allows object injection.this issue affects simple shopping cart: from n/a through 5.3.3.">
+          <div class="headline"><h2>CVE-2026-131782</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-22 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-131782" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Deserialization of Untrusted Data vulnerability in mra13 / Team Tips and Tricks HQ Simple Shopping Cart wordpress-simple-paypal-shopping-cart allows Object Injection.This issue affects Simple Shopping Cart: from n/a through 5.3.3.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-131754 deserialization of untrusted data vulnerability in pierre lannoy apcu manager apcu-manager allows object injection.this issue affects apcu manager: from n/a through 4.6.1.">
+          <div class="headline"><h2>CVE-2026-131754</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-22 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-131754" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Deserialization of Untrusted Data vulnerability in Pierre Lannoy APCu Manager apcu-manager allows Object Injection.This issue affects APCu Manager: from n/a through 4.6.1.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-125294 the nexter blocks pro plugin for wordpress is vulnerable to privilege escalation in all versions up to, and including, 5.0.10 via the `tpgb_ajax_register_user()` function. this is due to a byte-level denylist on the `tpgb_acf_key[]` and `tpgb_acf[]` parameters that fails to block unicode look-alike characters — such as u+1e87 and u+00e7 in a key like `ẇp_çapabilities` — whose utf-8 byte sequences do not match any ascii-based pattern check, while the database&#x27;s default accent-insensitive collation (`utf8mb4_unicode_ci` / `utf8mb4_0900_ai_ci`) treats the decorated key as equivalent to the canonical `wp_capabilities` row, causing `update_user_meta()` to overwrite the newly registered user&#x27;s role with `administrator`. this makes it possible for unauthenticated attackers to register a new account bearing the full administrator role, gaining complete control over the wordpress site including the ability to install plugins, modify files, and execute arbitrary code. the nonce required by the handler is publicly emitted on any page containing the tp-login-register block, making the full exploit chain — nonce retrieval, a single crafted registration post, and the plugin&#x27;s own `autologin` flow — trivially reachable on any default install where user registration is enabled. successful exploitation causes the attacker&#x27;s own account to receive the complete administrator role.">
+          <div class="headline"><h2>CVE-2026-125294</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-21 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-125294" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">The Nexter Blocks Pro plugin for WordPress is vulnerable to Privilege Escalation in all versions up to, and including, 5.0.10 via the `tpgb_ajax_register_user()` function. This is due to a byte-level denylist on the `tpgb_acf_key[]` and `tpgb_acf[]` parameters that fails to block Unicode look-alike characters — such…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-133993 a security flaw has been discovered in d-link dir-600l 2.17b02. this affects the function fun_0040efb0 of the file gena.cgi of the component gena subscription handler. performing a manipulation of the argument service results in stack-based buffer overflow. the attack is possible to be carried out remotely. the exploit has been released to the public and may be used for attacks.">
+          <div class="headline"><h2>CVE-2026-133993</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-21 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-133993" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A security flaw has been discovered in D-Link DIR-600L 2.17b02. This affects the function FUN_0040efb0 of the file gena.cgi of the component GENA Subscription Handler. Performing a manipulation of the argument service results in stack-based buffer overflow. The attack is possible to be carried out remotely. The…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-134352 rclone from 1.51.0 before 1.76.0 contains an authentication bypass vulnerability in serve sftp --auth-proxy because the generatecachekey cache key omits the authentication method. attackers knowing a victim&#x27;s base64 public key can submit it as a password from the same client ip to reuse the cached entry and gain read-write vfs access.">
+          <div class="headline"><h2>CVE-2026-134352</h2><span class="pill">CRITICAL · 9.2</span></div>
+          <p class="meta">Published 2026-11-21 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-134352" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Rclone from 1.51.0 before 1.76.0 contains an authentication bypass vulnerability in serve sftp --auth-proxy because the generateCacheKey cache key omits the authentication method. Attackers knowing a victim&#x27;s base64 public key can submit it as a password from the same client IP to reuse the cached entry and gain…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-66QV-66MG-9H74</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-134292 surrealdb 1.0.0 before 4.0.0 contains a capability check bypass in its embedded javascript scripting engine, where the surrealdb.functions bridge calls the internal fnc::synchronous() and fnc::asynchronous() dispatchers without enforcing function capability checks. authenticated users denied access to built-in functions in surrealql can execute them by calling them through surrealdb.functions from embedded javascript.">
+          <div class="headline"><h2>CVE-2026-134292</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-21 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-134292" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">SurrealDB 1.0.0 before 4.0.0 contains a capability check bypass in its embedded JavaScript scripting engine, where the surrealdb.functions bridge calls the internal fnc::synchronous() and fnc::asynchronous() dispatchers without enforcing function capability checks. Authenticated users denied access to built-in…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-5W6J-QM42-4RC2</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-134287 openremote core before 1.34.0 contains an authentication bypass vulnerability in userassetprovisioningmqtthandler that allows unauthenticated attackers to impersonate provisioned devices without proof of private key possession. attackers can publish a known device&#x27;s public certificate to the provisioning request topic, authenticating their anonymous mqtt connection as the device&#x27;s service account to read and modify assets.">
+          <div class="headline"><h2>CVE-2026-134287</h2><span class="pill">CRITICAL · 9.2</span></div>
+          <p class="meta">Published 2026-11-21 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-134287" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">OpenRemote core before 1.34.0 contains an authentication bypass vulnerability in UserAssetProvisioningMQTTHandler that allows unauthenticated attackers to impersonate provisioned devices without proof of private key possession. Attackers can publish a known device&#x27;s public certificate to the provisioning request…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-7JP3-2229-XGQJ</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: Low</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-134262 admidio 5.0.0 before 5.0.18 contains a stored cross-site scripting vulnerability that allows role administrators to inject javascript by placing quote-breaking payloads in role names rendered unencoded in the data-message attribute in modules/profile/roles_functions.php. attackers can execute scripts when a full administrator views an affected profile page, stealing the csrf token to assign themselves the administrator role.">
+          <div class="headline"><h2>CVE-2026-134262</h2><span class="pill">CRITICAL · 9.2</span></div>
+          <p class="meta">Published 2026-11-21 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-134262" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Admidio 5.0.0 before 5.0.18 contains a stored cross-site scripting vulnerability that allows role administrators to inject JavaScript by placing quote-breaking payloads in role names rendered unencoded in the data-message attribute in modules/profile/roles_functions.php. Attackers can execute scripts when a full…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-V28H-H5QH-45HR</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-134258 admidio 5.0.0 before 5.0.18 contains a path traversal vulnerability in the documents &amp; files renamefile() action that allows authenticated users with folder upload rights to move files outside adm_my_files by supplying ../ sequences in adm_new_name. attackers can relocate an uploaded svg containing script to the web root, where it is served inline and executes stored cross-site scripting against administrators for account takeover.">
+          <div class="headline"><h2>CVE-2026-134258</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-21 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-134258" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Admidio 5.0.0 before 5.0.18 contains a path traversal vulnerability in the Documents &amp; Files renameFile() action that allows authenticated users with folder upload rights to move files outside adm_my_files by supplying ../ sequences in adm_new_name. Attackers can relocate an uploaded SVG containing script to the web…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-GP7M-9622-GCW9</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-133867 @fastify/express is a compatibility layer that lets express middleware run inside the fastify web framework. in versions 4.0.7 through 4.0.9, the plugin does not rewrite regular-expression mount paths to account for a parameterized plugin prefix, so when middleware is mounted with a regular expression inside a plugin registered under a parameterized prefix, the express matcher treats the prefix parameter as literal text and never matches the real request path. as a result, express silently skips that middleware while fastify still runs the route handler, so an application that relies on regular-expression mounted middleware for authentication or authorization inside a parameterized-prefix plugin exposes protected routes to unauthenticated clients. no special configuration is required beyond a parameterized prefix and a regular-expression mount. the issue is fixed in @fastify/express 4.0.10, and users should upgrade to 4.0.10 or later.">
+          <div class="headline"><h2>CVE-2026-133867</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-21 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-133867" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">@fastify/express is a compatibility layer that lets Express middleware run inside the Fastify web framework. In versions 4.0.7 through 4.0.9, the plugin does not rewrite regular-expression mount paths to account for a parameterized plugin prefix, so when middleware is mounted with a regular expression inside a plugin…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-84W6-XRF3-F8Q8</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-133250 @fastify/middie is the middleware engine for the fastify web framework. in versions up to and including 9.3.7, middie matches path-scoped middleware against its own reading of the request path, which can differ from the path fastify&#x27;s router uses to dispatch the request. when the two disagree, the router can route a request to a handler covered by a middleware mount while middie skips that middleware, so an unauthenticated client reaches a handler that an authentication, authorization, or rate-limiting middleware was meant to protect, with no special configuration required. the mismatch is triggered by empty parameter or wildcard values, request targets that do not begin with a slash, and literal percent characters in a mount path. the issue is fixed in @fastify/middie 9.3.8, and users should upgrade to 9.3.8 or later.">
+          <div class="headline"><h2>CVE-2026-133250</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-21 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-133250" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">@fastify/middie is the middleware engine for the Fastify web framework. In versions up to and including 9.3.7, middie matches path-scoped middleware against its own reading of the request path, which can differ from the path Fastify&#x27;s router uses to dispatch the request. When the two disagree, the router can route a…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-GCF6-J9M3-P97X</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-133120 @fastify/express is a compatibility layer that lets express middleware run inside the fastify web framework. in versions before 4.0.10, the plugin passes express a request url that does not always match the path fastify&#x27;s router dispatched, so path-scoped express middleware can be skipped while the route handler still runs. several request forms trigger the mismatch, including percent-decoding that rewrites a backslash to a slash or double-decodes an encoded percent sign, and a request target that begins with an asterisk, so the middleware and the handler disagree on the path or on parameter and query values. an unauthenticated client can therefore reach a handler that an authentication, authorization, or rate-limiting middleware was meant to protect, with no special configuration required. the issue is fixed in @fastify/express 4.0.10, and users should upgrade to 4.0.10 or later.">
+          <div class="headline"><h2>CVE-2026-133120</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-21 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-133120" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">@fastify/express is a compatibility layer that lets Express middleware run inside the Fastify web framework. In versions before 4.0.10, the plugin passes Express a request URL that does not always match the path Fastify&#x27;s router dispatched, so path-scoped Express middleware can be skipped while the route handler still…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-W877-HJCP-88RC</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-129504 @fastify/express is a compatibility layer that lets express middleware run inside the fastify web framework. in versions 4.0.0 through 4.0.9, the plugin joins a path-scoped middleware&#x27;s mount path to the fastify plugin prefix by string concatenation, so when the plugin prefix ends with a slash or the mount path omits its leading slash, the resulting express mount path does not line up with the route the fastify router serves. express then fails to match and passes the request on while the fastify router still dispatches the route, so the middleware is silently skipped. an application that uses path-scoped express middleware for authentication or authorization inside a prefixed plugin can expose protected routes to unauthenticated clients, with no crafted request and no non-default option required, and string, array, and regular-expression mount paths are all affected. the issue is fixed in @fastify/express 4.0.10, and users should upgrade to 4.0.10 or later.">
+          <div class="headline"><h2>CVE-2026-129504</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-21 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129504" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">@fastify/express is a compatibility layer that lets Express middleware run inside the Fastify web framework. In versions 4.0.0 through 4.0.9, the plugin joins a path-scoped middleware&#x27;s mount path to the Fastify plugin prefix by string concatenation, so when the plugin prefix ends with a slash or the mount path omits…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-F44M-4QWG-5587</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-124626 @fastify/express is a compatibility layer that lets express middleware run inside the fastify web framework. in versions 4.0.5 through 4.0.9, the plugin matches path-scoped express middleware with a matcher that requires a non-empty value for a dynamic segment, while fastify&#x27;s router accepts an empty parameter or wildcard value. when a route and an express middleware mount share a dynamic pattern, a request with an empty segment matches the fastify route and runs the handler while the middleware mounted on that pattern is skipped, so on a scoped mount an unauthenticated request can reach a protected handler. no special configuration is required, and the practical impact depends on what the empty value selects in the application. the issue is fixed in @fastify/express 4.0.10, and users should upgrade to 4.0.10 or later.">
+          <div class="headline"><h2>CVE-2026-124626</h2><span class="pill">CRITICAL · 9.1</span></div>
+          <p class="meta">Published 2026-11-21 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-124626" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">@fastify/express is a compatibility layer that lets Express middleware run inside the Fastify web framework. In versions 4.0.5 through 4.0.9, the plugin matches path-scoped Express middleware with a matcher that requires a non-empty value for a dynamic segment, while Fastify&#x27;s router accepts an empty parameter or…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>GHSA-662W-H4P6-JQ4P</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: None</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
         <article class="card" data-search="cve-2026-74127 improper verification of a cryptographic signature in the psp boot rom of amd zeppelin (zen1/zen+) processors could allow an attacker with local access to the spi flash to bypass secure boot authentication, potentially resulting in arbitrary unsigned code execution at full platform security processor privilege, loss of confidentiality, loss of integrity of the host boot chain, and persistent loss of availability.">
           <div class="headline"><h2>CVE-2026-74127</h2><span class="pill">CRITICAL · 9.4</span></div>
           <p class="meta">Published 2026-11-21 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-74127" target="_blank" rel="noopener noreferrer">NVD record</a></p>
@@ -468,6 +678,81 @@
           <div class="headline"><h2>CVE-2026-133493</h2><span class="pill">CRITICAL · 9.3</span></div>
           <p class="meta">Published 2026-11-20 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-133493" target="_blank" rel="noopener noreferrer">NVD record</a></p>
           <p class="summary">A vulnerability was identified in D-Link DIR-600L 2.17b02. Affected is the function genacgi_main of the file gena.cgi of the component GENA Handler. Such manipulation leads to os command injection. The attack can be launched remotely. The exploit is publicly available and might be used.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-99680 in the linux kernel, the following vulnerability has been resolved: xfs: mark the inode preallocated for pnfs write layouts past eof xfs_fs_map_blocks() marks the inode xfs_diflag_prealloc only when it allocates blocks for a write layout. a write layout past eof can also hand out allocated blocks, such as speculative preallocation. blockgc then frees them under the layout, and another file may get them. mark the inode whenever a write mapping ends past eof.">
+          <div class="headline"><h2>CVE-2026-99680</h2><span class="pill">CRITICAL · 9.4</span></div>
+          <p class="meta">Published 2026-11-20 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-99680" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In the Linux kernel, the following vulnerability has been resolved: xfs: mark the inode preallocated for pNFS write layouts past EOF xfs_fs_map_blocks() marks the inode XFS_DIFLAG_PREALLOC only when it allocates blocks for a write layout. A write layout past EOF can also hand out allocated blocks, such as speculative…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: Low</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-99679 in the linux kernel, the following vulnerability has been resolved: xfs: refuse a pnfs layoutcommit of a range without blocks a client can commit a hole in a layoutcommit, because nfsd does not check the extents against its layouts. xfs_iomap_write_unwritten() then allocates written blocks there. a large hole overruns the block reservation and shuts xfs down. a small one exposes stale data. refuse such a range with -eio, using xfs_bmapi_convert_only.">
+          <div class="headline"><h2>CVE-2026-99679</h2><span class="pill">CRITICAL · 9.4</span></div>
+          <p class="meta">Published 2026-11-20 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-99679" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In the Linux kernel, the following vulnerability has been resolved: xfs: refuse a pNFS LAYOUTCOMMIT of a range without blocks A client can commit a hole in a LAYOUTCOMMIT, because nfsd does not check the extents against its layouts. xfs_iomap_write_unwritten() then allocates written blocks there. A large hole overruns…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: Low; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-99676 in the linux kernel, the following vulnerability has been resolved: net: restore refcount ordering for lockless socket access before commit fb041bb7c0a9 (&quot;locking/refcount: consolidate implementations of refcount_t&quot;), default builds implemented refcount_inc_not_zero() using atomic_add_unless(), which provided full memory ordering on success. the commit removed that ordering on weakly ordered architectures, allowing accesses after a successful reference acquisition to be reordered before it. use refcount_inc_not_zero_acquire() in the ipv4 and ipv6 established lookups and in inet_twsk_purge(), where the socket is validated again after taking a reference. bpf_sk_assign() can receive a socket pointer obtained through btf without a reference. use acquire ordering when it takes its own reference for a refcounted socket. use refcount_set_release() when setting refcounts in the syn cookie, tcp fast open, request migration, and time_wait paths. keep the existing time_wait smp_wmb(), which separately orders the refcount store before ehash publication.">
+          <div class="headline"><h2>CVE-2026-99676</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-20 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-99676" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In the Linux kernel, the following vulnerability has been resolved: net: restore refcount ordering for lockless socket access Before commit fb041bb7c0a9 (&quot;locking/refcount: Consolidate implementations of refcount_t&quot;), default builds implemented refcount_inc_not_zero() using atomic_add_unless(), which provided full…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-99634 in the linux kernel, the following vulnerability has been resolved: mptcp: do not use fast open on mp_join subflows tcp_fastopen_create_child() hands the syn packet itself to subflow_syn_recv_sock(). for an mp_join request this takes the fatal fallback: the cloned child is destroyed and handed back with drop_req flagged, but tcp_fastopen_create_child() does not check the flag and queues it, so accept() can expose the freed child. mp_join cannot use fast open: data on a subflow requires the completed hmac exchange (rfc 8684, sec. 3.2). refuse it (only the tfo path passes a syn skb here) and let tcp_conn_request() fall back to the regular mp_join handshake; also strip the fast open cookie from mp_join syn/acks. [ moving code to avoid clearing ts and consolidating checks. ]">
+          <div class="headline"><h2>CVE-2026-99634</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-20 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-99634" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In the Linux kernel, the following vulnerability has been resolved: mptcp: do not use Fast Open on MP_JOIN subflows tcp_fastopen_create_child() hands the SYN packet itself to subflow_syn_recv_sock(). For an MP_JOIN request this takes the fatal fallback: the cloned child is destroyed and handed back with drop_req…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-99590 in the linux kernel, the following vulnerability has been resolved: ceph: clamp the inline data length in ceph_fill_inline_data() the mds decides how much inline data to attach to a reply, and the client parses inline_len without any upper bound: ceph_decode_need() only verifies that the message actually carries that many bytes. ceph_fill_inline_data() then copies the data into a single folio with no length check, so a malicious or buggy mds returning more inline data than the folio can hold writes past its end. clamp the length to folio_size() so both callers, handle_cap_grant() and fill_inode(), are covered.">
+          <div class="headline"><h2>CVE-2026-99590</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-20 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-99590" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In the Linux kernel, the following vulnerability has been resolved: ceph: clamp the inline data length in ceph_fill_inline_data() The MDS decides how much inline data to attach to a reply, and the client parses inline_len without any upper bound: ceph_decode_need() only verifies that the message actually carries that…</p>
           <dl>
             <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
             <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
@@ -1041,6 +1326,111 @@
           <dl>
             <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
             <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-99544 in the linux kernel, the following vulnerability has been resolved: drivers: hv: vmbus: bounds check the shared ring buffer indices in a coco vm the host is untrusted. since the vmbus ring buffer read and write indices live in shared memory, the guest has to treat both as potentially malicious. hv_ringbuffer_write() copies into the ring at write_index with no bounds checking, so the host can make the guest write packet data at any offset up to 4 gib past the start of the ring buffer. read_index matters too: the available space derived from both indices is the only bound on how much is copied, and an out-of-range index can make it far larger than the ring. the fix is to validate both indices before use and to use the validated snapshot instead of re-accessing. for invalid indices, hv_ringbuffer_write() logs and returns -eio. one re-read of write_index is left unchecked in this patch: hv_get_ring_bufferindices() fetches it again for the prev_indices trailer. the value is only returned to the host and is not used as an offset or length for indexing. since this is not a security issue, it is addressed later in the series. open-coding the bytes available arithmetic keeps the fix free of prerequisites; a later patch refactors it into a helper function.">
+          <div class="headline"><h2>CVE-2026-99544</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-19 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-99544" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In the Linux kernel, the following vulnerability has been resolved: Drivers: hv: vmbus: Bounds check the shared ring buffer indices In a CoCo VM the host is untrusted. Since the VMBus ring buffer read and write indices live in shared memory, the guest has to treat both as potentially malicious. hv_ringbuffer_write()…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Local</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-99513 in the linux kernel, the following vulnerability has been resolved: lockd: fix use-after-free in nlmsvc_retry_blocked nlmsvc_retry_blocked() examines the block at the head of nlm_blocked under nlm_blocked_lock, then releases the lock before calling nlmsvc_grant_blocked() or retry_deferred_block(). the nlm_blocked list reference is all that keeps the block alive across that window. nlmsvc_grant_blocked() does take one of its own, but not until after the lock has been dropped. unmounting the nfsd filesystem while a lock request is still blocked reaches nlmsvc_traverse_blocks(), which drops the list reference and frees the block along with the nlm_rqst hanging off it. bug: kasan: slab-use-after-free in nlm_async_call+0xd6/0x230 read of size 8 at addr ffff88811b04c808 by task lockd/8377 nlm_async_call+0xd6/0x230 nlmsvc_retry_blocked+0x61c/0x800 lockd+0x144/0x1c0 freed by task 8392: nlmsvc_release_block+0x231/0x290 nlmsvc_traverse_blocks+0x139/0x1b0 nlm_traverse_files+0x1aa/0xa00 nlmsvc_free_host_resources+0x12/0x60 nlm_shutdown_hosts_net+0x127/0x280 lockd_down+0xd5/0x1c0 take a reference before releasing nlm_blocked_lock and drop it once the retry has run.">
+          <div class="headline"><h2>CVE-2026-99513</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-19 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-99513" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In the Linux kernel, the following vulnerability has been resolved: lockd: Fix use-after-free in nlmsvc_retry_blocked nlmsvc_retry_blocked() examines the block at the head of nlm_blocked under nlm_blocked_lock, then releases the lock before calling nlmsvc_grant_blocked() or retry_deferred_block(). The nlm_blocked list…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-99385 in the linux kernel, the following vulnerability has been resolved: smb: client: fix buffer overflow in smb2_tcon() in smb2_tcon(), unc_path is allocated with a fixed buffer size of max_sharename_length * 2 bytes (672 bytes). however, the user-controlled unc path (tree) length is passed to cifs_strtoutf16(), which assumes the destination buffer is large enough and writes strlen(tree) + 1 utf-16 code units. commit 62a1a439e0fd (&quot;cifs: clean up handling of unc= option&quot;) removed the length check on unc mount options, allowing mount paths to exceed max_sharename_length while retaining the fixed-size buffer allocation in smb2_tcon(). consequently, an oversized unc string causes cifs_strtoutf16() to write past the end of the heap object, resulting in a slab-out-of-bounds write. furthermore, if a tree exceeds max_tree_size characters, strscpy() truncates it in cifs_tcon::tree_name, causing subsequent reconnects or failovers to fail. fix this by first verifying that the length of tree does not exceed max_tree_size, returning -einval if it does. then, dynamically allocate unc_path based on the length of tree so that it safely accommodates all utf-16 code units for paths within max_tree_size. [pc: remove unused max_sharename_length]">
+          <div class="headline"><h2>CVE-2026-99385</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-19 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-99385" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In the Linux kernel, the following vulnerability has been resolved: smb: client: fix buffer overflow in SMB2_tcon() In SMB2_tcon(), unc_path is allocated with a fixed buffer size of MAX_SHARENAME_LENGTH * 2 bytes (672 bytes). However, the user-controlled UNC path (tree) length is passed to cifs_strtoUTF16(), which…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-99370 in the linux kernel, the following vulnerability has been resolved: nfsd: copy setxattr data from all xdr buffer segments nfsd4_vbuf_from_vector() manually copies the head followed by whole pages starting at offset zero. this assumes that all remaining data starts at the beginning of the page array and that no data is stored in the tail. however, nfsd4_decode_setxattr() passes an xdr_buf returned by xdr_stream_subsegment(). such a sub-buffer can have a nonzero page_base and can span its page and tail segments. ignoring that layout can copy the wrong bytes into the value passed to vfs_setxattr(). use read_bytes_from_xdr_buf(), which observes the complete xdr_buf layout.">
+          <div class="headline"><h2>CVE-2026-99370</h2><span class="pill">CRITICAL · 9.4</span></div>
+          <p class="meta">Published 2026-11-19 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-99370" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In the Linux kernel, the following vulnerability has been resolved: NFSD: copy SETXATTR data from all XDR buffer segments nfsd4_vbuf_from_vector() manually copies the head followed by whole pages starting at offset zero. This assumes that all remaining data starts at the beginning of the page array and that no data is…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: Low; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-99366 in the linux kernel, the following vulnerability has been resolved: nfsd: don&#x27;t modify a session slot when replaying its cached reply nfsd4_sequence() claims a session slot by setting nfsd4_slot_inuse under nn-&gt;client_lock. a reply served from the slot&#x27;s reply cache does not claim it, and that distinction lived only in cstate-&gt;status, which nfsd4_sequence() set to nfserr_replay_cache. commit cc028a10a48c (&quot;nfsd: hoist status code encoding into xdr encoder functions&quot;) moved nfsd4_proc_compound()&#x27;s cstate-&gt;status assignment below the out: label, and the replay path&#x27;s goto out was the one path that relied on skipping it. the test in nfsd4_sequence_done() therefore no longer identifies a replay, and every replay now stores its reply and clears nfsd4_slot_inuse as though it owned the slot. nfsd4_slot_inuse is the interlock: check_slot_seqid() rejects every sequence id for a slot that is in use, before replay_matches_cache() runs. a replay never sets it, so two replays can be in flight on the same slot at once. one can read slot-&gt;sl_cred under nn-&gt;client_lock while the other&#x27;s completion frees and rebuilds it from the xdr encoder without that lock. two completions can also collide with each other and release the same group_info twice. free_svc_cred() leaves cr_uid, cr_gid and cr_flavor intact, so the reader passes every earlier test in same_creds() and dereferences a null cr_group_info. from a 6.12.91 production server: bug: kernel null pointer dereference, address: 0000000000000004 cpu: 63 uid: 0 pid: 39015 comm: nfsd rip: 0010:same_creds+0x38/0xa0 [nfsd] rdx: 0000000000000000 call trace: nfsd4_sequence+0x6a8/0x910 [nfsd] nfsd4_proc_compound+0x345/0x670 [nfsd] nfsd_dispatch+0x100/0x220 [nfsd] svc_process_common+0x311/0x700 [sunrpc] svc_process+0x131/0x1c0 [sunrpc] svc_recv+0x7ef/0x9c0 [sunrpc] nfsd+0xa3/0x100 [nfsd] kernel panic - not syncing: fatal exception since v6.14 a live session&#x27;s slot table can shrink, and the unowned store becomes a use-after-free write. nfsd4_sequence() defers the shrink while a slot is in use, but it tests nfsd4_slot_inuse, which a replay does not set, so free_session_slots() can kfree() the slot the replay still holds in cstate-&gt;slot. record the claim in cstate-&gt;slot_owned when nfsd4_sequence() accepts a request and test that in nfsd4_sequence_done(), so only the request that claimed the slot updates its cached reply and clears nfsd4_slot_inuse. svc_generic_init_request() zeroes the compound response before each request, so the flag starts clear.">
+          <div class="headline"><h2>CVE-2026-99366</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-19 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-99366" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In the Linux kernel, the following vulnerability has been resolved: nfsd: don&#x27;t modify a session slot when replaying its cached reply nfsd4_sequence() claims a session slot by setting NFSD4_SLOT_INUSE under nn-&gt;client_lock. A reply served from the slot&#x27;s reply cache does not claim it, and that distinction lived only…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-99362 in the linux kernel, the following vulnerability has been resolved: nfsd: preflight sequence replies before accepting a slot nfsd4_sequence() narrows the reply buffer to the session&#x27;s cached reply limit before it accepts the slot seqid. a client may negotiate ca_maxresponsesize_cached down to nfsd_min_hdr_seq_sz, and nfsd4_alloc_slot() then gives every slot a zero-length sl_data[]. a compound tag can fill that narrowed buffer until it holds the sequence opcode but not the status word that follows. nfsd4_encode_operation() returns without running nfsd4_encode_sequence(), so cstate.data_offset stays zero. it leaves op-&gt;status at nfs_ok as well, so the compound is treated as having succeeded. nfsd4_store_cache_entry() declines to cache a lone sequence that returned an error. that test reads the status the operation reported, so it passes here. the copy starts at offset zero and takes the whole reply, rpc and compound headers included, into the zero-length sl_data[]. the compound tag is copied along with it, so the client picks most of the bytes written past the end of the slot: bug: kasan: slab-out-of-bounds in read_bytes_from_xdr_buf+0x1bc/0x390 write of size 80 at addr ffff888003a549cd by task kunit_try_catch/24 __asan_memcpy+0x38/0x60 read_bytes_from_xdr_buf+0x1bc/0x390 nfsd4_sequence_done+0x5b0/0x810 nfs4svc_encode_compoundres+0x1bf/0x240 check that the fixed-size sequence result, plus room for a following operation&#x27;s error status, fits the negotiated limit before narrowing the buffer and consuming the slot seqid. the slot and its reply cache are left unchanged, as rfc 8881 section 2.10.6.1.2 requires of an error returned from sequence.">
+          <div class="headline"><h2>CVE-2026-99362</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-19 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-99362" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In the Linux kernel, the following vulnerability has been resolved: nfsd: preflight SEQUENCE replies before accepting a slot nfsd4_sequence() narrows the reply buffer to the session&#x27;s cached reply limit before it accepts the slot seqid. A client may negotiate ca_maxresponsesize_cached down to NFSD_MIN_HDR_SEQ_SZ, and…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-99356 in the linux kernel, the following vulnerability has been resolved: sunrpc: do not credit control-record octets to the rpc stream svc_tcp_sock_recv_cmsg() receives up to two octets into a local buffer, and returns that count for any record type other than tls_record_type_alert. nothing reached the caller&#x27;s buffer, but svc_tcp_read_marker() adds the count to sk_tcplen and svc_tcp_read_msg()&#x27;s caller adds it to sk_datalen. the rpc stream advances over octets it never received. the fragment marker is assembled from stale sk_marker octets. the message body comes from pages nothing wrote. a conforming client reaches this. rfc 8446 section 4.6.3 lets either peer send keyupdate once it has sent its finished, and svcsock has no rekey path. ktls leaves the partially consumed record on ctx-&gt;rx_list, so the body drains two octets per svc_tcp_recvfrom() call. each pair is credited the same way. return -eagain for a record that is not an alert. that is what svc_tcp_sock_process_cmsg()&#x27;s default arm returned before the receive moved into a local buffer.">
+          <div class="headline"><h2>CVE-2026-99356</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-19 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-99356" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">In the Linux kernel, the following vulnerability has been resolved: SUNRPC: Do not credit control-record octets to the RPC stream svc_tcp_sock_recv_cmsg() receives up to two octets into a local buffer, and returns that count for any record type other than TLS_RECORD_TYPE_ALERT. Nothing reached the caller&#x27;s buffer, but…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
             <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
             <div><dt>Attack Vector</dt><dd>Network</dd></div>
             <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
