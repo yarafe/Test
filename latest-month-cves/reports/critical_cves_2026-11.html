@@ -23,12 +23,102 @@
 </head>
 <body><main>
   <div class="top"><div><h1>Critical CVEs — 2026-11</h1>
-  <p class="muted">1264 Critical / 15715 total CVEs · Generated 2026-11-27 17:29 UTC</p></div>
+  <p class="muted">1270 Critical / 15781 total CVEs · Generated 2026-11-28 16:13 UTC</p></div>
   <input id="search" type="search" placeholder="Search CVE or description" aria-label="Search CVEs"></div>
   <div class="info">Source: NIST NVD CVE API. Entries are filtered by the selected CVSS metric's <b>CRITICAL</b> severity.
   Affected versions are NVD CPE applicability conditions (which may include additional AND constraints), not vendor-confirmed fixed versions.
   SAPIs and solutions may require vendor advisory verification. Data and severity can change after publication.</div>
   <section id="results">
+        <article class="card" data-search="cve-2026-138005 a vulnerability was detected in trendnet tew-751dr 1.03b01. affected by this vulnerability is the function gena.php::gena_notify_init of the file htdocs/upnpinc/gena.php of the component upnp event handler. performing a manipulation of the argument uri results in os command injection. it is possible to initiate the attack remotely. the exploit is now public and may be used.">
+          <div class="headline"><h2>CVE-2026-138005</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-28 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-138005" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A vulnerability was detected in TRENDnet TEW-751DR 1.03B01. Affected by this vulnerability is the function gena.php::GENA_notify_init of the file htdocs/upnpinc/gena.php of the component UPnP Event Handler. Performing a manipulation of the argument uri results in os command injection. It is possible to initiate the…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not specified by NVD; check the PHP/vendor advisory</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-138154 postal 2 before build 26810491 contains a sandbox escape vulnerability that allows malicious steam workshop mods to execute code by calling consolecommand with a start file uri. attackers can ship a batch file in a mod at the predictable workshop install path and launch it via shellexecutew, executing commands as the player on windows.">
+          <div class="headline"><h2>CVE-2026-138154</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-28 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-138154" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">POSTAL 2 before build 26810491 contains a sandbox escape vulnerability that allows malicious Steam Workshop mods to execute code by calling ConsoleCommand with a start file URI. Attackers can ship a batch file in a mod at the predictable workshop install path and launch it via ShellExecuteW, executing commands as the…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Local</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-138004 a security vulnerability has been detected in trendnet tew-751dr and tew-733gr 1.03b01. affected is the function soapcgi_main of the file /soap.cgi of the component upnp igd control endpoint. such manipulation of the argument service leads to os command injection. the attack may be performed from remote. the exploit has been disclosed publicly and may be used.">
+          <div class="headline"><h2>CVE-2026-138004</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-27 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-138004" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A security vulnerability has been detected in TRENDnet TEW-751DR and TEW-733GR 1.03B01. Affected is the function soapcgi_main of the file /soap.cgi of the component UPnP Igd Control Endpoint. Such manipulation of the argument service leads to os command injection. The attack may be performed from remote. The exploit…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-138003 a weakness has been identified in trendnet tew-751dr 1.03b01. this impacts the function fun_0040ed90 of the file wfadev.cgi of the component upnp/wfa. this manipulation of the argument soapaction causes stack-based buffer overflow. the attack is possible to be carried out remotely. a high degree of complexity is needed for the attack. the exploitability is said to be difficult. the exploit has been made available to the public and could be used for attacks.">
+          <div class="headline"><h2>CVE-2026-138003</h2><span class="pill">CRITICAL · 9.0</span></div>
+          <p class="meta">Published 2026-11-27 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-138003" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">A weakness has been identified in TRENDnet TEW-751DR 1.03B01. This impacts the function FUN_0040ed90 of the file wfadev.cgi of the component UPnP/WFA. This manipulation of the argument SOAPAction causes stack-based buffer overflow. The attack is possible to be carried out remotely. A high degree of complexity is…</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-136115 incorrect privilege assignment vulnerability in expresstechsoftware memberpress discord addon expresstechsoftwares-memberpress-discord-add-on allows privilege escalation.this issue affects memberpress discord addon: from n/a through 1.1.5.">
+          <div class="headline"><h2>CVE-2026-136115</h2><span class="pill">CRITICAL · 9.8</span></div>
+          <p class="meta">Published 2026-11-27 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-136115" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Incorrect Privilege Assignment vulnerability in expresstechsoftware MemberPress Discord Addon expresstechsoftwares-memberpress-discord-add-on allows Privilege Escalation.This issue affects MemberPress Discord Addon: from n/a through 1.1.5.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
+        <article class="card" data-search="cve-2026-136113 improper neutralization of special elements used in an sql command (&#x27;sql injection&#x27;) vulnerability in hello clever pty hello clever gateway for woocommerce cleverpay-gateway allows sql injection.this issue affects hello clever gateway for woocommerce: from n/a through 1.8.4.">
+          <div class="headline"><h2>CVE-2026-136113</h2><span class="pill">CRITICAL · 9.3</span></div>
+          <p class="meta">Published 2026-11-27 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-136113" target="_blank" rel="noopener noreferrer">NVD record</a></p>
+          <p class="summary">Improper Neutralization of Special Elements used in an SQL Command (&#x27;SQL Injection&#x27;) vulnerability in Hello Clever Pty Hello Clever Gateway for WooCommerce cleverpay-gateway allows SQL Injection.This issue affects Hello Clever Gateway for WooCommerce: from n/a through 1.8.4.</p>
+          <dl>
+            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
+            <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
+            <div><dt>Attack Vector</dt><dd>Network</dd></div>
+            <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: None; Availability: Low</dd></div>
+            <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
+            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+          </dl>
+        </article>
+
         <article class="card" data-search="cve-2026-137964 tooljet before 3.21.96-lts contains a command injection vulnerability in its github actions release workflow, which interpolates the pull request title directly into a shell run block. attackers can submit a pull request against a release branch with shell metacharacters in its title that, once merged, executes commands with a cross-repository github_token, enabling unauthorized merges into enterprise repositories.">
           <div class="headline"><h2>CVE-2026-137964</h2><span class="pill">CRITICAL · 9.3</span></div>
           <p class="meta">Published 2026-11-27 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-137964" target="_blank" rel="noopener noreferrer">NVD record</a></p>
@@ -784,13 +874,13 @@
           <p class="meta">Published 2026-11-26 UTC · <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-136716" target="_blank" rel="noopener noreferrer">NVD record</a></p>
           <p class="summary">Improper Check for Unusual or Exceptional Conditions vulnerability in Drupal Drupal core allows Forceful Browsing. This issue affects Drupal core versions: from 0.0.0 to 10.6.23, from 11.0.0 to 11.3.23, from 11.4.0 to 11.4.14.</p>
           <dl>
-            <div><dt>Affected versions</dt><dd>Not specified in NVD CPE data</dd></div>
+            <div><dt>Affected versions</dt><dd><ul><li>drupal:drupal: &lt; 10.6.23</li><li>drupal:drupal: &gt;= 11.0.0, &lt; 11.3.23</li><li>drupal:drupal: &gt;= 11.4.0, &lt; 11.4.14</li></ul></dd></div>
             <div><dt>Affected Server APIs (SAPIs)</dt><dd>Not applicable or not specified (SAPI is a PHP-specific concept)</dd></div>
             <div><dt>Advisory IDs</dt><dd>No advisory ID identified</dd></div>
             <div><dt>Attack Vector</dt><dd>Network</dd></div>
             <div><dt>Potential Impact (CVSS)</dt><dd>Confidentiality: High; Integrity: High; Availability: High</dd></div>
             <div><dt>Solution</dt><dd>No confirmed fixed version was provided in structured NVD data. Consult the vendor advisory for a patch or mitigation.</dd></div>
-            <div><dt>Advisory references</dt><dd>No tagged advisory links in NVD</dd></div>
+            <div><dt>Advisory references</dt><dd><ul><li><a href="https://www.drupal.org/sa-core-2026-019" target="_blank" rel="noopener noreferrer">www.drupal.org</a></li></ul></dd></div>
           </dl>
         </article>
 
